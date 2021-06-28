@@ -6,18 +6,7 @@
         <%- partial('post/title', {class_name: 'article-title'}) %>
       </header>
     <% } %>
-    <% if (is_post()){ %>
-      <div class="article-meta">
-        <%- partial('post/date', {class_name: 'article-date', date_format: null}) %> 
-        &nbsp;&nbsp;&nbsp; / 
-        <%- partial('post/category') %> 
-        &nbsp;&nbsp;&nbsp; / 
-        <!-- post-words & post-time 为文章开头 字数统计&阅读时长 -->
-        <span class="post-words">
-            <span class="post-count"><%- wordcount(post.content) %>字</span>
-        </span>
-      </div>
-    <% } %>
+
     <div class="article-entry" itemprop="articleBody">
       <% if (post.excerpt && index){ %>
         <% if (post.photos != ""){ %>
@@ -50,9 +39,10 @@
     <footer class="entry-meta entry-footer">
       <%- partial('post/category') %>
       <%- partial('post/tag') %>
-    <!-- 文章添加评论 -->
-      <% if (!index && post.comments && (theme.valine.enable || theme.duoshuo_shortname || theme.disqus_shortname || theme.uyan_uid || theme.wumii || theme.livere_shortname)){ %>
-        <%- partial('comment') %>
+      <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+      <!-- 添加字数统计 -->
+      <% if (!is_current("about", false) && !is_current("categories", false)){ %>
+        <span class="ico-fontcount"></span><span class="post-count"><%- wordcount(post.content) %>字</span>
       <% } %>
     </footer>
     <hr class="entry-footer-hr">
