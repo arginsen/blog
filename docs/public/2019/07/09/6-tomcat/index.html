@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>Tomcat | Tomcat启用及配置 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="tomcat">
+  
+  
+  
+  
+  <meta name="keywords" content="tomcat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat | Tomcat启用及配置">
+<meta property="og:url" content="https://arginsen.github.io/blog/2019/07/09/6-tomcat/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/tomcat.jpeg">
+<meta property="og:updated_time" content="2020-08-20T08:33:24.887Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tomcat | Tomcat启用及配置">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/tomcat.jpeg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-6-tomcat" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/tomcat.jpeg" rel="gallery_cknpgcnnt00a54khvyr0h3zbg">
+        <img src="/blog/img/tomcat.jpeg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Tomcat | Tomcat启用及配置
+    </h1>
+  
+
+      </header>
+    
+    
+      <div class="article-meta">
+        
+	<a href="/blog/2019/07/09/6-tomcat/" class="article-date">
+	  <time datetime="2019-07-09T04:20:21.000Z" itemprop="datePublished">七月 9, 2019</time>
+	</a>
+ 
+        &nbsp;&nbsp;&nbsp; / 
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+ 
+        &nbsp;&nbsp;&nbsp; / 
+        <!-- post-words & post-time 为文章开头 字数统计&阅读时长 -->
+        <span class="post-words">
+            <span class="post-count">1.9k字</span>
+        </span>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li><p>Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。</p>
+</li>
+<li><p>Tomcat是Apache服务器的扩展，但运行时它是独立运行的。当一台机器配置好Apache服务器，可利用tomcat响应HTML页面的访问请求。</p>
+</li>
+<li><p>Apache 为HTML页面服务，而Tomcat 实际上运行JSP 页面和Servlet。另外，Tomcat和IIS等Web服务器一样，具有处理HTML页面的功能，另外它还是一个Servlet和JSP容器，独立的Servlet容器是Tomcat的默认模式。不过，Tomcat处理静态HTML的能力不如Apache服务器。</p>
+</li>
+</ul>
+<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><p>首先需要配置java环境，在Oracle网站下载jdk：<br><a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk12-downloads-5295953.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk12-downloads-5295953.html</a></p>
+<p>这里是使用win7 64位测试，选择<em>jdk-12.0.1_windows-x64_bin.exe</em>下载</p>
+<p>安装(记着安装路径)</p>
+<h2 id="配置java环境变量"><a href="#配置java环境变量" class="headerlink" title="配置java环境变量"></a>配置java环境变量</h2><p>右键计算机-属性-高级系统设置：<br><img src="/blog/img/2019/tomcat/1.png" alt></p>
+<p>打开环境变量:<br><img src="/blog/img/2019/tomcat/2.png" alt></p>
+<p>添加java变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">用户变量下添加：</span><br><span class="line">名称： CLASS_PATH</span><br><span class="line">变量值：.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar </span><br><span class="line"></span><br><span class="line">系统变量下添加：</span><br><span class="line">名称：JAVA_HOME</span><br><span class="line">变量值：之前安装jdk的路径</span><br><span class="line"></span><br><span class="line">并在已有的系统变量&quot;path&quot;的变量值加上：</span><br><span class="line">%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;       #将语句至于path变量最前，且整句末不加封号</span><br></pre></td></tr></table></figure></p>
+<p><img src="/blog/img/2019/tomcat/3.png" alt></p>
+<p>此时java环境配置完成，可在cmd内查看：<br><img src="/blog/img/2019/tomcat/4.png" alt></p>
+<h2 id="启动tomcat"><a href="#启动tomcat" class="headerlink" title="启动tomcat"></a>启动tomcat</h2><p>目前tomcat最新版为9.0.21，可在下边网站下载：<br><a href="https://tomcat.apache.org/download-90.cgi" target="_blank" rel="noopener">https://tomcat.apache.org/download-90.cgi</a></p>
+<p>这里是在win7虚拟机进行测试，选择<em>64-bit windows zip</em>下载。</p>
+<p>下载解压后，在<em>bin</em>文件夹下找到<em>startup.bat</em>文件，<br>直接打开后可见如下弹框：<br><img src="/blog/img/2019/tomcat/5.png" alt></p>
+<p>同时登入<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>   可见：<br><img src="/blog/img/2019/tomcat/6.png" alt></p>
+<p>出现如上页面，说明成功。</p>
+<h2 id="tomcat参数配置"><a href="#tomcat参数配置" class="headerlink" title="tomcat参数配置"></a>tomcat参数配置</h2><h3 id="端口配置"><a href="#端口配置" class="headerlink" title="端口配置"></a>端口配置</h3><p>在阅读器中打开conf文件夹下的server.xml</p>
+<p>1.<br>ctrl+f查找&lt;Connector port=”8080” protocol=”http”  相关内容，<br>修改connector端口为未被其他程序占用的端口。<br><img src="/blog/img/2019/tomcat/7.png" alt></p>
+<p>2.<br>寻找&lt;Server port=”xxxx” shutdown=”xxxx    相关内容<br>修改server端口：<br><img src="/blog/img/2019/tomcat/8.png" alt></p>
+<p>3.<br>寻找<connector port="xxxx" protocol="AJP/1.3" redirectport="8443"><br>修改端口：<br><img src="/blog/img/2019/tomcat/9.png" alt></connector></p>
+<h3 id="性能参数配置"><a href="#性能参数配置" class="headerlink" title="性能参数配置"></a>性能参数配置</h3><h4 id="内存配置"><a href="#内存配置" class="headerlink" title="内存配置"></a>内存配置</h4><p>在tomcat上运行j2ee项目代码时，经常会出现内存溢出的情况，解决办法是在系统参数中增加系统参数。<br>打开bin文件夹下的<em>catalina.bat</em>进行编辑，在第二行输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set JAVA_OPTS=-Xms512m -Xmx1024m -XX:MaxPermSize=512m</span><br><span class="line">set JPDA_ADDRESS=58000</span><br></pre></td></tr></table></figure></p>
+<p><img src="/blog/img/2019/tomcat/10.png" alt></p>
+<h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><p>使用线程池，用较少的线程处理较多的访问，可以提高tomcat处理请求的能力。</p>
+<p>打开conf文件夹下server.xml  ,输入以下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;org.apache.coyote.http11.Http11AprProtocol&quot; </span><br><span class="line">    connectionTimeout=&quot;20000&quot;                       #网络连接超时</span><br><span class="line">    URIEncoding=&quot;UTF-8&quot;                             #使tomcat可以解析含有中文名的文件的url，避免乱码</span><br><span class="line">    enableLookups=&quot;false&quot; </span><br><span class="line">    maxThreads=&quot;500&quot;                                #可创建线程的最大数，一般500</span><br><span class="line">    acceptCount=&quot;300&quot;                               #指定当所有可以使用的处理请求的线程数都被使用时，可以放到处理队列中的请求数，超过这个数的请求将不予处理。</span><br><span class="line"></span><br><span class="line">    compression=&quot;on&quot;                                #打开压缩功能，gzip(HTTP)压缩可以大大提高浏览网站的速度；原理：客户端请求网页后，从服务端将网页文件压缩，再下载到客户端，由客户端的浏览器负责解压并浏览。</span><br><span class="line">    compressionMinSize=&quot;2048&quot;                       #启用压缩的输出内容大小，默认2kb</span><br><span class="line">    noCompressionUserAgents=&quot;gozilla, traviata&quot;     #对于以下的浏览器，不启用压缩</span><br><span class="line">    compressableMimeType=&quot;text/html,text/xml,text/javascript,text/css,text/plain&quot;    #压缩类型</span><br><span class="line">    redirectPort=&quot;8443&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/blog/img/2019/tomcat/11.png" alt></p>
+<h4 id="配置apr模式"><a href="#配置apr模式" class="headerlink" title="配置apr模式"></a>配置apr模式</h4><p>修改bin文件夹下的catalina.bat  在第三行添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set JAVA_OPTS=-XX:PermSize=512M -XX:MaxPermSize=1024m –Xms2048M –Xmx2048M -XX:MaxNewSize=256m -XX:+HeapDumpOnOutOfMemoryError</span><br></pre></td></tr></table></figure>
+<p><img src="/blog/img/2019/tomcat/12.png" alt></p>
+<p>windows下直接启动即可。</p>
+<h2 id="tomcat发布应用"><a href="#tomcat发布应用" class="headerlink" title="tomcat发布应用"></a>tomcat发布应用</h2><h3 id="关闭tombat"><a href="#关闭tombat" class="headerlink" title="关闭tombat"></a>关闭tombat</h3><p>直接关闭程序</p>
+<h3 id="释放tomcat占用端口"><a href="#释放tomcat占用端口" class="headerlink" title="释放tomcat占用端口"></a>释放tomcat占用端口</h3><p>在bin中运行shutdown.bat</p>
+<h3 id="添加-修改应用xml文件"><a href="#添加-修改应用xml文件" class="headerlink" title="添加/修改应用xml文件"></a>添加/修改应用xml文件</h3><p>在\conf\Catalina\localhost文件夹下新建xml文件，命名与需要发布的文件一致</p>
+<h3 id="发布应用"><a href="#发布应用" class="headerlink" title="发布应用"></a>发布应用</h3><p>xml文件修改配置完成后，在bin文件夹下启动startup.bat，即可发布多个应用</p>
+<p>关闭tomcat，并释放窗口。</p>
+<p>启动多个tomcat时需要配置tomcat使用的端口，<br>依旧在/conf/server.xml下修改，之前提到的三个端口</p>
+<p>以及MIS端口的修改：<br>修改文件：eUrbanMIS\ WEB-INF\classes\ config.properties<br>修改端口：socket.security_xml_server_port=844 为未被占用的端口即可</p>
+<p>需要把端口修改为不一样的端口<br>修改完成后启动tomcat</p>
+<h3 id="修改tomcat应用显示名"><a href="#修改tomcat应用显示名" class="headerlink" title="修改tomcat应用显示名"></a>修改tomcat应用显示名</h3><p>启动多个tomcat之后，tomcat的显示名称相同，在更新tomcat的时候，无法进行区分tomcat发布的服务，因此需要修改tomcat启动之后的显示名称</p>
+<p>关闭tomcat<br>修改文件：tomcat/bin/ catalina.bat<br>修改内容：找到内容：if “%TITLE%” == “” set TITLE=Tomcat 并把title修改为需要显示的名称<br>修改后，启动tomcat</p>
+<h2 id="tomcat日志目录说明"><a href="#tomcat日志目录说明" class="headerlink" title="tomcat日志目录说明"></a>tomcat日志目录说明</h2><p>tomcat每次启动时，自动在logs目录下生产以下日志文件，按照日期自动备份<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">localhost.2016-07-05.txt              //经常用到的文件之一 ，程序异常没有被捕获的时候抛出的地方</span><br><span class="line">catalina.2016-07-05.txt               //经常用到的文件之一，程序的输出，tomcat的日志输出等等</span><br><span class="line">manager.2016-07-05.txt                //估计是manager项目专有的</span><br><span class="line">host-manager.2016-07-05.txt           //估计是manager项目专有的</span><br><span class="line">localhost_access_log.2016-10-01.txt   //tomcat访问日志记录，需要配置</span><br></pre></td></tr></table></figure></p>
+<h3 id="让所有文件都输出到同一个文件中"><a href="#让所有文件都输出到同一个文件中" class="headerlink" title="让所有文件都输出到同一个文件中"></a>让所有文件都输出到同一个文件中</h3><p>打开Tomcat目录conf\logging.properties，修改如下，所有日志输出到tomcat开头的文件中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1catalina.org.apache.juli.FileHandler.level = FINE</span><br><span class="line">1catalina.org.apache.juli.FileHandler.directory = $&#123;catalina.base&#125;/logs</span><br><span class="line"># 1catalina.org.apache.juli.FileHandler.prefix = catalina.   #将#号的语句改为下一句</span><br><span class="line"></span><br><span class="line">1catalina.org.apache.juli.FileHandler.prefix = tomcat.</span><br><span class="line"></span><br><span class="line">2localhost.org.apache.juli.FileHandler.level = FINE</span><br><span class="line">2localhost.org.apache.juli.FileHandler.directory = $&#123;catalina.base&#125;/logs</span><br><span class="line"># 2localhost.org.apache.juli.FileHandler.prefix = localhost.</span><br><span class="line"></span><br><span class="line">2localhost.org.apache.juli.FileHandler.prefix = tomcat.</span><br><span class="line"></span><br><span class="line">3manager.org.apache.juli.FileHandler.level = FINE</span><br><span class="line">3manager.org.apache.juli.FileHandler.directory = $&#123;catalina.base&#125;/logs</span><br><span class="line"># 3manager.org.apache.juli.FileHandler.prefix = manager.</span><br><span class="line"></span><br><span class="line">3manager.org.apache.juli.FileHandler.prefix = tomcat.</span><br><span class="line"></span><br><span class="line">4host-manager.org.apache.juli.FileHandler.level = FINE</span><br><span class="line">4host-manager.org.apache.juli.FileHandler.directory = $&#123;catalina.base&#125;/logs</span><br><span class="line"># 4host-manager.org.apache.juli.FileHandler.prefix = host-manager.</span><br><span class="line"></span><br><span class="line">4host-manager.org.apache.juli.FileHandler.prefix = tomcat.</span><br></pre></td></tr></table></figure></p>
+<p><img src="/blog/img/2019/tomcat/13.png" alt></p>
+<h3 id="打开访问日志"><a href="#打开访问日志" class="headerlink" title="打开访问日志"></a>打开访问日志</h3><p>默认 tomcat 不记录访问日志，如下方法可以使 tomcat 记录访问日志<br>编辑 /conf/server.xml 文件.<br>把以下的注释 () 去掉即可。</p>
+<p><img src="/blog/img/2019/tomcat/14.png" alt></p>
+<p><em>上面的pattern可以修改格式</em></p>
+<p>该项值可以为： common 与 combined ，这两个预先设置好的格式对应的日志输出内容如下：</p>
+<p>common 的值： %h %l %u %t %r %s %b<br>combined 的值： %h %l %u %t %r %s %b %{Referer}i %{User-Agent}i</p>
+<p>pattern 也可以根据需要自由组合, 例如 pattern=”%h %l”</p>
+<p>对于各fields字段的含义可参照 :<br><a href="http://tomcat.apache.org/tomcat-6.0-doc/config/valve.html" target="_blank" rel="noopener">http://tomcat.apache.org/tomcat-6.0-doc/config/valve.html</a> 中的 Access Log Valve 项</p>
+<h3 id="tomcat日志级别"><a href="#tomcat日志级别" class="headerlink" title="tomcat日志级别"></a>tomcat日志级别</h3><p>Tomcat 日志分为下面５类：<br>catalina 、 localhost 、 manager 、 admin 、 host-manager</p>
+<p>每类日志的级别分为如下 7 种：<br>SEVERE (highest value) &gt; WARNING &gt; INFO &gt; CONFIG &gt; FINE &gt; FINER &gt; FINEST (lowest value)</p>
+<h4 id="日志级别的设定方法："><a href="#日志级别的设定方法：" class="headerlink" title="日志级别的设定方法："></a>日志级别的设定方法：</h4><p>修改 conf/logging.properties 中的内容，设定某类日志的级别</p>
+<p>示例：</p>
+<p>设置 catalina 日志的级别为： FINE<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1catalina.org.apache.juli.FileHandler.level = FINE</span><br></pre></td></tr></table></figure></p>
+<p>禁用 catalina 日志的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1catalina.org.apache.juli.FileHandler.level = OFF</span><br></pre></td></tr></table></figure></p>
+<p>输出 catalina 所有的日志消息均输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1catalina.org.apache.juli.FileHandler.level = ALL</span><br></pre></td></tr></table></figure></p>
+<h1 id="对于tomcat的补充"><a href="#对于tomcat的补充" class="headerlink" title="对于tomcat的补充"></a>对于tomcat的补充</h1><p>以下摘取网上搜集到的一些内容：<br><a href="http://how2j.cn/k/tomcat/tomcat-tutorial/541.html" target="_blank" rel="noopener">http://how2j.cn/k/tomcat/tomcat-tutorial/541.html</a><br><a href="https://www.w3cschool.cn/tomcat/" target="_blank" rel="noopener">https://www.w3cschool.cn/tomcat/</a></p>
+<p>此大佬写的教程很详细，会介绍tomcat的原理结构等：<br><a href="https://www.cnblogs.com/windy1118/tag/Tomcat/" target="_blank" rel="noopener">https://www.cnblogs.com/windy1118/tag/Tomcat/</a></p>
+<p>###备份地址：<br><a href="https://lixupeng11.github.io/collection/tomcat/tomcat1.html" target="_blank" rel="noopener">https://lixupeng11.github.io/collection/tomcat/tomcat1.html</a><br><a href="https://lixupeng11.github.io/collection/tomcat/tomcat2.html" target="_blank" rel="noopener">https://lixupeng11.github.io/collection/tomcat/tomcat2.html</a><br><a href="https://lixupeng11.github.io/collection/tomcat/tomcat3.html" target="_blank" rel="noopener">https://lixupeng11.github.io/collection/tomcat/tomcat3.html</a><br><a href="https://lixupeng11.github.io/collection/tomcat/tomcat4.html" target="_blank" rel="noopener">https://lixupeng11.github.io/collection/tomcat/tomcat4.html</a></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/tomcat/">tomcat</a></li></ul>
+
+    <!-- 文章添加评论 -->
+      
+        
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <div id="vcomments"></div>
+    <script>
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        window.onload = function() {
+            new Valine({
+                el: '#vcomments',
+                notify: notify,
+                verify: verify,
+                app_id: "FiFDW731RFzyucMLj7aoKlqW-gzGzoHsz",
+                app_key: "HbBlX1QACFBOMYTt6ilNaVvG",
+                placeholder: "write here ~",
+                avatar:"retro"
+            });
+        }
+    </script>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/07/09/6-nginx/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Nginx | Nginx简介、安装、配置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/07/02/7-mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">MySQL | SQL学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装jdk"><span class="nav-number">1.1.</span> <span class="nav-text">安装jdk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置java环境变量"><span class="nav-number">1.2.</span> <span class="nav-text">配置java环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动tomcat"><span class="nav-number">1.3.</span> <span class="nav-text">启动tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tomcat参数配置"><span class="nav-number">1.4.</span> <span class="nav-text">tomcat参数配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#端口配置"><span class="nav-number">1.4.1.</span> <span class="nav-text">端口配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能参数配置"><span class="nav-number">1.4.2.</span> <span class="nav-text">性能参数配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存配置"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">内存配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程池"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">线程池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置apr模式"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">配置apr模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tomcat发布应用"><span class="nav-number">1.5.</span> <span class="nav-text">tomcat发布应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭tombat"><span class="nav-number">1.5.1.</span> <span class="nav-text">关闭tombat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#释放tomcat占用端口"><span class="nav-number">1.5.2.</span> <span class="nav-text">释放tomcat占用端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-修改应用xml文件"><span class="nav-number">1.5.3.</span> <span class="nav-text">添加/修改应用xml文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布应用"><span class="nav-number">1.5.4.</span> <span class="nav-text">发布应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改tomcat应用显示名"><span class="nav-number">1.5.5.</span> <span class="nav-text">修改tomcat应用显示名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tomcat日志目录说明"><span class="nav-number">1.6.</span> <span class="nav-text">tomcat日志目录说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#让所有文件都输出到同一个文件中"><span class="nav-number">1.6.1.</span> <span class="nav-text">让所有文件都输出到同一个文件中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开访问日志"><span class="nav-number">1.6.2.</span> <span class="nav-text">打开访问日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat日志级别"><span class="nav-number">1.6.3.</span> <span class="nav-text">tomcat日志级别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#日志级别的设定方法："><span class="nav-number">1.6.3.1.</span> <span class="nav-text">日志级别的设定方法：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对于tomcat的补充"><span class="nav-number">2.</span> <span class="nav-text">对于tomcat的补充</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2021 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 196.6k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

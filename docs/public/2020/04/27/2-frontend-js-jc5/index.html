@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | JS基础 | JS学习笔记Ⅴ：对象 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendJavaScript">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | JS基础 | JS学习笔记Ⅴ：对象">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/04/27/2-frontend-js-jc5/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/javascript.jpg">
+<meta property="og:updated_time" content="2020-08-26T14:45:50.851Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | JS基础 | JS学习笔记Ⅴ：对象">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/javascript.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-js-jc5" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/javascript.jpg" rel="gallery_cknpgcnk1004v4khvvdanemxe">
+        <img src="/blog/img/javascript.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      前端 | JS基础 | JS学习笔记Ⅴ：对象
+    </h1>
+  
+
+      </header>
+    
+    
+      <div class="article-meta">
+        
+	<a href="/blog/2020/04/27/2-frontend-js-jc5/" class="article-date">
+	  <time datetime="2020-04-27T00:45:21.000Z" itemprop="datePublished">四月 27, 2020</time>
+	</a>
+ 
+        &nbsp;&nbsp;&nbsp; / 
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+ 
+        &nbsp;&nbsp;&nbsp; / 
+        <!-- post-words & post-time 为文章开头 字数统计&阅读时长 -->
+        <span class="post-words">
+            <span class="post-count">2.3k字</span>
+        </span>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><blockquote>
+<p>面向对象编程（Object Oriented Programming，OOP）是目前主流的编程范式。它将真实世界各种复杂的关系，抽象为一个个对象，然后由对象之间的分工与合作，完成对真实世界的模拟。<br>每一个对象都是功能中心，具有明确分工，可以完成接受信息、处理数据、发出信息等任务。对象可以复用，通过继承机制还可以定制。因此，面向对象编程具有灵活、代码可复用、高度模块化等特点，容易维护和开发，比起由一系列函数或指令组成的传统的过程式编程（procedural programming），更适合多人合作的大型软件项目。</p>
+</blockquote>
+<p><strong>细分说:</strong></p>
+<blockquote>
+<ul>
+<li>对象是 JavaScript 的基本数据类型</li>
+<li>对象是一种复合值: 它将很多值聚合在一起， 通过名字访问这些值</li>
+<li>对象是属性的无序集合， 每个属性都是一个值对; 属性名是字符串， 对象即是从字符串到值的映射</li>
+<li>除了字符串、数字、布尔值、null、undefined，JavaScript 中的值都是对象</li>
+<li>除了保持自有的属性， 对象还可以从一个称为原型的对象继承属性</li>
+</ul>
+</blockquote>
+<p><strong>对象包括:</strong></p>
+<ul>
+<li><strong>属性</strong><ul>
+<li>名字</li>
+<li>值</li>
+<li>属性特性: 除名字和值外， 每个属性还有一些与之相关的值<ul>
+<li>可写(writable attribute)， 表明是否可以设置该属性的值</li>
+<li>可枚举(enumerable attribute)， 表明是否可以通过 for/in 循环返回该函数</li>
+<li>可配置(configurable attibute)， 表明是否可以删除或修改该属性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>对象特性</strong>: 除属性外， 每个对象还拥有三个相关的对象特性<ul>
+<li>对象的原型(prototype)， 指向另外一个对象， 本对象的属性继承自它的原型对象</li>
+<li>对象的类(class)， 一个标识对象类型的字符串</li>
+<li>对象的扩展标记(extensible flag)， 指明了是否可以向该对象添加新属性</li>
+</ul>
+</li>
+</ul>
+<h1 id="对象-属性的分类"><a href="#对象-属性的分类" class="headerlink" title="对象/属性的分类"></a>对象/属性的分类</h1><ul>
+<li>内置对象（native object）：由 ES 定义的对象或类。例如数组、函数、日期、正则表达式都是内置对象</li>
+<li>宿主对象（host object）：由 JavaScript 解释器所嵌入的宿主环境（比如web浏览器）定义的</li>
+<li><p>自定义对象（user-defined object）：由运行中的 JavaScript 代码创建的对象</p>
+</li>
+<li><p>自有属性（own property）：直接在对象中定义的属性</p>
+</li>
+<li>继承属性（inherited property）：在对象的原型对象中定义的属性</li>
+</ul>
+<h1 id="对象的操作"><a href="#对象的操作" class="headerlink" title="对象的操作"></a>对象的操作</h1><h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><blockquote>
+<p>可以通过对象直接量、关键字 new、和 Object.create() 函数来创建对象</p>
+</blockquote>
+<h3 id="对象直接量"><a href="#对象直接量" class="headerlink" title="对象直接量"></a>对象直接量</h3><blockquote>
+<ul>
+<li>对象直接量是由若干个键值对组成的映射表</li>
+<li>属性名可以是 JavaScript 标识符，也可以是字符串直接量，保留字也可以用作不带引号的属性名，如 get、set</li>
+<li>属性值可以是任意类型的 JavaScript 表达式</li>
+</ul>
+</blockquote>
+<h3 id="new-创建对象"><a href="#new-创建对象" class="headerlink" title="new 创建对象"></a>new 创建对象</h3><blockquote>
+<ul>
+<li>new 运算符创建并初始化一个新对象</li>
+<li>new 后跟随一个函数调用，这个函数称作 <strong>构造函数</strong></li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一些内置构造函数</span></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>()    <span class="comment">// 创建一个空对象</span></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Array</span>()     <span class="comment">// 创建一个空数组</span></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Date</span>()      <span class="comment">// 创建一个表示当前时间的 Date 对象</span></span><br></pre></td></tr></table></figure>
+<h3 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create()"></a>Object.create()</h3><blockquote>
+<ul>
+<li>每一个 JavaScript 对象(null除外) 都和另一个对象(原型)相关联，每一个对象都从原型继承属性。所有通过对象直接量创建的对象都具有同一个原型对象，并通过 Object.prototype 获取对原型对象的引用通过。</li>
+<li>通过 new 关键字和构造函数调用创建的对象的原型就是构造函数的 prototype 属性的值</li>
+<li>Object.prototype 对象本身并没有原型，它不继承任何属性</li>
+<li>所有的内置构造函数(及大部分自定义的构造函数)都具有一个继承自 Object.prototype 的原型</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5 定义了 Object.create() 的方法，它创建一个新对象，其中第一个参数是这个对象的原型</span></span><br><span class="line"><span class="keyword">var</span> o = <span class="built_in">Object</span>.create(&#123;<span class="attr">x</span>:<span class="number">1</span>, <span class="attr">y</span>:<span class="number">2</span>&#125;)         <span class="comment">// o 就继承了属性 x 和 y</span></span><br><span class="line"><span class="keyword">var</span> o = <span class="built_in">Object</span>.create(<span class="built_in">Object</span>.prototype)   <span class="comment">// 创建一个空对象</span></span><br></pre></td></tr></table></figure>
+<h2 id="属性的读取"><a href="#属性的读取" class="headerlink" title="属性的读取"></a>属性的读取</h2><blockquote>
+<p>通过 . 或 [] 来获取属性的值，使用方括号时，键名必须放在引号里</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  p: <span class="string">'Hello World'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.p    <span class="comment">// "Hello World"</span></span><br><span class="line">obj[<span class="string">'p'</span>] <span class="comment">// "Hello World"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用对象obj的foo属性时，如果使用点运算符，foo就是字符串；</span></span><br><span class="line"><span class="comment">// 如果使用方括号运算符，但是不使用引号，那么foo就是一个变量，指向字符串bar</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">'bar'</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  foo: <span class="number">1</span>,</span><br><span class="line">  bar: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.foo   <span class="comment">// 1</span></span><br><span class="line">obj[foo]  <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 因此也可以利用反括号传入变量这种特性，进行传入变量</span></span><br><span class="line"><span class="comment">// 通过函数传入参数，讲股票名和购买股数存储在 portfolio 对象里</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addstock</span> (<span class="params">portfolio, stockname, shares</span>) </span>&#123;</span><br><span class="line">    portfolio[stock] = shares   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 for/in 计算 portfolio 对象里的总股价</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getvalue</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> total = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> (stock <span class="keyword">in</span> protfolio) &#123;          <span class="comment">// 遍历 portfolio 中的每只股票</span></span><br><span class="line">        <span class="keyword">var</span> shares = portfolio[stock]   <span class="comment">// 得到每只股票的份额</span></span><br><span class="line">        <span class="keyword">var</span> price = getquote(stock)     <span class="comment">// 查找该股票价格</span></span><br><span class="line">        total += shares * price         <span class="comment">// 加结果累加</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> total</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="属性的赋值"><a href="#属性的赋值" class="headerlink" title="属性的赋值"></a>属性的赋值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 赋值与读取操作一样</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">obj.foo = <span class="string">'Hello'</span>;</span><br><span class="line">obj[<span class="string">'bar'</span>] = <span class="string">'World'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// JavaScript 对象的属性是可动态添加的</span></span><br><span class="line"><span class="comment">// 没必要在定义对象的时候，就定义好属性</span></span><br></pre></td></tr></table></figure>
+<h2 id="属性的继承"><a href="#属性的继承" class="headerlink" title="属性的继承"></a>属性的继承</h2><ul>
+<li>JavaScript 对象具有自由属性，也有一些属性是从原型对象继承来的</li>
+<li>只有在查询属性时会体会到继承的存在，而设置属性则和继承无关<ul>
+<li>如果一个对象的属性不是继承来的，那么赋值操作只改变这个自有属性的值</li>
+<li>如果这个对象不存在此属性，那么赋值操作会给对象添加一个新属性</li>
+<li>如果这个属性是对象继承的，那么这个继承的属性会被新创建的同名属性覆盖(但也仅是继承的，并不会对原型对象做出改动)</li>
+<li>如果对象继承了一个只读属性，那么就不能进行赋值操作</li>
+<li>如果允许属性赋值操作，那么也只是在原始对象上创建属性或对已有的属性赋值，而不会去修改原型链</li>
+</ul>
+</li>
+</ul>
+<h2 id="属性的查看"><a href="#属性的查看" class="headerlink" title="属性的查看"></a>属性的查看</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 Object.keys() 查看对象本身的所有属性</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  key1: <span class="number">1</span>,</span><br><span class="line">  key2: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj)   <span class="comment">// ['key1', 'key2']</span></span><br></pre></td></tr></table></figure>
+<h2 id="属性的删除"><a href="#属性的删除" class="headerlink" title="属性的删除"></a>属性的删除</h2><blockquote>
+<ul>
+<li>删除一个不存在的属性，delete不报错，而且返回true</li>
+<li>因此不能根据delete命令的结果，认定某个属性是存在的</li>
+<li>delete 命令会返回false，那就是该属性存在，且不得删除</li>
+<li>delete 命令只能删除对象本身的属性，无法删除继承的属性</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 delete 删除对象的属性，删除成功后返回 true</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">p</span>: <span class="number">1</span> &#125;</span><br><span class="line"><span class="built_in">Object</span>.keys(obj)    <span class="comment">// ["p"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> obj.p        <span class="comment">// true</span></span><br><span class="line">obj.p               <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">Object</span>.keys(obj)    <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+<h2 id="属性的检测"><a href="#属性的检测" class="headerlink" title="属性的检测"></a>属性的检测</h2><blockquote>
+<ul>
+<li>in 运算符用于检查对象是否包含某个属性，有 true，没有 false</li>
+<li>in 运算符不能识别哪些属性是对象自身的，哪些属性是继承的，这个得用 hasOwnProperty 方法</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in，属性是字符串</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">p</span>: <span class="number">1</span> &#125;</span><br><span class="line"><span class="string">'p'</span> <span class="keyword">in</span> obj          <span class="comment">// true</span></span><br><span class="line"><span class="string">'toString'</span> <span class="keyword">in</span> obj   <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// hasOwnProperty</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="string">'toString'</span> <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'toString'</span>))  <span class="comment">// false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="属性的遍历"><a href="#属性的遍历" class="headerlink" title="属性的遍历"></a>属性的遍历</h2><blockquote>
+<ul>
+<li>for…in 遍历的是对象所有可遍历（enumerable）的属性，会跳过不可遍历的属性。</li>
+<li>它不仅遍历对象自身的属性，还遍历继承的属性。但是 toString 则是默认不可便利的继承的属性，这时应该结合 hasOwnProperty 方法进行判断<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>, </span><br><span class="line">    b: <span class="number">2</span>, </span><br><span class="line">    c: <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'键名：'</span>, i)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'键值：'</span>, obj[i])</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 键名： a</span></span><br><span class="line"><span class="comment">// 键值： 1</span></span><br><span class="line"><span class="comment">// 键名： b</span></span><br><span class="line"><span class="comment">// 键值： 2</span></span><br><span class="line"><span class="comment">// 键名： c</span></span><br><span class="line"><span class="comment">// 键值： 3</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h1 id="window-对象"><a href="#window-对象" class="headerlink" title="window 对象"></a>window 对象</h1><blockquote>
+<p>window 对象为浏览器内最底层的对象，里边已存在很多个方法(函数)，隶属于 window 的函数在调用时不用写 window，直接写函数名即可使用</p>
+</blockquote>
+<h2 id="alert-confirm和prompt"><a href="#alert-confirm和prompt" class="headerlink" title="alert confirm和prompt"></a>alert confirm和prompt</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此三个函数暂停当前运行, 等用户反馈后再运行</span></span><br><span class="line"><span class="comment">// alert 作为纯提醒的信息</span></span><br><span class="line">alert(<span class="string">'你的电脑将遭受病毒攻击'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// confirm 作为确认一个条件, 有两个选项 是/否</span></span><br><span class="line"><span class="keyword">const</span> r = confirm(<span class="string">'您是否年满18周岁'</span>)  <span class="comment">// 是 or 否</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// prompt 用于弹出对话框, 输入并提交信息</span></span><br><span class="line"><span class="keyword">const</span> name = prompt(<span class="string">'你叫什么名字'</span>)    <span class="comment">// 键入内容</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'name:'</span>, name)          <span class="comment">// 返回内容</span></span><br></pre></td></tr></table></figure>
+<h2 id="setTimeout-setInterval和clearInterval"><a href="#setTimeout-setInterval和clearInterval" class="headerlink" title="setTimeout setInterval和clearInterval"></a>setTimeout setInterval和clearInterval</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// setTimeout 定时 设置一个时间间隔, 用于未来去执行</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'2s到了'</span>)   <span class="comment">// 2s 后返回信息</span></span><br><span class="line">&#125;, <span class="number">2000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// setInterval 按时返回内容</span></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Yo."</span>)      <span class="comment">// 每隔 2s 返回一次</span></span><br><span class="line">&#125;, <span class="number">2000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 按时返回递增内容</span></span><br><span class="line"><span class="keyword">const</span> count = <span class="number">0</span></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    count++</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Yo. <span class="subst">$&#123;count&#125;</span>`</span>)     <span class="comment">// 返回递增内容, 使用 ES6 模板字符串拼接</span></span><br><span class="line">&#125;, <span class="number">2000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// clearInterval 按时返回递增内容, 满足指定条件后停止</span></span><br><span class="line"><span class="keyword">const</span> count = <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> timer = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    count++</span><br><span class="line">    <span class="keyword">if</span> (count &gt; <span class="number">10</span>) &#123;</span><br><span class="line">        clearInterval(timer)    <span class="comment">// 达成条件后清除状态</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Yo. <span class="subst">$&#123;count&#125;</span>`</span>)    <span class="comment">// 继续返回递增内容</span></span><br><span class="line">&#125;, <span class="number">2000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 优先度</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'时间到了'</span>)    <span class="comment">// 窗口外</span></span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'yo'</span>)   <span class="comment">// 窗口内, 优先执行</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a></li></ul>
+
+    <!-- 文章添加评论 -->
+      
+        
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <div id="vcomments"></div>
+    <script>
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        window.onload = function() {
+            new Valine({
+                el: '#vcomments',
+                notify: notify,
+                verify: verify,
+                app_id: "FiFDW731RFzyucMLj7aoKlqW-gzGzoHsz",
+                app_key: "HbBlX1QACFBOMYTt6ilNaVvG",
+                placeholder: "write here ~",
+                avatar:"retro"
+            });
+        }
+    </script>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/04/27/2-frontend-js-jc6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          前端 | JS基础 | JS学习笔记Ⅵ：标准库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/04/26/2-frontend-js-jc4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">前端 | JS基础 | JS学习笔记Ⅳ：函数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对象"><span class="nav-number">1.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象-属性的分类"><span class="nav-number">2.</span> <span class="nav-text">对象/属性的分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象的操作"><span class="nav-number">3.</span> <span class="nav-text">对象的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建对象"><span class="nav-number">3.1.</span> <span class="nav-text">创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象直接量"><span class="nav-number">3.1.1.</span> <span class="nav-text">对象直接量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-创建对象"><span class="nav-number">3.1.2.</span> <span class="nav-text">new 创建对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-create"><span class="nav-number">3.1.3.</span> <span class="nav-text">Object.create()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性的读取"><span class="nav-number">3.2.</span> <span class="nav-text">属性的读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性的赋值"><span class="nav-number">3.3.</span> <span class="nav-text">属性的赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性的继承"><span class="nav-number">3.4.</span> <span class="nav-text">属性的继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性的查看"><span class="nav-number">3.5.</span> <span class="nav-text">属性的查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性的删除"><span class="nav-number">3.6.</span> <span class="nav-text">属性的删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性的检测"><span class="nav-number">3.7.</span> <span class="nav-text">属性的检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性的遍历"><span class="nav-number">3.8.</span> <span class="nav-text">属性的遍历</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#window-对象"><span class="nav-number">4.</span> <span class="nav-text">window 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#alert-confirm和prompt"><span class="nav-number">4.1.</span> <span class="nav-text">alert confirm和prompt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setTimeout-setInterval和clearInterval"><span class="nav-number">4.2.</span> <span class="nav-text">setTimeout setInterval和clearInterval</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2021 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 196.6k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

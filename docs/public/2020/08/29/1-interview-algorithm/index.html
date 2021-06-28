@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>面试 | 数据结构与算法 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="interviewFrontend">
+  
+  
+  
+  
+  <meta name="keywords" content="interview,Frontend">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试 | 数据结构与算法">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/08/29/1-interview-algorithm/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/interview.jpg">
+<meta property="og:updated_time" content="2020-10-10T01:32:24.051Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试 | 数据结构与算法">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/interview.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-1-interview-algorithm" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/interview.jpg" rel="gallery_cknpgcngh000e4khv5fiq39cn">
+        <img src="/blog/img/interview.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      面试 | 数据结构与算法
+    </h1>
+  
+
+      </header>
+    
+    
+      <div class="article-meta">
+        
+	<a href="/blog/2020/08/29/1-interview-algorithm/" class="article-date">
+	  <time datetime="2020-08-28T16:00:00.000Z" itemprop="datePublished">八月 29, 2020</time>
+	</a>
+ 
+        &nbsp;&nbsp;&nbsp; / 
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+ 
+        &nbsp;&nbsp;&nbsp; / 
+        <!-- post-words & post-time 为文章开头 字数统计&阅读时长 -->
+        <span class="post-words">
+            <span class="post-count">739字</span>
+        </span>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="合并两条有序链表"><a href="#合并两条有序链表" class="headerlink" title="合并两条有序链表"></a>合并两条有序链表</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mergeTwoLists  = <span class="function"><span class="keyword">function</span> (<span class="params">l1, l2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!l1) <span class="keyword">return</span> l2;</span><br><span class="line">    <span class="keyword">if</span> (!l2) <span class="keyword">return</span> l1;</span><br><span class="line">    <span class="keyword">if</span> (l1.val &gt; l2.val) &#123;</span><br><span class="line">        l2.next = mergeTwoLists(l1, l2.next);</span><br><span class="line">        <span class="keyword">return</span> l2;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        l1.next = mergeTwoLists(l1.next, l2);</span><br><span class="line">        <span class="keyword">return</span> l1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="写出数组的冒泡排序与快速排序"><a href="#写出数组的冒泡排序与快速排序" class="headerlink" title="写出数组的冒泡排序与快速排序"></a>写出数组的冒泡排序与快速排序</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 冒泡</span></span><br><span class="line"><span class="keyword">var</span> bubbleSort = <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length - j; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[i] &gt; arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">        [arr[i], arr[i + <span class="number">1</span>]] = [arr[i + <span class="number">1</span>], arr[i]];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 快排</span></span><br><span class="line"><span class="keyword">var</span> quickSort = <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> target = arr[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">const</span> left = []</span><br><span class="line">  <span class="keyword">const</span> right = []</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[i] &lt; target) &#123;</span><br><span class="line">      left.push(arr[i])</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      right.push(arr[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> [...quickSort(left), target, ...quickSort(right)]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="求两个数组的中位数"><a href="#求两个数组的中位数" class="headerlink" title="求两个数组的中位数"></a>求两个数组的中位数</h1><p>例：<br>nums1 = [1, 3, 4]<br>nums2 = [1, 2, 5, 6]</p>
+<p>nums1 的中位数 3.0<br>nums2 的中位数 3.5<br>nums1 和 nums2 的中位数为 3.3</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> findMedianSortedArrays = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> arr = [...nums1, ...nums2].sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">    <span class="keyword">const</span> &#123; length &#125; = arr;</span><br><span class="line">    <span class="keyword">return</span> length % <span class="number">2</span> ? arr[<span class="built_in">Math</span>.floor(length / <span class="number">2</span>)] : (arr[length / <span class="number">2</span>] + arr[length / <span class="number">2</span> - <span class="number">1</span>]) / <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双指针排序法，时间复杂度为O(m + n)。</span></span><br><span class="line"><span class="keyword">var</span> findMedianSortedArrays = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> reIndex = nums2.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = nums1.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">while</span> (nums1[i] &lt;= nums2[reIndex] &amp;&amp; reIndex &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">            nums1.splice(i + <span class="number">1</span>, <span class="number">0</span>, ...(nums2.splice(reIndex, <span class="number">1</span>)));</span><br><span class="line">            reIndex--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> arr = nums2.concat(nums1);</span><br><span class="line">    <span class="keyword">const</span> &#123; length &#125; = arr;</span><br><span class="line">    <span class="keyword">return</span> length % <span class="number">2</span> ? arr[<span class="built_in">Math</span>.floor(length / <span class="number">2</span>)] : (arr[length / <span class="number">2</span>] + arr[length / <span class="number">2</span> - <span class="number">1</span>]) / <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 二分法 时间复杂度O(log(min(m, n)))</span></span><br><span class="line"><span class="keyword">var</span> findMedianSortedArrays = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 保证num1是比较短的数组</span></span><br><span class="line">    <span class="keyword">if</span> (nums1.length &gt; nums2.length) &#123;</span><br><span class="line">        [nums1, nums2] = [nums2, nums1];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> length1 = nums1.length;</span><br><span class="line">    <span class="keyword">const</span> length2 = nums2.length;</span><br><span class="line">    <span class="keyword">let</span> min = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> max = length1;</span><br><span class="line">    <span class="keyword">let</span> half = <span class="built_in">Math</span>.floor((length1 + length2 + <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">while</span> (max &gt;= min) &#123;</span><br><span class="line">        <span class="keyword">const</span> i = <span class="built_in">Math</span>.floor((max + min) / <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">const</span> j = half - i;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; min &amp;&amp; nums1[i - <span class="number">1</span>] &gt; nums2[j]) &#123;</span><br><span class="line">            max = i - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i &lt; max &amp;&amp; nums1[i] &lt; nums2[j - <span class="number">1</span>]) &#123;</span><br><span class="line">            min = i + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> left,right;</span><br><span class="line">            <span class="keyword">if</span> (i === <span class="number">0</span>) left = nums2[j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (j === <span class="number">0</span>) left = nums1[i - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">else</span> left = <span class="built_in">Math</span>.max(nums1[i - <span class="number">1</span>], nums2[j - <span class="number">1</span>]);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (i === length1) right = nums2[j];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (j === length2) right = nums1[i];</span><br><span class="line">            <span class="keyword">else</span> right = <span class="built_in">Math</span>.min(nums1[i], nums2[j]);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">return</span> (length1 + length2) % <span class="number">2</span> ? left : (left + right) / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="如何实现深拷贝"><a href="#如何实现深拷贝" class="headerlink" title="如何实现深拷贝"></a>如何实现深拷贝</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过 json 的方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> obj_json = <span class="built_in">JSON</span>.stringify(obj);</span><br><span class="line">  <span class="keyword">const</span> obj_clone = <span class="built_in">JSON</span>.parse(obj_json);</span><br><span class="line">  <span class="keyword">return</span> obj_clone;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过判断类型再递归生成</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> objClone = <span class="built_in">Array</span>.isArray(obj) ? [] : &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> item <span class="keyword">in</span> obj)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> obj[item] === <span class="string">"object"</span>) &#123;</span><br><span class="line">      objClone[item] = deepClone(obj[item]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      objClone[item] = obj[item];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> objClone;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用js实现斐波那契数列"><a href="#使用js实现斐波那契数列" class="headerlink" title="使用js实现斐波那契数列"></a>使用js实现斐波那契数列</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> fibonacci() &#123;</span><br><span class="line">  <span class="keyword">let</span> [prev, curr] = [<span class="number">0</span>, <span class="number">1</span>];</span><br><span class="line">  <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">    <span class="keyword">await</span> curr;</span><br><span class="line">    [prev, curr] = [curr, prev + curr];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> n <span class="keyword">of</span> fibonacci()) &#123;</span><br><span class="line">  <span class="keyword">if</span> (n &gt; <span class="number">1000</span>) <span class="keyword">break</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="输出斐波那契数列的第n项"><a href="#输出斐波那契数列的第n项" class="headerlink" title="输出斐波那契数列的第n项"></a>输出斐波那契数列的第n项</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span>(<span class="params">n</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">let</span> [prev, curr] = [<span class="number">0</span>, <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        [prev, curr] = [curr, prev + curr];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> prev;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="输出1-10000所有对称数字"><a href="#输出1-10000所有对称数字" class="headerlink" title="输出1-10000所有对称数字"></a>输出1-10000所有对称数字</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNumber</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> arr = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">10</span>; i &lt; num; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> a = i.toString();</span><br><span class="line">    <span class="keyword">let</span> b = a.split(<span class="string">""</span>).reverse().join(<span class="string">""</span>);</span><br><span class="line">    <span class="keyword">if</span> (a === b) &#123;</span><br><span class="line">      arr.push(b)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;<span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getNumber(<span class="number">10000</span>)) ;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/interview/">interview</a></li></ul>
+
+    <!-- 文章添加评论 -->
+      
+        
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <div id="vcomments"></div>
+    <script>
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        window.onload = function() {
+            new Valine({
+                el: '#vcomments',
+                notify: notify,
+                verify: verify,
+                app_id: "FiFDW731RFzyucMLj7aoKlqW-gzGzoHsz",
+                app_key: "HbBlX1QACFBOMYTt6ilNaVvG",
+                placeholder: "write here ~",
+                avatar:"retro"
+            });
+        }
+    </script>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/08/30/1-interview-internet/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          面试 | web 性能
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/08/29/1-interview-browser/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">面试 | 浏览器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#合并两条有序链表"><span class="nav-number">1.</span> <span class="nav-text">合并两条有序链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写出数组的冒泡排序与快速排序"><span class="nav-number">2.</span> <span class="nav-text">写出数组的冒泡排序与快速排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#求两个数组的中位数"><span class="nav-number">3.</span> <span class="nav-text">求两个数组的中位数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现深拷贝"><span class="nav-number">4.</span> <span class="nav-text">如何实现深拷贝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用js实现斐波那契数列"><span class="nav-number">5.</span> <span class="nav-text">使用js实现斐波那契数列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出斐波那契数列的第n项"><span class="nav-number">6.</span> <span class="nav-text">输出斐波那契数列的第n项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出1-10000所有对称数字"><span class="nav-number">7.</span> <span class="nav-text">输出1-10000所有对称数字</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2021 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 196.6k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

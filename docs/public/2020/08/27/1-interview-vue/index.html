@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>面试 | Vue | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="interviewFrontend">
+  
+  
+  
+  
+  <meta name="keywords" content="interview,Frontend">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试 | Vue">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/08/27/1-interview-vue/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/interview.jpg">
+<meta property="og:updated_time" content="2020-09-20T03:23:34.411Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试 | Vue">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/interview.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-1-interview-vue" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/interview.jpg" rel="gallery_cknpgcnh200154khvtv40bb2u">
+        <img src="/blog/img/interview.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      面试 | Vue
+    </h1>
+  
+
+      </header>
+    
+    
+      <div class="article-meta">
+        
+	<a href="/blog/2020/08/27/1-interview-vue/" class="article-date">
+	  <time datetime="2020-08-26T16:00:00.000Z" itemprop="datePublished">八月 27, 2020</time>
+	</a>
+ 
+        &nbsp;&nbsp;&nbsp; / 
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+ 
+        &nbsp;&nbsp;&nbsp; / 
+        <!-- post-words & post-time 为文章开头 字数统计&阅读时长 -->
+        <span class="post-words">
+            <span class="post-count">1.6k字</span>
+        </span>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="vue-的指令有哪些"><a href="#vue-的指令有哪些" class="headerlink" title="vue 的指令有哪些"></a>vue 的指令有哪些</h1><p><code>v-model</code>、<code>v-on</code>、<code>v-bind</code>、<code>v-if</code>、<code>v-for</code>、<code>v-show</code>、<code>v-slot</code>、<code>v-text</code>、<code>v-html</code></p>
+<h1 id="vue-的父子组件通信"><a href="#vue-的父子组件通信" class="headerlink" title="vue 的父子组件通信"></a>vue 的父子组件通信</h1><p>通过 props</p>
+<h1 id="vue-的子父组件通信"><a href="#vue-的子父组件通信" class="headerlink" title="vue 的子父组件通信"></a>vue 的子父组件通信</h1><p>在父组件绑定事件，再在子组件用 <code>$emit</code> 触发事件</p>
+<h1 id="vue-的生命周期函数有哪些"><a href="#vue-的生命周期函数有哪些" class="headerlink" title="vue 的生命周期函数有哪些"></a>vue 的生命周期函数有哪些</h1><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>周期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beforeCreate</td>
+<td>在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。</td>
+</tr>
+<tr>
+<td>created</td>
+<td>在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，property 和方法的运算，watch/event 事件回调。</td>
+</tr>
+<tr>
+<td>beforeMount</td>
+<td>在挂载开始之前被调用：相关的 <code>render</code> 函数首次被调用。</td>
+</tr>
+<tr>
+<td>mounted</td>
+<td>实例被挂载后调用，这时 el 被新创建的 <code>vm.$el</code> 替换了。</td>
+</tr>
+<tr>
+<td>beforeUpdate</td>
+<td>数据更新时调用，发生在虚拟 DOM 打补丁之前。</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。</td>
+</tr>
+<tr>
+<td>activated</td>
+<td>被 keep-alive 缓存的组件激活时调用。</td>
+</tr>
+<tr>
+<td>deactivated</td>
+<td>被 keep-alive 缓存的组件停用时调用。</td>
+</tr>
+<tr>
+<td>beforeDestroy</td>
+<td>实例销毁之前调用。在这一步，实例仍然完全可用。</td>
+</tr>
+<tr>
+<td>destroyed</td>
+<td>实例销毁后调用。该钩子被调用后，对应 Vue 实例的所有指令都被解绑，所有的事件监听器被移除，所有的子实例也都被销毁。</td>
+</tr>
+<tr>
+<td>errorCaptured</td>
+<td>当捕获一个来自子孙组件的错误时被调用。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="vue-的-computed-和-watch-的区别"><a href="#vue-的-computed-和-watch-的区别" class="headerlink" title="vue 的 computed 和 watch 的区别"></a>vue 的 computed 和 watch 的区别</h1><p><code>computed</code> 是计算属性，是依赖其他属性的计算值，并且有缓存，只有当依赖的值变化时才会更新。<br><code>watch</code> 是在监听的属性发生变化时，在回调中执行一些逻辑。<br>computed 适合在模板渲染中，某个值是依赖了其他的响应式对象甚至是计算属性计算而来的；watch 适合监听某个值的变化去完成一些复杂的业务逻辑。</p>
+<h1 id="v-show-和-v-if-的区别"><a href="#v-show-和-v-if-的区别" class="headerlink" title="v-show 和 v-if 的区别"></a>v-show 和 v-if 的区别</h1><p><code>v-if</code> 会在切换过程中对条件块的事件监听器和子组件进行销毁和重建，如果初始条件是 false，则不改动什么，直到第一次为 true 时才开始渲染模块。<br><code>v-show</code> 只是基于 css 进行切换，不管初始条件是什么，都会渲染。</p>
+<p>v-if 在切换时的开销更大，而 v-show 初始化渲染开销更大；在需要频繁切换，或者切换的部分 dom 很复杂时，使用 v-show 更合适；在渲染后很少切换的则使用 v-if 更合适。</p>
+<h1 id="v-if-和-v-for-可以一起使用吗"><a href="#v-if-和-v-for-可以一起使用吗" class="headerlink" title="v-if 和 v-for 可以一起使用吗"></a>v-if 和 v-for 可以一起使用吗</h1><p>当 v-for 和 v-if 处于同一个节点时，v-for 的优先级比 v-if 高，这意味着 v-if 将分别重复运行于每个 v-for 循环中。<br>如果要遍历的数组很大，而要真正展示的数据很少时，这将造成很大的性能浪费。这种场景可以用 computed 先对数据进行过滤。</p>
+<h1 id="v-for-中的-key-的作用"><a href="#v-for-中的-key-的作用" class="headerlink" title="v-for 中的 key 的作用"></a>v-for 中的 key 的作用</h1><p>key 是给每个 vnode 指定的唯一 id，在统计的 vnode diff 过程中，可以根据 key 快速的对比，来判断是否为相同节点，并利用 key 的唯一性生成 map 来更快地获取相应的节点</p>
+<h1 id="keep-alive-的作用"><a href="#keep-alive-的作用" class="headerlink" title="keep-alive 的作用"></a>keep-alive 的作用</h1><p><code>keep-alive</code> 可以在组件切换时，保存其包裹的组件的状态，使其不被销毁，防止多次渲染。</p>
+<p><code>keep-alive</code> 有两个独立的生命周期钩子函数 <code>actived</code> 和 <code>deactived</code>，使用 keep-alive 包裹的组件在切换时不会被销毁，而是缓存到内存中并执行 deactived 钩子函数，命中缓存渲染后会执行 actived 钩子函数。</p>
+<h1 id="vue-的响应式原理"><a href="#vue-的响应式原理" class="headerlink" title="vue 的响应式原理"></a>vue 的响应式原理</h1><p>vue 的响应式是通过 <code>Object.defineProperty</code> 对数据进行劫持，并结合观察者模式实现。<br>vue 利用 <code>Object.defineProperty</code> 创建一个 observe 来劫持 监听所有的属性，把这些属性全部转为 getter 和 setter。<br>vue 中每个组件实例都会对应一个 watcher 实例，它会在组件渲染的过程中把使用过的数据属性通过 getter 收集为依赖；之后当触发 setter 时，会通知 watcher，从而使它关联的组件重新渲染。</p>
+<h1 id="vue3-为什么使用-proxy-实现响应式"><a href="#vue3-为什么使用-proxy-实现响应式" class="headerlink" title="vue3 为什么使用 proxy 实现响应式"></a>vue3 为什么使用 proxy 实现响应式</h1><ol>
+<li><code>Object.ddefineProperty</code> 只能劫持对象的属性，所以需要遍历对象的每个属性，而 proxy 是直接代理对象。</li>
+<li>Object.ddefineProperty 对新增属性需要手动进行 Observe，由于 Object.ddefineProperty 劫持的是对象的属性，所以新增属性时，又需要重新遍历对象，对其新增属性再用 Object.ddefineProperty 劫持</li>
+<li>Proxy 支持 13 种拦截操作，这时 Object.ddefineProperty 不具有的</li>
+<li>Proxy 作为新标准，长远来看 js 引擎会继续优化 Proxy，但 getter 和 setter 则不会再有针对性优化</li>
+<li>此外 Proxy 兼容性较差，目前并没有一个完整支持 Proxy 所有拦截方法的 Polyfill 方案</li>
+</ol>
+<h1 id="vue2-中如何检测数组变化"><a href="#vue2-中如何检测数组变化" class="headerlink" title="vue2 中如何检测数组变化"></a>vue2 中如何检测数组变化</h1><p>vue 的 Observer 对数组进行了单独的处理，对数组的方法进行编译，并赋值给数组属性的 <code>__proto__</code> 属性上，因为原型链的机制，找到对应方法就不会继续往上找了。<br>编译方法中会对一些可以增加索引的方法（push、unshift、splice）进行手动 observe。</p>
+<h1 id="vue-router-的-hash-模式和-history-模式的区别"><a href="#vue-router-的-hash-模式和-history-模式的区别" class="headerlink" title="vue-router 的 hash 模式和 history 模式的区别"></a>vue-router 的 hash 模式和 history 模式的区别</h1><ol>
+<li>url 展示上，hash 模式有 <code>#</code>，history 模式则没有</li>
+<li>刷新页面时，hash 模式可以正常加载到 hash 值对应的页面，而 history 没有处理的话，会返回 404，一般需要后端将所有页面都配置重定向到首页路由</li>
+<li>兼容性问题，hash 支持低版本浏览器和 IE</li>
+</ol>
+<h1 id="vue-router-的-hash-模式和-history-模式是如何实现的"><a href="#vue-router-的-hash-模式和-history-模式是如何实现的" class="headerlink" title="vue-router 的 hash 模式和 history 模式是如何实现的"></a>vue-router 的 hash 模式和 history 模式是如何实现的</h1><p><code>hash</code> 模式：<code>#</code> 后面 hash 值的变化，不会导致浏览器向服务器发出请求，浏览器不发出请求，就不会刷新页面。同时通过监听 <code>hashchange</code> 事件可以知道 hash 发生了哪些变化，然后根据 hash 变化来实现更新页面部分内容的操作。<br><code>history</code> 模式：history 模式的实现，主要是 HTML5 标准发布的两个 API，<code>pushState</code> 和 <code>replaceState</code>，这两个 API 可以改变 url，但不会发送请求。这样就可以监听 url 变化来实现更新页面部分内容的操作</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://juejin.im/post/6850037277675454478" target="_blank" rel="noopener">史上最强vue总结—面试开发全靠它了</a><br><a href="https://juejin.im/post/6869908820353810445#heading-12" target="_blank" rel="noopener">金九银十，初中级前端面试复习总结「Vue篇」</a></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/interview/">interview</a></li></ul>
+
+    <!-- 文章添加评论 -->
+      
+        
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <div id="vcomments"></div>
+    <script>
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        window.onload = function() {
+            new Valine({
+                el: '#vcomments',
+                notify: notify,
+                verify: verify,
+                app_id: "FiFDW731RFzyucMLj7aoKlqW-gzGzoHsz",
+                app_key: "HbBlX1QACFBOMYTt6ilNaVvG",
+                placeholder: "write here ~",
+                avatar:"retro"
+            });
+        }
+    </script>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/08/28/1-interview-performance/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          面试 | web 性能与安全
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/08/26/1-interview-html&css/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">面试 | HTML &amp; CSS</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的指令有哪些"><span class="nav-number">1.</span> <span class="nav-text">vue 的指令有哪些</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的父子组件通信"><span class="nav-number">2.</span> <span class="nav-text">vue 的父子组件通信</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的子父组件通信"><span class="nav-number">3.</span> <span class="nav-text">vue 的子父组件通信</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的生命周期函数有哪些"><span class="nav-number">4.</span> <span class="nav-text">vue 的生命周期函数有哪些</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的-computed-和-watch-的区别"><span class="nav-number">5.</span> <span class="nav-text">vue 的 computed 和 watch 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-show-和-v-if-的区别"><span class="nav-number">6.</span> <span class="nav-text">v-show 和 v-if 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-if-和-v-for-可以一起使用吗"><span class="nav-number">7.</span> <span class="nav-text">v-if 和 v-for 可以一起使用吗</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-for-中的-key-的作用"><span class="nav-number">8.</span> <span class="nav-text">v-for 中的 key 的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#keep-alive-的作用"><span class="nav-number">9.</span> <span class="nav-text">keep-alive 的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的响应式原理"><span class="nav-number">10.</span> <span class="nav-text">vue 的响应式原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue3-为什么使用-proxy-实现响应式"><span class="nav-number">11.</span> <span class="nav-text">vue3 为什么使用 proxy 实现响应式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue2-中如何检测数组变化"><span class="nav-number">12.</span> <span class="nav-text">vue2 中如何检测数组变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-router-的-hash-模式和-history-模式的区别"><span class="nav-number">13.</span> <span class="nav-text">vue-router 的 hash 模式和 history 模式的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-router-的-hash-模式和-history-模式是如何实现的"><span class="nav-number">14.</span> <span class="nav-text">vue-router 的 hash 模式和 history 模式是如何实现的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">15.</span> <span class="nav-text">参考链接</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2021 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 196.6k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>
