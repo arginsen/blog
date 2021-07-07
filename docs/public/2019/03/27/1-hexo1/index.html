@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/hexo.jpg">
-<meta property="og:updated_time" content="2020-07-28T09:46:32.351Z">
+<meta property="og:updated_time" content="2021-06-28T05:55:20.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo博客 | 简单搭建hexo博客">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/hexo.jpg">
@@ -110,7 +110,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/blog/img/hexo.jpg" rel="gallery_cknpgcng500074khv9t1z72r5">
+      <a class="article-gallery-img fancybox" href="/blog/img/hexo.jpg" rel="gallery_ckqg7a8m90003dsuvaqd4zaeg">
         <img src="/blog/img/hexo.jpg" itemprop="image">
       </a>
     
@@ -128,79 +128,18 @@
 
       </header>
     
-    
-      <div class="article-meta">
-        
-	<a href="/blog/2019/03/27/1-hexo1/" class="article-date">
-	  <time datetime="2019-03-26T16:00:00.000Z" itemprop="datePublished">三月 27, 2019</time>
-	</a>
- 
-        &nbsp;&nbsp;&nbsp; / 
-        
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/blog/categories/practice/">practice</a>
- 
-        &nbsp;&nbsp;&nbsp; / 
-        <!-- post-words & post-time 为文章开头 字数统计&阅读时长 -->
-        <span class="post-words">
-            <span class="post-count">2.2k字</span>
-        </span>
-      </div>
-    
+
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前出的搭梯子教程被封了，于是传在个人网站：<br><a href="https://lixupeng.cn/blog" target="_blank" rel="noopener">https://lixupeng.cn/blog</a><br>有兴趣可以动手玩玩，<br>那么这里就对自己搭建网站作以记录，<br>供大家参考。<br>个人主页：<br><a href="https://lixupeng.cn" target="_blank" rel="noopener">https://lixupeng.cn</a><br><a href="https://www.lixupeng.cn" target="_blank" rel="noopener">https://www.lixupeng.cn</a></p>
-<p>“以下 <strong>灰字</strong> 为注释，<strong>红字</strong>为命令提示”</p>
-<p style="color:#9F79EE;font-weight:bold;">主要目的：</p>
-
-<ul>
-<li>写杂记</li>
-<li>做笔记</li>
-<li>传点自己的小玩意儿</li>
-</ul>
-<p style="color:#9F79EE;font-weight:bold;">主要思路：</p>
-
-<ul>
-<li>搭建简单的静态Hexo博客</li>
-<li>采用Github托管</li>
-<li>在Hexo选喜欢的网站主题</li>
-<li>购买域名(可选)</li>
-</ul>
 <blockquote>
 <p>Hexo是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
 </blockquote>
 <p>详情见 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></p>
 <p><br></p>
-<h2 id="教-程"><a href="#教-程" class="headerlink" title="教 程"></a>教 程</h2><h3 id="安装Node-js和Git"><a href="#安装Node-js和Git" class="headerlink" title="安装Node.js和Git"></a>安装Node.js和Git</h3><p><strong>1.安装chocolatey</strong></p>
-<p><strong>chocolatey是windows的软件包管理器</strong>，被设计为分散式框架，用于快速安装所需要的应用程序和工具。</p>
-<p style="color:#B0B0B0;font-weight:bold;">逻辑：<br><br>这里我们需要用到<strong>hexo</strong>博客框架,<br>以及需要用<strong>git</strong>将文件上传到github仓库，<br>所以需要安装<strong>Node.js</strong>(hexo基于Node.js)和<strong>Git</strong>;<br>而在win上要安装两者需得下载安装包安装，<br>而chocolatey作为win上的包管理器，<br>则可以直接用命令行一部安装。<br></p>
-
-<p>打开cmd输入以下<font color="#EE6363">命令：</font></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command &quot;iex ((New-Object System.Net.WebClient).DownloadString(&apos;https://chocolatey.org/install.ps1&apos;))&quot; &amp;&amp; SET &quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;**!</span><br></pre></td></tr></table></figure>
-<p><img src="http://img.xiumi.us/xmi/ua/1O3nK/i/19eae85f761cc22d266cd0d061be9e0b-sz_37137.png" alt></p>
-<p>可输入 <code>choco</code>  检查是否安装完成：</p>
-<p><img src="http://img.xiumi.us/xmi/ua/1O3nK/i/5b3b1fc0309792cf629767cf6eeb3a6b-sz_6959.png?x-oss-process=image/resize,w_1080/auto-orient,1/crop,x_0,y_0,w_601,h_67" alt></p>
-<p>关闭cmd</p>
-<p><strong>2.安装Node.js和Git</strong></p>
-<p>使用管理员身份打开cmd，<font color="#EE6363">输入：</font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install nodejs git</span><br></pre></td></tr></table></figure></p>
-<p>chocolatey将自行下载两者 <em>(如下图)</em></p>
-<p><img src="http://img.xiumi.us/xmi/ua/1O3nK/i/d6516084b04c95d1fda06fb507dc2c42-sz_104224.png" alt></p>
-<p>先下载nodejs，完成询问是否运行，回复y <em>(如下图)</em></p>
-<p><img src="http://img.xiumi.us/xmi/ua/1O3nK/i/aad02f65acb1c2eeda768b0027a8a0de-sz_162016.png" alt></p>
-<p>继续下载git，回复y，完成后关闭cmd <em>(如下图)</em></p>
-<p><img src="http://img.xiumi.us/xmi/ua/1O3nK/i/83acea7ab8229e6f5c9dc0324067c23a-sz_244433.png" alt></p>
-<p>可打开cmd查看npm与git是否正常运行，<em>(如下图)</em></p>
-<p style="color:#B0B0B0;font-weight:bold;">npm是随同node.js一起安装的包管理工具，对应管理node.js的第三方插件，后续安装hexo-cli会使用npm</p>
-
-<p>输入以下<font color="#EE6363">命令：</font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm -v </span><br><span class="line">git --version</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.xiumi.us/xmi/ua/1O3nK/i/bd18fcfb5c2e02c38dd54d017e5a9812-sz_7666.png" alt></p>
-<p>第一步安装成功</p>
-<h3 id="安装hexo-cli"><a href="#安装hexo-cli" class="headerlink" title="安装hexo-cli"></a>安装hexo-cli</h3><p>Hexo需要通过hexo-cli安装，先安装hexo-cli，</p>
-<p>打开cmd<font color="#EE6363">输入：</font></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-<p><img src="http://img.xiumi.us/xmi/ua/1O3nK/i/a51b9b5eb86e75e4e9c30d87b63a88ca-sz_8391.png" alt></p>
-<p>出现如上图，安装完毕。</p>
+<h2 id="教-程"><a href="#教-程" class="headerlink" title="教 程"></a>教 程</h2><h3 id="安装Node-js和Git"><a href="#安装Node-js和Git" class="headerlink" title="安装Node.js和Git"></a>安装Node.js和Git</h3><p>直接在网上搜索 nodejs 和 git 即可，windows 下载安装包安装，mac/linux 直接命令安装<br>需要注意的是，node 版本不能过高，大概大版本为 12.xx.xx 即可<br>如果本地需要别的 node，那么可以使用 nvm 管理 node 版本，windows 有 nvm for windows 版</p>
+<h3 id="安装hexo-cli"><a href="#安装hexo-cli" class="headerlink" title="安装hexo-cli"></a>安装hexo-cli</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
 <h3 id="创建Github仓库"><a href="#创建Github仓库" class="headerlink" title="创建Github仓库"></a>创建Github仓库</h3><p>此次建站采用GitHub托管我们的网站，我们需要新建一个代码仓库。</p>
 <p>GitHub目前对免费用户开放了私密仓库，但免费用户的私密仓库不支持GitHub Pages，这里选择public</p>
 <p><strong>1.注册github账号</strong></p>
@@ -248,16 +187,18 @@
 <ul>
 <li>在docs文件夹下打开终端(cmd/git bash)-文件夹内打开</li>
 </ul>
-<p>或者直接在vs code内打开 ，不过需要从仓库文件夹下进入docs，<font color="#EE6363">输入</font>指令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd docs</span><br></pre></td></tr></table></figure></p>
+<p>或者直接在vs code内打开 ，不过需要从仓库文件夹下进入docs，<font color="#EE6363">输入</font>指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd docs</span><br></pre></td></tr></table></figure>
 <p><img src="http://img.xiumi.us/xmi/ua/1O3nK/i/d34b0f28f3415c71b4741d798e6b034f-sz_169019.png" alt></p>
 <ul>
-<li>安装next主题<font color="#EE6363">输入：</font><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-</li>
+<li>安装next主题<font color="#EE6363">输入：</font></li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 <p>更改docs文件夹内的_config.yml文件</p>
 <p>找到theme ，改为next</p>
 <p><img src="http://img.xiumi.us/xmi/ua/1O3nK/i/cbad72862abb136b368b74c5aa2d95b3-sz_6795.png" alt></p>
-<p>保存更改，和之前一样输入命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></p>
+<p>保存更改，和之前一样输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
 <p>即可预览</p>
 <p><img src="http://img.xiumi.us/xmi/ua/1O3nK/i/5f126af070cdf1b7e3debc52b98657a4-sz_109667.png" alt></p>
 <p>上图选自<a href="https://theme-next.org/" target="_blank" rel="noopener">https://theme-next.org/</a> 官网</p>
@@ -322,29 +263,15 @@
   <span class="ico-tags"></span>
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hexo/">hexo</a></li></ul>
 
-    <!-- 文章添加评论 -->
       
-        
-    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-    <div id="vcomments"></div>
-    <script>
-        var notify = 'false' == true ? true : false;
-        var verify = 'false' == true ? true : false;
-        window.onload = function() {
-            new Valine({
-                el: '#vcomments',
-                notify: notify,
-                verify: verify,
-                app_id: "FiFDW731RFzyucMLj7aoKlqW-gzGzoHsz",
-                app_key: "HbBlX1QACFBOMYTt6ilNaVvG",
-                placeholder: "write here ~",
-                avatar:"retro"
-            });
-        }
-    </script>
+	<span class="ico-date"></span>
+	<a href="/blog/2019/03/27/1-hexo1/" class="article-date">
+	  <time datetime="2019-03-26T16:00:00.000Z" itemprop="datePublished">三月 27, 2019</time>
+	</a>
 
-
-
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.9k字</span>
       
     </footer>
     <hr class="entry-footer-hr">
@@ -419,7 +346,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 196.6k 字</span>
+        <span class="post-count">全站共 209.5k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

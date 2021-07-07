@@ -23,20 +23,7 @@ photos:
 [https://lixupeng.cn](https://lixupeng.cn)
 [https://www.lixupeng.cn](https://www.lixupeng.cn)
 
-"以下 **灰字** 为注释，**红字**为命令提示"
 
-<p style="color:#9F79EE;font-weight:bold;">主要目的：</p>
-
-+ 写杂记
-+ 做笔记
-+ 传点自己的小玩意儿
-
-<p style="color:#9F79EE;font-weight:bold;">主要思路：</p>
-
-+ 搭建简单的静态Hexo博客
-+ 采用Github托管
-+ 在Hexo选喜欢的网站主题
-+ 购买域名(可选)
 
 >Hexo是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。
 
@@ -48,77 +35,16 @@ photos:
 
 ### 安装Node.js和Git
 
-**1.安装chocolatey**
-
-**chocolatey是windows的软件包管理器**，被设计为分散式框架，用于快速安装所需要的应用程序和工具。
-
-<p style="color:#B0B0B0;font-weight:bold;">逻辑：
-
-这里我们需要用到**hexo**博客框架,
-以及需要用**git**将文件上传到github仓库，
-所以需要安装**Node.js**(hexo基于Node.js)和**Git**;
-而在win上要安装两者需得下载安装包安装，
-而chocolatey作为win上的包管理器，
-则可以直接用命令行一部安装。
-</p>
-
-打开cmd输入以下<font color="#EE6363">命令：</font>
-
-```
-@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"**!
-```
-
-![](http://img.xiumi.us/xmi/ua/1O3nK/i/19eae85f761cc22d266cd0d061be9e0b-sz_37137.png)
-
-可输入 `choco`  检查是否安装完成：
-
-![](http://img.xiumi.us/xmi/ua/1O3nK/i/5b3b1fc0309792cf629767cf6eeb3a6b-sz_6959.png?x-oss-process=image/resize,w_1080/auto-orient,1/crop,x_0,y_0,w_601,h_67)
-
-关闭cmd
-
-**2.安装Node.js和Git**
-
-使用管理员身份打开cmd，<font color="#EE6363">输入：</font>
-```
- choco install nodejs git 
-```
-chocolatey将自行下载两者 _(如下图)_
-
-![](http://img.xiumi.us/xmi/ua/1O3nK/i/d6516084b04c95d1fda06fb507dc2c42-sz_104224.png)
-
-先下载nodejs，完成询问是否运行，回复y _(如下图)_
-
-![](http://img.xiumi.us/xmi/ua/1O3nK/i/aad02f65acb1c2eeda768b0027a8a0de-sz_162016.png)
-
-继续下载git，回复y，完成后关闭cmd _(如下图)_
-
-![](http://img.xiumi.us/xmi/ua/1O3nK/i/83acea7ab8229e6f5c9dc0324067c23a-sz_244433.png)
-
-可打开cmd查看npm与git是否正常运行，_(如下图)_
-
-<p style="color:#B0B0B0;font-weight:bold;">npm是随同node.js一起安装的包管理工具，对应管理node.js的第三方插件，后续安装hexo-cli会使用npm</p>
-
-输入以下<font color="#EE6363">命令：</font>
-```
- npm -v 
- git --version 
-```
-![](http://img.xiumi.us/xmi/ua/1O3nK/i/bd18fcfb5c2e02c38dd54d017e5a9812-sz_7666.png)
-
-第一步安装成功
+直接在网上搜索 nodejs 和 git 即可，windows 下载安装包安装，mac/linux 直接命令安装
+需要注意的是，node 版本不能过高，大概大版本为 12.xx.xx 即可
+如果本地需要别的 node，那么可以使用 nvm 管理 node 版本，windows 有 nvm for windows 版
 
 ### 安装hexo-cli
 
-Hexo需要通过hexo-cli安装，先安装hexo-cli，
-
-打开cmd<font color="#EE6363">输入：</font>
 
 ```
  npm install hexo-cli -g 
 ```
-![](http://img.xiumi.us/xmi/ua/1O3nK/i/a51b9b5eb86e75e4e9c30d87b63a88ca-sz_8391.png)
-
-出现如上图，安装完毕。
 
 ### 创建Github仓库
 
@@ -171,7 +97,7 @@ GitHub目前对免费用户开放了私密仓库，但免费用户的私密仓�
 <font color="#EE6363">输入：</font>
 
 ```
- hexo init 
+hexo init 
 ```
 
 ![](http://img.xiumi.us/xmi/ua/1O3nK/i/582a1004397113e02b4ff8ea5889df4f-sz_427721.png)
@@ -180,7 +106,7 @@ GitHub目前对免费用户开放了私密仓库，但免费用户的私密仓�
 
 这时我们可以接着<font color="#EE6363">输入：</font>
 ```
- hexo server 
+hexo server 
 ```
 即可按提示在 http://localhost:4000 看到博客已生成，上边安装介绍hexo默认安装landscape主题，当然主题可以在hexo官网主题去自己选择
 
@@ -220,15 +146,19 @@ next也是目前依旧在不断维护更新的一个主题
 * 在docs文件夹下打开终端(cmd/git bash)-文件夹内打开
 
 或者直接在vs code内打开 ，不过需要从仓库文件夹下进入docs，<font color="#EE6363">输入</font>指令：
+
 ```
  cd docs 
 ```
+
 ![](http://img.xiumi.us/xmi/ua/1O3nK/i/d34b0f28f3415c71b4741d798e6b034f-sz_169019.png)
 
 * 安装next主题<font color="#EE6363">输入：</font>
+
 ```
 git clone https://github.com/theme-next/hexo-theme-next themes/next
 ```
+
 更改docs文件夹内的_config.yml文件
 
 找到theme ，改为next
@@ -236,9 +166,11 @@ git clone https://github.com/theme-next/hexo-theme-next themes/next
 ![](http://img.xiumi.us/xmi/ua/1O3nK/i/cbad72862abb136b368b74c5aa2d95b3-sz_6795.png)
 
 保存更改，和之前一样输入命令：
+
 ```
 hexo server
 ```
+
 即可预览
 
 ![](http://img.xiumi.us/xmi/ua/1O3nK/i/5f126af070cdf1b7e3debc52b98657a4-sz_109667.png)

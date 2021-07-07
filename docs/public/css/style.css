@@ -446,6 +446,18 @@ body {
 .article-date:hover {
   color: #1fa0ae;
 }
+.ico-date:before {
+  font-family: "FontAwesome";
+  content: "\f073";
+  color: #333;
+  margin-left: 10px !important;
+}
+.ico-fontcount:before {
+  font-family: "FontAwesome";
+  content: "\f040";
+  color: #333;
+  margin-left: 15px !important;
+}
 .article-category {
   text-align: center;
   line-height: 1em;
@@ -567,21 +579,8 @@ a.article-title:hover {
   padding: 0.1px 20px;
   font-size: 1.1em;
   margin: 1.4em 0px;
-  border-left: 0;
-  background: #f3f5f9;
-}
-.article-entry blockquote:before {
-  float: left;
-  font-family: "FontAwesome";
-  content: "\f10d";
-  margin-left: -0.8em;
-}
-.article-entry blockquote:after {
-  float: right;
-  font-family: "FontAwesome";
-  content: "\f10e";
-  margin-right: -0.8em;
-  margin-top: -1.5em;
+  background: rgba(158,158,158,0.1);
+  border-left-color: rgba(158,158,158,0.42);
 }
 .article-entry blockquote p {
   font-size: 14px;
@@ -1186,7 +1185,7 @@ a.article-title:hover {
 #page-nav:after {
   clear: both;
 }
-@media screen and (max-width: 492px) {
+@media screen and (max-width: 509px) {
   #page-nav {
     font-size: 1em;
   }
@@ -1260,13 +1259,13 @@ a.article-title:hover {
   border-width: 1px 0;
   overflow: auto;
   color: #ccc;
-  font-size: 0.95em;
-  line-height: 1em;
+  font-size: 0.96em;
+  line-height: 0.96em;
 }
 .article-entry .highlight .gutter pre,
 .article-entry .gist .gist-file .gist-data .line-numbers {
   color: #666;
-  font-size: 0.95em;
+  font-size: 0.96em;
 }
 figure.highlight::-webkit-scrollbar {
   width: 10px;
@@ -1290,7 +1289,7 @@ figure.highlight::-webkit-scrollbar-track {
 }
 .article-entry code {
   background: rgba(208,211,248,0.2);
-  color: #333;
+  color: #c7254e;
   padding: 0 0.3em;
 }
 .article-entry pre code {

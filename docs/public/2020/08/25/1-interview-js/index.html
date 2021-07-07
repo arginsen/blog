@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/interview.jpg">
-<meta property="og:updated_time" content="2021-04-16T08:37:39.466Z">
+<meta property="og:updated_time" content="2021-07-05T12:40:05.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试 | JavaScript">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/interview.jpg">
@@ -110,7 +110,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/blog/img/interview.jpg" rel="gallery_cknpgcngv000u4khvp2454088">
+      <a class="article-gallery-img fancybox" href="/blog/img/interview.jpg" rel="gallery_ckqg7a8n50011dsuveuy3nlpy">
         <img src="/blog/img/interview.jpg" itemprop="image">
       </a>
     
@@ -128,25 +128,7 @@
 
       </header>
     
-    
-      <div class="article-meta">
-        
-	<a href="/blog/2020/08/25/1-interview-js/" class="article-date">
-	  <time datetime="2020-08-25T03:20:33.000Z" itemprop="datePublished">八月 25, 2020</time>
-	</a>
- 
-        &nbsp;&nbsp;&nbsp; / 
-        
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
- 
-        &nbsp;&nbsp;&nbsp; / 
-        <!-- post-words & post-time 为文章开头 字数统计&阅读时长 -->
-        <span class="post-words">
-            <span class="post-count">3.3k字</span>
-        </span>
-      </div>
-    
+
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
@@ -395,7 +377,7 @@
 <ul>
 <li>lodash 的深拷贝函数</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">isObject</span>(<span class="params">o</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">typeof</span> o === <span class="string">'object'</span> || <span class="keyword">typeof</span> o === <span class="string">'function'</span>) &amp;&amp; o !== <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!isObject(obj)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'非对象'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> isArray = <span class="built_in">Array</span>.isArray(obj)</span><br><span class="line">  <span class="keyword">let</span> newObj = isArray ? [...obj] : &#123; ...obj &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 对属性进行遍历，如果属性为对象，递归处理</span></span><br><span class="line">  <span class="built_in">Reflect</span>.ownKeys(newObj).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">    newObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key]</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> newObj</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">  b: &#123;</span><br><span class="line">    c: <span class="number">2</span>,</span><br><span class="line">    d: <span class="number">3</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newObj = deepClone(obj)</span><br><span class="line">newObj.b.c = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.b.c) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">isObject</span>(<span class="params">o</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">typeof</span> o === <span class="string">'object'</span> || <span class="keyword">typeof</span> o === <span class="string">'function'</span>) &amp;&amp; o !== <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!isObject(obj)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'非对象'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> isArray = <span class="built_in">Array</span>.isArray(obj)</span><br><span class="line">  <span class="keyword">let</span> newObj = isArray ? [...obj] : &#123; ...obj &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 对属性进行遍历，如果属性为对象，递归处理</span></span><br><span class="line">  <span class="built_in">Reflect</span>.ownKeys(newObj).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">    newObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key]</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> newObj</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">  b: &#123;</span><br><span class="line">    c: <span class="number">2</span>,</span><br><span class="line">    d: <span class="number">3</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newObj = deepClone(obj)</span><br><span class="line">newObj.b.c = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.b.c) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://juejin.im/post/6868843713729134599/" target="_blank" rel="noopener">金九银十，初中级前端面试复习总结「JavaScript篇」</a></p>
 
       
@@ -410,29 +392,15 @@
   <span class="ico-tags"></span>
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/interview/">interview</a></li></ul>
 
-    <!-- 文章添加评论 -->
       
-        
-    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-    <div id="vcomments"></div>
-    <script>
-        var notify = 'false' == true ? true : false;
-        var verify = 'false' == true ? true : false;
-        window.onload = function() {
-            new Valine({
-                el: '#vcomments',
-                notify: notify,
-                verify: verify,
-                app_id: "FiFDW731RFzyucMLj7aoKlqW-gzGzoHsz",
-                app_key: "HbBlX1QACFBOMYTt6ilNaVvG",
-                placeholder: "write here ~",
-                avatar:"retro"
-            });
-        }
-    </script>
+	<span class="ico-date"></span>
+	<a href="/blog/2020/08/25/1-interview-js/" class="article-date">
+	  <time datetime="2020-08-25T03:20:33.000Z" itemprop="datePublished">八月 25, 2020</time>
+	</a>
 
-
-
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">3.3k字</span>
       
     </footer>
     <hr class="entry-footer-hr">
@@ -507,7 +475,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 196.6k 字</span>
+        <span class="post-count">全站共 209.5k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
