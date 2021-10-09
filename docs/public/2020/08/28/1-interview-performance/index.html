@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/interview.jpg">
-<meta property="og:updated_time" content="2021-06-28T04:46:34.291Z">
+<meta property="og:updated_time" content="2021-08-30T10:19:50.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试 | web 性能与安全">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/interview.jpg">
@@ -175,7 +175,7 @@
 <li>可以先给元素设置 <code>display: none;</code>，操作结束后再把它显示出来</li>
 </ol>
 <h1 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h1><h2 id="CSRF-和-XSS"><a href="#CSRF-和-XSS" class="headerlink" title="CSRF 和 XSS"></a>CSRF 和 XSS</h2><ul>
-<li><p>CSRF：跨站请求伪造，利用 cookie 进行攻击；一般添加 token 来防御<br>原理：登录收信人网站 A，并在本地生成 cookie，在不登出 A 的情况下，访问危险网站 B<br>防御：<br>1.Token 验证：服务器发送给客户端一个 token，客户端提交的表单中带着这个 token，如果这个 token 不合法，那么服务器拒绝这个请求<br>2.隐藏令牌：把 token 隐藏在 http 的 head 头中。<br>3.Referer 验证：Referer 指的是页面请求来源，意思是，只接受本站的请求，服务器才做响应；如果不是，就拦截</p>
+<li><p>CSRF：Cross-site request forgery 跨站请求伪造，利用 cookie 进行攻击；一般添加 token 来防御<br>原理：登录受信人网站 A，并在本地生成 cookie，在不登出 A 的情况下，访问危险网站 B<br>防御：<br>1.Token 验证：服务器发送给客户端一个 token，客户端提交的表单中带着这个 token，如果这个 token 不合法，那么服务器拒绝这个请求<br>2.隐藏令牌：把 token 隐藏在 http 的 head 头中。<br>3.Referer 验证：Referer 指的是页面请求来源，意思是，只接受本站的请求，服务器才做响应；如果不是，就拦截</p>
 </li>
 <li><p>XSS：跨站脚本攻击，一般在输入区通过插入 js 代码来攻击；一般通过过滤 <code>script</code> 标签等防止 js 代码插入<br>原理：Web 程序对用户的输入过滤不严格，导致恶意攻击者可向 Web 页面中嵌入恶意的脚本代码。当用户浏览该页面时，嵌入其中的代码被浏览器正常的解析执行，从而达到恶意攻击者的特殊目的<br>分类：<br>1.反射型 XSS：反射型跨站脚本攻击，主要特性：非持久性，通常出现在 URL 参数中，是最常见的 XSS 类型<br>2.存储型 XSS：存储型跨站脚本攻击，主要特性：持久性，存储在服务端，通常出现在用户与服务器做交互的页面，是最理想的 XSS 类型<br>3.DOM 型 XSS：Dom 型 xss 与以上两种方式都不同，它不需要与服务器做交互，主要特性为：非持久性，一般出现在 Web 页面的 Dom 解析中</p>
 </li>
@@ -201,7 +201,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">869字</span>
+        <span class="ico-fontcount"></span><span class="post-count">873字</span>
       
     </footer>
     <hr class="entry-footer-hr">
@@ -276,7 +276,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 209.5k 字</span>
+        <span class="post-count">全站共 261.3k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

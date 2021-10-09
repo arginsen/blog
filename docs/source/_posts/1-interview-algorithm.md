@@ -136,41 +136,52 @@ var findMedianSortedArrays = function(nums1, nums2) {
 # 如何实现深拷贝
 
 ```js
-// 通过 json 的方法
-function deepClone(obj) {
-  const obj_json = JSON.stringify(obj);
-  const obj_clone = JSON.parse(obj_json);
-  return obj_clone;
-}
-
-// 通过判断类型再递归生成
-function deepClone(obj) {
-  let objClone = Array.isArray(obj) ? [] : {};
-  for(let item in obj){
-    if (typeof obj[item] === "object") {
-      objClone[item] = deepClone(obj[item]);
+// 使用 map 处理循环引用问题
+function deepClone(target) {
+  const map = new Map()
+  function clone (target) {
+    if (isObject(target)) {
+      let cloneTarget = isArray(target) ? [] : {};
+      if (map.get(target)) {
+        return map.get(target)
+      }
+      map.set(target,cloneTarget)
+      for (const key in target) {
+        cloneTarget[key] = clone(target[key]);
+      }
+      return cloneTarget;
     } else {
-      objClone[item] = obj[item];
+      return target;
     }
   }
-  return objClone;
+  return clone(target)
 }
 ```
 
 # 使用js实现斐波那契数列
 
 ```js
-async fibonacci() {
-  let [prev, curr] = [0, 1];
+// generate 函数运行时会生成 Iterator 对象，不可以用 async
+function* fibonacci() {
+  let [prev, curr] = [0, 1]; // 赋值
   for (;;) {
-    await curr;
+    yield curr;
     [prev, curr] = [curr, prev + curr];
   }
 }
 
 for (let n of fibonacci()) {
-  if (n > 1000) break;
+  if (n > 1000) break; // 1000 之前 ，也可以写个计数器
   console.log(n);
+}
+
+// 数组
+function fibonacci(n) {
+  let arr = [0, 1]
+  for (let i = 2; i < n; i++) {
+    arr[i] = arr[i - 2] + arr[i - 1]
+  }
+  return n <= 2 ? arr.slice(0, n) : arr
 }
 ```
 
@@ -195,7 +206,7 @@ function getNumber(num) {
   const arr = [];
   for (let i = 10; i < num; i++) {
     let a = i.toString();
-    let b = a.split("").reverse().join("");
+    let b = a.split("").reverse().join(""); // 核心反转
     if (a === b) {
       arr.push(b)
     }
@@ -203,4 +214,300 @@ function getNumber(num) {
 }
 
 console.log(getNumber(10000)) ;
+```
+
+# 树状数据转换
+
+origin 存储同级的对象，用pid和id标记树的关系；转成target就是嵌套的结构
+
+```js
+origin = [
+  {
+    id: 1,
+    pid: null
+  },
+  {
+    id: 2,
+    pid: 1
+  },
+  {
+    id: 3,
+    pid: 1
+  },
+  {
+    id: 4,
+    pid: 2
+  },
+  {
+    id: 5,
+    pid: 2
+  }
+]
+
+target = [{
+  id: 1,
+  ch: [
+    {
+      id: 2,
+      ch: [
+        {
+          id: 4,
+          ch: []
+        },
+        {
+          id: 5,
+          ch: []
+        }
+      ]
+    },
+    {
+      id: 3,
+      ch: []
+    }
+  ]
+}]
+```
+
+实现：
+
+```js
+function toTree(arr) {
+  let rootId = arr.find((v) => v.pid === null)["pid"]
+  const loop = (parentId) => {
+    let res = []
+    for(let i = 0; i < arr.length; i++) {
+      let item = arr[i]
+      if (item.pid !== parentId) continue
+      let newItem = { id: item.id }
+      newItem.ch = loop(item.id)
+      res.push(newItem)
+    }
+    return res
+  }
+
+  return loop(rootId)
+}
+```
+
+# 函数柯里化实现 sum(2, 3) 和 sum(2)(3)
+
+```js
+function sum(){
+    var num = arguments[0];
+    if (arguments.length === 1) {
+        return function (sec){
+            return num + sec;
+        }
+    } else {
+        return [...arguments].reduce((acc, curr) => {
+          return acc + curr
+        })
+    }
+}
+
+sum(2,3);
+sum(2)(3);
+```
+
+指定问题函数：
+
+```js
+function curry (fn, currArgs) {
+  return function() {
+    // arguments 数组化
+    let args = [].slice.call(arguments); // args = [...arguments]
+
+    // 首次调用时，若未提供最后一个参数currArgs，则不用进行args的拼接
+    // 拼接的是递归过来的剩余参数，等参数够数了就一起交由 fn 执行
+    if (currArgs !== undefined) {
+      args = args.concat(currArgs);
+    }
+
+    // 递归调用
+    if (args.length < fn.length) {
+      return curry(fn, args);
+    }
+
+    // 递归出口
+    return fn.apply(null, args);
+  }
+}
+
+// 三数和
+function sum(a, b, c) {
+    console.log(a + b + c);
+}
+
+const fn = curry(sum);
+fn(1, 2, 3); // 6
+fn(1, 2)(3); // 6
+```
+
+不限定 sum 函数柯里化, 参考版
+
+```js
+function curry(...args){
+  let parmas = args
+
+  function sum() {
+    parmas = [...parmas,...arguments]
+    return sum
+  }
+
+  sum.res = function() {
+    return parmas.reduce((acc, item) => { // 累积变量 当前变量
+      return acc + item
+    })
+  }
+
+  return sum
+}
+
+curry(1)(2)(3)(10)(10,20).res()
+```
+
+本人优化改良版, 在最后再立即执行
+
+```js
+function curry(...args) {
+  let params = args
+
+  return function sum () {
+    params = [...params, ...arguments]
+    return arguments.length ? sum : params.reduce((acc, item) => {
+      return acc + item
+    })
+  }
+}
+
+curry(1,2)() // 3
+curry(1,2)(3)(4,5)() // 15
+```
+
+# 数组扁平化的方法
+
+```js
+// 例
+let arr = [1, 2, [3, 4], [[5, 6], 7, [8, [9]]]]
+
+// forEach
+function flatten(arr) {
+  let res = []
+  arr.forEach(item => {
+    res = res.concat(Array.isArray(item) ? flatten(item) : item)
+  })
+  return res
+}
+
+function flatten(arr) {
+  while(arr.some(item => Array.isArray(item)) {
+    arr = [].concat(...arr) // 元素存在数组则解构一次拼成数组，接着再检查
+  }
+}
+
+function flatten(arr) {
+  return arr.toString().split(',').map(item => Number(item))
+}
+
+function  flatten(arr) {
+  return arr.flat(Infinity)
+}
+```
+
+# 实现 promise
+
+```js
+
+```
+
+# 实现 promise.all 
+
+```js
+promise.all = function (promises) {
+  return new Promise(function(resolve, reject) {
+    var resolvedCounter = 0
+    var promiseNum = promises.length
+    var resolvedValues = new Array(promiseNum)
+    for (var i = 0; i < promiseNum; i++) {
+      (function(i) {
+        Promise.resolve(promises[i]).then(function(value) {
+          resolvedCounter++
+          resolvedValues[i] = value
+          if (resolvedCounter == promiseNum) {
+            return resolve(resolvedValues)
+          }
+        }, function(reason) {
+          return reject(reason)
+        })
+      })(i)
+    }
+  })
+}
+```
+
+# 实现 new 操作符
+
+```js
+function mynew (fn, ...args) {
+  const obj = {}
+  obj.__proto__ = fn.prototype
+  const result = fn.apply(obj, args)
+  return result instanceof Object ? result : obj // 忽略原始值
+}
+```
+
+# 实现 bind
+
+```js
+// 方式一：只在bind中传递函数参数
+fn.bind(obj,1,2)()
+
+// 方式二：在bind中传递函数参数，也在返回函数中传递参数
+fn.bind(obj,1)(2)
+
+// 实现
+Function.prototype.bind = function (context) {
+  // 判断调用的对象是否为函数
+  if (!(this instanceof Function)) {
+    throw new TypeError("Error")
+  }
+
+  // 获取后续参数
+  const args = [...arguments].slice(1),
+        fn = this
+  
+  return function Fn() {
+    // 用来判断直接调用还是 new 调用
+    // 如果是 new Fn() ，那么生成的函数对象即是 Fn 的实例
+    return fn.apply(this instanceof Fn ? new fn(...arguments) : context, args.concat(...arguments))
+  }
+}
+```
+
+# 实现 instanceof
+
+用来判断对象的类型: 函数、数组、对象
+意为 xxx 是某个构造函数的实例
+
+```js
+function instanceof (left, right) {
+  if (left !== 'object' || left === null) return false
+  let proto = Object.getPrototypeOf(left)
+  while(true) {
+    if (proto === null) return false // 到顶了
+    if (proto === right.prototype) return true // 原型相同返回
+    proto = Object.getPrototypeOf(proto)
+  }
+}
+```
+
+# 判断两棵二叉树是否相同
+
+```js
+function isSameTree(t1, t2) {
+  if (t1 === null && t2 === null) return true
+  if (t1 === null || t2 === null) return false
+  if (t1.val !== t2.val) return false
+  return isSameTree(t1.left, t2.left) && isSameTree(t1.right, t2.right)
+}
 ```

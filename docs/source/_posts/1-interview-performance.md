@@ -68,8 +68,8 @@ js：
 
 ## CSRF 和 XSS
 
-- CSRF：跨站请求伪造，利用 cookie 进行攻击；一般添加 token 来防御
-原理：登录收信人网站 A，并在本地生成 cookie，在不登出 A 的情况下，访问危险网站 B
+- CSRF：Cross-site request forgery 跨站请求伪造，利用 cookie 进行攻击；一般添加 token 来防御
+原理：登录受信人网站 A，并在本地生成 cookie，在不登出 A 的情况下，访问危险网站 B
 防御：
 1.Token 验证：服务器发送给客户端一个 token，客户端提交的表单中带着这个 token，如果这个 token 不合法，那么服务器拒绝这个请求
 2.隐藏令牌：把 token 隐藏在 http 的 head 头中。

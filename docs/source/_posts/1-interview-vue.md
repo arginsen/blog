@@ -17,13 +17,39 @@ photos:
 
 `v-model`、`v-on`、`v-bind`、`v-if`、`v-for`、`v-show`、`v-slot`、`v-text`、`v-html`
 
-# vue 的父子组件通信
+# vue 组件间的通信方式
 
-通过 props
+1. 通过 props 传递
+2. 通过 $emit 触发自定义事件
 
-# vue 的子父组件通信
+```js
+// 子
+this.$emit('add', good)
 
-在父组件绑定事件，再在子组件用 `$emit` 触发事件
+// 父
+<Children @add="cartAdd($event)" />
+```
+
+3. 使用 ref
+
+置于标签时获取当前 dom
+置于组件上时获取整个组件对象
+
+4. EventBus
+5. $parent 或 $root
+
+```js
+this.$parent.on('add', this.add)
+this.$parent.emit('add')
+```
+
+6. attrs 与 listeners
+7. Provide 与 Inject
+
+祖先组件定义 provide 属性，返回传递的值
+后代组件通过 inject 接收值
+
+8. Vuex
 
 # vue 的生命周期函数有哪些
 
@@ -44,7 +70,12 @@ errorCaptured | 当捕获一个来自子孙组件的错误时被调用。
 # vue 的 computed 和 watch 的区别
 
 `computed` 是计算属性，是依赖其他属性的计算值，并且有缓存，只有当依赖的值变化时才会更新。
+computed 会在初始化阶段针对我们定义的变量创建对应的 watcher, 并将书写的函数作为回调传入 watcher，初始化不会读取 computed 的 get 内容；等到后边读取内容时，需要获取 computed 依赖的值，此时依赖值的 dep 会将我们定义的 computed 这个方法（观察者）收集进 deps，同时返回经过 evaluate 后的值，而 watcher 的配置项 lazy 标记为 true，dirty 也为 true，等到 evaluate 结束后，就将 dirty 转为 false，那么在后续有其他地方有用到 computed 值时，便不再进行计算，直接返回当前缓存的值；
+等到 computed 依赖的值更新后，dep 会 notify 各个观察者进行 update，其中就包括 computed 的变量，在 update 是会判断当前的 watcher.lazy 是否为 true，为 true 就说明是计算属性的 watcher ，那么就将其 dirty 再转变为 true，等到后续读取 computed 值时，就会再次触发 evaluate 重新计算值，再把 dirty 转为 false，其他地方使用 computed 时就不会再计算了。
+
 `watch` 是在监听的属性发生变化时，在回调中执行一些逻辑。
+watch 在初始化阶段对指定监听的变量创建 watcher，initWatch 是后于 initComputed 发生的，因此依赖同一变量时，dep 会先将 computed 的 watcher 先压入 subs，在之后依赖值变动 watcher 更新时也会先更新 computed，后更新 watch 的值，但此时更新的 computed 仅是打开 dirty 为 true 操作，之后便进行 watch 的更新，在后续页面或其他地方有用到 computed 时才会在触发 computedGetter 重新进行计算。因此在页面上的 computed 值表现是要晚于 watch 里的语句的，因为页面上的变量建立的 watcher 均是晚于 init 阶段压入 subs 的。 
+
 computed 适合在模板渲染中，某个值是依赖了其他的响应式对象甚至是计算属性计算而来的；watch 适合监听某个值的变化去完成一些复杂的业务逻辑。
 
 # v-show 和 v-if 的区别
@@ -77,8 +108,8 @@ vue 中每个组件实例都会对应一个 watcher 实例，它会在组件渲�
 
 # vue3 为什么使用 proxy 实现响应式
 
-1. `Object.ddefineProperty` 只能劫持对象的属性，所以需要遍历对象的每个属性，而 proxy 是直接代理对象。
-2. Object.ddefineProperty 对新增属性需要手动进行 Observe，由于 Object.ddefineProperty 劫持的是对象的属性，所以新增属性时，又需要重新遍历对象，对其新增属性再用 Object.ddefineProperty 劫持
+1. `Object.defineProperty` 只能劫持对象的属性，所以需要遍历对象的每个属性，而 proxy 是直接代理对象。
+2. Object.defineProperty 对新增属性需要手动进行 Observe，由于 Object.ddefineProperty 劫持的是对象的属性，所以新增属性时，又需要重新遍历对象，对其新增属性再用 Object.ddefineProperty 劫持
 3. Proxy 支持 13 种拦截操作，这时 Object.ddefineProperty 不具有的
 4. Proxy 作为新标准，长远来看 js 引擎会继续优化 Proxy，但 getter 和 setter 则不会再有针对性优化
 5. 此外 Proxy 兼容性较差，目前并没有一个完整支持 Proxy 所有拦截方法的 Polyfill 方案

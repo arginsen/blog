@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/interview.jpg">
-<meta property="og:updated_time" content="2021-06-28T04:46:34.291Z">
+<meta property="og:updated_time" content="2021-09-25T10:26:57.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试 | Vue">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/interview.jpg">
@@ -133,8 +133,28 @@
       
         <p><br><br><a id="more"></a></p>
 <h1 id="vue-的指令有哪些"><a href="#vue-的指令有哪些" class="headerlink" title="vue 的指令有哪些"></a>vue 的指令有哪些</h1><p><code>v-model</code>、<code>v-on</code>、<code>v-bind</code>、<code>v-if</code>、<code>v-for</code>、<code>v-show</code>、<code>v-slot</code>、<code>v-text</code>、<code>v-html</code></p>
-<h1 id="vue-的父子组件通信"><a href="#vue-的父子组件通信" class="headerlink" title="vue 的父子组件通信"></a>vue 的父子组件通信</h1><p>通过 props</p>
-<h1 id="vue-的子父组件通信"><a href="#vue-的子父组件通信" class="headerlink" title="vue 的子父组件通信"></a>vue 的子父组件通信</h1><p>在父组件绑定事件，再在子组件用 <code>$emit</code> 触发事件</p>
+<h1 id="vue-组件间的通信方式"><a href="#vue-组件间的通信方式" class="headerlink" title="vue 组件间的通信方式"></a>vue 组件间的通信方式</h1><ol>
+<li>通过 props 传递</li>
+<li>通过 $emit 触发自定义事件</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子</span></span><br><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'add'</span>, good)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 父</span></span><br><span class="line">&lt;Children @add=<span class="string">"cartAdd($event)"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>使用 ref</li>
+</ol>
+<p>置于标签时获取当前 dom<br>置于组件上时获取整个组件对象</p>
+<ol start="4">
+<li>EventBus</li>
+<li>$parent 或 $root</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$parent.on(<span class="string">'add'</span>, <span class="keyword">this</span>.add)</span><br><span class="line"><span class="keyword">this</span>.$parent.emit(<span class="string">'add'</span>)</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>attrs 与 listeners</li>
+<li>Provide 与 Inject</li>
+</ol>
+<p>祖先组件定义 provide 属性，返回传递的值<br>后代组件通过 inject 接收值</p>
+<ol start="8">
+<li>Vuex</li>
+</ol>
 <h1 id="vue-的生命周期函数有哪些"><a href="#vue-的生命周期函数有哪些" class="headerlink" title="vue 的生命周期函数有哪些"></a>vue 的生命周期函数有哪些</h1><table>
 <thead>
 <tr>
@@ -189,7 +209,9 @@
 </tr>
 </tbody>
 </table>
-<h1 id="vue-的-computed-和-watch-的区别"><a href="#vue-的-computed-和-watch-的区别" class="headerlink" title="vue 的 computed 和 watch 的区别"></a>vue 的 computed 和 watch 的区别</h1><p><code>computed</code> 是计算属性，是依赖其他属性的计算值，并且有缓存，只有当依赖的值变化时才会更新。<br><code>watch</code> 是在监听的属性发生变化时，在回调中执行一些逻辑。<br>computed 适合在模板渲染中，某个值是依赖了其他的响应式对象甚至是计算属性计算而来的；watch 适合监听某个值的变化去完成一些复杂的业务逻辑。</p>
+<h1 id="vue-的-computed-和-watch-的区别"><a href="#vue-的-computed-和-watch-的区别" class="headerlink" title="vue 的 computed 和 watch 的区别"></a>vue 的 computed 和 watch 的区别</h1><p><code>computed</code> 是计算属性，是依赖其他属性的计算值，并且有缓存，只有当依赖的值变化时才会更新。<br>computed 会在初始化阶段针对我们定义的变量创建对应的 watcher, 并将书写的函数作为回调传入 watcher，初始化不会读取 computed 的 get 内容；等到后边读取内容时，需要获取 computed 依赖的值，此时依赖值的 dep 会将我们定义的 computed 这个方法（观察者）收集进 deps，同时返回经过 evaluate 后的值，而 watcher 的配置项 lazy 标记为 true，dirty 也为 true，等到 evaluate 结束后，就将 dirty 转为 false，那么在后续有其他地方有用到 computed 值时，便不再进行计算，直接返回当前缓存的值；<br>等到 computed 依赖的值更新后，dep 会 notify 各个观察者进行 update，其中就包括 computed 的变量，在 update 是会判断当前的 watcher.lazy 是否为 true，为 true 就说明是计算属性的 watcher ，那么就将其 dirty 再转变为 true，等到后续读取 computed 值时，就会再次触发 evaluate 重新计算值，再把 dirty 转为 false，其他地方使用 computed 时就不会再计算了。</p>
+<p><code>watch</code> 是在监听的属性发生变化时，在回调中执行一些逻辑。<br>watch 在初始化阶段对指定监听的变量创建 watcher，initWatch 是后于 initComputed 发生的，因此依赖同一变量时，dep 会先将 computed 的 watcher 先压入 subs，在之后依赖值变动 watcher 更新时也会先更新 computed，后更新 watch 的值，但此时更新的 computed 仅是打开 dirty 为 true 操作，之后便进行 watch 的更新，在后续页面或其他地方有用到 computed 时才会在触发 computedGetter 重新进行计算。因此在页面上的 computed 值表现是要晚于 watch 里的语句的，因为页面上的变量建立的 watcher 均是晚于 init 阶段压入 subs 的。 </p>
+<p>computed 适合在模板渲染中，某个值是依赖了其他的响应式对象甚至是计算属性计算而来的；watch 适合监听某个值的变化去完成一些复杂的业务逻辑。</p>
 <h1 id="v-show-和-v-if-的区别"><a href="#v-show-和-v-if-的区别" class="headerlink" title="v-show 和 v-if 的区别"></a>v-show 和 v-if 的区别</h1><p><code>v-if</code> 会在切换过程中对条件块的事件监听器和子组件进行销毁和重建，如果初始条件是 false，则不改动什么，直到第一次为 true 时才开始渲染模块。<br><code>v-show</code> 只是基于 css 进行切换，不管初始条件是什么，都会渲染。</p>
 <p>v-if 在切换时的开销更大，而 v-show 初始化渲染开销更大；在需要频繁切换，或者切换的部分 dom 很复杂时，使用 v-show 更合适；在渲染后很少切换的则使用 v-if 更合适。</p>
 <h1 id="v-if-和-v-for-可以一起使用吗"><a href="#v-if-和-v-for-可以一起使用吗" class="headerlink" title="v-if 和 v-for 可以一起使用吗"></a>v-if 和 v-for 可以一起使用吗</h1><p>当 v-for 和 v-if 处于同一个节点时，v-for 的优先级比 v-if 高，这意味着 v-if 将分别重复运行于每个 v-for 循环中。<br>如果要遍历的数组很大，而要真正展示的数据很少时，这将造成很大的性能浪费。这种场景可以用 computed 先对数据进行过滤。</p>
@@ -198,8 +220,8 @@
 <p><code>keep-alive</code> 有两个独立的生命周期钩子函数 <code>actived</code> 和 <code>deactived</code>，使用 keep-alive 包裹的组件在切换时不会被销毁，而是缓存到内存中并执行 deactived 钩子函数，命中缓存渲染后会执行 actived 钩子函数。</p>
 <h1 id="vue-的响应式原理"><a href="#vue-的响应式原理" class="headerlink" title="vue 的响应式原理"></a>vue 的响应式原理</h1><p>vue 的响应式是通过 <code>Object.defineProperty</code> 对数据进行劫持，并结合观察者模式实现。<br>vue 利用 <code>Object.defineProperty</code> 创建一个 observe 来劫持 监听所有的属性，把这些属性全部转为 getter 和 setter。<br>vue 中每个组件实例都会对应一个 watcher 实例，它会在组件渲染的过程中把使用过的数据属性通过 getter 收集为依赖；之后当触发 setter 时，会通知 watcher，从而使它关联的组件重新渲染。</p>
 <h1 id="vue3-为什么使用-proxy-实现响应式"><a href="#vue3-为什么使用-proxy-实现响应式" class="headerlink" title="vue3 为什么使用 proxy 实现响应式"></a>vue3 为什么使用 proxy 实现响应式</h1><ol>
-<li><code>Object.ddefineProperty</code> 只能劫持对象的属性，所以需要遍历对象的每个属性，而 proxy 是直接代理对象。</li>
-<li>Object.ddefineProperty 对新增属性需要手动进行 Observe，由于 Object.ddefineProperty 劫持的是对象的属性，所以新增属性时，又需要重新遍历对象，对其新增属性再用 Object.ddefineProperty 劫持</li>
+<li><code>Object.defineProperty</code> 只能劫持对象的属性，所以需要遍历对象的每个属性，而 proxy 是直接代理对象。</li>
+<li>Object.defineProperty 对新增属性需要手动进行 Observe，由于 Object.ddefineProperty 劫持的是对象的属性，所以新增属性时，又需要重新遍历对象，对其新增属性再用 Object.ddefineProperty 劫持</li>
 <li>Proxy 支持 13 种拦截操作，这时 Object.ddefineProperty 不具有的</li>
 <li>Proxy 作为新标准，长远来看 js 引擎会继续优化 Proxy，但 getter 和 setter 则不会再有针对性优化</li>
 <li>此外 Proxy 兼容性较差，目前并没有一个完整支持 Proxy 所有拦截方法的 Polyfill 方案</li>
@@ -233,7 +255,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">1.6k字</span>
+        <span class="ico-fontcount"></span><span class="post-count">2.2k字</span>
       
     </footer>
     <hr class="entry-footer-hr">
@@ -268,7 +290,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的指令有哪些"><span class="nav-number">1.</span> <span class="nav-text">vue 的指令有哪些</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的父子组件通信"><span class="nav-number">2.</span> <span class="nav-text">vue 的父子组件通信</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的子父组件通信"><span class="nav-number">3.</span> <span class="nav-text">vue 的子父组件通信</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的生命周期函数有哪些"><span class="nav-number">4.</span> <span class="nav-text">vue 的生命周期函数有哪些</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的-computed-和-watch-的区别"><span class="nav-number">5.</span> <span class="nav-text">vue 的 computed 和 watch 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-show-和-v-if-的区别"><span class="nav-number">6.</span> <span class="nav-text">v-show 和 v-if 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-if-和-v-for-可以一起使用吗"><span class="nav-number">7.</span> <span class="nav-text">v-if 和 v-for 可以一起使用吗</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-for-中的-key-的作用"><span class="nav-number">8.</span> <span class="nav-text">v-for 中的 key 的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#keep-alive-的作用"><span class="nav-number">9.</span> <span class="nav-text">keep-alive 的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的响应式原理"><span class="nav-number">10.</span> <span class="nav-text">vue 的响应式原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue3-为什么使用-proxy-实现响应式"><span class="nav-number">11.</span> <span class="nav-text">vue3 为什么使用 proxy 实现响应式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue2-中如何检测数组变化"><span class="nav-number">12.</span> <span class="nav-text">vue2 中如何检测数组变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-router-的-hash-模式和-history-模式的区别"><span class="nav-number">13.</span> <span class="nav-text">vue-router 的 hash 模式和 history 模式的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-router-的-hash-模式和-history-模式是如何实现的"><span class="nav-number">14.</span> <span class="nav-text">vue-router 的 hash 模式和 history 模式是如何实现的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">15.</span> <span class="nav-text">参考链接</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的指令有哪些"><span class="nav-number">1.</span> <span class="nav-text">vue 的指令有哪些</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-组件间的通信方式"><span class="nav-number">2.</span> <span class="nav-text">vue 组件间的通信方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的生命周期函数有哪些"><span class="nav-number">3.</span> <span class="nav-text">vue 的生命周期函数有哪些</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的-computed-和-watch-的区别"><span class="nav-number">4.</span> <span class="nav-text">vue 的 computed 和 watch 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-show-和-v-if-的区别"><span class="nav-number">5.</span> <span class="nav-text">v-show 和 v-if 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-if-和-v-for-可以一起使用吗"><span class="nav-number">6.</span> <span class="nav-text">v-if 和 v-for 可以一起使用吗</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-for-中的-key-的作用"><span class="nav-number">7.</span> <span class="nav-text">v-for 中的 key 的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#keep-alive-的作用"><span class="nav-number">8.</span> <span class="nav-text">keep-alive 的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-的响应式原理"><span class="nav-number">9.</span> <span class="nav-text">vue 的响应式原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue3-为什么使用-proxy-实现响应式"><span class="nav-number">10.</span> <span class="nav-text">vue3 为什么使用 proxy 实现响应式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue2-中如何检测数组变化"><span class="nav-number">11.</span> <span class="nav-text">vue2 中如何检测数组变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-router-的-hash-模式和-history-模式的区别"><span class="nav-number">12.</span> <span class="nav-text">vue-router 的 hash 模式和 history 模式的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-router-的-hash-模式和-history-模式是如何实现的"><span class="nav-number">13.</span> <span class="nav-text">vue-router 的 hash 模式和 history 模式是如何实现的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">14.</span> <span class="nav-text">参考链接</span></a></li></ol>
     
     </div>
   </aside>
@@ -308,7 +330,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 209.5k 字</span>
+        <span class="post-count">全站共 261.3k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

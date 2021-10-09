@@ -24,16 +24,111 @@ photos:
 
 Number、String、Boolean、null、undefined、Symbol
 
+补充：对象、数组、函数均为引用数据类型
+
 # 对数据类型的检测（字节）
 
-使用 `Object.prototype.toString.call(obj)`，返回一个字符串描述当前参数的数据类型
+1. typeof
+
+其中 数组、对象、null 都会被判定为 object
+
+```js
+console.log(typeof 2);               // number
+console.log(typeof true);            // boolean
+console.log(typeof 'str');           // string
+console.log(typeof []);              // object    
+console.log(typeof function(){});    // function
+console.log(typeof {});              // object
+console.log(typeof undefined);       // undefined
+console.log(typeof null);            // object
+```
+
+2. instanceof
+
+可以判断 **对象** 的类型，也就是引用数据类型，不能判断原始类型数据
+原理是判断在其原型链中能否找到该类型的原型
+
+```js
+console.log(2 instanceof Number);                    // false
+console.log(true instanceof Boolean);                // false 
+console.log('str' instanceof String);                // false 
+ 
+console.log([] instanceof Array);                    // true
+console.log(function(){} instanceof Function);       // true
+console.log({} instanceof Object);                   // true
+```
+
+3. constructor
+
+constructor有两个作用，一是判断数据的类型，二是对象实例通过 constrcutor 对象访问它的构造函数。需要注意，如果创建一个对象来**改变**它的原型，constructor就不能用来判断数据类型了
+
+```js
+console.log((2).constructor === Number); // true
+console.log((true).constructor === Boolean); // true
+console.log(('str').constructor === String); // true
+console.log(([]).constructor === Array); // true
+console.log((function() {}).constructor === Function); // true
+console.log(({}).constructor === Object); // true
+```
+
+4. Object.prototype.toString.call(obj)
+
+toString是Object的原型方法，返回对象的具体类型；
+Array、function等类型作为Object的实例，都重写了toString方法，所以不能直接调用 toString
+
+```js
+var a = Object.prototype.toString;
+
+console.log(a.call(2)); // [object Number]
+console.log(a.call(true)); // [object Boolean]
+console.log(a.call('str')); // [object String]
+console.log(a.call([])); // [object Array]
+console.log(a.call(function(){})); // [object Function]
+console.log(a.call({})); // [object Object]
+console.log(a.call(undefined)); // [object Undefined]
+console.log(a.call(null)); // [object Null]
+```
 
 # js如何判断数组是Array类型（字节）
 
-1. `arr instanceof Array === true`
-2. `Array.isArray(arr) === true`
-3. `Object.prototype.toString.call(arr) === '[object Array]'`
-4. `arr.constructor === Array`
+```js
+arr instanceof Array === true
+
+Array.isArray(arr) === true
+
+Object.prototype.toString.call(arr) === '[object Array]'
+
+arr.constructor === Array
+
+Array.prototype.isPrototypeOf(arr) // true
+```
+
+# 如何理解 [].slice.call(arguments)
+
+通常用该方法使一个类数组对象能够使用数组的 slice 方法，这里也就是将类数组转为数组
+
+实际上 call 的用途就是改变函数的 this 指向，这里也就可以理解成 slice 函数通过 call 将 this 指向 arguments 对象，slice 在该上下文执行，传入的参数为空。当然也可以在其后添加参数描述 start 和 end
+
+# 如何检测一个空对象
+
+```js
+Object.keys(obj).length === 0
+
+for (let i in obj) {
+  return true
+}
+```
+
+# 0.1 + 0.2 == 0.3 ?
+
+```js
+a = 0.1 + 0.2
+b = 0.3
+
+function numbersequal(a,b){ 
+  return Math.abs(a-b) < Number.EPSILON;
+}
+```
 
 # null 和 undefined 的区别
 
@@ -51,7 +146,14 @@ typeof undefined // undefined
 两种类型的区别是：1. 存储位置不同；2. 原始数据类型是直接存储在栈中的简单数据段，占据空间小、大小固定，属于频繁操作的对象，所以放在栈中；3. 引用数据类型是存储在堆中的对象，占据空间大、大小不固定，如果在栈中存储将会影响程序运行的性能。
 引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体。
 
+# == 操作符的强制类型转换规则
 
+1. 首先判断两者类型是否相同，相同的话就比较两者的大小
+2. 类型不同进行类型转换
+3. 先判断是否在对比 null 和 undefined， 是的话就会返回 true
+4. 再判断两者类型是否为 string 和 number，是的话将字符串转换为 number
+5. 接着判断一方是否为 boolean，是的话把 boolean 转换为 number 再进行判断
+6. 判断其中一方是否为 object 且另一方为 string、number、symbol，是的话就把  object 转换为原始类型再判断
 
 # String 有哪些方法（实例方法）
 
@@ -99,12 +201,32 @@ lastIndexOf() | 返回给定元素在数组中最后一次出现的位置，如�
 
 # call bind apply 有什么区别
 
-1. call 和 bind 直接执行函数，使函数 this 指向第一个参数对象，bind 是传入对象后返回一个新的函数，这个函数绑定了新的 this 环境等待调用
+三者作用均是改变函数执行时的上下文，简言之就是改变函数运行时的 this 指向
+
+1. call 和 apply 直接执行函数，使函数 this 指向第一个参数对象，bind 是传入对象后返回一个新的函数，这个函数绑定了新的 this 环境等待调用
 2. bind 和 apply 可以数组的形式传入参数，call 不可以
 
 # js 创建新对象有哪些方法
 
 通过对象直接量、关键字 new、和 Object.create() 函数来创建对象
+
+# 什么是作用域, 什么是作用域链
+
+作用域即是变量和函数生效的区域或集合。 
+
+作用域链是，在 js 中使用一个变量时，javascript 引擎会尝试在当前作用域下寻找该变量，若未找到，则向上层寻找，直到找到该变量或抵达全局作用域
+
+# 什么是原型, 什么是原型链
+
+JavaScript 被描述为一种基于原型的语言————每个对象都拥有一个原型对象
+
+每个对象都有自己的原型对象，那么任何一个对象都可以充当其他对象的原型，且由于原型对象也是对象，所有它也有自己的原型，因此形成一个原型链
+
+# `__proto__` 和 prototype 的区别
+
+- 每个对象都有 `__proto__` ，只有函数对象才有 prototype
+- js 在创建对象时，都会有一个 `__proto__` 内置属性，用于指向创建它的构造函数的原型对象
+- 所有函数对象的 `__proto__` 都指向 Function.prototype
 
 # js 实现继承的方式
 
@@ -115,108 +237,147 @@ lastIndexOf() | 返回给定元素在数组中最后一次出现的位置，如�
 5. 寄生式继承
 6. 寄生组合式继承
 
+```js
+// 寄生组合式继承
+function clone (parent, child) {
+    // 这里改用 Object.create 就可以减少组合继承中多进行一次构造的过程
+    child.prototype = Object.create(parent.prototype);
+    child.prototype.constructor = child;
+}
+
+function Parent() {
+    this.name = 'parent';
+    this.play = [1, 2, 3];
+}
+
+Parent.prototype.getName = function () {
+    return this.name;
+}
+
+function Child() {
+    Parent.call(this);
+    this.friends = 'child';
+}
+
+clone(Parent, Child);
+
+Child.prototype.getFriends = function () {
+    return this.friends;
+}
+
+let person = new Child();
+```
+
 # 对 this 的理解
+
+this 是函数运行时内部生成的一个对象，只能在函数内部使用，总是指向调用它的对象
 
 1. this 总是指向函数的直接调用者，而非间接调用者
 2. 如果有 new 关键字，this 指向 new 出来的那个对象
 3. 在事件中，this 指向目标元素
+
+# 箭头函数和普通函数的区别
+
+1. 没有 this。需要通过查找作用域链来确定 this 的值，this 也就成了最近一层非箭头函数的 this；此外箭头函数没有 this，所以也不能用 call、apply、bind 这些方法 改变 this 指向
+
+2. 没有 arguments 。箭头函数没有自己的 arguments 对象，访问到的是外层函数的 arguments 对象，想要访问箭头函数的参数，可以使用 rest 参数的形式
+
+3. 不能通过 new 关键字调用。JavaScript 函数有两个内部方法：`[[Call]]` 和 `[[Construct]]`。
+
+当通过 new 调用函数时，执行 `[[Construct]]` 方法，创建一个实例对象，然后再执行函数体，将 this 绑定到实例上。
+
+当直接调用的时候，执行 `[[Call]]` 方法，直接执行函数体。
+
+箭头函数并没有 `[[Construct]]` 方法，不能被用作构造函数，如果通过 new 的方式调用，会报错。
+
+4. 没有 new.target。不能使用 new 调用，也就没有 new.target
+
+5. 没有原型。不能使用 new 调用箭头函数，所以也没有构建原型的需求，不存在 prototype 属性
+
+6. 没有 super。没有原型
 
 # 什么是闭包，闭包的优点和缺点
 
 闭包指的是一个函数可以访问另一个函数作用域中的变量，闭包的原理是作用域链。
 优点是避免全局变量污染，缺点是容易造成内存泄露
 
+可以应用于函数柯里化，柯里化的目的在于避免频繁调用具有相同参数的函数，同时又方便重用
+
+```js
+// 假设我们有一个求长方形面积的函数
+function getArea(width, height) {
+    return width * height
+}
+// 如果我们碰到的长方形的宽老是10
+const area1 = getArea(10, 20)
+const area2 = getArea(10, 30)
+const area3 = getArea(10, 40)
+
+// 我们可以使用闭包柯里化这个计算面积的函数
+function getArea(width) {
+    return height => {
+        return width * height
+    } 
+}
+
+const getTenWidthArea = getArea(10)
+// 之后碰到宽度为10的长方形就可以这样计算面积
+const area1 = getTenWidthArea(20)
+
+// 而且如果遇到宽度偶尔变化也可以轻松复用
+const getTwentyWidthArea = getArea(20)
+```
+
+# 如何用一个函数生成对象时设置不用 new 关键字报错
+
+```js
+function Person(name) {
+  this.name = name
+} 
+Person("jake") // 报错
+new Person("jake") // 正确
+```
+
+answer：
+
+```js
+function Person(name) {
+  if(!(this instanceof Person)) {
+    throw Error('error msg')
+  }
+  this.name = name
+}
+```
+
+其实在 vue 中我们就有见到过, Vue 本身是一个函数，只不过在其上定义了很多属性，以及原型上定义了各类方法，我们在使用时需要用 new 来创建一个 vue 实例
+
+```js
+function Vue (options) {
+  if (process.env.NODE_ENV !== 'production' &&
+    !(this instanceof Vue)
+  ) {
+    warn('Vue is a constructor and should be called with the `new` keyword')
+  }
+  this._init(options)
+}
+```
+
+
 # js 异步通信，对 Ajax 的了解
 
-Ajax 是通过 JavaScript 的异步通信
+Ajax 是通过 JavaScript 的异步通信（jquery 对 xhr 的封装）
 在向服务器发送请求的时候，可以同时做其他事情，等实现特定结果，再进行后续操作，使页面发送局部更新。
 
 过程：
 1. 创建 XMLHTTPRequest 对象  `const xhr = new XMLHTTPRequest()`
 2. 创建新的 HTTP 请求  `xhr.open('get', url, true)`
-3. 设置响应 HTTP 请求状态变化的函数
+3. 设置响应 HTTP 请求状态变化的函数 onreadystatechange
 4. 发送 HTTP 请求  `xhr.send(data)`
 5. 获取异步通信的结果
 
-# 跨域问题
-
-## CORS（字节）
-
-允许浏览器向跨域服务器发出 XMLHTTPRequest 请求。
-
-1. 浏览器端会自动向请求头部添加 origin 字段，标注请求来源
-2. 在服务器端设置响应头的允许方法、头部、源等
-3. 请求分为两种：简单请求和非简单请求；简单请求的头部可包含 GET/POST/HEAD；非简单请求头部有 PUT/DELETE
-
-> 对于简单请求，浏览器直接发出CORS请求。具体来说，就是在头信息之中，增加一个Origin字段。
-
-```json
-// 简单请求
-GET /cors HTTP/1.1
-Origin: http://api.bob.com
-Host: api.alice.com
-Accept-Language: en-US
-Connection: keep-alive
-User-Agent: Mozilla/5.0...
-
-// 服务器返回的响应
-Access-Control-Allow-Origin: http://api.bob.com
-Access-Control-Allow-Credentials: true
-Access-Control-Expose-Headers: FooBar
-Content-Type: text/html; charset=utf-8
-```
-
-> 非简单请求是那种对服务器有特殊要求的请求，比如请求方法是PUT或DELETE，或者Content-Type字段的类型是application/json。
-> 过程：
-> 非简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为"预检"请求（preflight）。一旦服务器通过了"预检"请求，以后每次浏览器正常的CORS请求，就都跟简单请求一样，会有一个Origin头信息字段
-> 浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。
-
-1. 预检请求
-除了Origin字段，"预检"请求的头信息包括两个特殊字段。
-Access-Control-Request-Method 该字段是必须的，用来列出浏览器的CORS请求会用到哪些HTTP方法，上例是PUT。
-Access-Control-Request-Headers 该字段是一个逗号分隔的字符串，指定浏览器CORS请求会额外发送的头信息字段
-
-2. 预检请求的回应
-Access-Control-Allow-Methods 该字段必需，它的值是逗号分隔的一个字符串，表明服务器支持的所有跨域请求的方法。注意，返回的是所有支持的方法，而不单是浏览器请求的那个方法。这是为了避免多次"预检"请求。
-Access-Control-Allow-Headers 如果浏览器请求包含该字段，则该字段是必需的。表明服务器支持的所有头信息字段，不限于浏览器在"预检"中请求的字段。
-Access-Control-Allow-Credentials
-Access-Control-Max-Age 可选，用来指定本次预检请求的有效期，单位为秒
-
-3. 浏览器的正常请求和回应
-与简单请求一样，直接发送cors请求
-
-```json
-// 预检请求
-Origin: http://api.bob.com
-Access-Control-Request-Method: PUT
-Access-Control-Request-Headers: X-Custom-Header
-
-// 预检请求的回应
-Access-Control-Allow-Methods: GET, POST, PUT
-Access-Control-Allow-Headers: X-Custom-Header
-Access-Control-Allow-Credentials: true
-Access-Control-Max-Age: 1728000
-
-// 正常cors请求
-PUT /cors HTTP/1.1
-Origin: http://api.bob.com
-Host: api.alice.com
-X-Custom-Header: value
-Accept-Language: en-US
-Connection: keep-alive
-User-Agent: Mozilla/5.0...
-
-// 响应
-Access-Control-Allow-Origin: http://api.bob.com
-Content-Type: text/html; charset=utf-8
-```
-
-> 与 JSONP 相比，JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。
-
-
 # js 深浅拷贝
 
-# 浅拷贝
+1. 浅拷贝
 
 - Object.assign 实现浅拷贝，Object.assign 只会拷贝所有的属性值到新的对象中，如果属性值是对象的话，拷贝的则是地址。
 
@@ -230,7 +391,7 @@ console.log(b.age) // 1
 ```
 - 展开运算符 `...` 实现浅拷贝
 
-# 深拷贝
+2. 深拷贝
 
 - 通常可以用 `JSON.parse(JSON.stringify(object))` 实现深拷贝，但是该方法也有局限性
   - 会忽略 undefined
@@ -314,6 +475,59 @@ let newObj = deepClone(obj)
 newObj.b.c = 1
 console.log(obj.b.c) // 2
 ```
+
+- 循环递归
+
+```js
+function deepClone(obj, hash = new WeakMap()) {
+  if (obj === null) return obj; // 如果是null或者undefined我就不进行拷贝操作
+  if (obj instanceof Date) return new Date(obj);
+  if (obj instanceof RegExp) return new RegExp(obj);
+  // 可能是对象或者普通的值  如果是函数的话是不需要深拷贝
+  if (typeof obj !== "object") return obj;
+  // 是对象的话就要进行深拷贝
+  if (hash.get(obj)) return hash.get(obj);
+  let cloneObj = new obj.constructor();
+  // 找到的是所属类原型上的constructor,而原型上的 constructor指向的是当前类本身
+  hash.set(obj, cloneObj);
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      // 实现一个递归拷贝
+      cloneObj[key] = deepClone(obj[key], hash);
+    }
+  }
+  return cloneObj;
+}
+```
+
+# async 是什么的语法糖
+
+async 函数是 Generator 函数的语法糖。实际上就是将 Generator 函数的星号（*）替换成 async，将 yield 替换成 await
+
+async 函数对 对 Generator 函数的改进，体现在四点：
+
+1. Generator 函数的执行必须靠执行器，所以才有了co模块，而async函数自带执行器，与普通函数一样执行
+
+2. async 和 await，比起星号和 yield，语义更清楚了。
+
+3. async 函数的 await 命令后面，可以是 Promise 对象和原始类型的值
+
+4. async函数的返回值是 Promise 对象，这比 Generator 函数的返回值是 Iterator 对象方便多了。你可以用then方法指定下一步的操作
+
+# promise 有几种状态, 又是怎么转变状态的
+
+有 pending、fulfilled、rejected 三种状态，promise 函数执行进入 pending 状态，通过 resolve 函数 会将 fulfilled 成功状态，通过 reject 函数将进行状态转为失败状态
+
+
+
+
+
+
+
+
+
+
+
 
 # 参考链接
 

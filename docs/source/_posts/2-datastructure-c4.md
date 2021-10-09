@@ -71,15 +71,15 @@ int Index(SString S, SString T) {
     int i = 1, j = 1;
     while(i <= S.length && j <= T.length) {
         if(S.ch[i] == T.ch[j]) {
-			j++; i++;
-		} else {
-			i = i - j + 2; j = 1; // 或者可添加一个辅助定位的 k 记位
-		}
-	}
+            j++; i++;
+        } else {
+            i = i - j + 2; j = 1; // 或者可添加一个辅助定位的 k 记位
+        }
+    }
     if(j > T.length)
-		return i - T.length;
-	else
-		return 0;
+        return i - T.length;
+    else
+        return 0;
 }
 ```
 
@@ -91,50 +91,50 @@ using namespace std;
 #define MAXLEN 255
 
 typedef struct{
-	char ch[MAXLEN];
-	int length;
+    char ch[MAXLEN];
+    int length;
 }SString;
 
 void InitString(char *s, SString &S) {
-	int i = 0;
-	char *p = S.ch; // 用指针指向串用以修改数据
-	*p = ' '; // 令自定义的串结构第 0 位为空
+    int i = 0;
+    char *p = S.ch; // 用指针指向串用以修改数据
+    *p = ' '; // 令自定义的串结构第 0 位为空
     // S 从第 1 位开始逐位被 s 赋值
-	while(*++p = *s++) {
-		i++;
-	}
-	S.length = i;
+    while(*++p = *s++) {
+        i++;
+    }
+    S.length = i;
 }
 
 int Index(SString S, SString T) {
-	int i = 1, j = 1;
-	while(i <= S.length && j <= T.length) {
-		printf("%c, %c\n", S.ch[i], T.ch[j]);
-		if(S.ch[i] == T.ch[j]) {
-			++j; ++i;
-		} else {
-			i = i - j + 2; j = 1;
-		}
-	}
-	printf("%d, %d \n", i, j); 
-	if(j > T.length)
-		return i - T.length;
-	else
-		return 0;
+    int i = 1, j = 1;
+    while(i <= S.length && j <= T.length) {
+        printf("%c, %c\n", S.ch[i], T.ch[j]);
+        if(S.ch[i] == T.ch[j]) {
+            ++j; ++i;
+        } else {
+            i = i - j + 2; j = 1;
+        }
+    }
+    printf("%d, %d \n", i, j); 
+    if(j > T.length)
+        return i - T.length;
+    else
+        return 0;
 }
 
 int main() {
-	SString S, T;
-	char t[] = "defg", s[] = "abcdefg";
-	printf("【定义字符串：char[]】%s, %s \n", s, t);
+    SString S, T;
+    char t[] = "defg", s[] = "abcdefg";
+    printf("【定义字符串：char[]】%s, %s \n", s, t);
 
-	InitString(s, S);
-	printf("【初始化主串：SString】%s ：%d \n", S.ch, S.length);
-	InitString(t, T);
-	printf("【初始化模式串：SString】%s ：%d \n", T.ch, T.length);
+    InitString(s, S);
+    printf("【初始化主串：SString】%s ：%d \n", S.ch, S.length);
+    InitString(t, T);
+    printf("【初始化模式串：SString】%s ：%d \n", T.ch, T.length);
 
-	printf("'%s' starts at position %d of '%s'", T.ch, Index(S, T), S.ch);
-	return 0;
+    printf("'%s' starts at position %d of '%s'", T.ch, Index(S, T), S.ch);
+    return 0;
 }
 }
 ```

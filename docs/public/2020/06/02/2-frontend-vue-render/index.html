@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | Vue 语法进阶：render 函数 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendVue">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | Vue 语法进阶：render 函数">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/06/02/2-frontend-vue-render/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/vue.jpg">
+<meta property="og:updated_time" content="2021-08-28T09:25:12.609Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | Vue 语法进阶：render 函数">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/vue.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-vue-render" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/vue.jpg" rel="gallery_cktcjuomn0005a4uvm8hcyed8">
+        <img src="/blog/img/vue.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      前端 | Vue 语法进阶：render 函数
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p><img src="https://segmentfault.com/img/remote/1460000010352759" alt></p>
+<blockquote>
+<p>除了使用摸板生成 Virtual DOM，通过 render 函数也可以生成 Virtual DOM，view 再根据 Virtual DOM 生成 Actual DOM。</p>
+</blockquote>
+<h2 id="Actual-DOM-和-Virtual-DOM"><a href="#Actual-DOM-和-Virtual-DOM" class="headerlink" title="Actual DOM 和 Virtual DOM"></a>Actual DOM 和 Virtual DOM</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Actual DOM 通过 document.createElement('div') 生成 DOM 节点。</span></span><br><span class="line"><span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 浏览器原生对象（开销大）</span></span><br><span class="line"><span class="string">"[object HTMLDivElement]"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Virtual DOM 通过 vm.$createElement('div')生成一个 JS 对象，</span></span><br><span class="line"><span class="comment">// VDOM 对象有一个表示 div 的 tag 属性，</span></span><br><span class="line"><span class="comment">// 有一个包含了所有可能特性的 data 属性，</span></span><br><span class="line"><span class="comment">// 可能还有一个包含更多虚拟节点的 children 列表。</span></span><br><span class="line">vm.$createElement(<span class="string">'div'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 纯JS对象（轻量）</span></span><br><span class="line">&#123; <span class="attr">tag</span>: <span class="string">'div'</span>, <span class="attr">data</span>: &#123; <span class="attr">attrs</span>: &#123;&#125;, ...&#125;, <span class="attr">children</span>: [] &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JSX-和-Template"><a href="#JSX-和-Template" class="headerlink" title="JSX 和 Template"></a>JSX 和 Template</h2><blockquote>
+<ul>
+<li>JSX 和 Template 都是用于声明 DOM 和 state 之间关系的一种方式，在Vue中，Template 是默认推荐的方式，但是也可以使用 JSX 来做更灵活的事。<ul>
+<li>JSX 更加动态化，对于使用编程语言是很有帮助的，可以做任何事，但是动态化使得编译优化更加复杂和困难。</li>
+<li>Template 更加静态化并且对于表达式有更多约束，但是可以快速复用已经存在的模板，模板约束意味着可以在编译时做更多的性能优化，相对于 JSX 在编译时间上有着更多优势。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="render-函数"><a href="#render-函数" class="headerlink" title="render 函数"></a>render 函数</h2><blockquote>
+<ul>
+<li>render 函数依赖于页面上所有的数据 data，并且这些数据是响应式的，所有的数据作为组件 render 函数的依赖。一旦这些数据有所改变，那么 render 函数会被重新调用。</li>
+<li>在更新阶段，render 函数会重新调用并且返回一个新的 Virtual Dom，新旧Virtual DOM 之间会进行比较，把 diff 之后的最小改动应用到Actual DOM中。</li>
+<li>Watcher 负责收集依赖，清除依赖和通知依赖。在大型复杂的组件树结构下，由于采用了精确的依赖追踪系统，所以会避免组件的过度渲染。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>在创建 Vue 实例的过程中，如果传入的选项中有 template 和 render 两个属性，render 会有更高的<strong>优先级</strong></li>
+<li>通常使用 <strong>h</strong> 作为 createElement 的别名，这是 Vue 的通用惯例，也是JSX的要求</li>
+</ul>
+</blockquote>
+<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><blockquote>
+<p>createElement(‘div’, {}， […]) 生成摸板</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @returns &#123;VNode&#125;</span></span><br><span class="line">createElement(</span><br><span class="line">  <span class="comment">// 第一个参数 &#123;String | Object | Function&#125;</span></span><br><span class="line">  <span class="comment">// 一个 HTML 标签字符串，组件选项对象，或者</span></span><br><span class="line">  <span class="comment">// 解析上述任何一种的一个 async 异步函数。必需参数。</span></span><br><span class="line">  <span class="string">'div'</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 第二个参数 &#123;Object&#125;</span></span><br><span class="line">  <span class="comment">// 一个包含模板相关属性的数据对象</span></span><br><span class="line">  <span class="comment">// 你可以在 template 中使用这些特性。可选参数。</span></span><br><span class="line">  &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 第三个参数 &#123;String | Array&#125;</span></span><br><span class="line">  <span class="comment">// 子虚拟节点 (VNodes)，由 `createElement()` 构建而成，</span></span><br><span class="line">  <span class="comment">// 也可以使用字符串来生成“文本虚拟节点”。可选参数。</span></span><br><span class="line">  [</span><br><span class="line">    <span class="string">'先写一些文字'</span>,</span><br><span class="line">    createElement(<span class="string">'h1'</span>, <span class="string">'一则头条'</span>),</span><br><span class="line">    createElement(MyComponent, &#123;</span><br><span class="line">      props: &#123;</span><br><span class="line">        someProp: <span class="string">'foobar'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通常用 h 写</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 定义 template --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">example</span> <span class="attr">:tags</span>=<span class="string">"['h1', 'h2', 'h3']"</span>&gt;</span><span class="tag">&lt;/<span class="name">example</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="comment">// 定义example组件</span></span></span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'example'</span>, &#123;</span></span><br><span class="line"><span class="javascript">      props: [<span class="string">'tags'</span>],</span></span><br><span class="line"><span class="undefined">      render (h) &#123;</span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="javascript">        <span class="comment">// 第二个参数是一个包含模板相关属性的数据对象，可选参数</span></span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="javascript">        <span class="comment">// 子虚拟节点（VNodes）参数可以传入字符串或者数字，</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 通过createElement生成，可选参数</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> h(<span class="string">'div'</span>, <span class="keyword">this</span>.tags.map(<span class="function">(<span class="params">tag, i</span>) =&gt;</span> h(tag, i)))</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;)</span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="javascript">    <span class="comment">// 实例化</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123; <span class="attr">el</span>: <span class="string">'#app'</span> &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="render-h-gt-h-App"><a href="#render-h-gt-h-App" class="headerlink" title="render: h =&gt; h(App)"></a>render: h =&gt; h(App)</h1><blockquote>
+<p>App 为组件选项对象，用作第一个参数，App 本身作为 Vue 组件的入口组件，导入到 Vue 项目的 main.js，生成 Vue 实例时挂载到 <code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</code> 上边去</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// render: h =&gt; h(App) 是下面内容的缩写：</span></span><br><span class="line">render: <span class="function"><span class="keyword">function</span> (<span class="params">createElement</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> createElement(App);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 进一步缩写为(ES6 语法)：</span></span><br><span class="line">render (createElement) &#123;</span><br><span class="line">    <span class="keyword">return</span> createElement(App);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 再进一步缩写为：</span></span><br><span class="line">render (h) &#123;</span><br><span class="line">    <span class="keyword">return</span> h(App);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 按照 ES6 箭头函数的写法，就得到了：</span></span><br><span class="line">render: <span class="function"><span class="params">h</span> =&gt;</span> h(App);</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://cn.vuejs.org/v2/guide/render-function.html" target="_blank" rel="noopener">Vue 渲染函数</a><br><a href="https://segmentfault.com/a/1190000016945248" target="_blank" rel="noopener">render 函数原理及实现</a><br><a href="https://segmentfault.com/a/1190000010913794" target="_blank" rel="noopener">render 函数的三个参数</a><br><a href="https://segmentfault.com/q/1010000007130348" target="_blank" rel="noopener">关于 render: h =&gt; h(App) 的解答</a></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Vue/">Vue</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/06/02/2-frontend-vue-render/" class="article-date">
+	  <time datetime="2020-06-01T16:00:00.000Z" itemprop="datePublished">六月 2, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/06/03/2-frontend-vue-cli/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          前端 | Vue 学习笔记Ⅱ：@Vue/cli
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/06/01/2-frontend-vue-basic/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">前端 | Vue 学习笔记Ⅰ：Vue 核心</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Actual-DOM-和-Virtual-DOM"><span class="nav-number">1.1.</span> <span class="nav-text">Actual DOM 和 Virtual DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX-和-Template"><span class="nav-number">1.2.</span> <span class="nav-text">JSX 和 Template</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#render-函数"><span class="nav-number">1.3.</span> <span class="nav-text">render 函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用"><span class="nav-number">2.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#render-h-gt-h-App"><span class="nav-number">3.</span> <span class="nav-text">render: h =&gt; h(App)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2021 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 261.3k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>
