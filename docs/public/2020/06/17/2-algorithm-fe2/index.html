@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/algorithm.jpg">
-<meta property="og:updated_time" content="2021-06-28T04:46:34.306Z">
+<meta property="og:updated_time" content="2021-11-04T15:41:56.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端算法系列 | 二、排序">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/algorithm.jpg">
@@ -149,7 +149,8 @@
 <li><p>堆排序<br>创建一个大顶堆，大顶堆的堆顶一定是最大的元素。交换第一个元素和最后一个元素，让剩余的元素继续调整为大顶堆。从后往前以此和第一个元素交换并重新构建，排序完成。</p>
 </li>
 </ul>
-<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><blockquote>
+<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>时间复杂度：O(n^2)</p>
+<blockquote>
 <ul>
 <li>循环数组，比较当前元素和下一个元素，如果当前元素比下一个元素大，向上冒泡。这样一次循环之后最后一个数就是本数组最大的数。下一次循环继续上面的操作，不循环已经排序好的数。</li>
 </ul>
@@ -167,6 +168,7 @@
 <h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><blockquote>
 <p>每次循环选取一个最小的数字放到前面的有序序列中。</p>
 </blockquote>
+<p>时间复杂度：O(n^2)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length - <span class="number">1</span>; i++) &#123; <span class="comment">// 每轮的初始最小值直到倒数第二个，最后一位当然不用再比了</span></span><br><span class="line">    <span class="keyword">let</span> minIndex = i</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; array.length; j++) &#123;</span><br><span class="line">      <span class="comment">// 通过暂存的最小索引，往后查找不断替换为比它更小的，找到最小</span></span><br><span class="line">      <span class="keyword">if</span> (array[j] &lt; array[minIndex]) &#123;</span><br><span class="line">        minIndex = j</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 一轮遍历后得到最小数，与当前位互换，再进行下一位</span></span><br><span class="line">    [array[i], array[minIndex]] = [array[minIndex], array[i]]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二次循环会不断将更小的数往前提，因此不断替换元素而不是找到索引再替换，相对上边更耗时间</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; array.length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (array[i] &gt; array[j]) &#123;</span><br><span class="line">        [array[i], array[j]] = [array[j], array[i]];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>运行时间: 1252 ms</li>
@@ -179,6 +181,7 @@
 <h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><blockquote>
 <p>将左侧序列看成一个有序序列，每次将一个数字插入该有序序列。插入时，从有序序列最右侧开始比较，若比较的数较大，后移一位。</p>
 </blockquote>
+<p>时间复杂度：O(n^2)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从第二个开始，小于前一个值就往前移，</span></span><br><span class="line"><span class="comment">// 比前一个值大就原地待着，终止循环进入下一个 i</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">InsertSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="comment">// 将用于比较的那个值的索引储存</span></span><br><span class="line">    <span class="keyword">let</span> compare = i</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">      <span class="keyword">if</span> (array[compare] &lt; array[j]) &#123;</span><br><span class="line">        [array[compare], array[j]] = [array[j], array[compare]]</span><br><span class="line">        compare = j</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">break</span>  <span class="comment">// 终止循环</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>运行时间: 1940 ms</li>
@@ -187,6 +190,7 @@
 <h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><blockquote>
 <p>通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据比另一部分的所有数据要小，再按这种方法对这两部分数据分别进行快速排序，整个排序过程可以<strong>递归</strong>进行，使整个数据变成有序序列。</p>
 </blockquote>
+<p>时间复杂度：O(nlogn)</p>
 <p>实现步骤：</p>
 <ol>
 <li>选择一个基准元素 target（一般选择第一个数）</li>
@@ -295,7 +299,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 261.3k 字</span>
+        <span class="post-count">全站共 262.4k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

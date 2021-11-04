@@ -5,6 +5,7 @@ tags:
   - interview
   - Frontend
 categories: notes
+hide: true
 photos:
     - /blog/img/interview.jpg
 ---
@@ -27,7 +28,11 @@ photos:
 this.$emit('add', good)
 
 // 父
-<Children @add="cartAdd($event)" />
+<Children @add="cartAdd" />
+
+cartAdd(good) {
+  console.log(good)
+}
 ```
 
 3. 使用 ref
@@ -70,7 +75,7 @@ errorCaptured | 当捕获一个来自子孙组件的错误时被调用。
 # vue 的 computed 和 watch 的区别
 
 `computed` 是计算属性，是依赖其他属性的计算值，并且有缓存，只有当依赖的值变化时才会更新。
-computed 会在初始化阶段针对我们定义的变量创建对应的 watcher, 并将书写的函数作为回调传入 watcher，初始化不会读取 computed 的 get 内容；等到后边读取内容时，需要获取 computed 依赖的值，此时依赖值的 dep 会将我们定义的 computed 这个方法（观察者）收集进 deps，同时返回经过 evaluate 后的值，而 watcher 的配置项 lazy 标记为 true，dirty 也为 true，等到 evaluate 结束后，就将 dirty 转为 false，那么在后续有其他地方有用到 computed 值时，便不再进行计算，直接返回当前缓存的值；
+computed 会在初始化阶段针对我们定义的变量创建对应的 watcher, 并将书写的函数作为回调传入 watcher，初始化不会读取 computed 的 get 内容；等到后边读取内容时，需要获取 computed 依赖的值，此时依赖值的 dep 会将我们定义的 computed 这个方法（观察者）收集进 subs，同时返回经过 evaluate 后的值，而 watcher 的配置项 lazy 标记为 true，dirty 也为 true，等到 evaluate 结束后，就将 dirty 转为 false，那么在后续有其他地方有用到 computed 值时，便不再进行计算，直接返回当前缓存的值；
 等到 computed 依赖的值更新后，dep 会 notify 各个观察者进行 update，其中就包括 computed 的变量，在 update 是会判断当前的 watcher.lazy 是否为 true，为 true 就说明是计算属性的 watcher ，那么就将其 dirty 再转变为 true，等到后续读取 computed 值时，就会再次触发 evaluate 重新计算值，再把 dirty 转为 false，其他地方使用 computed 时就不会再计算了。
 
 `watch` 是在监听的属性发生变化时，在回调中执行一些逻辑。
@@ -105,6 +110,10 @@ key 是给每个 vnode 指定的唯一 id，在统计的 vnode diff 过程中，
 vue 的响应式是通过 `Object.defineProperty` 对数据进行劫持，并结合观察者模式实现。
 vue 利用 `Object.defineProperty` 创建一个 observe 来劫持 监听所有的属性，把这些属性全部转为 getter 和 setter。
 vue 中每个组件实例都会对应一个 watcher 实例，它会在组件渲染的过程中把使用过的数据属性通过 getter 收集为依赖；之后当触发 setter 时，会通知 watcher，从而使它关联的组件重新渲染。
+
+# vue 的双向绑定原理
+
+
 
 # vue3 为什么使用 proxy 实现响应式
 

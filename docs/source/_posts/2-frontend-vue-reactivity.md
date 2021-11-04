@@ -16,7 +16,22 @@ photos:
 
 因为本例 index.html 书写直接引入书写的响应式 vue 模块，因此调试打开 index.html 需要启用本地服务器
 
-可以采用 http-server 或者 live-server 插件
+可以采用 http-server 或者 live-server 插件先行发布 index.html，可以直接在浏览器调试，可以 vs code 内调试，配置 launch.json :
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "pwa-chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://127.0.0.1:5500", // 为 live-server 发布的地址
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}
+```
 
 跟着调试再走一遍，从初始化 -> 数据变更 -> 响应式修改，文章从上至下浏览即可
 

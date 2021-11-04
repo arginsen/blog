@@ -5,6 +5,7 @@ tags:
   - interview
   - Frontend
 categories: notes
+hide: true
 photos:
     - /blog/img/interview.jpg
 ---
@@ -126,7 +127,7 @@ wss.on('connection', function(client) {
 // send
 //建立到服务端webSocket连接
 var ws = new WebSocket("ws://localhost:8080");
-send.onclick = function(){
+ws.onclick = function(){
   if(msg.value.trim()!==""){
     // 将消息发到服务器
     ws.send(msg.value.trim());
@@ -244,8 +245,100 @@ Content-Type: text/html; charset=utf-8
 
 # 事件循环
 
-同步任务指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务；异步任务指的是，不进入主线程、而进入任务队列（task queue）的任务，只有等主线程任务执行完毕，任务队列开始通知主线程，请求执行任务，该任务才会进入主线程执行。
+同步任务指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务；
+异步任务指的是，不进入主线程、而进入任务队列（task queue）的任务，只有等主线程任务执行完毕，任务队列开始通知主线程，请求执行任务，该任务才会进入主线程执行。
 
 当某个宏任务执行完后,会查看是否有微任务队列。如果有，先执行微任务队列中的所有任务；如果没有，在执行环境栈中会读取宏任务队列中排在最前的任务；执行宏任务的过程中，遇到微任务，依次加入微任务队列。栈空后，再次读取微任务队列里的任务，依次类推。
 
 同步（Promise）>异步（微任务（process.nextTick ，Promises.then, Promise.catch ，resove,reject,MutationObserver)>宏任务（setTimeout，setInterval，setImmediate））
+
+# 权限验证
+
+vue 项目中，在登陆页面输入账号密码后，后端返回一个标识用户身份的 token 存在本地 cookie ，
+用户登录成功后使用 router.beforeEach 拦截路由，判断是否获得 token，再用 token 获取用户的基本信息及权限 role ，
+将 role 和路由表的每个页面需要的权限作比较，生成当前用户可访问的路由表，
+调用 router.addRoutes 添加用户可访问的路由，
+使用 vuex 管理路由表，根据 vuex 中可访问的路由渲染侧边栏组件
+
+```js
+// main.js
+router.beforeEach((to, from, next) => {
+  if (store.getters.token) { // 判断是否有token
+    if (to.path === '/login') {
+      next({ path: '/' });
+    } else {
+      if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
+        store.dispatch('GetInfo').then(res => { // 拉取info
+          const roles = res.data.role;
+          store.dispatch('GenerateRoutes', { roles }).then(() => { // 生成可访问的路由表
+            router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
+            next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+          })
+        }).catch(err => {
+          console.log(err);
+        });
+      } else {
+        next() //当有用户权限的时候，说明所有可访问路由已生成 如访问没权限的全面会自动进入404页面
+      }
+    }
+  } else {
+    if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
+      next();
+    } else {
+      next('/login'); // 否则全部重定向到登录页
+    }
+  }
+});
+```
+
+```js
+// store/permission.js
+function hasPermission(roles, route) {
+  if (route.meta && route.meta.role) {
+    return roles.some(role => route.meta.role.indexOf(role) >= 0)
+  } else {
+    return true
+  }
+}
+
+function filterAsyncRoutes(routes, roles) {
+  const res = []
+  routes.forEach(route => {
+    const tmp = { ...route }
+    if (hasPermission(roles, tmp)) {
+      if (tmp.children) {
+        tmp.children = filterAsyncRoutes(tmp.children, roles)
+      }
+      res.push(tmp)
+    }
+  })
+  return res
+}
+
+const permission = {
+  state: {
+    routers: constantRouterMap,
+    addRouters: []
+  },
+  mutations: {
+    SET_ROUTERS: (state, routers) => {
+      state.addRouters = routers;
+      state.routers = constantRouterMap.concat(routers);
+    }
+  },
+  actions: {
+    generateRoutes({ commit }, roles) {
+      return new Promise(resolve => {
+        let accessedRoutes
+        if (roles.includes('admin')) {
+          accessedRoutes = asyncRoutes || []
+        } else {
+          accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
+        }
+        commit('SET_ROUTES', accessedRoutes)
+        resolve(accessedRoutes)
+      })
+    }
+  }
+};
+```

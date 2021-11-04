@@ -1,10 +1,11 @@
 ---
-title: 面试 | 数据结构与算法
+title: 面试 | 编程题
 date: 2020-8-29
 tags: 
   - interview
   - Frontend
 categories: notes
+hide: true
 photos:
     - /blog/img/interview.jpg
 ---
@@ -155,6 +156,22 @@ function deepClone(target) {
     }
   }
   return clone(target)
+}
+
+function deepClone(target, map = new Map()) {
+  if (typeof target === 'object') {
+    let cloneObj = Array.isArray(target) ? [] : {}
+    if (map.get(target)) {
+      return map.get(target)
+    }
+    map.set(cloneObj, target)
+    for (let i in target) {
+      cloneObj[i] = deepClone(target[i], map)
+    }
+    return cloneObj
+  } else {
+    return target
+  }
 }
 ```
 
@@ -417,7 +434,135 @@ function  flatten(arr) {
 # 实现 promise
 
 ```js
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
 
+const resolvePromise = (promise, x, resolve, reject) => {
+  if (x === promise) {
+    return new TypeError('chained cycle')
+  }
+
+  if (x !== null && (typeof x === 'object' || typeof x === 'function')) {
+    let called
+    try {
+      let then = x.then
+      if (typeof then === 'function') {
+        then.call(x, y => {
+          if (called) return
+          called = true
+          resolvePromise(promise, y, resolve, reject)
+        }, r => {
+          if (called) return
+          called = true
+          reject(r)
+        })
+      } else {
+        resolve(x)
+      }
+    } catch(r) {
+      if (called) return
+      reject(r)
+    }
+  } else {
+    resolve(x)
+  }
+}
+
+class Promise {
+  constructor(executor) {
+    // 定义内部状态
+    this.status = PENDING
+    this.value = undefined
+    this.reason = undefined
+    this.onFulfilledCallbacks = []
+    this.onRejectedCallbacks = []
+
+    const resolve = value => {
+      if (value instanceof Promise) {
+        this.then(resolve, reject)
+      }
+
+      if (this.status === PENDING) {
+        setTimeout(() => {
+          this.status = FULFILLED
+          this.value = value
+          this.onFulfilledCallbacks.forEach(cb => cb(value))
+        }
+      }
+    }
+
+    const reject = reason => {
+      if (this.status === PENDING) {
+        setTimeout(() => {
+          this.status = REJECTED
+          this.reason = reason
+          this.onRejectedCallbacks.forEach(cb => cb(reason))
+        }
+      }
+    }
+
+    try {
+      executor(resolve, reject)
+    } catch(e) {
+      reject(e)
+    }
+  }
+
+  then(onFulfilled, onRejected) {
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+    onRejected = typeof onRejected === 'function' ? onRejected : reason => { throw reason }
+
+    let newPromise = new Promise((resolve, reject) => {
+      if (this.status === FULFILLED) {
+        setTimeout(() => {
+          try {
+            let x = onFulfilled(this.value)
+            resolvePromise(newPromise, x, resolve, reject)
+          } catch(e) {
+            reject(e)
+          }
+        })
+      }
+
+      if (this.status === REJECTED) {
+        setTimeout(() => {
+          try {
+            let x = onRejected(this.reason)
+            resolvePromise(newPromise, x, resolve, reject)
+          } catch(e) {
+            reject(e)
+          }
+        })
+      }
+
+      if (this.status === PENDING) {
+        this.onFulfilledCallbacks.push(() => {
+          try {
+            let x = onFulfilled(this.value)
+            resolvePromise(newPromise, x, resolve, reject)
+          } catch(e) {
+            reject(e)
+          }
+        })
+        this.onRejectedCallbacks.push(() => {
+          try {
+            let x = onRejected(this.reason)
+            resolvePromise(newPromise, x, resolve, reject)
+          } catch(e) {
+            reject(e)
+          }
+        })
+      }
+    })
+
+    return newPromise
+  }
+
+  catch(errorCallback) {
+    return this.then(null, errorCallback)
+  }
+}
 ```
 
 # 实现 promise.all 
@@ -430,15 +575,13 @@ promise.all = function (promises) {
     var resolvedValues = new Array(promiseNum)
     for (var i = 0; i < promiseNum; i++) {
       (function(i) {
-        Promise.resolve(promises[i]).then(function(value) {
+        promises[i].then(function(value) {
           resolvedCounter++
           resolvedValues[i] = value
           if (resolvedCounter == promiseNum) {
             return resolve(resolvedValues)
           }
-        }, function(reason) {
-          return reject(reason)
-        })
+        }, reject)
       })(i)
     }
   })
@@ -449,6 +592,10 @@ promise.all = function (promises) {
 
 ```js
 function mynew (fn, ...args) {
+  if (typeof fn !== 'function') {
+    throw 'mynew function the first param must be a function'
+  }
+
   const obj = {}
   obj.__proto__ = fn.prototype
   const result = fn.apply(obj, args)
@@ -464,6 +611,9 @@ fn.bind(obj,1,2)()
 
 // 方式二：在bind中传递函数参数，也在返回函数中传递参数
 fn.bind(obj,1)(2)
+// 也有可能是
+let wait = fn.bind(obj, 1) // 返回函数等待调用
+let res = new wait(2)
 
 // 实现
 Function.prototype.bind = function (context) {
@@ -478,7 +628,7 @@ Function.prototype.bind = function (context) {
   
   return function Fn() {
     // 用来判断直接调用还是 new 调用
-    // 如果是 new Fn() ，那么生成的函数对象即是 Fn 的实例
+    // 如果是 new fn() ，那么生成的函数对象即是 fn 的实例
     return fn.apply(this instanceof Fn ? new fn(...arguments) : context, args.concat(...arguments))
   }
 }
@@ -510,4 +660,52 @@ function isSameTree(t1, t2) {
   if (t1.val !== t2.val) return false
   return isSameTree(t1.left, t2.left) && isSameTree(t1.right, t2.right)
 }
+```
+
+# 实现发布订阅模式
+
+```js
+class EventEmitter {
+  constructor() {
+    this.events = []
+  }
+
+  on(event, callback) {
+    if (!this.events[event]) {
+      this.events[event] = [callback]
+    } else {
+      this.events[event].push(callback)
+    }
+  }
+
+  off(event, callback) {
+    if (this.events[event]) return
+    this.events[event].filter(cb => {
+      return cb !== callback
+    })
+  }
+
+  once(event, callback) {
+    function fn() {
+      callback()
+      this.off(event, callback)
+    }
+    this.on(event, fn)
+  }
+
+  emit(event, ...args) {
+    this.events[event] && this.events[event].forEach(cb => cb.apply(this, args))
+  }
+}
+
+let event = new EventEmitter()
+let cb = (...args) => {
+  console.log(args)
+}
+
+event.on('click', cb)
+event.emit('click', 1, 2, 3)
+event.once('dbClick', () => { console.log(123) })
+event.emit('dbClick')
+event.off('click', cb)
 ```

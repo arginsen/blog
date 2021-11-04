@@ -4,8 +4,8 @@ date: 2020-1-08 9:24:21
 tags: 
 - server
 - networking
-categories:
-- notes
+categories: notes
+hide: true
 photo: 
     - /blog/img/networking.jpg
 ---

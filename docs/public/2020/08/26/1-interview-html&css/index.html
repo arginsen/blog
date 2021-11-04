@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
   
-  <title>面试 | HTML &amp; CSS | Arginsen&#39;s Blog</title>
+  <title>面试 | HTML &amp; CSS | Arginsen&#39;s Blog</title><meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="interviewFrontend">
@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/interview.jpg">
-<meta property="og:updated_time" content="2021-09-09T08:34:10.893Z">
+<meta property="og:updated_time" content="2021-11-04T15:41:16.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试 | HTML &amp; CSS">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/interview.jpg">
@@ -190,6 +190,21 @@
 <li>对于网页设置编码是 gbk ，而数据库传过来的内容是 utf-8，需要在程序查询数据库数据显示数据前进行转码</li>
 <li>如果浏览器浏览时候出现网页乱码，在浏览器中找到转换编码的菜单进行转换。</li>
 </ul>
+<h2 id="html5-新特性"><a href="#html5-新特性" class="headerlink" title="html5 新特性"></a>html5 新特性</h2><ol>
+<li>语义标签 header footer nav section article aside main</li>
+<li>增强型表单<br>input 输入新特性：color date email search<br>新增表单元素：datalist progress meter keygen output<br>新增表单属性：placeholder height width </li>
+<li>音频和视频 audio video</li>
+<li>canvas</li>
+<li>svg</li>
+<li>地理位置 getCurrentPosition()</li>
+<li>拖放 API<br>ondragstart ondrag ondranenter ondragover ondragleave ondragend</li>
+<li><p>Web Worker 加载一个脚本文件，进而创建一个在主线程之外独立工作的线程</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">"worker.js"</span>); <span class="comment">//创建一个Worker对象并向它传递将在新线程中执行的脚本的URL</span></span><br><span class="line">worker.postMessage(<span class="string">"hello world"</span>);     <span class="comment">//向worker发送数据</span></span><br><span class="line">worker.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;     <span class="comment">//接收worker传过来的数据函数</span></span><br><span class="line">   <span class="built_in">console</span>.log(evt.data);              <span class="comment">//输出worker发送来的数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>web storage 有 localStorage 和 sessionStorage</p>
+</li>
+<li>websocket</li>
+</ol>
 <h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><h2 id="CSS3-有哪些新特性"><a href="#CSS3-有哪些新特性" class="headerlink" title="CSS3 有哪些新特性"></a>CSS3 有哪些新特性</h2><ol>
 <li>RGBA 和透明度(opacity)</li>
 <li>background-image background-origin background-size background-repeat</li>
@@ -200,6 +215,21 @@
 <li>border-image</li>
 <li>box-shadow</li>
 <li>@media screen and (min-width: 800px) and (max-width: 1200px)</li>
+</ol>
+<h2 id="元素不定宽高"><a href="#元素不定宽高" class="headerlink" title="元素不定宽高"></a>元素不定宽高</h2><blockquote>
+<p><a href="https://vue3js.cn/interview/css/center.html" target="_blank" rel="noopener">https://vue3js.cn/interview/css/center.html</a></p>
+</blockquote>
+<ol>
+<li><p>父级相对定位，子级绝对定位，top left 等都为 0，margin 设置 auto</p>
+</li>
+<li><p>父级相对定位，子级绝对定位，需要知道子元素宽高，top 和 left 设置为 50%，margin-left 和 margin-right 设置为负的宽高的一半</p>
+</li>
+<li><p>父级相对定位，子级绝对定位，top 和 left 设置为 50%，再转换：<code>transform: translate(-50%,-50%)</code></p>
+</li>
+<li><p>flex 实现</p>
+</li>
+<li><p>grid 布局，实现同 flex</p>
+</li>
 </ol>
 <h2 id="如何隐藏一个元素"><a href="#如何隐藏一个元素" class="headerlink" title="如何隐藏一个元素"></a>如何隐藏一个元素</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 隐藏的元素不占任何空间 */</span></span><br><span class="line"><span class="selector-tag">display</span>: <span class="selector-tag">none</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 透明度 */</span></span><br><span class="line"><span class="selector-tag">opacity</span>: 0;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 无交互 */</span></span><br><span class="line"><span class="selector-tag">visibility</span>: <span class="selector-tag">hidden</span>;</span><br></pre></td></tr></table></figure>
 <h2 id="display-none-与-visibility-hidden-的区别"><a href="#display-none-与-visibility-hidden-的区别" class="headerlink" title="display:none 与 visibility: hidden 的区别"></a>display:none 与 visibility: hidden 的区别</h2><p>1) 渲染树中，display:none 会让元素完全从渲染树中消失，渲染时不会占据任何空间；而 visibility: hidden 不会让元素从渲染树中消失，渲染的元素还会占据相应空间，只是内容不可见</p>
@@ -259,7 +289,7 @@
 </ol>
 <h2 id="伪元素和伪类的区别和作用？"><a href="#伪元素和伪类的区别和作用？" class="headerlink" title="伪元素和伪类的区别和作用？"></a>伪元素和伪类的区别和作用？</h2><p>伪元素：在内容元素的前后插入额外的元素或样式，但是这些元素实际上并不在文档中生成。它们只在外部显示可见，但不会在文档代码中找到它们</p>
 <p>伪类：将特殊的效果添加到特定选择器上，它是对已有的元素添加类别，不会产生新元素</p>
-
+<!-- flag of hidden posts -->
       
     </div>
     <br>
@@ -280,32 +310,13 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">2.4k字</span>
+        <span class="ico-fontcount"></span><span class="post-count">2.6k字</span>
       
     </footer>
     <hr class="entry-footer-hr">
   </div>
   
     
-<nav id="article-nav">
-  
-    <a href="/blog/2020/08/27/1-interview-vue/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          面试 | Vue
-        
-      </div>
-    </a>
-  
-  
-    <a href="/blog/2020/08/25/1-interview-js/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">面试 | JavaScript</div>
-    </a>
-  
-</nav>
-
   
 </article>
 
@@ -315,7 +326,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML"><span class="nav-number">1.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#html块元素、行内元素有哪些？区别？"><span class="nav-number">1.1.</span> <span class="nav-text">html块元素、行内元素有哪些？区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#src和href的区别是什么"><span class="nav-number">1.2.</span> <span class="nav-text">src和href的区别是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#script-标签中的-defer-和-async-的区别"><span class="nav-number">1.3.</span> <span class="nav-text">script 标签中的 defer 和 async 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iframe-有哪些优缺点"><span class="nav-number">1.4.</span> <span class="nav-text">iframe 有哪些优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#canvas-和-svg-的区别"><span class="nav-number">1.5.</span> <span class="nav-text">canvas 和 svg 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器乱码的原因是什么？如何解决？"><span class="nav-number">1.6.</span> <span class="nav-text">浏览器乱码的原因是什么？如何解决？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS"><span class="nav-number">2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3-有哪些新特性"><span class="nav-number">2.1.</span> <span class="nav-text">CSS3 有哪些新特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何隐藏一个元素"><span class="nav-number">2.2.</span> <span class="nav-text">如何隐藏一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display-none-与-visibility-hidden-的区别"><span class="nav-number">2.3.</span> <span class="nav-text">display:none 与 visibility: hidden 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#overflow-的用法"><span class="nav-number">2.4.</span> <span class="nav-text">overflow 的用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何对超出元素边界的文字进行处理"><span class="nav-number">2.5.</span> <span class="nav-text">如何对超出元素边界的文字进行处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除浮动"><span class="nav-number">2.6.</span> <span class="nav-text">清除浮动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-优化、提高性能"><span class="nav-number">2.7.</span> <span class="nav-text">CSS 优化、提高性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是响应式设计，基本原理"><span class="nav-number">2.8.</span> <span class="nav-text">什么是响应式设计，基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有哪些盒模型（字节）"><span class="nav-number">2.9.</span> <span class="nav-text">有哪些盒模型（字节）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是BFC机制"><span class="nav-number">2.10.</span> <span class="nav-text">什么是BFC机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪元素和伪类的区别和作用？"><span class="nav-number">2.11.</span> <span class="nav-text">伪元素和伪类的区别和作用？</span></a></li></ol></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML"><span class="nav-number">1.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#html块元素、行内元素有哪些？区别？"><span class="nav-number">1.1.</span> <span class="nav-text">html块元素、行内元素有哪些？区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#src和href的区别是什么"><span class="nav-number">1.2.</span> <span class="nav-text">src和href的区别是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#script-标签中的-defer-和-async-的区别"><span class="nav-number">1.3.</span> <span class="nav-text">script 标签中的 defer 和 async 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iframe-有哪些优缺点"><span class="nav-number">1.4.</span> <span class="nav-text">iframe 有哪些优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#canvas-和-svg-的区别"><span class="nav-number">1.5.</span> <span class="nav-text">canvas 和 svg 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器乱码的原因是什么？如何解决？"><span class="nav-number">1.6.</span> <span class="nav-text">浏览器乱码的原因是什么？如何解决？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#html5-新特性"><span class="nav-number">1.7.</span> <span class="nav-text">html5 新特性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS"><span class="nav-number">2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3-有哪些新特性"><span class="nav-number">2.1.</span> <span class="nav-text">CSS3 有哪些新特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元素不定宽高"><span class="nav-number">2.2.</span> <span class="nav-text">元素不定宽高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何隐藏一个元素"><span class="nav-number">2.3.</span> <span class="nav-text">如何隐藏一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display-none-与-visibility-hidden-的区别"><span class="nav-number">2.4.</span> <span class="nav-text">display:none 与 visibility: hidden 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#overflow-的用法"><span class="nav-number">2.5.</span> <span class="nav-text">overflow 的用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何对超出元素边界的文字进行处理"><span class="nav-number">2.6.</span> <span class="nav-text">如何对超出元素边界的文字进行处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除浮动"><span class="nav-number">2.7.</span> <span class="nav-text">清除浮动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-优化、提高性能"><span class="nav-number">2.8.</span> <span class="nav-text">CSS 优化、提高性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是响应式设计，基本原理"><span class="nav-number">2.9.</span> <span class="nav-text">什么是响应式设计，基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有哪些盒模型（字节）"><span class="nav-number">2.10.</span> <span class="nav-text">有哪些盒模型（字节）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是BFC机制"><span class="nav-number">2.11.</span> <span class="nav-text">什么是BFC机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪元素和伪类的区别和作用？"><span class="nav-number">2.12.</span> <span class="nav-text">伪元素和伪类的区别和作用？</span></a></li></ol></li></ol>
     
     </div>
   </aside>
@@ -355,7 +366,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 261.3k 字</span>
+        <span class="post-count">全站共 262.4k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

@@ -5,6 +5,7 @@ tags:
   - interview
   - Frontend
 categories: notes
+hide: true
 photos:
     - /blog/img/interview.jpg
 ---
@@ -103,6 +104,30 @@ canvas 是画布，通过 JavaScript 来绘制 2D 图形，是逐像素进行渲
 - 对于网页设置编码是 gbk ，而数据库传过来的内容是 utf-8，需要在程序查询数据库数据显示数据前进行转码
 - 如果浏览器浏览时候出现网页乱码，在浏览器中找到转换编码的菜单进行转换。
 
+## html5 新特性
+
+1. 语义标签 header footer nav section article aside main
+2. 增强型表单
+input 输入新特性：color date email search
+新增表单元素：datalist progress meter keygen output
+新增表单属性：placeholder height width 
+3. 音频和视频 audio video
+4. canvas
+5. svg
+6. 地理位置 getCurrentPosition()
+7. 拖放 API
+ondragstart ondrag ondranenter ondragover ondragleave ondragend
+8. Web Worker 加载一个脚本文件，进而创建一个在主线程之外独立工作的线程
+```js
+var worker = new Worker("worker.js"); //创建一个Worker对象并向它传递将在新线程中执行的脚本的URL
+worker.postMessage("hello world");     //向worker发送数据
+worker.onmessage = function(evt){     //接收worker传过来的数据函数
+   console.log(evt.data);              //输出worker发送来的数据
+}
+```
+9. web storage 有 localStorage 和 sessionStorage
+10. websocket
+
 
 # CSS
 
@@ -117,6 +142,22 @@ canvas 是画布，通过 JavaScript 来绘制 2D 图形，是逐像素进行渲
 7. border-image
 8. box-shadow
 9. @media screen and (min-width: 800px) and (max-width: 1200px)
+
+## 元素不定宽高
+
+> https://vue3js.cn/interview/css/center.html
+
+1. 父级相对定位，子级绝对定位，top left 等都为 0，margin 设置 auto
+
+2. 父级相对定位，子级绝对定位，需要知道子元素宽高，top 和 left 设置为 50%，margin-left 和 margin-right 设置为负的宽高的一半
+
+3. 父级相对定位，子级绝对定位，top 和 left 设置为 50%，再转换：`transform: translate(-50%,-50%)`
+
+4. flex 实现
+
+5. grid 布局，实现同 flex
+
+
 
 ## 如何隐藏一个元素
 

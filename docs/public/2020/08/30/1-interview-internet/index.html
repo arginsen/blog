@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
   
-  <title>面试 | web 性能 | Arginsen&#39;s Blog</title>
+  <title>面试 | 网络 | Arginsen&#39;s Blog</title><meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="interviewFrontend">
@@ -14,14 +14,14 @@
   
   <meta name="keywords" content="interview,Frontend">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面试 | web 性能">
+<meta property="og:title" content="面试 | 网络">
 <meta property="og:url" content="https://arginsen.github.io/blog/2020/08/30/1-interview-internet/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/interview.jpg">
-<meta property="og:updated_time" content="2021-09-18T06:26:05.964Z">
+<meta property="og:updated_time" content="2021-11-04T15:41:16.826Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="面试 | web 性能">
+<meta name="twitter:title" content="面试 | 网络">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/interview.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
@@ -122,7 +122,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      面试 | web 性能
+      面试 | 网络
     </h1>
   
 
@@ -143,12 +143,11 @@
 <li>ack：acknowledge number 应答号</li>
 </ul>
 <p>三次握手：<br>在客户端和服务器之间建立正常的 TCP 网络连接时，客户端首先会发出一个 SYN 消息，服务器使用 SYN+ACK 应答</p>
-<h1 id="http-状态码（字节）"><a href="#http-状态码（字节）" class="headerlink" title="http 状态码（字节）"></a>http 状态码（字节）</h1><p>301——请求的网页已永久移动到新位置<br>302——临时性重定向<br>304——自从上次请求后，请求的网页未修改过<br>504——关口过载，服务器使用另一个关口或服务来响应用户，等待时间设定值较长</p>
+<h1 id="http-状态码（字节）"><a href="#http-状态码（字节）" class="headerlink" title="http 状态码（字节）"></a>http 状态码（字节）</h1><p>301——请求的网页已永久移动到新位置<br>302——临时性重定向<br>304——自从上次请求后，请求的网页未修改过<br>400——客户端发送了一个错误的请求<br>401——未授权，客户端需要认证<br>403——请求被服务器拒绝<br>500——服务器遇到错误，无法为请求提供服务<br>502——网关故障，代理用的服务器遇到了上游的无效相应<br>504——关口过载，服务器使用另一个关口或服务来响应用户，等待时间设定值较长</p>
 <h1 id="http-缓存"><a href="#http-缓存" class="headerlink" title="http 缓存"></a>http 缓存</h1><p>强缓存和协商缓存</p>
 <p>强缓存在浏览器加载资源时，先从缓存中查找结果，如果不存在则向服务端发起请求</p>
 <p>协商缓存的更新策略是不再指定缓存的有效时间，而是浏览器直接发送请求到服务端进行确认缓存是否更新，如果请求响应返回的 http 状态为 304，则表示缓存仍然有效</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://juejin.im/post/6869376045636648973/#heading-11" target="_blank" rel="noopener">金九银十，初中级前端面试复习总结「浏览器、HTTP、前端安全」</a></p>
-
+<!-- flag of hidden posts -->
       
     </div>
     <br>
@@ -169,32 +168,13 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">505字</span>
+        <span class="ico-fontcount"></span><span class="post-count">551字</span>
       
     </footer>
     <hr class="entry-footer-hr">
   </div>
   
     
-<nav id="article-nav">
-  
-    <a href="/blog/2020/09/01/1-interview-project/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          面试 | 前端工程化
-        
-      </div>
-    </a>
-  
-  
-    <a href="/blog/2020/08/29/1-interview-algorithm/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">面试 | 数据结构与算法</div>
-    </a>
-  
-</nav>
-
   
 </article>
 
@@ -204,7 +184,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-协议"><span class="nav-number">1.</span> <span class="nav-text">TCP/IP 协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-和-UDP-的区别"><span class="nav-number">2.</span> <span class="nav-text">TCP 和 UDP 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-的三次握手、四次挥手"><span class="nav-number">3.</span> <span class="nav-text">TCP 的三次握手、四次挥手</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-状态码（字节）"><span class="nav-number">4.</span> <span class="nav-text">http 状态码（字节）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-缓存"><span class="nav-number">5.</span> <span class="nav-text">http 缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-协议"><span class="nav-number">1.</span> <span class="nav-text">TCP/IP 协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-和-UDP-的区别"><span class="nav-number">2.</span> <span class="nav-text">TCP 和 UDP 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-的三次握手、四次挥手"><span class="nav-number">3.</span> <span class="nav-text">TCP 的三次握手、四次挥手</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-状态码（字节）"><span class="nav-number">4.</span> <span class="nav-text">http 状态码（字节）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-缓存"><span class="nav-number">5.</span> <span class="nav-text">http 缓存</span></a></li></ol>
     
     </div>
   </aside>
@@ -244,7 +224,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 261.3k 字</span>
+        <span class="post-count">全站共 262.4k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

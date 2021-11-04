@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/vue.jpg">
-<meta property="og:updated_time" content="2021-09-23T11:17:36.738Z">
+<meta property="og:updated_time" content="2021-10-28T10:16:53.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端 | Vue2 响应式流程学习与实现">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/vue.jpg">
@@ -133,7 +133,8 @@
       
         <p><br><br><a id="more"></a></p>
 <h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>因为本例 index.html 书写直接引入书写的响应式 vue 模块，因此调试打开 index.html 需要启用本地服务器</p>
-<p>可以采用 http-server 或者 live-server 插件</p>
+<p>可以采用 http-server 或者 live-server 插件先行发布 index.html，可以直接在浏览器调试，可以 vs code 内调试，配置 launch.json :</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">  <span class="attr">"configurations"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"pwa-chrome"</span>,</span><br><span class="line">      <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"Launch Chrome against localhost"</span>,</span><br><span class="line">      "url": "http://127.0.0.1:5500", // 为 live-server 发布的地址</span><br><span class="line">      "webRoot": "$&#123;workspaceFolder&#125;"</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>跟着调试再走一遍，从初始化 -&gt; 数据变更 -&gt; 响应式修改，文章从上至下浏览即可</p>
 <h1 id="初始化流程"><a href="#初始化流程" class="headerlink" title="初始化流程"></a>初始化流程</h1><h2 id="vue-index-js"><a href="#vue-index-js" class="headerlink" title="vue/index.js"></a>vue/index.js</h2><p>定义 Vue 类</p>
 <ol>
@@ -227,7 +228,7 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2021/07/26/2-frontend-vue-source-flow-init/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/2021/07/26/2-frontend-vue-source-init/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
@@ -237,7 +238,7 @@
     </a>
   
   
-    <a href="/blog/2021/07/15/2-frontend-vue-source-pack/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/blog/2021/07/15/2-frontend-vue-source-build/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">前端 | Vue2 打包流程</div>
     </a>
@@ -293,7 +294,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 261.3k 字</span>
+        <span class="post-count">全站共 262.4k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

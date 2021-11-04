@@ -1,5 +1,5 @@
 ---
-title: 服务器常见的状态码 - 404 not found
+title: 服务器常见的状态码 http status - 404 not found
 date: 2019-12-08 9:24:21
 tags: 
 - server

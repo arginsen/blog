@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | vue3 源码学习 - 初始化 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendVue">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | vue3 源码学习 - 初始化">
+<meta property="og:url" content="https://arginsen.github.io/blog/2021/10/10/2-frontend-vue3-source-init/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/vue.jpg">
+<meta property="og:updated_time" content="2021-11-04T08:12:54.861Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | vue3 源码学习 - 初始化">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/vue.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-vue3-source-init" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/vue.jpg" rel="gallery_ckvl44bou0003pguv09key1xc">
+        <img src="/blog/img/vue.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      前端 | vue3 源码学习 - 初始化
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>vue3 安装依赖会走 preinstall，进入到预检，会要求使用 pnmp 包来进行安装，这里使用 yarn 忽略脚本安装。</p>
+<p>安装过程会在命令行进行交互，选取安装的 @vue/reactivity , @vue/runtime-core , @vue/runtime-dom 的版本，选择最新版安装即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn --ignore-scripts</span><br></pre></td></tr></table></figure>
+<p>可以在 package.json 看到，scripts 内的 dev 运行的是路径 scripts/dev.js</p>
+<p>dev.js 内可以看到实现的是使用 rollup 打包，使用 minimist 库来收集命令行传来的参数，那么我们在此处是需要调试代码就需要开启 sourcemap，于是在 package.json 的 dev 指令追加 <code>--sourcemap</code> 参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// scripts/dev.js</span></span><br><span class="line"><span class="keyword">const</span> execa = <span class="built_in">require</span>(<span class="string">'execa'</span>)</span><br><span class="line"><span class="keyword">const</span> &#123; fuzzyMatchTarget &#125; = <span class="built_in">require</span>(<span class="string">'./utils'</span>)</span><br><span class="line"><span class="keyword">const</span> args = <span class="built_in">require</span>(<span class="string">'minimist'</span>)(process.argv.slice(<span class="number">2</span>))</span><br><span class="line"><span class="keyword">const</span> target = args._.length ? fuzzyMatchTarget(args._)[<span class="number">0</span>] : <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">const</span> formats = args.formats || args.f</span><br><span class="line"><span class="keyword">const</span> sourceMap = args.sourcemap || args.s</span><br><span class="line"><span class="keyword">const</span> commit = execa.sync(<span class="string">'git'</span>, [<span class="string">'rev-parse'</span>, <span class="string">'HEAD'</span>]).stdout.slice(<span class="number">0</span>, <span class="number">7</span>)</span><br><span class="line"></span><br><span class="line">execa(</span><br><span class="line">  <span class="string">'rollup'</span>,</span><br><span class="line">  [</span><br><span class="line">    <span class="string">'-wc'</span>,</span><br><span class="line">    <span class="string">'--environment'</span>,</span><br><span class="line">    [</span><br><span class="line">      <span class="string">`COMMIT:<span class="subst">$&#123;commit&#125;</span>`</span>,</span><br><span class="line">      <span class="string">`TARGET:<span class="subst">$&#123;target&#125;</span>`</span>,</span><br><span class="line">      <span class="string">`FORMATS:<span class="subst">$&#123;formats || <span class="string">'global'</span>&#125;</span>`</span>,</span><br><span class="line">      sourceMap ? <span class="string">`SOURCE_MAP:true`</span> : <span class="string">``</span></span><br><span class="line">    ]</span><br><span class="line">      .filter(<span class="built_in">Boolean</span>)</span><br><span class="line">      .join(<span class="string">','</span>)</span><br><span class="line">  ],</span><br><span class="line">  &#123;</span><br><span class="line">    stdio: <span class="string">'inherit'</span></span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"3.2.21"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"dev"</span>: <span class="string">"node scripts/dev.js --sourcemap"</span>,</span><br><span class="line">    // ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来进入开发模式, 开始用 rollup 打包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yarn run dev</span><br><span class="line"></span><br><span class="line">rollup v2.38.5</span><br><span class="line">bundles E:\vue-next\packages\vue\src\index.ts → packages\vue\dist\vue.global.js...</span><br><span class="line">created packages\vue\dist\vue.global.js in 18.3s</span><br></pre></td></tr></table></figure>
+<p>再来分析下打包是接着怎么往下走的。可以在上边看到 dev.js 里获取的 target，也就是 rollup 要打包的目标，若是命令行用户没有指定目标，那么默认为 vue</p>
+<p>再来看 rollup.config.js , 其下获取当下目录下的 package 路径，再在 package 中读取 rollup 注入环境变量的 TARGET，也就是 vue , 获取 vue 目录下的 package.json 并读取，得到 vue 的构建配置，以及命名，默认为 vue</p>
+<p>接着就进入输出配置的读取，之前在 dev.js 中我们对打包的版式并未配置，也可以在配置中设置版式，默认为 global，也可以出运行时版本的，那样就少了编译环节。那么我们在此处获取的格式就是 global</p>
+<p>最后开始构建，按照 vue/package.json 中的构建配置，从入口 vue/src/index.ts 开始，输出为 vue/dist/vue.global.js , 这个文件即是我们调试所要引用的 vue 文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// rollup.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> packagesDir = path.resolve(__dirname, <span class="string">'packages'</span>)</span><br><span class="line"><span class="keyword">const</span> packageDir = path.resolve(packagesDir, process.env.TARGET)</span><br><span class="line"><span class="keyword">const</span> resolve = <span class="function"><span class="params">p</span> =&gt;</span> path.resolve(packageDir, p)</span><br><span class="line"><span class="keyword">const</span> pkg = <span class="built_in">require</span>(resolve(<span class="string">`package.json`</span>))</span><br><span class="line"><span class="keyword">const</span> packageOptions = pkg.buildOptions || &#123;&#125;</span><br><span class="line"><span class="keyword">const</span> name = packageOptions.filename || path.basename(packageDir)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> outputConfigs = &#123;</span><br><span class="line">  <span class="string">'esm-bundler'</span>: &#123;</span><br><span class="line">    file: resolve(<span class="string">`dist/<span class="subst">$&#123;name&#125;</span>.esm-bundler.js`</span>),</span><br><span class="line">    format: <span class="string">`es`</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">'esm-browser'</span>: &#123;</span><br><span class="line">    file: resolve(<span class="string">`dist/<span class="subst">$&#123;name&#125;</span>.esm-browser.js`</span>),</span><br><span class="line">    format: <span class="string">`es`</span></span><br><span class="line">  &#125;,</span><br><span class="line">  cjs: &#123;</span><br><span class="line">    file: resolve(<span class="string">`dist/<span class="subst">$&#123;name&#125;</span>.cjs.js`</span>),</span><br><span class="line">    format: <span class="string">`cjs`</span></span><br><span class="line">  &#125;,</span><br><span class="line">  global: &#123;</span><br><span class="line">    file: resolve(<span class="string">`dist/<span class="subst">$&#123;name&#125;</span>.global.js`</span>),</span><br><span class="line">    format: <span class="string">`iife`</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// runtime-only builds, for main "vue" package only</span></span><br><span class="line">  <span class="string">'esm-bundler-runtime'</span>: &#123;</span><br><span class="line">    file: resolve(<span class="string">`dist/<span class="subst">$&#123;name&#125;</span>.runtime.esm-bundler.js`</span>),</span><br><span class="line">    format: <span class="string">`es`</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">'esm-browser-runtime'</span>: &#123;</span><br><span class="line">    file: resolve(<span class="string">`dist/<span class="subst">$&#123;name&#125;</span>.runtime.esm-browser.js`</span>),</span><br><span class="line">    format: <span class="string">'es'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">'global-runtime'</span>: &#123;</span><br><span class="line">    file: resolve(<span class="string">`dist/<span class="subst">$&#123;name&#125;</span>.runtime.global.js`</span>),</span><br><span class="line">    format: <span class="string">'iife'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> defaultFormats = [<span class="string">'esm-bundler'</span>, <span class="string">'cjs'</span>]</span><br><span class="line"><span class="keyword">const</span> inlineFormats = process.env.FORMATS &amp;&amp; process.env.FORMATS.split(<span class="string">','</span>)</span><br><span class="line"><span class="keyword">const</span> packageFormats = inlineFormats || packageOptions.formats || defaultFormats</span><br><span class="line"><span class="keyword">const</span> packageConfigs = process.env.PROD_ONLY</span><br></pre></td></tr></table></figure>
+<h1 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h1><p>在 vscode 创建一个调试环境 , 配置 launch.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">  <span class="attr">"configurations"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"launch Chrome"</span>,</span><br><span class="line">      <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"chrome"</span>,</span><br><span class="line">      <span class="attr">"file"</span>: <span class="string">"$&#123;workspaceFolder&#125;/packages/vue/dist/index.html"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在该目录下创建 index.html 和 index.js , 就可以开始调试了</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">      &#123;&#123; state.foo &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../dist/vue.global.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"practice.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; createApp, reactive, ref &#125; = Vue</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = createApp(&#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">let</span> state = reactive(&#123;</span><br><span class="line">      foo: <span class="string">'Reactive'</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      state</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="createApp"><a href="#createApp" class="headerlink" title="createApp"></a>createApp</h2><p>vue3 将创建 vue 实例的函数换成了 createApp , 首先就来到 runtime-dom 下的包里，此外也能看到该层还暴露出去了 render 函数</p>
+<p>可以看到首先创建 app , 是调用 ensureRenderer 方法, 确保是否存在有 renderer , 若无则调用 createRenderer 方法创建一个新的 renderer , 而该方法会返回一个包含 render, createApp 方法的对象 , 这也就解释了 ensureRenderer() 执行后接着调用 createApp() , 而 createApp 方法指向的实际是 </p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createRenderer &#125; <span class="keyword">from</span> <span class="string">'@vue/runtime-core'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> renderer: Renderer&lt;Element | ShadowRoot&gt; | HydrationRenderer</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义 ensureRenderer</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ensureRenderer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    renderer ||</span><br><span class="line">    (renderer = createRenderer&lt;Node, Element | ShadowRoot&gt;(rendererOptions))</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在运行时暴露 render 方法</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> render = <span class="function">(<span class="params">(<span class="params">...args</span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">  ensureRenderer(<span class="params"></span>).render(<span class="params">...args</span>)</span></span></span><br><span class="line"><span class="function"><span class="params">&#125;</span>) <span class="params">as</span> <span class="params">RootRenderFunction</span>&lt;<span class="params">Element</span> | <span class="params">ShadowRoot</span>&gt;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">// 定义 <span class="params">createApp</span></span></span><br><span class="line"><span class="function"><span class="params">export</span> <span class="params">const</span> <span class="params">createApp</span> = (<span class="params">(<span class="params">...args</span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">  <span class="keyword">const</span> app = ensureRenderer(<span class="params"></span>).createApp(<span class="params">...args</span>)</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  <span class="keyword">if</span> (<span class="params">__DEV__</span>) &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    injectNativeTagCheck(<span class="params">app</span>)</span></span></span><br><span class="line"><span class="function"><span class="params">    injectCompilerOptionsCheck(<span class="params">app</span>)</span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  <span class="keyword">const</span> &#123; mount &#125; = app</span></span></span><br><span class="line"><span class="function"><span class="params">  app.mount = (<span class="params">containerOrSelector: Element | ShadowRoot | <span class="built_in">string</span></span>): <span class="built_in">any</span> =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> container = normalizeContainer(<span class="params">containerOrSelector</span>)</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">if</span> (<span class="params">!container</span>) <span class="keyword">return</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> component = app._component</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">if</span> (<span class="params">!isFunction(<span class="params">component</span>) &amp;&amp; !component.render &amp;&amp; !component.template</span>) &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="comment">// __UNSAFE__</span></span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="comment">// Reason: potential execution of JS expressions in in-DOM template.</span></span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="comment">// The user must make sure the in-DOM template is trusted. If it's</span></span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="comment">// rendered by the server, the template should not contain any user data.</span></span></span></span><br><span class="line"><span class="function"><span class="params">      component.template = container.innerHTML</span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="comment">// 2.x compat check</span></span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="keyword">if</span> (<span class="params">__COMPAT__ &amp;&amp; __DEV__</span>) &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">for</span> (<span class="params"><span class="keyword">let</span> i = 0; i &lt; container.attributes.length; i++</span>) &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">          <span class="keyword">const</span> attr = container.attributes[i]</span></span></span><br><span class="line"><span class="function"><span class="params">          <span class="keyword">if</span> (<span class="params">attr.name !== 'v-cloak' &amp;&amp; /^(<span class="params">v-|:|@</span>)/.test(<span class="params">attr.name</span>)</span>) &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">            compatUtils.warnDeprecation(<span class="params"></span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="params">              DeprecationTypes.GLOBAL_MOUNT_CONTAINER,</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="params">              <span class="literal">null</span></span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="params">            </span>)</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">break</span></span></span></span><br><span class="line"><span class="function"><span class="params">          &#125;</span></span></span><br><span class="line"><span class="function"><span class="params">        &#125;</span></span></span><br><span class="line"><span class="function"><span class="params">      &#125;</span></span></span><br><span class="line"><span class="function"><span class="params">    &#125;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="comment">// clear content before mounting</span></span></span></span><br><span class="line"><span class="function"><span class="params">    container.innerHTML = ''</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> proxy = mount(<span class="params">container, <span class="literal">false</span>, container <span class="keyword">instanceof</span> SVGElement</span>)</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">if</span> (<span class="params">container <span class="keyword">instanceof</span> Element</span>) &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">      container.removeAttribute(<span class="params">'v-cloak'</span>)</span></span></span><br><span class="line"><span class="function"><span class="params">      container.setAttribute(<span class="params">'data-v-app', ''</span>)</span></span></span><br><span class="line"><span class="function"><span class="params">    &#125;</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">return</span> proxy</span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  <span class="keyword">return</span> app</span></span></span><br><span class="line"><span class="function"><span class="params">&#125;</span>) <span class="params">as</span> <span class="params">CreateAppFunction</span>&lt;<span class="params">Element</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Vue/">Vue</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2021/10/10/2-frontend-vue3-source-init/" class="article-date">
+	  <time datetime="2021-10-10T10:45:00.000Z" itemprop="datePublished">十月 10, 2021</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.3k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2021/10/08/2-frontend-vue3-reactivity/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">前端 | vue3 响应式学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调试"><span class="nav-number">2.</span> <span class="nav-text">调试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#createApp"><span class="nav-number">2.1.</span> <span class="nav-text">createApp</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2021 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 262.4k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>
