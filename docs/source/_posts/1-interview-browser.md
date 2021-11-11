@@ -97,7 +97,7 @@ send: 先建立 websocket 连接, 接着用该实例发送消息
 receive: 先建立 websocket 连接, 接着绑定连接打开时的回调, 里边注册接收消息时的处理函数
 
 ```js
-// server.js
+// server.js - 服务端
 //获得WebSocketServer类型
 var WebSocketServer = require('ws').Server;
 //创建WebSocketServer对象实例，监听指定端口
@@ -124,7 +124,7 @@ wss.on('connection', function(client) {
   }
 });
 
-// send
+// send - 客户端
 //建立到服务端webSocket连接
 var ws = new WebSocket("ws://localhost:8080");
 ws.onclick = function(){
@@ -145,6 +145,24 @@ ws.onopen = function(event) {
   }
 }
 ```
+
+# websocket
+
+websocket 是一种基于http协议的协议，由于http协议是非状态性的，客户端有请求才会响应，关闭连接后需要在此鉴别信息建立新连接，而websocket可以服务端主动通信，
+websocket需要进行一次http连接，标记upgrade为websocket，也就是连接升级为websocket，服务端确认后就保持websocket连接；
+
+websocket在服务端创建server，绑定connection事件，在回调中参数即为client，给client绑定message来对client收到的消息进行处理，再用send发送数据给客户端；而客户端通过创建websocket实例来连接到服务端的websocket服务器，使用onopen/onmessage接收服务端的数据,使用onclick/onsend发送数据给服务端
+
+# 前端如何处理大量数据
+
+使用分页,分表数据传输, 异步渲染, 可见区域局部先渲染, 
+
+使用 web worker 来处理大量数据计算
+在面对大量数据时, 可以使用 web worker 来创建独立于主线程的一个子线程来处理运算, 这样就不会造成页面卡死
+使用 new work(url, options) 来读取网络 js 文件创建 worker 实例, 通过 postMessage 来向 worker 实例发送消息, 用 onmessage 来接收处理完的数据; 在 work.js 里通过 onmessage 接收页面传过来的数据, 进行计算, 完后 postMessage 发送处理完的数据; 这样形成一个通信
+
+worker 接收的脚本文件必须与主线程的脚本文件同源, 且不能读取本地文件系统的文件;
+worker 与主线程不在一个上下文环境, 无法读取到 dom 对象, 但可以获得 navigator location 对象, worker 必须与主线程通过消息的形式通信; worker 可以使用 xhr 发出 ajax 请求
 
 
 # 输入 url 到页面加载发生了些什么

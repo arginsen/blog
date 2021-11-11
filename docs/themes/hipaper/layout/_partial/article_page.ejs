@@ -50,8 +50,8 @@
     <footer class="entry-meta entry-footer">
       <%- partial('post/category') %>
       <%- partial('post/tag') %>
-    <!-- 文章添加评论 -->
-      <% if (!index && post.comments && (theme.valine.enable || theme.duoshuo_shortname || theme.disqus_shortname || theme.uyan_uid || theme.wumii || theme.livere_shortname)){ %>
+      <!-- 文章添加评论 -->
+      <% if (!index && is_post() && (theme.valine.enable || theme.duoshuo_shortname || theme.disqus_shortname || theme.uyan_uid || theme.wumii || theme.livere_shortname)){ %>
         <%- partial('comment') %>
       <% } %>
     </footer>

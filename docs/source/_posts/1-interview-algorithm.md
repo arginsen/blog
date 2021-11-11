@@ -66,6 +66,32 @@ var quickSort = function(arr) {
 }
 ```
 
+# 字符串中的最长字符间隔
+
+```js
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param s string字符串 字符串
+ * @return int整型
+ */
+function maxLengthBetweenEqualCharacters( s ) {
+    let n = s.length
+    let set = new Set()
+    for (let i = 0; i < n - 2; i++) {
+        let p = s[i]
+        for (let j = n - 1; j > i; j--) {
+            let q = s[j]
+            if (p === q) {
+                set.add(j - i - 1)
+            }
+        }
+    }
+    return [...set].length ? Math.max(...set) : -1
+}
+```
+
 # 求两个数组的中位数
 
 例：
@@ -131,10 +157,9 @@ var findMedianSortedArrays = function(nums1, nums2) {
     }
     return 0;
 };
-
 ```
 
-# 如何实现深拷贝
+# 实现深拷贝
 
 ```js
 // 使用 map 处理循环引用问题
@@ -158,13 +183,14 @@ function deepClone(target) {
   return clone(target)
 }
 
+// 直接递归
 function deepClone(target, map = new Map()) {
-  if (typeof target === 'object') {
+  if (typeof target === 'object' && target !== null) {
     let cloneObj = Array.isArray(target) ? [] : {}
     if (map.get(target)) {
       return map.get(target)
     }
-    map.set(cloneObj, target)
+    map.set(target, cloneObj)
     for (let i in target) {
       cloneObj[i] = deepClone(target[i], map)
     }
@@ -172,6 +198,31 @@ function deepClone(target, map = new Map()) {
   } else {
     return target
   }
+}
+
+// 先浅拷贝， 再处理对象数组
+function cloneDeep(target, map = new Map()) {
+  let res
+  let isObject = val => typeof val === 'object' && val !== null
+  if (isObject(target)) {
+    res = Array.isArray(target) ? [...target] : {...target}
+  } else {
+    return target
+  }
+
+  // 完成浅拷贝后 得到对象所有属性 处理对象
+  Reflect.ownKeys(res).forEach(key => {
+    if (isObject(res[key])) {
+      if (map.get(res[key])) {
+        res[key] = map.get(res[key])
+      } else {
+        map.set(res[key], res[key])
+        res[key] = cloneDeep(res[key], map)
+      }
+    }
+  })
+
+  return res
 }
 ```
 
@@ -289,7 +340,7 @@ target = [{
 
 ```js
 function toTree(arr) {
-  let rootId = arr.find((v) => v.pid === null)["pid"]
+  let rootId = arr.find((v) => v.pid === null)["id"]
   const loop = (parentId) => {
     let res = []
     for(let i = 0; i < arr.length; i++) {
@@ -303,6 +354,163 @@ function toTree(arr) {
   }
 
   return loop(rootId)
+}
+
+const toTree = (arr) => {
+  let rootId = arr.find((item) => item["pid"] === null)["id"] // 找到根节点id
+  const loop (parentId) => {
+    let res = []
+    for (let i of arr) {
+      let item = arr[i]
+      if (item["pid"] !== parentId) continue
+      let newItem = { id: item["id"], ch: loop(item["id"]) }
+      res.push(newItem)
+    }
+    return res
+  }
+  return loop(rootId)
+}
+```
+
+# 贪心算法 - 找零钱
+
+```js
+// 例 商店老板有 1, 2, 5, 10 面值, 买了 80 的东西给了 100, 如何找零最佳
+
+function minCoinChange(coins) {
+  coins = coins.sort((a, b) => a - b)
+  return function(amount) {
+    let total = 0, change = []
+    for (let i = coins.length; i >= 0; i--) { // 倒着来找
+      let coin = coins[i]
+      while (total + coin <= amount) { // 取出最大面值, 看需要几张
+        change.push(coin)
+        total += coin
+      }
+    }
+    return change
+  }
+}
+
+minCoinChange([1,2,5,10])(20)
+```
+
+# 大数相加 - 浮点数
+
+按小数点剪开，给后边位数少的补 0 ，两者位数一样再一位一位进行相加，采用一个标记来记录是否进 1，如果是相减就需要退 1
+
+```js
+// 例 
+a = 12345.12123, b = 987654.92
+
+function sum(a, b) {
+  let arr1 = a.split(''),
+      arr2 = b.split('')
+  let a1 = a.split('.')[1], b1 = b.split('.')[1]
+  let len = a1.length - b1.length
+  if (len > 0) arr2.push('0'.repeat(len))
+  if (len < 0) arr1.push('0'.repeat(Math.abs(len)))
+
+  let count = 0 // 标记是否进一
+  let arr = [] // 按个位存放相加后的数
+
+  while(arr1.length || arr2.length) {
+    let m = arr1.pop() || 0,
+        n = arr2.pop() || 0
+    if (m !== '.') {
+      let num = m + n + count
+      if (num > 9) {
+        count = 1
+        num -= 10
+      } else {
+        count = 0
+      }
+      arr.unshift(num)
+    } else {
+      arr.unshift('.')
+    }
+  }
+
+  if (count > 0) arr.unshift(count)
+  let res = arr.join('')
+  console.log(res)
+}
+
+function sub(a, b) {
+  // 处理位数
+  let a1 = a.split('.')[1], b1 = b.split('.')[1]
+  let differ = a1.length - b1.length
+  differ > 0 ? b + '0'.repeat(differ) : a + 'o'.repeat(Math.abs(differ))
+
+  // 按个加减
+  let arr1 = a.split(''), arr2 = b.split('')
+  let count = 0, arr = []
+  while(arr1.length || arr2.length) {
+    let m = arr1.pop() || 0, n = arr2.pop() || 0
+    if (m !== '.') {
+      let res = m - n - count
+      if (res >= 0) {
+        count = 0
+      } else {
+        res += 10
+        count = 1
+      }
+      arr.unshift(res)
+    } else {
+      arr.unshift('.')
+    }
+  }
+
+  // 各位相加完后
+  return count > 0 ? -arr : arr
+}
+```
+
+# 数组去重
+
+```js
+// 例
+arr = [1,1,1,1,1,1,3,3,3,3,3,3,5,5]
+
+function delRepeat(arr) {
+  arr = arr.sort()
+  for(let i = 0; i < arr.length; i++) {
+    if (arr[i] === arr[i+1]) {
+      arr.splice(i, 1) // 删掉当前位
+      i-- // 少了一位, 往前回退, 等下 +1 又会加回来
+    }
+  }
+  return arr
+}
+```
+
+# 数组扁平化的方法
+
+```js
+// 例
+let arr = [1, 2, [3, 4], [[5, 6], 7, [8, [9]]]]
+
+// forEach
+function flatten(arr) {
+  let res = []
+  arr.forEach(item => {
+    res = res.concat(Array.isArray(item) ? flatten(item) : item)
+  })
+  return res
+}
+
+function flatten(arr) {
+  while(arr.some(item => Array.isArray(item)) {
+    arr = [].concat(...arr) // 元素存在数组则解构一次拼成数组，接着再检查
+  }
+}
+
+function flatten(arr) {
+  return arr.toString().split(',').map(item => Number(item))
+}
+
+function  flatten(arr) {
+  return arr.flat(Infinity)
 }
 ```
 
@@ -401,39 +609,9 @@ curry(1,2)() // 3
 curry(1,2)(3)(4,5)() // 15
 ```
 
-# 数组扁平化的方法
+# 实现 Promise
 
-```js
-// 例
-let arr = [1, 2, [3, 4], [[5, 6], 7, [8, [9]]]]
-
-// forEach
-function flatten(arr) {
-  let res = []
-  arr.forEach(item => {
-    res = res.concat(Array.isArray(item) ? flatten(item) : item)
-  })
-  return res
-}
-
-function flatten(arr) {
-  while(arr.some(item => Array.isArray(item)) {
-    arr = [].concat(...arr) // 元素存在数组则解构一次拼成数组，接着再检查
-  }
-}
-
-function flatten(arr) {
-  return arr.toString().split(',').map(item => Number(item))
-}
-
-function  flatten(arr) {
-  return arr.flat(Infinity)
-}
-```
-
-# 实现 promise
-
-```js
+```ts
 const PENDING = 'pending'
 const FULFILLED = 'fulfilled'
 const REJECTED = 'rejected'
@@ -565,10 +743,10 @@ class Promise {
 }
 ```
 
-# 实现 promise.all 
+# 实现 Promise.all 
 
 ```js
-promise.all = function (promises) {
+Promise.all = function (promises) {
   return new Promise(function(resolve, reject) {
     var resolvedCounter = 0
     var promiseNum = promises.length
@@ -659,6 +837,139 @@ function isSameTree(t1, t2) {
   if (t1 === null || t2 === null) return false
   if (t1.val !== t2.val) return false
   return isSameTree(t1.left, t2.left) && isSameTree(t1.right, t2.right)
+}
+```
+
+# 两棵二叉树相加
+
+
+# 实现一个实现一个带并发限制的异步调度器，保证同时最多运行2个任务
+
+> `scheduler.add(() => timeout(time).then(() => console.log(order)))`
+
+```js
+class Scheduler {
+  constructor(limit) {
+    this.limit = limit
+    this.count = 0
+    this.tasks = []
+  }
+
+  add(fn) {
+    this.tasks.push(fn)
+  }
+
+  taskStart() {
+    while (this.count < this.limit && this.tasks.length) {
+      let fn = this.tasks.shift()
+      this.count++
+      fn().then(() => {
+        this.count--
+        this.taskStart()
+      })
+    }
+  }
+}
+
+const timeout = (time) => new Promise(resolve => {
+  setTimeout(resolve, time);
+})
+
+const scheduler = new Scheduler(2);
+const addTask = (time, order) => {
+  scheduler.add(() => timeout(time).then(() => console.log(order)))
+}
+
+addTask(1000, '1');
+addTask(500, '2');
+addTask(300, '3');
+addTask(400, '4');
+
+scheduler.taskStart()
+// 2
+// 3
+// 1
+// 4
+```
+
+> `scheduler.add(() => timeout(time)).then(() => console.log(order))`
+
+此种 add 为一个 promise 对象, 但是此方法不好用 taskStart 做总开关
+
+```js
+class Scheduler {
+  constructor(limit) {
+    this.limit = limit
+    this.count = 0
+    this.tasks = []
+  }
+
+  add(fn) {
+    return new Promise(resolve => {
+      fn.resolve = resolve
+      this.tasks.push(fn)
+    })
+  }
+
+  taskStart() {
+    while (this.count < this.limit && this.tasks.length) {
+      let fn = this.tasks.shift()
+      this.count++
+      fn().then(() => {
+        fn.resolve()
+        this.count--
+        this.taskStart()
+      })
+    }
+  }
+}
+
+const timeout = (time) => new Promise(resolve => {
+  setTimeout(resolve,time);
+})
+
+const scheduler = new Scheduler(2);
+const addTask = (time, order) => {
+  scheduler.add(() => timeout(time)).then(() => console.log(order))
+}
+
+addTask(1000, '1');
+addTask(500, '2');
+addTask(300, '3');
+addTask(400, '4');
+
+scheduler.taskStart()
+```
+
+# 实现 JSON.stringify
+
+首先肯定要用到递归，对于普通类型直接返回，对于
+
+```js
+function stringify(obj) {
+  let type = typeof obj
+  // 基础类型
+  if (type !== 'object') {
+    if (/string|undefined|function/.test(type)) {
+      obj = `${obj}`
+    }
+    return String(obj)
+  } else {
+    // 数组 对象
+    let isArray = Array.isArray(obj)
+    let json = []
+    for (let key in obj) {
+      let val = obj[key]
+      let type = typeof val
+      if (/string|undefined|function/.test(type)) {
+        val = `${val}`
+      } else if (type === 'object') {
+        val = stringify(val)
+      }
+      json.push((isArray ? `` : `${key}:`) + String(val))
+    }
+    return isArray ? `[${String(json)}]` : `{${String(json)}}`
+  }
 }
 ```
 

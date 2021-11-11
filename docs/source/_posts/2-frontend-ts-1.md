@@ -108,6 +108,47 @@ anyThing.myName.setName('Terry')
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 参考
 
 https://vue3js.cn/es6/typeScript.html

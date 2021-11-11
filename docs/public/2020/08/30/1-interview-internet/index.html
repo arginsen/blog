@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/interview.jpg">
-<meta property="og:updated_time" content="2021-11-04T15:41:16.826Z">
+<meta property="og:updated_time" content="2021-11-08T15:25:45.930Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试 | 网络">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/interview.jpg">
@@ -132,7 +132,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
-<h1 id="TCP-IP-协议"><a href="#TCP-IP-协议" class="headerlink" title="TCP/IP 协议"></a>TCP/IP 协议</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">OSI</span><br><span class="line">应用层   \            HTTP/SMTP/FTP/SSH 协议</span><br><span class="line">表示层   - 应用程序   数据压缩，数据加密以及数据描述</span><br><span class="line">会话层   /            数据交换的定界和同步功能</span><br><span class="line">传输层   TCP/UDP 传输协议</span><br><span class="line">网络层   IP 协议</span><br><span class="line">链路层   以太网/WiFi/电缆接入网 等</span><br><span class="line">物理层   光纤/电缆 等</span><br></pre></td></tr></table></figure>
+<h1 id="TCP-IP-协议-OSI"><a href="#TCP-IP-协议-OSI" class="headerlink" title="TCP/IP 协议 OSI"></a>TCP/IP 协议 OSI</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">OSI</span><br><span class="line">应用层   \            HTTP/SMTP/FTP/SSH 协议</span><br><span class="line">表示层   - 应用程序   数据压缩，数据加密以及数据描述</span><br><span class="line">会话层   /            数据交换的定界和同步功能</span><br><span class="line">传输层   TCP/UDP 传输协议</span><br><span class="line">网络层   IP 协议</span><br><span class="line">链路层   以太网/WiFi/电缆接入网 等</span><br><span class="line">物理层   光纤/电缆 等</span><br></pre></td></tr></table></figure>
 <h1 id="TCP-和-UDP-的区别"><a href="#TCP-和-UDP-的区别" class="headerlink" title="TCP 和 UDP 的区别"></a>TCP 和 UDP 的区别</h1><p>TCP：<br>面向连接<br>一对一通信<br>面向字节流<br>全双工通信<br>可靠传输，使用流量控制和拥塞控制<br>报头最小20字节，最大60字节</p>
 <p>UDP：<br>无连接<br>支持一对一，一对多，多对一和多对多的通信<br>面向报文<br>不可靠传输，不使用流量控制和拥塞控制<br>报头开销小，仅8字节</p>
 <p>应用：<br>流媒体应用<br>用于 DNS 和 SNMP</p>
@@ -147,6 +147,13 @@
 <h1 id="http-缓存"><a href="#http-缓存" class="headerlink" title="http 缓存"></a>http 缓存</h1><p>强缓存和协商缓存</p>
 <p>强缓存在浏览器加载资源时，先从缓存中查找结果，如果不存在则向服务端发起请求</p>
 <p>协商缓存的更新策略是不再指定缓存的有效时间，而是浏览器直接发送请求到服务端进行确认缓存是否更新，如果请求响应返回的 http 状态为 304，则表示缓存仍然有效</p>
+<h1 id="http-1-0-1-1-2-0-3-0"><a href="#http-1-0-1-1-2-0-3-0" class="headerlink" title="http 1.0/1.1/2.0/3.0"></a>http 1.0/1.1/2.0/3.0</h1><p>http 1.0 浏览器与服务器只保持短暂的连接, 每次请求都需要与服务器建立一个 tcp 连接服务器完成请求处理后立即断开 tcp 连接</p>
+<p>http 1.1 默认支持长连接, 在一个 tcp 连接上可以传送多个 http 请求和响应; 同时允许客户端不用等待上次请求结果返回就发出下一次请求; 此外增加了更多的请求头和响应头, 例如引入了更多的缓存控制策略, 也添加了 put/delete/options 等请求方法</p>
+<p>http 2.0 性能上有很大提升, 实现多路复用, 可以复用 tcp 连接, 在一个连接里, 客户端和浏览器都可以同时发送多个请求或响应, 不用在意顺序; 也采用了二进制分帧, 将请求和响应的数据分割成更小的帧, 采用二进制编码, 解析更高效, 同域名下所有通信都在单个连接上完成, 可以承载任意数量的双向数据流; 还采用了首部压缩, 也就是使用首部表跟踪和存储发送的键值对, 对于相同的数据, 不再通过每次请求和响应发送, 首部表在连接续存期始终存在, 由两端渐进更新; 此外还允许服务器推送资源, 很适合加载静态资源</p>
+<p>http 3.0 不同于之前的 http, 3.0 建立在 UDP 连接基础上; 首先基础的: tcp 连接可能因为网络等因素断开, 但是 UDP 不会, UDP 没有四元组标识, 而是客户端随机生成的 64 位数字 ID 标识, 只要 ID 不变, 那么 UDP 就一直存在; 另一个问题是 tcp 连接在连接超时, 丢包的情况下会等待重传, 造成阻塞, 但是基于 UDP , 不会等待丢失的数据包, 会再接受完后重新拼装, 就像我们视频中丢包但不影响通话; 再有自定义拥塞控制(QUIC是应用层); 前向安全和前向纠错</p>
+<blockquote>
+<p>参考: <a href="https://blog.csdn.net/m0_60360320/article/details/119812431" target="_blank" rel="noopener">https://blog.csdn.net/m0_60360320/article/details/119812431</a></p>
+</blockquote>
 <!-- flag of hidden posts -->
       
     </div>
@@ -168,7 +175,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">551字</span>
+        <span class="ico-fontcount"></span><span class="post-count">1.1k字</span>
       
     </footer>
     <hr class="entry-footer-hr">
@@ -184,7 +191,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-协议"><span class="nav-number">1.</span> <span class="nav-text">TCP/IP 协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-和-UDP-的区别"><span class="nav-number">2.</span> <span class="nav-text">TCP 和 UDP 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-的三次握手、四次挥手"><span class="nav-number">3.</span> <span class="nav-text">TCP 的三次握手、四次挥手</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-状态码（字节）"><span class="nav-number">4.</span> <span class="nav-text">http 状态码（字节）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-缓存"><span class="nav-number">5.</span> <span class="nav-text">http 缓存</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-协议-OSI"><span class="nav-number">1.</span> <span class="nav-text">TCP/IP 协议 OSI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-和-UDP-的区别"><span class="nav-number">2.</span> <span class="nav-text">TCP 和 UDP 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-的三次握手、四次挥手"><span class="nav-number">3.</span> <span class="nav-text">TCP 的三次握手、四次挥手</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-状态码（字节）"><span class="nav-number">4.</span> <span class="nav-text">http 状态码（字节）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-缓存"><span class="nav-number">5.</span> <span class="nav-text">http 缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-1-0-1-1-2-0-3-0"><span class="nav-number">6.</span> <span class="nav-text">http 1.0/1.1/2.0/3.0</span></a></li></ol>
     
     </div>
   </aside>
@@ -224,7 +231,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 262.4k 字</span>
+        <span class="post-count">全站共 272.4k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

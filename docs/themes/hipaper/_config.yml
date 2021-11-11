@@ -91,12 +91,12 @@ uyan_uid:
 wumii: 
 valine:
   enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
-  appid: FiFDW731RFzyucMLj7aoKlqW-gzGzoHsz # your leancloud application appid
-  appkey: HbBlX1QACFBOMYTt6ilNaVvG # your leancloud application appkey
+  appid: AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz # your leancloud application appid
+  appkey: bIYBhlht4PSXI4pCWuH7Gnuo # your leancloud application appkey
   notify: false # mail notifier, See: https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: write here ~ # comment box placeholder
-  avatar: retro # gravatar style
+  avatar: monsterid # gravatar style
   guest_info: nick,mail,link # custom comment header
   pageSize: 10 # pagination size
   language: # language, available values: en, zh-cn

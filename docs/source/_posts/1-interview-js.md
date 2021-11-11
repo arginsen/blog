@@ -47,6 +47,7 @@ console.log(typeof function(){});    // function
 console.log(typeof {});              // object
 console.log(typeof undefined);       // undefined
 console.log(typeof null);            // object
+console.log(typeof Symbol());        // object
 ```
 
 2. instanceof
@@ -281,7 +282,7 @@ let person = new Child();
 
 # 对 this 的理解
 
-this 是函数运行时内部生成的一个对象，只能在函数内部使用，总是指向调用它的对象
+this 是函数运行时内部生成的一个对象，只能在函数内部使用，总是指向调用它的对象,在函数体内部，指代函数当前的运行环境。
 
 1. this 总是指向函数的直接调用者，而非间接调用者
 2. 如果有 new 关键字，this 指向 new 出来的那个对象

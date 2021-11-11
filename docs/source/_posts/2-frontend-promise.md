@@ -279,6 +279,168 @@ class Promise {
 }
 ```
 
+# 写的 ts 版
+
+```ts
+const PENDING: string = 'pending'
+const FULFILLED: string = 'fulfilled'
+const REJECTED:string = 'rejected'
+
+interface Executor {
+  (resolve: VoidFn, reject: VoidFn): void
+}
+
+interface VoidFn {
+  (arguments: any): void
+}
+
+interface AnyFn {
+  (arguments: any): any
+}
+
+function resolvePromise(promise: myPromise, x: any, resolve: VoidFn, reject: VoidFn) {
+  if (x === promise) {
+    return new TypeError('chained cycle')
+  }
+
+  if (x !== null && (typeof x === 'object' || typeof x === 'function')) {
+    let called: boolean
+    try {
+      let then = x.then
+      if (typeof then === 'function') {
+        try {
+          then.call(x, (y) => {
+            if (called) return
+            called = true
+            resolvePromise(promise, y, resolve, reject)
+          }, r => {
+            if (called) return
+            called = true
+            reject(r)
+          })
+        } catch(e) {
+          reject(e)
+        }
+      } else {
+        resolve(x)
+      }
+    } catch(e) {
+      if (called) return
+      reject(e)
+    }
+  } else {
+    resolve(x)
+  }
+}
+
+class myPromise {
+  private status: string
+  private value: any
+  private reason: any
+  private onFulfilledCallbacks: VoidFn[]
+  private onRejectedCallbacks: VoidFn[]
+  constructor(executor: Executor) {
+    this.status = PENDING
+    this.value = undefined
+    this.reason = undefined
+    this.onFulfilledCallbacks = []
+    this.onRejectedCallbacks = []
+
+    const resolve: VoidFn = (value) => {
+      if (this.status === PENDING) {
+        setTimeout(() => {
+          this.status = FULFILLED
+          this.value = value
+          this.onFulfilledCallbacks.forEach(cb => cb(value))
+        })
+      }
+    }
+
+    const reject: VoidFn = (reason) => {
+      if (this.status === PENDING) {
+        setTimeout(() => {
+          this.status = REJECTED
+          this.reason = reason
+          this.onRejectedCallbacks.forEach(cb => cb(reason))
+        })
+      }
+    }
+
+    try {
+      executor(resolve, reject)
+    } catch(e) {
+      reject(e)
+    }
+  }
+
+  then(onFulFilled: AnyFn, onRejected: AnyFn) {
+    let newPromise = new myPromise((resolve, reject) => {
+      if (this.status === FULFILLED) {
+        setTimeout(() => {
+          try {
+            let x = onFulFilled(this.value)
+            resolvePromise(newPromise, x, resolve, reject)
+          } catch(e) {
+            reject(e)
+          }
+        })
+      }
+      if (this.status === REJECTED) {
+        setTimeout(() => {
+          try {
+            let x = onRejected(this.reason)
+            resolvePromise(newPromise, x, resolve, reject)
+          } catch(e) {
+            reject(e)
+          }
+        })
+      }
+      if (this.status === PENDING) {
+        this.onFulfilledCallbacks.push(() => {
+          try {
+            let x = onFulFilled(this.value)
+            resolvePromise(newPromise, x, resolve, reject)
+          } catch(e) {
+            reject(e)
+          }
+        })
+        this.onRejectedCallbacks.push(() => {
+          try {
+            let x = onRejected(this.value)
+            resolvePromise(newPromise, x, resolve, reject)
+          } catch(e) {
+            reject(e)
+          }
+        })
+      }
+    })
+    return newPromise
+  }
+
+  catch(onRejected: AnyFn) {
+    return this.then(null, onRejected)
+  }
+
+  static all(promises: any[]) {
+    return new myPromise((resolve, reject) => {
+      let resolvedValues: any[] = []
+      let resolvedCount: number = 0
+      
+      for (let i = 0; i < promises.length; i++) {
+        (function (i) {
+          promises[i].then((value) => {
+            resolvedValues[i] = value
+            if (++resolvedCount === promises.length) {
+              resolve(resolvedValues)
+            }
+          }, reject)
+        })(i)
+      }
+    })
+  }
+}
+```
+
 # 参考链接
 
 https://github.com/lgwebdream/FE-Interview/issues/29
