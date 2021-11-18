@@ -370,7 +370,7 @@ function baseCreateRenderer(
 
 ### createAppAPI
 
-来到 apiCreateApp 文件, 可以看到 `createAppAPI(render, hydrate)` 刚好是我们上一步得到的, 返回实际的 createApp 函数, 在此接收我们从初始传入的参数 args, 也就是此时的 rootComponent 跟组件; 
+来到 apiCreateApp 文件, 可以看到 `createAppAPI(render, hydrate)` 刚好是我们上一步得到的, 返回实际的 createApp 函数, 在此接收我们从初始传入的参数 args, 也就是此时的 rootComponent 根组件; 
 
 接着开始创建 app, 可以看到 app 实际上也是一个塞满了方法的对象, 需要时调用其上方法, 这些也是改变全局 Vue 行为的 API, 如我们一般在项目中会书写:
 

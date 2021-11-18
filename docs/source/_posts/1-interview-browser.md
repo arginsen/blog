@@ -41,6 +41,7 @@ expire	可选。规定 cookie 的有效期。
 path	  可选。规定 cookie 的服务器路径。
 domain	可选。规定 cookie 的域名。
 secure	可选。规定是否通过安全的 HTTPS 连接来传输 cookie
+httpOnly 是否能通过js脚本获取cookie
 
 # 浏览器多个标签页面之间通信
 
@@ -148,7 +149,7 @@ ws.onopen = function(event) {
 
 # websocket
 
-websocket 是一种基于http协议的协议，由于http协议是非状态性的，客户端有请求才会响应，关闭连接后需要在此鉴别信息建立新连接，而websocket可以服务端主动通信，
+websocket 是一种基于http协议的协议，由于http协议是非状态性的，客户端有请求才会响应，关闭连接后需要再此鉴别信息建立新连接，而websocket可以服务端主动通信，
 websocket需要进行一次http连接，标记upgrade为websocket，也就是连接升级为websocket，服务端确认后就保持websocket连接；
 
 websocket在服务端创建server，绑定connection事件，在回调中参数即为client，给client绑定message来对client收到的消息进行处理，再用send发送数据给客户端；而客户端通过创建websocket实例来连接到服务端的websocket服务器，使用onopen/onmessage接收服务端的数据,使用onclick/onsend发送数据给服务端
