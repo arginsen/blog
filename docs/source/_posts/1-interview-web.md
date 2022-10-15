@@ -1,11 +1,11 @@
 ---
 title: 面试 | web 性能与安全
 date: 2020-8-28
-tags: 
+tags:
   - interview
   - Frontend
 categories: notes
-hide: true
+hide: false
 photos:
     - /blog/img/interview.jpg
 ---
@@ -66,7 +66,7 @@ js：
 防抖：指任务频繁触发的情况下，只有任务触发的间隔超过指定的时间间隔的时候，任务才会被执行
 
 ```js
-// 设置防抖按钮  
+// 设置防抖按钮
 window.onload = function () {
   var myDebounce = document.getElementById("debounce");
   myDebounce.addEventListener("click", debounce(sayDebounce));

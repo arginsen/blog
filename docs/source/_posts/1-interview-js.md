@@ -1,11 +1,11 @@
 ---
 title: 面试 | JavaScript
 date: 2020-8-25 11:20:33
-tags: 
+tags:
   - interview
   - Frontend
 categories: notes
-hide: true
+hide: false
 photos:
     - /blog/img/interview.jpg
 ---
@@ -42,7 +42,7 @@ Number、String、Boolean、null、undefined、Symbol、BigInt
 console.log(typeof 2);               // number
 console.log(typeof true);            // boolean
 console.log(typeof 'str');           // string
-console.log(typeof []);              // object    
+console.log(typeof []);              // object
 console.log(typeof function(){});    // function
 console.log(typeof {});              // object
 console.log(typeof undefined);       // undefined
@@ -57,9 +57,9 @@ console.log(typeof Symbol());        // object
 
 ```js
 console.log(2 instanceof Number);                    // false
-console.log(true instanceof Boolean);                // false 
-console.log('str' instanceof String);                // false 
- 
+console.log(true instanceof Boolean);                // false
+console.log('str' instanceof String);                // false
+
 console.log([] instanceof Array);                    // true
 console.log(function(){} instanceof Function);       // true
 console.log({} instanceof Object);                   // true
@@ -132,7 +132,7 @@ for (let i in obj) {
 a = 0.1 + 0.2
 b = 0.3
 
-function numbersequal(a,b){ 
+function numbersequal(a,b){
   return Math.abs(a-b) < Number.EPSILON;
 }
 ```
@@ -329,7 +329,7 @@ const area3 = getArea(10, 40)
 function getArea(width) {
     return height => {
         return width * height
-    } 
+    }
 }
 
 const getTenWidthArea = getArea(10)
@@ -345,7 +345,7 @@ const getTwentyWidthArea = getArea(20)
 ```js
 function Person(name) {
   this.name = name
-} 
+}
 Person("jake") // 报错
 new Person("jake") // 正确
 ```
@@ -474,7 +474,7 @@ function deepClone(obj) {
   return newObj
 }
 
-// 
+//
 let obj = {
   a: [1, 2, 3],
   b: {

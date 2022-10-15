@@ -419,6 +419,20 @@ reactive 的实现是由 proxy 和 effect 组合形成的
 
 对传入的对象作以筛选过滤，已有、不符合的直接返回目标，否则新建一个代理
 
+除 reactive 定义外, 还有 readonly(只读的响应式对象代理), 浅层的代理 shallow, 流程是一样的
+
+reactive 函数接收一个待响应式化的对象, 如果传入的对象存在且对象存在只读属性的标记, 那么就直接返回该对象, 说明该对象是经过 readonly() 响应式化的对象; 若无此问题, 则调用 createReactiveObject 函数创建响应式对象
+
+createReactiveObject 接收该对象, 并标记是否是 readonly , 同时传入可变的 mutableHandlers, 此handler 是提供给 Proxy 代理的配置, 此外也存在 readonly, 以及浅层对应的处理器; 此外还有针对 set、map、weakSet、weakMap 数据结构的 collectionHandlers, 最后的参数是 reactiveMap, 用于缓存根据当前的 target 创建的 proxy 对象的 weakMap 对象
+
+createReactiveObject 首先判断传入的值是否为对象, 若不是则警告返回目标; 接着检测传入的 target 是否已经为一个 proxy 对象, 并且排除传入 readonly 的 proxy 对象, 返回 target 本身;
+
+target 的 proxy 对象有进行缓存设计, 经过 proxy 处理的 target 会被存入 proxyMap, 如果缓存中存在, 则直接提取返回; 
+
+若是 target 的 type 无效, 也会被直接返回
+
+最后给 target 创建 proxy 对象, 判断 target 的类型是否为 COLLECTION, 也就是判断是否为 map set 等数据类型; 来给予不同的 handler; 最后将创建的 proxyMap 缓存
+
 ```ts
 // 使用 weakMap 存储目标对象+目标对象的代理
 export const reactiveMap = new WeakMap<Target, any>()
@@ -522,13 +536,164 @@ function getTargetType(value: Target) {
 ```
 
 
-
-
 ## baseHandler
+
+
+
+```ts
+
+```
 
 
 ## effect
 
+
+
+## ref
+
+创建一个 ref 值时, 默认观测是浅层的, 这里 shallow 为 false, 接着创建 RefImpl 实例, 将传入的值用 toRaw toReactive 方法处理;
+
+toRaw 方法首先判断传入的值是否是一个经过 reactive 处理过后的 proxy 对象, 如果是则直接返回; 如果不是则将 raw 传入 toRaw 递归
+
+toReactive 方法判断传入的是否为一个对象, 如果是对象就用 reactive 处理, 如果不是则直接返回
+
+在获取 ref 对象值时, 触发 get() 函数, 首先收集 trackRefValue 依赖, 再返回当前对象的 this._value 值
+
+这里是对外开放 value, 提供了 get 和 set 方法, 所以我们获取 ref 对象后的值需要用 value 获取, 也就是 `ref(100).value`
+
+```ts
+// packages\reactivity\src\ref.ts
+export function ref(value?: unknown) {
+  return createRef(value, false)
+}
+
+function createRef(rawValue: unknown, shallow: boolean) {
+  if (isRef(rawValue)) {
+    return rawValue
+  }
+  return new RefImpl(rawValue, shallow)
+}
+
+class RefImpl<T> {
+  private _value: T
+  private _rawValue: T
+
+  public dep?: Dep = undefined
+  public readonly __v_isRef = true
+
+  constructor(value: T, public readonly _shallow: boolean) {
+    this._rawValue = _shallow ? value : toRaw(value)
+    this._value = _shallow ? value : toReactive(value)
+  }
+
+  get value() {
+    trackRefValue(this)
+    return this._value
+  }
+
+  set value(newVal) {
+    newVal = this._shallow ? newVal : toRaw(newVal)
+    if (hasChanged(newVal, this._rawValue)) {
+      this._rawValue = newVal
+      this._value = this._shallow ? newVal : toReactive(newVal)
+      triggerRefValue(this, newVal)
+    }
+  }
+}
+
+export function toRaw<T>(observed: T): T {
+  const raw = observed && (observed as Target)[ReactiveFlags.RAW]
+  return raw ? toRaw(raw) : observed
+}
+
+export const toReactive = <T extends unknown>(value: T): T =>
+  isObject(value) ? reactive(value) : value
+
+```
+
+## computed
+
+使用 computed 定义一个计算属性
+
+首先会检查传入的第一个参数是否为一个函数, 一般我们只会传入一个基于依赖值返回计算值的函数, 当然也可以传入一个含有 get 与 set 的对象, 指定该计算属性的读取与赋值, 再将函数提取
+
+接着创建一个 computedRefImpl 实例, 每个计算属性 ref 实例会有自己 dep, effect, 以及计算属性缓存 dirty 标识; 
+
+初始 get 获取时 dirty 为 true, 会调用自身的 effect 进行计算 run, 得到经过计算依赖后的值, 同时将 dirty 转为 false, 其他地方有获取该计算属性 ref 的地方, 直接返回当前的值; 会等到再次依赖值变化后, 触发 triggerRefValue, 执行压入 effect 的回调函数 scheduler 再次令 dirty 为 true
+
+```ts
+// packages\reactivity\src\computed.ts
+export function computed<T>(
+  getterOrOptions: ComputedGetter<T> | WritableComputedOptions<T>,
+  debugOptions?: DebuggerOptions
+) {
+  let getter: ComputedGetter<T>
+  let setter: ComputedSetter<T>
+
+  const onlyGetter = isFunction(getterOrOptions)
+  if (onlyGetter) {
+    getter = getterOrOptions
+    setter = __DEV__
+      ? () => {
+          console.warn('Write operation failed: computed value is readonly')
+        }
+      : NOOP
+  } else {
+    getter = getterOrOptions.get
+    setter = getterOrOptions.set
+  }
+
+  const cRef = new ComputedRefImpl(getter, setter, onlyGetter || !setter)
+
+  if (__DEV__ && debugOptions) {
+    cRef.effect.onTrack = debugOptions.onTrack
+    cRef.effect.onTrigger = debugOptions.onTrigger
+  }
+
+  return cRef as any
+}
+
+// ComputedRefImpl 类
+class ComputedRefImpl<T> {
+  public dep?: Dep = undefined
+
+  private _value!: T
+  private _dirty = true
+  public readonly effect: ReactiveEffect<T>
+
+  public readonly __v_isRef = true
+  public readonly [ReactiveFlags.IS_READONLY]: boolean
+
+  constructor(
+    getter: ComputedGetter<T>,
+    private readonly _setter: ComputedSetter<T>,
+    isReadonly: boolean
+  ) {
+    this.effect = new ReactiveEffect(getter, () => {
+      if (!this._dirty) {
+        this._dirty = true
+        triggerRefValue(this)
+      }
+    })
+    this[ReactiveFlags.IS_READONLY] = isReadonly
+  }
+
+  get value() {
+    // the computed ref may get wrapped by other proxies e.g. readonly() #3376
+    const self = toRaw(this)
+    trackRefValue(self)
+    if (self._dirty) {
+      self._dirty = false
+      self._value = self.effect.run()!
+    }
+    return self._value
+  }
+
+  set value(newValue: T) {
+    this._setter(newValue)
+  }
+}
+```
 
 # 参考
 

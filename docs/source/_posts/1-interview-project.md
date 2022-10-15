@@ -1,11 +1,11 @@
 ---
 title: 面试 | 前端工程化
 date: 2020-9-1
-tags: 
+tags:
   - interview
   - Frontend
 categories: notes
-hide: true
+hide: false
 photos:
     - /blog/img/interview.jpg
 ---
@@ -28,11 +28,11 @@ webpack 拥有编译代码的能力，可以提高效率，解决浏览器兼容
 
 Grunt、Gulp是基于任务运⾏的⼯具： 它们会⾃动执⾏指定的任务，就像流⽔线，把资源放上去然后通过不同插件进⾏加⼯，它们包含活跃的社区，丰富的插件，能⽅便的打造各种⼯作流
 
-Webpack是基于模块化打包的⼯具: ⾃动化处理模块，webpack把⼀切当成模块，当 webpack 处理应⽤程序时，它会递归地构建⼀个依赖关系图 (dependency graph)，其中包含应⽤程序需要的每个模块，然后将所有这些模块打包成⼀个或多个 bundle。 
+Webpack是基于模块化打包的⼯具: ⾃动化处理模块，webpack把⼀切当成模块，当 webpack 处理应⽤程序时，它会递归地构建⼀个依赖关系图 (dependency graph)，其中包含应⽤程序需要的每个模块，然后将所有这些模块打包成⼀个或多个 bundle。
 
 ## webpack 和 rollup 的优劣
 
-webpack适⽤于⼤型复杂的前端站点构建: webpack有强⼤的loader和插件⽣态,打包后的⽂件实际上就是⼀个⽴即执⾏函数，这个⽴即执⾏函数接收⼀个参数，这个参数是模块对象，键为各个模块的路径，值为模块内容。⽴即执⾏函数内部则处理模块之间的引⽤，执⾏模块等,这种情况更适合⽂件依赖复杂的应⽤开发。 
+webpack适⽤于⼤型复杂的前端站点构建: webpack有强⼤的loader和插件⽣态,打包后的⽂件实际上就是⼀个⽴即执⾏函数，这个⽴即执⾏函数接收⼀个参数，这个参数是模块对象，键为各个模块的路径，值为模块内容。⽴即执⾏函数内部则处理模块之间的引⽤，执⾏模块等,这种情况更适合⽂件依赖复杂的应⽤开发。
 
 rollup适⽤于基础库的打包，如vue、d3等: Rollup 就是将各个模块打包进⼀个⽂件中，并且通过 Tree-shaking 来删除⽆⽤的代码,可以最⼤程度上降低代码体积,但是rollup没有webpack如此多的的如代码分割、按需加载等⾼级功能，其更聚焦于库的打包，因此更适合库的开发
 
@@ -40,13 +40,13 @@ rollup适⽤于基础库的打包，如vue、d3等: Rollup 就是将各个模块
 
 loader的执行顺序是从右向左执行的
 
-- file-loader：把⽂件输出到⼀个⽂件夹中，在代码中通过相对 URL 去引⽤输出的⽂件 
-- url-loader：和 file-loader 类似，但是能在⽂件很⼩的情况下以 base64 的⽅式把⽂件内容注⼊到代码中去 
-- source-map-loader：加载额外的 Source Map ⽂件，以⽅便断点调试 
-- image-loader：加载并且压缩图⽚⽂件 
-- babel-loader：把 ES6 转换成 ES5 
-- css-loader：加载 CSS，⽀持模块化、压缩、⽂件导⼊等特性 
-- style-loader：把 CSS 代码注⼊到 JavaScript 中，通过 DOM 操作去加载 CSS。 
+- file-loader：把⽂件输出到⼀个⽂件夹中，在代码中通过相对 URL 去引⽤输出的⽂件
+- url-loader：和 file-loader 类似，但是能在⽂件很⼩的情况下以 base64 的⽅式把⽂件内容注⼊到代码中去
+- source-map-loader：加载额外的 Source Map ⽂件，以⽅便断点调试
+- image-loader：加载并且压缩图⽚⽂件
+- babel-loader：把 ES6 转换成 ES5
+- css-loader：加载 CSS，⽀持模块化、压缩、⽂件导⼊等特性
+- style-loader：把 CSS 代码注⼊到 JavaScript 中，通过 DOM 操作去加载 CSS。
 - eslint-loader：通过 ESLint 检查 JavaScript 代码
 
 ## webpack 的 plugin 是什么？ 有哪些常见的 plugin
@@ -82,16 +82,16 @@ module.exports = ConsoleLogOnBuildWebpackPlugin;
 
 一些常见的 plugin：
 
-- define-plugin：定义环境变量 
-- html-webpack-plugin：简化html⽂件创建 
-- uglifyjs-webpack-plugin：通过 UglifyES 压缩 ES6 代码 
-- webpack-parallel-uglify-plugin: 多核压缩，提⾼压缩速度 
-- webpack-bundle-analyzer: 可视化webpack输出⽂件的体积 
-- mini-css-extract-plugin: CSS提取到单独的⽂件中，⽀持按需加载 
+- define-plugin：定义环境变量
+- html-webpack-plugin：简化html⽂件创建
+- uglifyjs-webpack-plugin：通过 UglifyES 压缩 ES6 代码
+- webpack-parallel-uglify-plugin: 多核压缩，提⾼压缩速度
+- webpack-bundle-analyzer: 可视化webpack输出⽂件的体积
+- mini-css-extract-plugin: CSS提取到单独的⽂件中，⽀持按需加载
 
 ## webpack 的 loader 和 plugin 的不同？
 
-Loader的作⽤是让 webpack 拥有了加载和解析⾮ JavaScript ⽂件的能⼒；在 module.rules 中配置，也就是说他作为模块的解析规则⽽存在。 类型为数组，每⼀项都是⼀个 Object ，⾥⾯描述了对于什么类型的⽂件（ test ），使⽤什么加载( loader )和使⽤的参数（ options ） 
+Loader的作⽤是让 webpack 拥有了加载和解析⾮ JavaScript ⽂件的能⼒；在 module.rules 中配置，也就是说他作为模块的解析规则⽽存在。 类型为数组，每⼀项都是⼀个 Object ，⾥⾯描述了对于什么类型的⽂件（ test ），使⽤什么加载( loader )和使⽤的参数（ options ）
 
 Plugin 可以扩展 webpack 的功能，让 webpack 具有更多的灵活性。 在 Webpack 运⾏的⽣命周期中会⼴播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果；在 plugins 中单独配置。 类型为数组，每⼀项是⼀个 plugin 的实例，参数都通过构造函数传⼊。
 

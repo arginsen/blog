@@ -1,11 +1,11 @@
 ---
 title: 面试 | Vue
 date: 2020-8-27
-tags: 
+tags:
   - interview
   - Frontend
 categories: notes
-hide: true
+hide: false
 photos:
     - /blog/img/interview.jpg
 ---
@@ -83,7 +83,7 @@ computed 会在初始化阶段针对我们定义的变量创建对应的 watcher
 等到 computed 依赖的值更新后，dep 会 notify 各个观察者进行 update，其中就包括 computed 的变量，在 update 是会判断当前的 watcher.lazy 是否为 true，为 true 就说明是计算属性的 watcher ，那么就将其 dirty 再转变为 true，等到后续读取 computed 值时，就会再次触发 evaluate 重新计算值，再把 dirty 转为 false，其他地方使用 computed 时就不会再计算了。
 
 `watch` 是在监听的属性发生变化时，在回调中执行一些逻辑。
-watch 在初始化阶段对指定监听的变量创建 watcher，initWatch 是后于 initComputed 发生的，因此依赖同一变量时，dep 会先将 computed 的 watcher 先压入 subs，在之后依赖值变动 watcher 更新时也会先更新 computed，后更新 watch 的值，但此时更新的 computed 仅是打开 dirty 为 true 操作，之后便进行 watch 的更新，在后续页面或其他地方有用到 computed 时才会在触发 computedGetter 重新进行计算。因此在页面上的 computed 值表现是要晚于 watch 里的语句的，因为页面上的变量建立的 watcher 均是晚于 init 阶段压入 subs 的。 
+watch 在初始化阶段对指定监听的变量创建 watcher，initWatch 是后于 initComputed 发生的，因此依赖同一变量时，dep 会先将 computed 的 watcher 先压入 subs，在之后依赖值变动 watcher 更新时也会先更新 computed，后更新 watch 的值，但此时更新的 computed 仅是打开 dirty 为 true 操作，之后便进行 watch 的更新，在后续页面或其他地方有用到 computed 时才会在触发 computedGetter 重新进行计算。因此在页面上的 computed 值表现是要晚于 watch 里的语句的，因为页面上的变量建立的 watcher 均是晚于 init 阶段压入 subs 的。
 
 computed 适合在模板渲染中，某个值是依赖了其他的响应式对象甚至是计算属性计算而来的；watch 适合监听某个值的变化去完成一些复杂的业务逻辑。
 
@@ -117,7 +117,7 @@ vue 中每个组件实例都会对应一个 watcher 实例，它会在组件渲�
 
 # vue 的双向绑定原理
 
-vue 的双向绑定基于 mvvm 架构, 用户侧来定义 model 和 view, 封装的框架来实现将两者关联起来, 使数据变化后更新到视图, 视图变化后更新到数据; 
+vue 的双向绑定基于 mvvm 架构, 用户侧来定义 model 和 view, 封装的框架来实现将两者关联起来, 使数据变化后更新到视图, 视图变化后更新到数据;
 
 实现双向绑定是再初始化 Vue 实例时, 通过 observe 对数据进行响应化处理, 对数据的访问与设定作以拦截, 在编译阶段最后创建 Watcher 和更新函数, 在 render 期间会获取绑定的数据触发数据 getter 收集依赖, 每个属性都对应一个依赖收集器 dep, 收集该属性在视图中出现的地方(计算属性方法, watch, render挂载时)时的全局 watcher, 一个 dep 的 subs 下往往也对应多个 watcher , 等到数据变动, 该数据对应的 dep 会 notify 它下边的 watcher 进行更新
 

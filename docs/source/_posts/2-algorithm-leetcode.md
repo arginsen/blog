@@ -60,48 +60,6 @@ var twoSum = function(nums, target) {
 };
 ```
 
-# 删除链表的倒数第n个
-
-```js
-// 
-var removeNthFromEnd = function(head, n) {
-    let k = head, m = head;
-    // 需要考虑到长度只有1，此时k已经被赋值为null，if就不能判断k.next了
-    while(--n) {
-        k = k.next;
-    }
-    if(!k.next) return head.next;
-    k = k.next;
-    while(k.next) {
-        k = k.next;
-        m = m.next;
-    }
-    m.next = m.next.next;
-    return head;
-};
-
-
-var removeNthFromEnd = function(head, n) {
-    let m = head, k = head;
-    while (k.next) {
-        if (!n) {
-            m = m.next;
-        }
-        n = n ? n - 1 : n;
-        k = k.next;
-    }
-    if (n) {
-        head = head.next;
-    } else {
-        if (m.next)
-            m.next = m.next.next;
-        else
-            m.next = null;
-    }
-    return head;
-};
-```
-
 # 有效的括号
 
 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
@@ -135,79 +93,7 @@ var isValid = function(s) {
   return stack.length === 0
 };
 ```
-
-# 合并两个有序链表
-
-将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
-
-输入：l1 = [1,2,4], l2 = [1,3,4]
-输出：[1,1,2,3,4,4]
-
-```js
-// 采用递归的方式合并
-var mergeTwoLists = function(l1, l2) {
-    const merge = (l1, l2) => {
-        if(!l1) return l2
-        if(!l2) return l1
-        if(l1.val <= l2.val) {
-            l1.next = merge(l1.next, l2)
-            return l1
-        } else {
-            l2.next = merge(l1, l2.next)
-            return l2
-        }
-    }
-    return merge(l1, l2)
-};
-```
-
-# 反转链表 7.27
-
-给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
-
-输入：head = [1,2,3,4,5]
-输出：[5,4,3,2,1]
-
-```js
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
-
-// 循环
-var reverseList = function(head) {
-    let pre = null
-    let curr = head
-    while (curr) {
-        let tmp = curr.next
-        curr.next = pre
-        pre = curr
-        curr = tmp
-    }
-    return pre
-};
-
-// 递归
-var reverseList = function(head) {
-    const reverse = (pre, curr) => { // 定义前、后指针
-        if (!curr) return pre
-        let next = curr.next
-        curr.next = pre
-        return reverse(curr, next) // curr 前指针，当前指针为往前移的 next
-    }
-
-    return reverse(null, head)
-}
-```
-
-# 数组中的第K个最大元素 7.30
+# 数组中的第K个最大元素
 
 给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素。
 请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
@@ -286,7 +172,7 @@ var findKthLargest = function(nums, k) {
 
 ```
 
-# 无重复字符的最长子串 8.1
+# 无重复字符的最长子串
 
 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
 
@@ -339,6 +225,209 @@ var lengthOfLongestSubstring = function(s) {
 
     return res
 }
+```
+# 三数之和
+
+给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。
+注意：答案中不可以包含重复的三元组。
+
+示例 1：
+
+输入：`nums = [-1,0,1,2,-1,-4]`
+输出：`[[-1,-1,2],[-1,0,1]]`
+
+示例 2：
+
+输入：`nums = []`
+输出：`[]`
+
+示例 3：
+
+输入：`nums = [0]`
+输出：`[]`
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function(nums) {
+
+};
+
+```
+
+# 买卖股票的最佳时机
+
+给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。
+你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 卖出该股票。设计一个算法来计算你所能获取的最大利润。
+返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。
+
+示例 1：
+
+输入：`[7,1,5,3,6,4]`
+输出：5
+解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
+示例 2：
+
+输入：`prices = [7,6,4,3,1]`
+输出：0
+解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
+
+```js
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    let buy = prices[0], max = 0
+    for (let i = 1; i < prices.length; i++) {
+        if (prices[i] < buy) {
+            buy = prices[i]
+        } else {
+            let temp = prices[i] - buy
+            max = temp > max ? temp : max
+        }
+    }
+    return max
+};
+```
+
+# 21. 合并两个有序链表 
+
+将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+
+输入：l1 = [1,2,4], l2 = [1,3,4]
+输出：[1,1,2,3,4,4]
+
+```js
+// 采用递归的方式合并
+var mergeTwoLists = function(l1, l2) {
+    const merge = (l1, l2) => {
+        if(!l1) return l2
+        if(!l2) return l1
+        if(l1.val <= l2.val) {
+            l1.next = merge(l1.next, l2)
+            return l1
+        } else {
+            l2.next = merge(l1, l2.next)
+            return l2
+        }
+    }
+    return merge(l1, l2)
+};
+```
+
+# 206. 反转链表 
+
+给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
+
+输入：head = [1,2,3,4,5]
+输出：[5,4,3,2,1]
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+
+// 循环
+var reverseList = function(head) {
+    let pre = null
+    let curr = head
+    while (curr) {
+        let tmp = curr.next
+        curr.next = pre
+        pre = curr
+        curr = tmp
+    }
+    return pre
+};
+
+// 递归
+var reverseList = function(head) {
+    const reverse = (pre, curr) => { // 定义前、后指针
+        if (!curr) return pre
+        let next = curr.next
+        curr.next = pre
+        return reverse(curr, next) // curr 前指针，当前指针为往前移的 next
+    }
+
+    return reverse(null, head)
+}
+```
+
+# 19.删除链表的倒数第n个结点 
+
+```js
+// 
+var removeNthFromEnd = function(head, n) {
+    let k = head, m = head;
+    // 需要考虑到长度只有1，此时k已经被赋值为null，if就不能判断k.next了
+    while(--n) {
+        k = k.next;
+    }
+    if(!k.next) return head.next;
+    k = k.next;
+    while(k.next) {
+        k = k.next;
+        m = m.next;
+    }
+    m.next = m.next.next;
+    return head;
+};
+
+
+var removeNthFromEnd = function(head, n) {
+    let m = head, k = head;
+    while (k.next) {
+        if (!n) {
+            m = m.next;
+        }
+        n = n ? n - 1 : n;
+        k = k.next;
+    }
+    if (n) {
+        head = head.next;
+    } else {
+        if (m.next)
+            m.next = m.next.next;
+        else
+            m.next = null;
+    }
+    return head;
+};
+```
+
+# 876. 链表的中间结点
+
+给定一个头结点为 head 的非空单链表，返回链表的中间结点。
+
+如果有两个中间结点，则返回第二个中间结点。
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var middleNode = function(head) {
+
+};
 ```
 
 # K 个一组翻转链表 8.02
@@ -421,71 +510,43 @@ var reverseKGroup = function(head, k) {
 };
 ```
 
-# 三数之和
 
-给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。
-注意：答案中不可以包含重复的三元组。
 
-示例 1：
+# 141. 环形链表 
 
-输入：`nums = [-1,0,1,2,-1,-4]`
-输出：`[[-1,-1,2],[-1,0,1]]`
+给你一个链表的头节点 head ，判断链表中是否有环。
 
-示例 2：
+如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。注意：pos 不作为参数进行传递 。仅仅是为了标识链表的实际情况。
 
-输入：`nums = []`
-输出：`[]`
-
-示例 3：
-
-输入：`nums = [0]`
-输出：`[]`
+如果链表中存在环 ，则返回 true 。 否则，返回 false 。
 
 ```js
 /**
- * @param {number[]} nums
- * @return {number[][]}
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
  */
-var threeSum = function(nums) {
 
-};
-
-```
-
-# 买卖股票的最佳时机
-
-给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。
-你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 卖出该股票。设计一个算法来计算你所能获取的最大利润。
-返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。
-
-示例 1：
-
-输入：`[7,1,5,3,6,4]`
-输出：5
-解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
-     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
-示例 2：
-
-输入：`prices = [7,6,4,3,1]`
-输出：0
-解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
-
-```js
 /**
- * @param {number[]} prices
- * @return {number}
+ * @param {ListNode} head
+ * @return {boolean}
  */
-var maxProfit = function(prices) {
-    let buy = prices[0], max = 0
-    for (let i = 1; i < prices.length; i++) {
-        if (prices[i] < buy) {
-            buy = prices[i]
-        } else {
-            let temp = prices[i] - buy
-            max = temp > max ? temp : max
-        }
+var hasCycle = function(head) {
+    if (head === null || head.next === null) {
+        return false;
     }
-    return max
+    let slow = head;
+    let fast = head.next;
+    while(fast !== null && fast.next !== null) {
+        if (slow === fast) {
+            return true;
+        }
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    return false;
 };
 ```
 
@@ -538,3 +599,17 @@ var detectCycle = function(head) {
     return fast
 };
 ```
+
+# 20. 有效的括号
+
+# 155. 
+
+# 232. 
+
+# 844. 
+
+# 224.
+
+# 682. 
+
+# 496. 

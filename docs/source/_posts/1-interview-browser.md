@@ -1,11 +1,11 @@
 ---
 title: 面试 | 浏览器
 date: 2020-8-29
-tags: 
+tags:
   - interview
   - Frontend
 categories: notes
-hide: true
+hide: false
 photos:
     - /blog/img/interview.jpg
 ---
@@ -104,7 +104,7 @@ var WebSocketServer = require('ws').Server;
 //创建WebSocketServer对象实例，监听指定端口
 var wss = new WebSocketServer({ port: 8080 });
 //创建保存所有已连接到服务器的客户端对象的数组
-var clients=[]; 
+var clients=[];
 //为服务器添加connection事件监听，当有客户端连接到服务端时，立刻将客户端对象保存进数组中。
 wss.on('connection', function(client) {
   console.log("一个客户端连接到服务器");
@@ -149,14 +149,31 @@ ws.onopen = function(event) {
 
 # websocket
 
-websocket 是一种基于http协议的协议，由于http协议是非状态性的，客户端有请求才会响应，关闭连接后需要再此鉴别信息建立新连接，而websocket可以服务端主动通信，
+websocket 是一种基于http协议的协议，由于http协议是非状态性的，客户端有请求才会响应，关闭连接后需要再次鉴别信息建立新连接，而websocket可以服务端主动通信，
 websocket需要进行一次http连接，标记upgrade为websocket，也就是连接升级为websocket，服务端确认后就保持websocket连接；
 
 websocket在服务端创建server，绑定connection事件，在回调中参数即为client，给client绑定message来对client收到的消息进行处理，再用send发送数据给客户端；而客户端通过创建websocket实例来连接到服务端的websocket服务器，使用onopen/onmessage接收服务端的数据,使用onclick/onsend发送数据给服务端
 
+附:
+
+有些浏览器可能不支持 websocket , 所以需要考虑到兼容性问题, 使用 sock.js 可以在不支持 websocket 时自动将为轮询的方式
+
+同时采用 stomp.js 来建立传输协议, 规范 payload 的文本格式
+
+```js
+const socket = new SockJS(wsLocalUrl+'/websocket');
+  let stompClient = Stomp.over(socket);
+
+  stompClient.connect('','',function(frame){
+    stompClient.subscribe(`/topic/taskNum.${currUserId}.${taskClassParent}`, function(message) {
+      //alert(JSON.parse(message.body));
+    });
+  });
+```
+
 # 前端如何处理大量数据
 
-使用分页,分表数据传输, 异步渲染, 可见区域局部先渲染, 
+使用分页,分表数据传输, 异步渲染, 可见区域局部先渲染,
 
 使用 web worker 来处理大量数据计算
 在面对大量数据时, 可以使用 web worker 来创建独立于主线程的一个子线程来处理运算, 这样就不会造成页面卡死
@@ -167,6 +184,8 @@ worker 与主线程不在一个上下文环境, 无法读取到 dom 对象, 但�
 
 
 # 输入 url 到页面加载发生了些什么
+
+> https://juejin.cn/post/6844903832435032072
 
 1. 解析域名：搜索本地浏览器 DNS 服务器，如没用则搜索系统的，再是路由器，运营商
 2. TCP 连接：三次握手、四次挥手
@@ -266,6 +285,8 @@ Content-Type: text/html; charset=utf-8
 
 同步任务指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务；
 异步任务指的是，不进入主线程、而进入任务队列（task queue）的任务，只有等主线程任务执行完毕，任务队列开始通知主线程，请求执行任务，该任务才会进入主线程执行。
+
+通常我们把消息队列中的任务称为宏任务，每个宏任务中都包含了一个微任务队列
 
 当某个宏任务执行完后,会查看是否有微任务队列。如果有，先执行微任务队列中的所有任务；如果没有，在执行环境栈中会读取宏任务队列中排在最前的任务；执行宏任务的过程中，遇到微任务，依次加入微任务队列。栈空后，再次读取微任务队列里的任务，依次类推。
 

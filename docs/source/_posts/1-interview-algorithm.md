@@ -1,11 +1,11 @@
 ---
 title: 面试 | 编程题
 date: 2020-8-29
-tags: 
+tags:
   - interview
   - Frontend
 categories: notes
-hide: true
+hide: false
 photos:
     - /blog/img/interview.jpg
 ---
@@ -72,7 +72,7 @@ var quickSort = function(arr) {
 /**
  * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
  *
- * 
+ *
  * @param s string字符串 字符串
  * @return int整型
  */
@@ -147,17 +147,56 @@ var findMedianSortedArrays = function(nums1, nums2) {
             if (i === 0) left = nums2[j - 1];
             else if (j === 0) left = nums1[i - 1];
             else left = Math.max(nums1[i - 1], nums2[j - 1]);
-            
+
             if (i === length1) right = nums2[j];
             else if (j === length2) right = nums1[i];
             else right = Math.min(nums1[i], nums2[j]);
-            
+
             return (length1 + length2) % 2 ? left : (left + right) / 2;
         }
     }
     return 0;
 };
 ```
+
+
+# 用两个栈来描述一个队列
+
+只可以用 push/pop
+
+```ts
+class Queue {
+  constructor() {
+    this.arr1 = [] // 主栈
+    this.arr2 = [] // 辅栈
+    this.length = 0
+    return this.arr1
+  }
+  push(inEl) {
+    let temp = null
+    for (let i = 0; i < this.length; i++) {
+      temp = this.arr1.pop()
+      this.arr2.push(temp)
+    }
+    this.arr1 = this.arr2
+    this.arr1.push(inEl)
+    this.arr2 = []
+    this.length++
+    return inEl
+  }
+  pop() {
+    let outEl = this.arr1.pop()
+    this.length--
+    return outEl
+  }
+  count() {
+    return this.length
+  }
+}
+
+let arr = new Queue()
+```
+
 
 # 实现深拷贝
 
@@ -400,7 +439,7 @@ minCoinChange([1,2,5,10])(20)
 按小数点剪开，给后边位数少的补 0 ，两者位数一样再一位一位进行相加，采用一个标记来记录是否进 1，如果是相减就需要退 1
 
 ```js
-// 例 
+// 例
 a = 12345.12123, b = 987654.92
 
 function sum(a, b) {
@@ -743,7 +782,7 @@ class Promise {
 }
 ```
 
-# 实现 Promise.all 
+# 实现 Promise.all
 
 ```js
 Promise.all = function (promises) {
@@ -803,7 +842,7 @@ Function.prototype.bind = function (context) {
   // 获取后续参数
   const args = [...arguments].slice(1),
         fn = this
-  
+
   return function Fn() {
     // 用来判断直接调用还是 new 调用
     // 如果是 new fn() ，那么生成的函数对象即是 fn 的实例

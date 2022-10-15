@@ -1,11 +1,11 @@
 ---
 title: 面试 | HTML & CSS
 date: 2020-8-26 17:20:33
-tags: 
+tags:
   - interview
   - Frontend
 categories: notes
-hide: true
+hide: false
 photos:
     - /blog/img/interview.jpg
 ---
@@ -110,7 +110,7 @@ canvas 是画布，通过 JavaScript 来绘制 2D 图形，是逐像素进行渲
 2. 增强型表单
 input 输入新特性：color date email search
 新增表单元素：datalist progress meter keygen output
-新增表单属性：placeholder height width 
+新增表单属性：placeholder height width
 3. 音频和视频 audio video
 4. canvas
 5. svg
@@ -143,7 +143,7 @@ worker.onmessage = function(evt){     //接收worker传过来的数据函数
 8. box-shadow
 9. @media screen and (min-width: 800px) and (max-width: 1200px)
 
-## 元素不定宽高
+## 元素不定宽高居中
 
 > https://vue3js.cn/interview/css/center.html
 
