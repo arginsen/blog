@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>语言 | C 与 C++ 语言基础Ⅴ：结构体和类 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="考研CC++">
+  
+  
+  
+  
+  <meta name="keywords" content="考研,C,C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="语言 | C 与 C++ 语言基础Ⅴ：结构体和类">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/09/09/2-lang-c&c++5/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/c&c++.jpg">
+<meta property="og:updated_time" content="2021-08-01T08:24:24.452Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="语言 | C 与 C++ 语言基础Ⅴ：结构体和类">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/c&c++.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-lang-c&amp;c++5" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/c&amp;c++.jpg" rel="gallery_clbcwtdzd009v7kuve79t29kg">
+        <img src="/blog/img/c&amp;c++.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      语言 | C 与 C++ 语言基础Ⅴ：结构体和类
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="类型定义"><a href="#类型定义" class="headerlink" title="类型定义"></a>类型定义</h1><blockquote>
+<p>使用 <code>typedef</code> 给数据类型命名新的名称</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> myint;</span><br><span class="line">myint a = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> mychar;</span><br><span class="line">mychar c = <span class="string">'c'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%c\n"</span>, c); <span class="comment">// c</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 printf 进行输出，可对输出类型进行说明</span></span><br><span class="line"><span class="comment">// 使用 cout 输出是无视类型的，即任何变量都可以直接输出</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 常用的一些说明符</span></span><br><span class="line">%a  浮点数</span><br><span class="line">%c  一个字符</span><br><span class="line">%d  有符号的十进制整数</span><br><span class="line">%o  无符号的八进制整数</span><br><span class="line">%s  对应字符串</span><br></pre></td></tr></table></figure>
+<h1 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h1><blockquote>
+<p>结构体用以存放一组不同类型的数据。结构体是一种集合，里边包含了多个变量或数组，它们的类型可相同，也可不同。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span><span class="keyword">int</span> x; <span class="keyword">int</span> y;&#125; point; <span class="comment">// 给结构体命名 point</span></span><br><span class="line">point.x = <span class="number">10</span>;</span><br><span class="line">point.y = <span class="number">11</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用类型定义 typedef 简化结构体的声明</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span><span class="keyword">int</span> x; <span class="keyword">int</span> y;&#125; Point; <span class="comment">// 给结构体数据类型定义新的名称 Point</span></span><br><span class="line">Point point1; <span class="comment">// 用 Point 类型再声明新的变量</span></span><br><span class="line">point1.x = <span class="number">10</span>;</span><br><span class="line">point1.y = <span class="number">11</span>;</span><br><span class="line"></span><br><span class="line">Point point2;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结构体取值</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">&#125;Point;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Point point;</span><br><span class="line">    point.x = <span class="number">10</span>;</span><br><span class="line">    point.y = <span class="number">11</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d, %d"</span>, point.x, point.y);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 10 11</span></span><br></pre></td></tr></table></figure>
+<h2 id="指向结构体的指针"><a href="#指向结构体的指针" class="headerlink" title="指向结构体的指针"></a>指向结构体的指针</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">&#125;Point;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Point point; <span class="comment">// 定义变量 point</span></span><br><span class="line">    Point *P; <span class="comment">// 定义 Point 型的指针</span></span><br><span class="line">    P = &amp;Point; <span class="comment">// 用 P 指向变量 Point</span></span><br><span class="line">    P-&gt;x = <span class="number">10</span>; <span class="comment">// 使用指针赋值</span></span><br><span class="line">    p-&gt;y = <span class="number">11</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d, %d"</span>, P -&gt; x, P -&gt; y); <span class="comment">// 使用指针取值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="自引用结构"><a href="#自引用结构" class="headerlink" title="自引用结构"></a>自引用结构</h2><blockquote>
+<p>在结构体内部定义指向自己类型的指针</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Point</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;Point;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Point p1, p2, p3;</span><br><span class="line">    Point *P;</span><br><span class="line">    p1.x = <span class="number">1</span>; p1.y = <span class="number">0</span>;</span><br><span class="line">    p2.x = <span class="number">4</span>; p2.y = <span class="number">1</span>;</span><br><span class="line">    p3.x = <span class="number">2</span>; p3.y = <span class="number">4</span>;</span><br><span class="line">    p1.next = &amp;p2;</span><br><span class="line">    p2.next = &amp;p3;</span><br><span class="line">    p3.next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(P = &amp;p1; P != <span class="literal">NULL</span>; P = P -&gt; next)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"(%d, %d)\n"</span>, P -&gt; x, P -&gt; y);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// (1, 0)</span></span><br><span class="line"><span class="comment">// (4, 2)</span></span><br><span class="line"><span class="comment">// (2, 4)</span></span><br></pre></td></tr></table></figure>
+<h2 id="c-下的结构体"><a href="#c-下的结构体" class="headerlink" title="c++ 下的结构体"></a>c++ 下的结构体</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">    Point *next; <span class="comment">// 定义指针型变量</span></span><br><span class="line">    Point() <span class="comment">// 定义构造函数</span></span><br><span class="line">    &#123;</span><br><span class="line">        next = <span class="literal">NULL</span>; <span class="comment">// 对内部变量初始化</span></span><br><span class="line">        x = <span class="number">0</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>; <span class="comment">// 结构体内声明函数</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Point::print</span><span class="params">()</span> <span class="comment">// 双冒号表示 print 函数属于 Point 结构体，在外部具体定义函数内容</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"("</span>&lt;&lt;<span class="keyword">this</span> -&gt; x&lt;&lt;<span class="string">","</span>&lt;&lt;<span class="keyword">this</span> -&gt; y&lt;&lt;<span class="string">")"</span>&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// this 指向结构体的存储空间（结构体变量），通过 this 访问结构体成员变量</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Point p1, p2, p3;</span><br><span class="line">    Point *P;</span><br><span class="line">    p1.x = <span class="number">1</span>; p1.y = <span class="number">0</span>;</span><br><span class="line">    p2.x = <span class="number">4</span>; p2.y = <span class="number">1</span>;</span><br><span class="line">    p3.x = <span class="number">2</span>; p3.y = <span class="number">4</span>;</span><br><span class="line">    p1.next = &amp;p2;</span><br><span class="line">    p2.next = &amp;p3;</span><br><span class="line">    p3.next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(P = &amp;p1; P != <span class="literal">NULL</span>; P = P -&gt; next)</span><br><span class="line">        P -&gt; print();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// (1, 0)</span></span><br><span class="line"><span class="comment">// (4, 2)</span></span><br><span class="line"><span class="comment">// (2, 4)</span></span><br></pre></td></tr></table></figure>
+<h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> // 用 <span class="title">class</span> 来定义类</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>: <span class="comment">// 用 public 可被外部取到类中的成员变量</span></span><br><span class="line">        <span class="keyword">int</span> x;</span><br><span class="line">        Point() <span class="comment">// 构造函数</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">        &#125;</span><br><span class="line">        Point *next; <span class="comment">// 定义指针型变量</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="定义一个类"><a href="#定义一个类" class="headerlink" title="定义一个类"></a>定义一个类</h2><blockquote>
+<p>通过在类中用 public 和 private 来指明类中能否可被外部访问到的变量</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Point()</span><br><span class="line">        &#123;</span><br><span class="line">            x = <span class="number">0</span>;</span><br><span class="line">            y = <span class="number">0</span>;</span><br><span class="line">            next = <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> x;</span><br><span class="line">        <span class="keyword">int</span> y;</span><br><span class="line">        Point *next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Point P;</span><br><span class="line">    P.x;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// error: 'int Point::x' is private...</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过在 public 定义函数来取到 private 中的变量</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Point()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span> -&gt; x = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">this</span> -&gt; x = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">this</span> -&gt; next = <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 声明各公有函数，实现存值取值</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">inputX</span><span class="params">(<span class="keyword">int</span> x)</span></span>; <span class="comment">// 存值不需要返回值</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">inputY</span><span class="params">(<span class="keyword">int</span> y)</span></span>;</span><br><span class="line">        <span class="function">Point *<span class="title">getNext</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">inputNext</span><span class="params">(Point *next)</span></span>;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> x;</span><br><span class="line">        <span class="keyword">int</span> y;</span><br><span class="line">        Point *next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分别定义函数具体操作</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Point::getX</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="keyword">this</span> -&gt; x;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Point::getY</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="keyword">this</span> -&gt; y;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Point::inputX</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="keyword">this</span> -&gt; x = x;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Point::inputY</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="keyword">this</span> -&gt; y = y;&#125;</span><br><span class="line"><span class="function">Point *<span class="title">Point::getNext</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="keyword">this</span> -&gt; next;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Point::inputNext</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="keyword">this</span> -&gt; next = next;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Point p1, p2;</span><br><span class="line">    p1.inputX(<span class="number">10</span>); <span class="comment">// 给变量 x 存值</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;p1.getX()&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 输出变量 p1 的 x</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;p1.getNext()&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 输出变量 p1 的 next（默认 NULL）</span></span><br><span class="line"></span><br><span class="line">    p1.inputNext(&amp;p2); <span class="comment">// p1.next = p2  使 p1 的 next 指针指向 p2 的地址</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;p1.getNext()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"><span class="comment">// 0</span></span><br><span class="line"><span class="comment">// 0x7ffd8ee80600</span></span><br></pre></td></tr></table></figure>
+<h1 id="结构体与类的空间分配"><a href="#结构体与类的空间分配" class="headerlink" title="结构体与类的空间分配"></a>结构体与类的空间分配</h1><blockquote>
+<p>结构体使用 malloc 函数指定空间大小并返回空间地址</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Point</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;Point;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 使用 sizeof 计算结构体空间大小，malloc 返回空间地址，</span></span><br><span class="line">    <span class="comment">// 再进行 Point 类型指针的强制类型转换，再令 P 指针指向该地址</span></span><br><span class="line">    Point *P = (Point*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Point)); </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d, %d"</span>, P -&gt; x, P -&gt; y);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0, 0</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>类直接通过 new 动态分配存储空间</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    Point()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span> -&gt; x = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span> -&gt; y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span> -&gt; next = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">    Point *next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Point *P = <span class="keyword">new</span> Point; <span class="comment">// 通过 new 就进行了空间存储的动态分配，返回空间地址再赋值给指针 P</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;P -&gt; x&lt;&lt;<span class="string">", "</span>&lt;&lt;P -&gt; y&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0, 0</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/考研/">考研</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/09/09/2-lang-c&c++5/" class="article-date">
+	  <time datetime="2020-09-09T08:20:22.000Z" itemprop="datePublished">九月 9, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.3k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/09/12/1-interview-huaweitest/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          华为机试题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/09/09/2-lang-c&c++4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">语言 | C 与 C++ 语言基础Ⅳ：指针与数组</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#类型定义"><span class="nav-number">1.</span> <span class="nav-text">类型定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构体"><span class="nav-number">2.</span> <span class="nav-text">结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#指向结构体的指针"><span class="nav-number">2.1.</span> <span class="nav-text">指向结构体的指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自引用结构"><span class="nav-number">2.2.</span> <span class="nav-text">自引用结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-下的结构体"><span class="nav-number">2.3.</span> <span class="nav-text">c++ 下的结构体</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类"><span class="nav-number">3.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义一个类"><span class="nav-number">3.1.</span> <span class="nav-text">定义一个类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构体与类的空间分配"><span class="nav-number">4.</span> <span class="nav-text">结构体与类的空间分配</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2022 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.2k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

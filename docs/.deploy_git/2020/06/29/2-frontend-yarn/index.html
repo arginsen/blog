@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | yarn 包管理工具 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Frontendyarn">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,yarn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | yarn 包管理工具">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/06/29/2-frontend-yarn/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/yarn.jpg">
+<meta property="og:updated_time" content="2021-08-01T08:24:16.151Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | yarn 包管理工具">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/yarn.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-yarn" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/yarn.jpg" rel="gallery_clbcwtdza009p7kuvi7j9grxl">
+        <img src="/blog/img/yarn.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      前端 | yarn 包管理工具
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 npm 安装至全局</span></span><br><span class="line">npm install -g yarn</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局参数 global</span></span><br><span class="line"><span class="comment"># 如果要全局执行一个命令，必须加上global参数</span></span><br><span class="line">yarn global add create-react-app --prefix /usr/<span class="built_in">local</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装模块</span></span><br><span class="line"><span class="comment"># 如果 yarn.lock 文件存在，则优先按照该文件指定的版本安装</span></span><br><span class="line">yarn install</span><br><span class="line"><span class="comment"># 在本地 node_modules 目录安装 package.json 里列出的所有依赖</span></span><br><span class="line">yarn install / yarn   </span><br><span class="line"><span class="comment"># 重新拉取所有包，即使之前已经安装的</span></span><br><span class="line">yarn install --force </span><br><span class="line"><span class="comment"># 为 node_modules 目录指定另一位置，代替默认的 ./node_modules </span></span><br><span class="line">yarn install --modules-folder &lt;path&gt; </span><br><span class="line"><span class="comment"># 不读取或生成 yarn.lock 文件 </span></span><br><span class="line">yarn install --no-lockfile </span><br><span class="line"><span class="comment"># 只安装 dependence下的包，不安装 devDependencies 的包</span></span><br><span class="line">yarn install --production / --prod </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 新增安装模块</span></span><br><span class="line"><span class="comment"># 默认将新增模块加入 package.json 文件的 dependencies 字段</span></span><br><span class="line">yarn add package-name</span><br><span class="line"><span class="comment"># 用 --dev 或 -D 安装包到 devDependencies</span></span><br><span class="line">yarn add &lt;package...&gt; [--dev/-D] </span><br><span class="line"><span class="comment"># 用 --peer 或者 -P 安装包到 peerDependencies</span></span><br><span class="line">yarn add &lt;package...&gt; [--peer/-P]  </span><br><span class="line"><span class="comment"># 用 --optional 或者 -O 安装包到 optionalDependencies</span></span><br><span class="line">yarn add &lt;package...&gt; [--optional/-O] </span><br><span class="line"><span class="comment"># 用 --exact 或者 -E 会安装包的精确版本。</span></span><br><span class="line"><span class="comment"># 默认是安装包的主要版本里的最新版本。</span></span><br><span class="line">yarn add &lt;package...&gt; [--exact/-E]</span><br><span class="line"><span class="comment"># 用 --tilde 或者 -T 来安装包的次要版本里的最新版。</span></span><br><span class="line"><span class="comment"># 默认是安装包的主要版本里的最新版本。</span></span><br><span class="line"><span class="comment"># 比如说，yarn add foo@1.2.3 --tilde 会接受 1.2.9，但不接受 1.3.0</span></span><br><span class="line">yarn add &lt;package...&gt; [--tilde/-T]  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 管理配置文件</span></span><br><span class="line"><span class="comment"># 查看配置 key 的值</span></span><br><span class="line">yarn config get &lt;key&gt; </span><br><span class="line"><span class="comment"># 查看当前的配置</span></span><br><span class="line">yarn config list </span><br><span class="line"><span class="comment"># 从配置中删除配置 key</span></span><br><span class="line">yarn config delete &lt;key&gt; </span><br><span class="line"><span class="comment"># 设置配置项 key 的值为 value</span></span><br><span class="line">yarn config <span class="built_in">set</span> &lt;key&gt; &lt;value&gt; [-g|--global] </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询当前工作文件夹所有的依赖</span></span><br><span class="line">yarn list</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看包信息</span></span><br><span class="line">yarn info &lt;package&gt; [&lt;field&gt;]  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从依赖里移除名包</span></span><br><span class="line"><span class="comment"># 同时更新 package.json 和 yarn.lock 文件</span></span><br><span class="line">yarn remove &lt;package...&gt;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新模块版本，依据 package.json 里指定的版本范围，不指定则升级到 latest</span></span><br><span class="line">yarn upgrade d3-scale@1.0.2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行用户自定义的脚本</span></span><br><span class="line">yarn &lt;script&gt; [&lt;args&gt;] </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装某个模块的原因，也可分析目录</span></span><br><span class="line">yarn why package-name</span><br><span class="line">yarn why node_modules/once</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 依照 package.json 文件，生成 yarn.lock 文件</span></span><br><span class="line">yarn generate-lock-entry</span><br></pre></td></tr></table></figure>
+<h1 id="registry"><a href="#registry" class="headerlink" title="registry"></a>registry</h1><blockquote>
+<p>registry 是模块仓库提供了一个查询服务，一般称作源。yarn 官方镜像源的查询服务网址是<a href="https://registry.yarnpkg.com" target="_blank" rel="noopener">https://registry.yarnpkg.com</a></p>
+<p>网址后面跟上模块名，就会得到一个该模块所有版本的信息的 JSON 对象。比如访问 <a href="https://registry.npmjs.org/vue，就会看到" target="_blank" rel="noopener">https://registry.npmjs.org/vue，就会看到</a> vue 模块所有版本的信息。</p>
+<p>在模块名后面，还可以加上版本号或者标签，用来查询某个具体版本的信息。<a href="https://registry.yarnpkg.com/vue/2.6.10，其返回的" target="_blank" rel="noopener">https://registry.yarnpkg.com/vue/2.6.10，其返回的</a> JSON 对象里面，dist.shasum 属性相当于 hash 值，在 lock 和缓存时会使用到，dist.tarball 属性是该版本压缩包的地址，安装时从此获取</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dist: &#123;</span><br><span class="line">  "shasum": "a72b1a42a4d82a721ea438d1b6bf55e66195c637",</span><br><span class="line">  "tarball":"https://registry.npmjs.org/vue/-/vue-2.6.10.tgz"</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前使用的镜像源</span></span><br><span class="line">yarn config get registry</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改镜像源为淘宝源</span></span><br><span class="line">yarn config <span class="built_in">set</span> registry https://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
+<h1 id="依赖版本"><a href="#依赖版本" class="headerlink" title="依赖版本"></a>依赖版本</h1><blockquote>
+<p>yarn 的包遵守 semver，即语义化版本。SemVer 是一套语义化版本控制的约定，定义的格式为</p>
+<p>X.Y.Z（主版本号.次版本号.修订号）：<br> X.主版本号：进行不向下兼容的修改时，递增主版本号<br> Y.次版本号: 做了向下兼容的新增功能或修改<br> Z.修订号：做了向下兼容的问题修复</p>
+</blockquote>
+<blockquote>
+<p>字符 ^ 表明不会修改版本号中的<strong>第一个非零数字</strong>，^3.1.4 里的 3 或者 ^0.4.2 里的 4。版本号中缺少的部分将被 0 填充，且在匹配时这些位置允许改变。<br>使用 <code>yarn add [package-name]</code> 命令安装依赖，默认使用的是 ^ 范围。<br>需要注意的是，如果一个比较器包含有预发布标签的版本，它将只匹配有相同 major.minor.patch 的版本。 例如 &gt;=3.1.4-beta.2，可以匹配 3.1.4-beta.3，但不会匹配 3.1.5-beta.3 版本。</p>
+</blockquote>
+<h1 id="依赖类型"><a href="#依赖类型" class="headerlink" title="依赖类型"></a>依赖类型</h1><table>
+<thead>
+<tr>
+<th>依赖</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dependences</td>
+<td>代码运行时所需要的依赖，比如 vue，vue-router。</td>
+</tr>
+<tr>
+<td>devDependences</td>
+<td>开发依赖，就是那些只在开发过程中需要，而运行时不需要的依赖，比如 babel，webpack。</td>
+</tr>
+<tr>
+<td>peerDependences</td>
+<td>同伴依赖，它用来告知宿主环境需要什么依赖以及依赖的版本范围。如果宿主环境没有对应版本的依赖，在安装依赖时会报出警告。</td>
+</tr>
+<tr>
+<td>optionalDependencies</td>
+<td>可选依赖，这种依赖即便安装失败，Yarn 也会认为整个依赖安装过程是成功的。可选依赖适用于那些即便没有成功安装可选依赖，也有后备方案的情况。</td>
+</tr>
+<tr>
+<td>bundledDependencies</td>
+<td>打包依赖，在发布包时，这个数组里的包都会被打包打包到最终的发布包里，需要注意 bundledDependencies 中的包必须是在devDependencies或dependencies声明过的。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h1><blockquote>
+<p>yarn 会将安装过的包缓存下来，这样再次安装相同包的时候，就不需要再去下载，而是直接从缓存文件中直接 copy 进来。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看 yarn 的全局缓存目录</span></span><br><span class="line">yarn cache dir </span><br><span class="line"></span><br><span class="line"><span class="comment"># yarn 会将不通版本解压后的包存放在不同目录下，目录命名如下</span></span><br><span class="line"><span class="comment"># shasum 即当前版本在源获得的 json 中的 dist.shasum</span></span><br><span class="line">npm-[package name]-[version]-[shasum]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出已缓存的每个包</span></span><br><span class="line">yarn cache list    </span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出匹配指定模式的已缓存的包</span></span><br><span class="line">yarn cache list --pattern &lt;pattern&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="yarn-lock"><a href="#yarn-lock" class="headerlink" title="yarn.lock"></a>yarn.lock</h1><blockquote>
+<p>yarn.lock 中会准确的存储每个依赖的具体版本信息，以保证在不同机器安装可以得到相同的结果。<br>Yarn 在安装期间，只会使用当前项目的 yarn.lock 文件（即 顶级 yarn.lock 文件），会忽略任何依赖里面的 yarn.lock 文件。在顶级 yarn.lock 中包含需要锁定的整个依赖树里全部包版本的所有信息。<br>yarn.lock 文件是在安装期间，由 yarn 自动生成的，并且由 yarn 来管理，不应该手动去更改，更不应该删除 yarn.lock 文件，且要提交到版本控制系统中，以免因为不同机器安装的包版本不一致引发问题。</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"@babel/code-frame@7.0.0-beta.54":</span><br><span class="line">  version "@7.0.0-beta.54"          // 版本</span><br><span class="line">  resolved "url#dist.shasum"        // 包地址</span><br><span class="line">  dependencies:                     // 当前包的依赖包</span><br><span class="line">    <span class="string">"@babel/highlight"</span> <span class="string">"^7.0.0"</span></span><br></pre></td></tr></table></figure>
+<h1 id="yarn-install-过程"><a href="#yarn-install-过程" class="headerlink" title="yarn install 过程"></a>yarn install 过程</h1><blockquote>
+<p>首次执行 yarn install 安装，会按照 package.json 中的语义化版本，去向 registry 进行查询，并获取到符合版本规则的最新的依赖包进行下载，并构建构建依赖关系树。 比如在 package.json 中指定 vue 的版本为 ^2.0.0，就会获取符合 2.x.x 的最高版本的包。然后自动生成 yarn.lock 文件，并生成缓存。</p>
+</blockquote>
+<blockquote>
+<p>之后再执行 yarn install，会对比 package.json 中依赖版本范围和 yarn.lock 中版本号是否匹配。<br> 1、版本号匹配，会根据 yarn.lock 中的 resolved 字段去查看缓存， 如果有缓存，直接copy，没有缓存则按照 resolved 字段的url去下载包。<br> 2、版本号不匹配，根据 package.json 中的版本范围去 registry 查询，下载符合版本规则最新的包，并更新至 yarn.lock 中。</p>
+</blockquote>
+<h1 id="yarn-自定义命令"><a href="#yarn-自定义命令" class="headerlink" title="yarn 自定义命令"></a>yarn 自定义命令</h1><blockquote>
+<p>可以通过配置 package.json 中的 scripts 脚本命令来自定义命令，执行安装的一些插件。如当我们需要删除 vue 项目，node_modules 文件夹过大，删除很费时，这时我们可以安装一个插件 rimraf，但安装到全局时并不能直接执行，这时借用 yarn 来执行就是一个很好的选择。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般全局的 package.json 在 C:\Users\user\AppData\Local\Yarn，npm 亦然</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"rimraf"</span>: <span class="string">"node_modules/.bin/rimraf"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"@vue/cli-init"</span>: <span class="string">"^4.4.6"</span>,</span><br><span class="line">    <span class="attr">"@vue/cli-service-global"</span>: <span class="string">"^4.4.6"</span>,</span><br><span class="line">    <span class="attr">"rimraf"</span>: <span class="string">"^3.0.2"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除命令</span></span><br><span class="line">yarn rimraf node_modules</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://mp.weixin.qq.com/s/xFEI8ZIRBTAXHKUMBPwW_Q" target="_blank" rel="noopener">前端工程师应该知道的yarn知识</a></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/yarn/">yarn</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/06/29/2-frontend-yarn/" class="article-date">
+	  <time datetime="2020-06-28T16:00:00.000Z" itemprop="datePublished">六月 29, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">2k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/07/15/2-frontend-pt5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          前端 | 学习 WebGL
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/06/21/2-frontend-webpack/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">前端 | webpack 构建工具</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本用法"><span class="nav-number">1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#registry"><span class="nav-number">2.</span> <span class="nav-text">registry</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖版本"><span class="nav-number">3.</span> <span class="nav-text">依赖版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖类型"><span class="nav-number">4.</span> <span class="nav-text">依赖类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缓存"><span class="nav-number">5.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yarn-lock"><span class="nav-number">6.</span> <span class="nav-text">yarn.lock</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yarn-install-过程"><span class="nav-number">7.</span> <span class="nav-text">yarn install 过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yarn-自定义命令"><span class="nav-number">8.</span> <span class="nav-text">yarn 自定义命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">9.</span> <span class="nav-text">参考资料</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2022 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.2k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

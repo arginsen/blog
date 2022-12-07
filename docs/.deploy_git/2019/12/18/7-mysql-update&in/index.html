@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>MySQL | MySQL更改系统部门的执法主体与所属区域 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="MySQL">
+  
+  
+  
+  
+  <meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL | MySQL更改系统部门的执法主体与所属区域">
+<meta property="og:url" content="https://arginsen.github.io/blog/2019/12/18/7-mysql-update&in/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/mysql.jpeg">
+<meta property="og:updated_time" content="2021-11-04T15:44:07.814Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL | MySQL更改系统部门的执法主体与所属区域">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/mysql.jpeg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-7-mysql-update&amp;in" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/mysql.jpeg" rel="gallery_clbcwte1900cw7kuvkatwgubi">
+        <img src="/blog/img/mysql.jpeg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      MySQL | MySQL更改系统部门的执法主体与所属区域
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<p>分层级是初步摸索的sql语句，整体是对于分层sql的总结与封装</p>
+<h1 id="分层级更新"><a href="#分层级更新" class="headerlink" title="分层级更新"></a>分层级更新</h1><p>层级说明：</p>
+<ul>
+<li>衡阳市<ul>
+<li>衡阳市直各部门-衡阳市水利局-局安全信息科</li>
+<li>衡山县-衡山县直各部门-衡山县统计局</li>
+</ul>
+</li>
+</ul>
+<h2 id="对市级的下下级进行改动"><a href="#对市级的下下级进行改动" class="headerlink" title="对市级的下下级进行改动"></a>对市级的下下级进行改动</h2><ol>
+<li>对市下下级部门region_id的改动</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">-- 查找senior_id为1的各部门的unit_id和region_id</span><br><span class="line">SELECT unit_id,unit_name from tc_unit where  senior_id = 1 AND delete_flag != 1 </span><br><span class="line"></span><br><span class="line">-- 筛选出senior_id为37（衡阳市）的下下级</span><br><span class="line">SELECT  unit_id,unit_name,region_id </span><br><span class="line">FROM    tc_unit a</span><br><span class="line">WHERE   a.senior_id </span><br><span class="line">IN (SELECT unit_id </span><br><span class="line">trueFROM   (SELECT a.unit_id</span><br><span class="line">truetruetrueFROM tc_unit a</span><br><span class="line">truetruetrueWHERE a.senior_id = 37 </span><br><span class="line">truetruetrueAND a.delete_flag != 1 ) t)</span><br><span class="line"></span><br><span class="line">-- 更新语句 1.123s</span><br><span class="line">UPDATE  tc_unit a </span><br><span class="line">set     region_id = 5 </span><br><span class="line">WHERE   a.senior_id </span><br><span class="line">IN (SELECT unit_id </span><br><span class="line">trueFROM   (SELECT a.unit_id</span><br><span class="line">truetruetrueFROM tc_unit a</span><br><span class="line">truetruetrueWHERE a.senior_id = 37 </span><br><span class="line">truetruetrueAND a.delete_flag != 1 ) t)</span><br><span class="line"></span><br><span class="line">-- 优化更新语句 </span><br><span class="line">UPDATE  tc_unit a</span><br><span class="line">JOIN   (SELECT a.unit_id</span><br><span class="line">truetrueFROM tc_unit a </span><br><span class="line">truetrueWHERE a.senior_id = 37 </span><br><span class="line">truetrueAND a.delete_flag != 1) t</span><br><span class="line">ON a.senior_id = t.unit_id</span><br><span class="line">SET     region_id = 5</span><br></pre></td></tr></table></figure>
+<!--more-->
+<ol start="2">
+<li>对市下下级部门law_subject_id的改动</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">UPDATE tc_unit a </span><br><span class="line">set law_subject_id = </span><br><span class="line">WHERE a.senior_id </span><br><span class="line">IN (SELECT unit_id </span><br><span class="line">trueFROM tc_unit </span><br><span class="line">trueWHERE senior_id = 37 </span><br><span class="line">trueAND delete_flag != 1 )</span><br></pre></td></tr></table></figure>
+<h2 id="对市级的下下下级进行改动"><a href="#对市级的下下下级进行改动" class="headerlink" title="对市级的下下下级进行改动"></a>对市级的下下下级进行改动</h2><ol>
+<li>对市下下下级部门region_id的改动<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 筛选出senior_id为37（衡阳市）的下下下级</span></span><br><span class="line"><span class="keyword">SELECT</span>  unit_id,unit_name,region_id </span><br><span class="line"><span class="keyword">FROM</span>    tc_unit a</span><br><span class="line"><span class="keyword">WHERE</span>   a.senior_id </span><br><span class="line"><span class="keyword">IN</span> (<span class="keyword">SELECT</span> unit_id</span><br><span class="line">true<span class="keyword">FROM</span>   (<span class="keyword">SELECT</span> a.unit_id </span><br><span class="line">truetruetrue<span class="keyword">FROM</span> tc_unit a </span><br><span class="line">truetruetrue<span class="keyword">WHERE</span> a.senior_id </span><br><span class="line">truetruetrue<span class="keyword">IN</span> (<span class="keyword">SELECT</span> b.unit_id</span><br><span class="line">truetruetruetrue<span class="keyword">FROM</span> tc_unit b</span><br><span class="line">truetruetruetrue<span class="keyword">WHERE</span> b.senior_id = <span class="number">37</span> </span><br><span class="line">truetruetruetrue<span class="keyword">AND</span> b.delete_flag != <span class="number">1</span> ) ) y)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- -- 更新语句 1.285s</span></span><br><span class="line"><span class="keyword">UPDATE</span>  tc_unit a </span><br><span class="line"><span class="keyword">set</span> 	region_id = <span class="number">5</span> </span><br><span class="line"><span class="keyword">WHERE</span> 	a.senior_id </span><br><span class="line"><span class="keyword">IN</span> (<span class="keyword">SELECT</span> unit_id</span><br><span class="line">true<span class="keyword">FROM</span>   (<span class="keyword">SELECT</span> a.unit_id </span><br><span class="line">truetruetrue<span class="keyword">FROM</span> tc_unit a </span><br><span class="line">truetruetrue<span class="keyword">WHERE</span> a.senior_id </span><br><span class="line">truetruetrue<span class="keyword">IN</span> (<span class="keyword">SELECT</span> b.unit_id</span><br><span class="line">truetruetruetrue<span class="keyword">FROM</span> tc_unit b</span><br><span class="line">truetruetruetrue<span class="keyword">WHERE</span> b.senior_id = <span class="number">37</span> </span><br><span class="line">truetruetruetrue<span class="keyword">AND</span> b.delete_flag != <span class="number">1</span> ) ) y)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="整体层级更新"><a href="#整体层级更新" class="headerlink" title="整体层级更新"></a>整体层级更新</h1><ol>
+<li><p>所属区域的改动</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询</span></span><br><span class="line"><span class="keyword">SELECT</span> unit_id,unit_name,region_id </span><br><span class="line"><span class="keyword">FROM</span> tc_unit a</span><br><span class="line"><span class="keyword">WHERE</span> a.senior_id = <span class="number">37</span> </span><br><span class="line"><span class="keyword">AND</span> a.delete_flag != <span class="number">1</span> </span><br><span class="line"><span class="keyword">OR</span>	  a.senior_id </span><br><span class="line"><span class="keyword">IN</span> (<span class="keyword">SELECT</span> unit_id </span><br><span class="line">true<span class="keyword">FROM</span>   (<span class="keyword">SELECT</span> a.unit_id</span><br><span class="line">truetruetrue<span class="keyword">FROM</span> tc_unit a</span><br><span class="line">truetruetrue<span class="keyword">WHERE</span> a.senior_id = <span class="number">37</span> </span><br><span class="line">truetruetrue<span class="keyword">AND</span> a.delete_flag != <span class="number">1</span> ) t)</span><br><span class="line"><span class="keyword">OR</span>	  a.senior_id </span><br><span class="line"><span class="keyword">IN</span> (<span class="keyword">SELECT</span> unit_id</span><br><span class="line">true<span class="keyword">FROM</span>   (<span class="keyword">SELECT</span> a.unit_id </span><br><span class="line">truetruetrue<span class="keyword">FROM</span> tc_unit a </span><br><span class="line">truetruetrue<span class="keyword">WHERE</span> a.senior_id </span><br><span class="line">truetruetrue<span class="keyword">IN</span> (<span class="keyword">SELECT</span> b.unit_id</span><br><span class="line">truetruetruetrue<span class="keyword">FROM</span> tc_unit b</span><br><span class="line">truetruetruetrue<span class="keyword">WHERE</span> b.senior_id = <span class="number">37</span> </span><br><span class="line">truetruetruetrue<span class="keyword">AND</span> b.delete_flag != <span class="number">1</span> ) ) y)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 更新</span></span><br><span class="line"><span class="keyword">UPDATE</span>  tc_unit a </span><br><span class="line"><span class="keyword">set</span> 	region_id = <span class="number">5</span> </span><br><span class="line"><span class="keyword">WHERE</span> a.senior_id = <span class="number">37</span> </span><br><span class="line"><span class="keyword">AND</span> a.delete_flag != <span class="number">1</span> </span><br><span class="line"><span class="keyword">OR</span>	  a.senior_id </span><br><span class="line"><span class="keyword">IN</span> (<span class="keyword">SELECT</span> unit_id </span><br><span class="line">true<span class="keyword">FROM</span>   (<span class="keyword">SELECT</span> a.unit_id</span><br><span class="line">truetruetrue<span class="keyword">FROM</span> tc_unit a</span><br><span class="line">truetruetrue<span class="keyword">WHERE</span> a.senior_id = <span class="number">37</span> </span><br><span class="line">truetruetrue<span class="keyword">AND</span> a.delete_flag != <span class="number">1</span> ) t)</span><br><span class="line"><span class="keyword">OR</span>	  a.senior_id </span><br><span class="line"><span class="keyword">IN</span> (<span class="keyword">SELECT</span> unit_id</span><br><span class="line">true<span class="keyword">FROM</span>   (<span class="keyword">SELECT</span> a.unit_id </span><br><span class="line">truetruetrue<span class="keyword">FROM</span> tc_unit a </span><br><span class="line">truetruetrue<span class="keyword">WHERE</span> a.senior_id </span><br><span class="line">truetruetrue<span class="keyword">IN</span> (<span class="keyword">SELECT</span> b.unit_id</span><br><span class="line">truetruetruetrue<span class="keyword">FROM</span> tc_unit b</span><br><span class="line">truetruetruetrue<span class="keyword">WHERE</span> b.senior_id = <span class="number">37</span> </span><br><span class="line">truetruetruetrue<span class="keyword">AND</span> b.delete_flag != <span class="number">1</span> ) ) y)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执法主体的改动</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询</span></span><br><span class="line"><span class="keyword">SELECT</span> unit_name,region_id,unit_id,law_subject_id</span><br><span class="line"><span class="keyword">FROM</span> tc_unit a</span><br><span class="line"><span class="keyword">WHERE</span> a.senior_id = <span class="number">1</span> </span><br><span class="line"><span class="keyword">AND</span> a.delete_flag != <span class="number">1</span> </span><br><span class="line"><span class="keyword">OR</span>	  a.senior_id </span><br><span class="line"><span class="keyword">IN</span> (<span class="keyword">SELECT</span> unit_id </span><br><span class="line">true<span class="keyword">FROM</span>   (<span class="keyword">SELECT</span> a.unit_id</span><br><span class="line">truetruetrue<span class="keyword">FROM</span> tc_unit a</span><br><span class="line">truetruetrue<span class="keyword">WHERE</span> a.senior_id = <span class="number">1</span> </span><br><span class="line">truetruetrue<span class="keyword">AND</span> a.delete_flag != <span class="number">1</span> ) t)</span><br><span class="line"><span class="keyword">OR</span>	  a.senior_id </span><br><span class="line"><span class="keyword">IN</span> (<span class="keyword">SELECT</span> unit_id</span><br><span class="line">true<span class="keyword">FROM</span>   (<span class="keyword">SELECT</span> a.unit_id </span><br><span class="line">truetruetrue<span class="keyword">FROM</span> tc_unit a </span><br><span class="line">truetruetrue<span class="keyword">WHERE</span> a.senior_id </span><br><span class="line">truetruetrue<span class="keyword">IN</span> (<span class="keyword">SELECT</span> b.unit_id</span><br><span class="line">truetruetruetrue<span class="keyword">FROM</span> tc_unit b</span><br><span class="line">truetruetruetrue<span class="keyword">WHERE</span> b.senior_id = <span class="number">1</span> </span><br><span class="line">truetruetruetrue<span class="keyword">AND</span> b.delete_flag != <span class="number">1</span> ) ) y)</span><br><span class="line">truetruetruetrue</span><br><span class="line"><span class="comment">-- 更新</span></span><br><span class="line"><span class="keyword">UPDATE</span>  tc_unit a </span><br><span class="line"><span class="keyword">set</span> law_subject_id = unit_id</span><br><span class="line"><span class="keyword">WHERE</span> a.senior_id = <span class="number">1</span> </span><br><span class="line"><span class="keyword">AND</span> a.delete_flag != <span class="number">1</span> </span><br><span class="line"><span class="keyword">OR</span>	  a.senior_id </span><br><span class="line"><span class="keyword">IN</span> (<span class="keyword">SELECT</span> unit_id </span><br><span class="line">true<span class="keyword">FROM</span>   (<span class="keyword">SELECT</span> a.unit_id</span><br><span class="line">truetruetrue<span class="keyword">FROM</span> tc_unit a</span><br><span class="line">truetruetrue<span class="keyword">WHERE</span> a.senior_id = <span class="number">1</span> </span><br><span class="line">truetruetrue<span class="keyword">AND</span> a.delete_flag != <span class="number">1</span> ) t)</span><br><span class="line"><span class="keyword">OR</span>	  a.senior_id </span><br><span class="line"><span class="keyword">IN</span> (<span class="keyword">SELECT</span> unit_id</span><br><span class="line">true<span class="keyword">FROM</span>   (<span class="keyword">SELECT</span> a.unit_id </span><br><span class="line">truetruetrue<span class="keyword">FROM</span> tc_unit a </span><br><span class="line">truetruetrue<span class="keyword">WHERE</span> a.senior_id </span><br><span class="line">truetruetrue<span class="keyword">IN</span> (<span class="keyword">SELECT</span> b.unit_id</span><br><span class="line">truetruetruetrue<span class="keyword">FROM</span> tc_unit b</span><br><span class="line">truetruetruetrue<span class="keyword">WHERE</span> b.senior_id = <span class="number">1</span> </span><br><span class="line">truetruetruetrue<span class="keyword">AND</span> b.delete_flag != <span class="number">1</span> ) ) y)</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/practice/">practice</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/MySQL/">MySQL</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2019/12/18/7-mysql-update&in/" class="article-date">
+	  <time datetime="2019-12-18T09:24:21.000Z" itemprop="datePublished">十二月 18, 2019</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">638字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/12/18/5-linux-set-hometoroot/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux | centos7将centos-home磁盘容量分一部分给centos-root
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/12/13/5-linux-set-nmap/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Linux | nmap测远程ip和端口是否通</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分层级更新"><span class="nav-number">1.</span> <span class="nav-text">分层级更新</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对市级的下下级进行改动"><span class="nav-number">1.1.</span> <span class="nav-text">对市级的下下级进行改动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对市级的下下下级进行改动"><span class="nav-number">1.2.</span> <span class="nav-text">对市级的下下下级进行改动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#整体层级更新"><span class="nav-number">2.</span> <span class="nav-text">整体层级更新</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2022 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.2k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

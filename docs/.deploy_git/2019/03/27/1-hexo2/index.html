@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>hexo博客 | Hexo主题细节配置 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="hexo">
+  
+  
+  
+  
+  <meta name="description" content="前言在建站的过程中，可谓是碰到了很多坑，但是作为一个初学者，这些坑也是能让我更好的消化所接触的知识，理解一些基础的东西。所以说实战还是养人，实际去做，提出问题，后边系统再学时就会有一种很好的代入感。">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo博客 | Hexo主题细节配置">
+<meta property="og:url" content="https://arginsen.github.io/blog/2019/03/27/1-hexo2/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:description" content="前言在建站的过程中，可谓是碰到了很多坑，但是作为一个初学者，这些坑也是能让我更好的消化所接触的知识，理解一些基础的东西。所以说实战还是养人，实际去做，提出问题，后边系统再学时就会有一种很好的代入感。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/hexo.jpg">
+<meta property="og:updated_time" content="2021-11-04T15:39:47.644Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo博客 | Hexo主题细节配置">
+<meta name="twitter:description" content="前言在建站的过程中，可谓是碰到了很多坑，但是作为一个初学者，这些坑也是能让我更好的消化所接触的知识，理解一些基础的东西。所以说实战还是养人，实际去做，提出问题，后边系统再学时就会有一种很好的代入感。">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/hexo.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-1-hexo2" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/hexo.jpg" rel="gallery_clbcwtdsd00027kuvf3reyawp">
+        <img src="/blog/img/hexo.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      hexo博客 | Hexo主题细节配置
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在建站的过程中，可谓是碰到了很多坑，但是作为一个初学者，这些坑也是能让我更好的消化所接触的知识，理解一些基础的东西。所以说实战还是养人，实际去做，提出问题，后边系统再学时就会有一种很好的代入感。<br><a id="more"></a><br>其实在初次尝试中，即便跟着教程走，也不一定能解决遇到的问题，那么这时就要多思考，多尝试。教程是死的，而人是活的。</p>
+<h3 id="更改代码颜色"><a href="#更改代码颜色" class="headerlink" title="更改代码颜色"></a>更改代码颜色</h3><p>代码颜色属于css里，所以我们首先要想到在主题的css里修改参数。</p>
+<p>定位到<em>themes\主题名\source\css</em>，此外了解到所选主题不同，文件都可能是对不上的。而我这里是在<em>css_partial\articles.styl</em>文件内修改。</p>
+<p><strong>思路</strong></p>
+<p>在浏览器中先打开本地网页，在代码区右键游览器检查元素</p>
+<p><img src="/blog/img/2019/hexo-set/2.png" alt="2"></p>
+<p>可以看到右侧style栏的网页选中区的css样式，显示article，因此我们打开articles.styl</p>
+<p><img src="/blog/img/2019/hexo-set/3.png" alt="3"><br>输入自定义样式(附我的)：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.articles</span></span><br><span class="line">  <span class="selector-class">.article-entry</span> <span class="selector-tag">pre</span>, <span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span></span><br><span class="line">    <span class="selector-tag">background</span> <span class="selector-tag">dark</span></span><br><span class="line">    <span class="selector-tag">padding</span> 1<span class="selector-tag">rem</span></span><br><span class="line">    <span class="selector-tag">color</span> <span class="selector-tag">shenju</span>           <span class="comment">/*字体颜色，可参考https://www.114la.com/other/rgb.htm*/</span></span><br><span class="line">  <span class="selector-class">.article-entry</span> <span class="selector-tag">code</span></span><br><span class="line">    <span class="selector-tag">padding</span> 1<span class="selector-tag">rem</span></span><br><span class="line">    <span class="selector-tag">background</span> <span class="selector-tag">dark</span>       <span class="comment">/*背景颜色*/</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="更改链接显示字体颜色"><a href="#更改链接显示字体颜色" class="headerlink" title="更改链接显示字体颜色"></a>更改链接显示字体颜色</h3><p>对于css文件，找到对页面链接进行配置的文件，</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Links */</span></span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#f33</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而styl文件，</p>
+<figure class="highlight styl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#1fa0ae</span>;</span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    <span class="attribute">color</span> <span class="number">#333</span></span><br><span class="line">true&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对主页标题-amp-描述进行配置"><a href="#对主页标题-amp-描述进行配置" class="headerlink" title="对主页标题&amp;描述进行配置"></a>对主页标题&amp;描述进行配置</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* HEADER   #位于fashion.css文件夹下，对主页的标题&amp;描述进行配置</span></span><br><span class="line"><span class="comment">----------------------------------------------- */</span></span><br><span class="line"><span class="selector-class">.site-header</span> &#123;</span><br><span class="line">true<span class="attribute">padding</span>: <span class="number">40px</span> <span class="number">0</span> <span class="number">20px</span>;</span><br><span class="line">true&#125;</span><br><span class="line"><span class="selector-class">.site-branding</span> &#123;</span><br><span class="line">true<span class="attribute">float</span>: left;</span><br><span class="line">true<span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">true&#125;</span><br><span class="line"><span class="selector-class">.site-title</span> &#123;</span><br><span class="line">true<span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">true<span class="attribute">font-size</span>: <span class="number">48px</span>;             <span class="comment">/*定义字体大小*/</span></span><br><span class="line">true<span class="attribute">font-family</span>: Oswald, <span class="string">"Microsoft Yahei"</span>, Arial, Helvetica, sans-serif;</span><br><span class="line">true<span class="attribute">text-transform</span>: uppercase;   <span class="comment">/*英文转为大写字母*/</span></span><br><span class="line">true<span class="attribute">line-height</span>: <span class="number">1.2em</span>;          <span class="comment">/*表示行高*/</span></span><br><span class="line">true&#125;</span><br><span class="line"><span class="selector-class">.site-title</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">true<span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">true<span class="attribute">text-decoration</span>: none;</span><br><span class="line">true&#125;</span><br><span class="line"><span class="selector-class">.site-description</span> &#123;</span><br><span class="line">true<span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">true<span class="attribute">color</span>: <span class="number">#a6a6a6</span>;             <span class="comment">/*字体颜色*/</span></span><br><span class="line">true<span class="attribute">font-weight</span>: <span class="number">300</span>;</span><br><span class="line">true<span class="attribute">font-family</span>: Oswald, <span class="string">"Microsoft Yahei"</span>, Arial, Helvetica, sans-serif;</span><br><span class="line">true<span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">true<span class="attribute">letter-spacing</span>: <span class="number">2px</span>;        <span class="comment">/*字体间距*/</span></span><br><span class="line">true&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/practice/">practice</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hexo/">hexo</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2019/03/27/1-hexo2/" class="article-date">
+	  <time datetime="2019-03-26T16:00:00.000Z" itemprop="datePublished">三月 27, 2019</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">521字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/03/29/1-typecho/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          ubuntu下搭建typecho博客
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/03/27/1-hexo1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">hexo博客 | 简单搭建hexo博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更改代码颜色"><span class="nav-number">1.1.</span> <span class="nav-text">更改代码颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改链接显示字体颜色"><span class="nav-number">1.2.</span> <span class="nav-text">更改链接显示字体颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对主页标题-amp-描述进行配置"><span class="nav-number">1.3.</span> <span class="nav-text">对主页标题&amp;描述进行配置</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2022 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.2k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>
