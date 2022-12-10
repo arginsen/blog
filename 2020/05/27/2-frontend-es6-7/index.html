@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | ES6笔记 | 七、Reflect | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendES6">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | ES6笔记 | 七、Reflect">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/05/27/2-frontend-es6-7/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/es6.jpg">
+<meta property="og:updated_time" content="2021-10-20T11:52:06.797Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | ES6笔记 | 七、Reflect">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/es6.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-es6-7" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/es6.jpg" rel="gallery_clbdnvlwr0055h8uvg58qliyr">
+        <img src="/blog/img/es6.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      前端 | ES6笔记 | 七、Reflect
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<p>Reflect 对象与 Proxy 对象一样，也是 ES6 为了操作对象而提供的新 API </p>
+<h1 id="Reflect-对象的特点"><a href="#Reflect-对象的特点" class="headerlink" title="Reflect 对象的特点"></a>Reflect 对象的特点</h1><p>Reflect 对象将 Object 对象的一明显属于语言内部的方法，放到 Reflect 对象上部署，未来的新方法将只部署在 Reflect 对象上。也就是说，从 Reflect 对象上可以拿到语言内部的方法</p>
+<p>Reflect 对象修改某些 Object 方法的返回结果，让其变得更合理。比如 Object.defineProperty(obj, name, desc) 在无法定义属性时，会抛出一个错误，而 Reflect.defineProperty(obj, name, desc) 则会返回 false</p>
+<p>Reflect 对象让 Object 操作都变成函数行为。某些 Object 操作是命令式，比如 <code>name in obj</code>和 <code>delete obj[name]</code>，而 <code>Reflect.has(obj, name)</code> 和 <code>Reflect.deleteProperty(obj, name)</code> 让它们变成了函数行为。</p>
+<p>Reflect 对象的方法与 Proxy 对象的方法一一对应，只要是 Proxy 对象的方法，就能在 Reflect 对象上找到对应的方法。这就让 Proxy 对象可以方便的调用对应的 Reflect 方法，完成默认行为，也就是说，不管 Proxy 怎么修改默认行为，在 Reflect 上总可以获取默认行为</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 每一个拦截操作，内部都用 Reflect 保证原生方法能够正常运行</span></span><br><span class="line"><span class="keyword">var</span> loggedObj = <span class="keyword">new</span> <span class="built_in">Proxy</span>(obj, &#123;</span><br><span class="line">  <span class="keyword">get</span>(target, name) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'get'</span>, target, name);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, name);</span><br><span class="line">  &#125;,</span><br><span class="line">  deleteProperty(target, name) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'delete'</span> + name);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.deleteProperty(target, name);</span><br><span class="line">  &#125;,</span><br><span class="line">  has(target, name) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'has'</span> + name);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.has(target, name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="Reflect-静态方法"><a href="#Reflect-静态方法" class="headerlink" title="Reflect 静态方法"></a>Reflect 静态方法</h1><h2 id="Reflect-get-target-name-receiver"><a href="#Reflect-get-target-name-receiver" class="headerlink" title="Reflect.get(target, name, receiver)"></a>Reflect.get(target, name, receiver)</h2><p>Reflect.get 方法查找并返回 target 对象的 name 属性，如果没有该属性，则返回 undefined </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">  foo: <span class="number">1</span>,</span><br><span class="line">  bar: <span class="number">2</span>,</span><br><span class="line">  <span class="keyword">get</span> baz() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.foo + <span class="keyword">this</span>.bar;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Reflect</span>.get(myObject, <span class="string">'foo'</span>) <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Reflect</span>.get(myObject, <span class="string">'bar'</span>) <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">Reflect</span>.get(myObject, <span class="string">'baz'</span>) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>如果 name 属性部署了读取函数 getter，则读取函数的 this 绑定 receiver</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">  foo: <span class="number">1</span>,</span><br><span class="line">  bar: <span class="number">2</span>,</span><br><span class="line">  <span class="keyword">get</span> baz() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.foo + <span class="keyword">this</span>.bar;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myReceiverObject = &#123;</span><br><span class="line">  foo: <span class="number">4</span>,</span><br><span class="line">  bar: <span class="number">4</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Reflect</span>.get(myObject, <span class="string">'baz'</span>, myReceiverObject) <span class="comment">// 8</span></span><br></pre></td></tr></table></figure>
+<h2 id="Reflect-set-target-name-value-receiver"><a href="#Reflect-set-target-name-value-receiver" class="headerlink" title="Reflect.set(target, name, value, receiver)"></a>Reflect.set(target, name, value, receiver)</h2><p>Reflect.set 方法设置 target 对象的 name 属性等于 value</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  foo: <span class="number">1</span>,</span><br><span class="line">  <span class="keyword">set</span> bar(value) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.foo = value;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myObject.foo <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Reflect</span>.set(myObject, <span class="string">'foo'</span>, <span class="number">2</span>);</span><br><span class="line">myObject.foo <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Reflect</span>.set(myObject, <span class="string">'bar'</span>, <span class="number">3</span>)</span><br><span class="line">myObject.foo <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>同 get 一样，如果 name 属性设置了赋值函数，则赋值函数的 this 绑定 receiver</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">  foo: <span class="number">4</span>,</span><br><span class="line">  <span class="keyword">set</span> bar(value) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.foo = value;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myReceiverObject = &#123;</span><br><span class="line">  foo: <span class="number">0</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Reflect</span>.set(myObject, <span class="string">'bar'</span>, <span class="number">1</span>, myReceiverObject);</span><br><span class="line">myObject.foo <span class="comment">// 4</span></span><br><span class="line">myReceiverObject.foo <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h2 id="Reflect-has-obj-name"><a href="#Reflect-has-obj-name" class="headerlink" title="Reflect.has(obj, name)"></a>Reflect.has(obj, name)</h2><p>Reflect.has 方法对应 <code>name in obj</code> 里面的 in 运算符。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">  foo: <span class="number">1</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 旧写法</span></span><br><span class="line"><span class="string">'foo'</span> <span class="keyword">in</span> myObject <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 新写法</span></span><br><span class="line"><span class="built_in">Reflect</span>.has(myObject, <span class="string">'foo'</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="Reflect-deleteProperty-obj-name"><a href="#Reflect-deleteProperty-obj-name" class="headerlink" title="Reflect.deleteProperty(obj, name)"></a>Reflect.deleteProperty(obj, name)</h2><p>Reflect.deleteProperty 方法等同于 <code>delete obj[name]</code>，用于删除对象的属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myObj = &#123; <span class="attr">foo</span>: <span class="string">'bar'</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 旧写法</span></span><br><span class="line"><span class="keyword">delete</span> myObj.foo;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新写法</span></span><br><span class="line"><span class="built_in">Reflect</span>.deleteProperty(myObj, <span class="string">'foo'</span>);</span><br></pre></td></tr></table></figure>
+<p>该方法返回一个布尔值。如果删除成功，或者被删除的属性不存在，返回true；删除失败，被删除的属性依然存在，返回false。</p>
+<p>如果 Reflect.deleteProperty() 方法的第一个参数不是对象，会报错。</p>
+<h2 id="Reflect-construct-target-args"><a href="#Reflect-construct-target-args" class="headerlink" title="Reflect.construct(target, args)"></a>Reflect.construct(target, args)</h2><p>Reflect.construct 方法等同于 <code>new target(...args)</code>，这提供了一种不使用 new，来调用构造函数的方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Greeting</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// new 的写法</span></span><br><span class="line"><span class="keyword">const</span> instance = <span class="keyword">new</span> Greeting(<span class="string">'张三'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Reflect.construct 的写法</span></span><br><span class="line"><span class="keyword">const</span> instance = <span class="built_in">Reflect</span>.construct(Greeting, [<span class="string">'张三'</span>]);</span><br></pre></td></tr></table></figure>
+<p>如果Reflect.construct()方法的第一个参数不是函数，会报错。</p>
+<h2 id="Reflect-getPrototypeOf-obj"><a href="#Reflect-getPrototypeOf-obj" class="headerlink" title="Reflect.getPrototypeOf(obj)"></a>Reflect.getPrototypeOf(obj)</h2><p>Reflect.getPrototypeOf 方法用于读取对象的 <code>__proto__</code> 属性，对应 Object.getPrototypeOf(obj)。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myObj = <span class="keyword">new</span> FancyThing();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 旧写法</span></span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(myObj) === FancyThing.prototype;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新写法</span></span><br><span class="line"><span class="built_in">Reflect</span>.getPrototypeOf(myObj) === FancyThing.prototype;</span><br></pre></td></tr></table></figure>
+<p>Reflect.getPrototypeOf 和 Object.getPrototypeOf 的一个区别是:<br>如果参数不是对象，Object.getPrototypeOf 会将这个参数转为对象，然后再运行，而 Reflect.getPrototypeOf 会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="number">1</span>) <span class="comment">// Number &#123;[[PrimitiveValue]]: 0&#125;</span></span><br><span class="line"><span class="built_in">Reflect</span>.getPrototypeOf(<span class="number">1</span>) <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<h2 id="Reflect-setPrototypeOf-obj-newProto"><a href="#Reflect-setPrototypeOf-obj-newProto" class="headerlink" title="Reflect.setPrototypeOf(obj, newProto)"></a>Reflect.setPrototypeOf(obj, newProto)</h2><p>Reflect.setPrototypeOf 方法用于设置目标对象的原型（prototype），对应 Object.setPrototypeOf(obj, newProto) 方法。它返回一个布尔值，表示是否设置成功。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myObj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 旧写法</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(myObj, <span class="built_in">Array</span>.prototype);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新写法</span></span><br><span class="line"><span class="built_in">Reflect</span>.setPrototypeOf(myObj, <span class="built_in">Array</span>.prototype);</span><br><span class="line"></span><br><span class="line">myObj.length <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<p>如果无法设置目标对象的原型（比如，目标对象禁止扩展），Reflect.setPrototypeOf 方法返回 false。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Reflect</span>.setPrototypeOf(&#123;&#125;, <span class="literal">null</span>)</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">Reflect</span>.setPrototypeOf(<span class="built_in">Object</span>.freeze(&#123;&#125;), <span class="literal">null</span>)</span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>如果第一个参数不是对象，Object.setPrototypeOf 会返回第一个参数本身，而 Reflect.setPrototypeOf 会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.setPrototypeOf(<span class="number">1</span>, &#123;&#125;)</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Reflect</span>.setPrototypeOf(<span class="number">1</span>, &#123;&#125;)</span><br><span class="line"><span class="comment">// TypeError: Reflect.setPrototypeOf called on non-object</span></span><br></pre></td></tr></table></figure>
+<p>如果第一个参数是 undefined 或 null，Object.setPrototypeOf 和 Reflect.setPrototypeOf 都会报错。</p>
+<h2 id="Reflect-apply-func-thisArg-args"><a href="#Reflect-apply-func-thisArg-args" class="headerlink" title="Reflect.apply(func, thisArg, args)"></a>Reflect.apply(func, thisArg, args)</h2><p>Reflect.apply方法等同于Function.prototype.apply.call(func, thisArg, args)，用于绑定this对象后执行给定函数。</p>
+<p>一般来说，如果要绑定一个函数的this对象，可以这样写fn.apply(obj, args)，但是如果函数定义了自己的apply方法，就只能写成Function.prototype.apply.call(fn, obj, args)，采用Reflect对象可以简化这种操作。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ages = [<span class="number">11</span>, <span class="number">33</span>, <span class="number">12</span>, <span class="number">54</span>, <span class="number">18</span>, <span class="number">96</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 旧写法</span></span><br><span class="line"><span class="keyword">const</span> youngest = <span class="built_in">Math</span>.min.apply(<span class="built_in">Math</span>, ages);</span><br><span class="line"><span class="keyword">const</span> oldest = <span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>, ages);</span><br><span class="line"><span class="keyword">const</span> type = <span class="built_in">Object</span>.prototype.toString.call(youngest);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新写法</span></span><br><span class="line"><span class="keyword">const</span> youngest = <span class="built_in">Reflect</span>.apply(<span class="built_in">Math</span>.min, <span class="built_in">Math</span>, ages);</span><br><span class="line"><span class="keyword">const</span> oldest = <span class="built_in">Reflect</span>.apply(<span class="built_in">Math</span>.max, <span class="built_in">Math</span>, ages);</span><br><span class="line"><span class="keyword">const</span> type = <span class="built_in">Reflect</span>.apply(<span class="built_in">Object</span>.prototype.toString, youngest, []);</span><br></pre></td></tr></table></figure>
+<h2 id="Reflect-ownKeys-target"><a href="#Reflect-ownKeys-target" class="headerlink" title="Reflect.ownKeys(target)"></a>Reflect.ownKeys(target)</h2><p>Reflect.ownKeys 方法用于返回对象的所有属性，基本等同于 Object.getOwnPropertyNames 与 Object.getOwnPropertySymbols 之和。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">  foo: <span class="number">1</span>,</span><br><span class="line">  bar: <span class="number">2</span>,</span><br><span class="line">  [<span class="built_in">Symbol</span>.for(<span class="string">'baz'</span>)]: <span class="number">3</span>,</span><br><span class="line">  [<span class="built_in">Symbol</span>.for(<span class="string">'bing'</span>)]: <span class="number">4</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 旧写法</span></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(myObject)</span><br><span class="line"><span class="comment">// ['foo', 'bar']</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertySymbols(myObject)</span><br><span class="line"><span class="comment">//[Symbol(baz), Symbol(bing)]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 新写法</span></span><br><span class="line"><span class="built_in">Reflect</span>.ownKeys(myObject)</span><br><span class="line"><span class="comment">// ['foo', 'bar', Symbol(baz), Symbol(bing)]</span></span><br></pre></td></tr></table></figure>
+<p>如果 Reflect.ownKeys() 方法的第一个参数不是对象，会报错。</p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/05/27/2-frontend-es6-7/" class="article-date">
+	  <time datetime="2020-05-27T00:09:00.000Z" itemprop="datePublished">五月 27, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.4k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/05/27/2-frontend-es6-8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          前端 | ES6笔记 | 八、Iterator 遍历器和 for...of 循环
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/05/26/2-frontend-es6-6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">前端 | ES6笔记 | 六、Proxy</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Reflect-对象的特点"><span class="nav-number">1.</span> <span class="nav-text">Reflect 对象的特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reflect-静态方法"><span class="nav-number">2.</span> <span class="nav-text">Reflect 静态方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflect-get-target-name-receiver"><span class="nav-number">2.1.</span> <span class="nav-text">Reflect.get(target, name, receiver)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflect-set-target-name-value-receiver"><span class="nav-number">2.2.</span> <span class="nav-text">Reflect.set(target, name, value, receiver)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflect-has-obj-name"><span class="nav-number">2.3.</span> <span class="nav-text">Reflect.has(obj, name)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflect-deleteProperty-obj-name"><span class="nav-number">2.4.</span> <span class="nav-text">Reflect.deleteProperty(obj, name)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflect-construct-target-args"><span class="nav-number">2.5.</span> <span class="nav-text">Reflect.construct(target, args)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflect-getPrototypeOf-obj"><span class="nav-number">2.6.</span> <span class="nav-text">Reflect.getPrototypeOf(obj)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflect-setPrototypeOf-obj-newProto"><span class="nav-number">2.7.</span> <span class="nav-text">Reflect.setPrototypeOf(obj, newProto)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflect-apply-func-thisArg-args"><span class="nav-number">2.8.</span> <span class="nav-text">Reflect.apply(func, thisArg, args)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflect-ownKeys-target"><span class="nav-number">2.9.</span> <span class="nav-text">Reflect.ownKeys(target)</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2022 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.2k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

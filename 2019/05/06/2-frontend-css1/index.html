@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | css 学习笔记 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendCSS">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | css 学习笔记">
+<meta property="og:url" content="https://arginsen.github.io/blog/2019/05/06/2-frontend-css1/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/css.jpg">
+<meta property="og:updated_time" content="2021-08-01T08:22:38.990Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | css 学习笔记">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/css.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-css1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/css.jpg" rel="gallery_clbdnvlw20040h8uv2xicr0ej">
+        <img src="/blog/img/css.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      前端 | css 学习笔记
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<p>CSS全称为“层叠样式表 (Cascading Style Sheets)”，它主要是用于定义HTML内容在浏览器内的显示样式，如文字大小、颜色、字体加粗等。</p>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p><code>/*注释文字*/</code>  css代码内插入注释</p>
+<p>span</p>
+<p>在<code>&lt;head&gt;</code>标签里添加css样式 <code>&lt;style type=&quot;text/css&quot;&gt;&lt;/style&gt;</code></p>
+<p>用span{}进行规范</p>
+<p>再在<code>&lt;body&gt;</code>里对指定文本添加此样式，用<code>&lt;span&gt;</code></p>
+<h1 id="css形式"><a href="#css形式" class="headerlink" title="css形式"></a>css形式</h1><p>css样式代码插入的形式：内联式、嵌入式、外部式，优先级为 内联式 &gt; 嵌入式 &gt; 外部式，其中嵌入式&gt;外部式有一个前提：嵌入式css样式的位置一定在外部式的后面，即在<code>&lt;head&gt;</code>内，<code>&lt;link&gt;</code>的css在<code>&lt;style&gt;</code>前。</p>
+<ul>
+<li>内联式：css样式表就是把css代码直接写在现有的html标签中</li>
+</ul>
+<p><code>&lt;p style=&quot;color:red&quot;&gt;这里文字是红色&lt;/p&gt;</code></p>
+<ul>
+<li><p>嵌入式：把css样式代码写在<style type="text/css"></style>标签之间</p>
+</li>
+<li><p>外部式：把css代码写入一个单独的外部文件中，这个css样式文件以”.css”为扩展名，再在<head><meta name="generator" content="Hexo 3.9.0">内使用<link>标签将css样式文件链接到html文件内，rel=”stylesheet” type=”text/css” 是固定写法，不可修改，如：</head></p>
+</li>
+</ul>
+<p><code>&lt;link href=&quot;base.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;</code></p>
+<h1 id="css组成"><a href="#css组成" class="headerlink" title="css组成"></a>css组成</h1><p>css样式由 <strong>选择符</strong> 和 <strong>声明</strong> 组成</p>
+<p><code>p{ color : blue；font-size:12px; }</code></p>
+<ul>
+<li><p>选择符：指明网页中要应用样式规则的元素</p>
+</li>
+<li><p>声明：在英文大括号{}中的即为声明,属性和值之间用英文冒号分隔；当有多条声明时，用英文分号分隔</p>
+</li>
+</ul>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><p>每一条css样式声明（定义）由两部分组成，形式如下：<br>选择器{<br>    样式;<br>}<br>在{}之前的部分就是“选择器”，“选择器”指明了{}中的“样式”的作用对象，也就是“样式”作用于网页中的哪些元素，可以同时设定多个选择器，用逗号隔开即可</p>
+<h3 id="选择器分类"><a href="#选择器分类" class="headerlink" title="选择器分类"></a>选择器分类</h3><h4 id="标签选择器"><a href="#标签选择器" class="headerlink" title="标签选择器"></a>标签选择器</h4><p>标签选择器其实就是html代码中的标签。如<code>&lt;html&gt;、&lt;body&gt;、&lt;h1&gt;、&lt;p&gt;、&lt;img&gt;</code></p>
+<h4 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h4><p><code>.类选器名称{css样式代码;}</code></p>
+<p>使用合适的标签标记要修饰的内容，标签内添加<code>class</code>设定类选择器名称，再设置css样式<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.stress</span>&#123;<span class="attribute">color</span>:red;&#125;</span><br><span class="line"></span><br><span class="line">&lt;span class="stress"&gt;修饰内容&lt;/span&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h5><ol>
+<li><p>类选择器可以在一个HTML文件中多处使用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;span class="stress"&gt;小女孩&lt;/span&gt;</span><br><span class="line">&lt;span class="stress"&gt;小朋友&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类选择器可以为一个元素同时设置多个样式</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.stress</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bigsize</span>&#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">25px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;span class="stress bigsize"&gt;小女孩&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h4><p><code>#id选择器名称{css样式代码;}</code></p>
+<p>使用合适的标签标记要修饰的内容，标签内添加<code>id</code>设定id选择器名称，再设置css样式<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#stress</span>&#123;<span class="attribute">color</span>:red;&#125;</span><br><span class="line"></span><br><span class="line">&lt;span id="stress"&gt;修饰内容&lt;/span&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="注：-1"><a href="#注：-1" class="headerlink" title="注："></a>注：</h5><ol>
+<li><p>ID选择器只能在文档中使用一次</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span class="stress"&gt;小女孩&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ID选择器一个元素只能设定一个样式id</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span id="stress"&gt;小女孩&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="子选择器"><a href="#子选择器" class="headerlink" title="子选择器"></a>子选择器</h4><p><code>.类选器名称&gt;子选择器名称{css样式代码;}</code></p>
+<p>大于符号(&gt;),用于选择指定标签元素的第一代子元素.仅第一代（不可绕过span指定p，也不可作用与span内的二三代span）<br>如下div的第一代子选择器为span，所以会在一代span外边加框。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.stress</span>&gt;<span class="selector-tag">span</span> &#123;<span class="attribute">border</span>: <span class="number">1px</span> solid red;&#125;</span><br><span class="line"></span><br><span class="line">&lt;div class="stress"&gt;</span><br><span class="line">    &lt;<span class="selector-tag">span</span>&gt;</span><br><span class="line">        &lt;span&gt;修饰内容1&lt;/span&gt;</span><br><span class="line">        &lt;p&gt;修饰内容2&lt;/p&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="后代选择器"><a href="#后代选择器" class="headerlink" title="后代选择器"></a>后代选择器</h4><p><code>.类选器名称 后代选择器名称{css样式代码;}</code></p>
+<p>后代选择器，用空格隔开，接入指定标签元素下的后代元素。作用于该标签元素下的所有后代元素。<br>如下div下的span共有两层，那么这两层都会加框<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.stress</span> <span class="selector-tag">span</span> &#123;<span class="attribute">border</span>: <span class="number">1px</span> solid red;&#125;</span><br><span class="line"></span><br><span class="line">&lt;div class="stress"&gt;</span><br><span class="line">    &lt;<span class="selector-tag">span</span>&gt;</span><br><span class="line">        &lt;span&gt;修饰内容1&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;修饰内容2&lt;/p&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="通用选择器"><a href="#通用选择器" class="headerlink" title="通用选择器"></a>通用选择器</h4><p><code>* {css样式代码;}</code></p>
+<p>通用选择器用一个 * 指定，定义html中的所有标签样式</p>
+<h4 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h4><p><code>a:hover {css样式代码;}</code></p>
+<p>伪类选择符允许给html不存在的标签（标签的某种状态）设置样式，比如说我们给html中一个标签元素的鼠标滑过的状态来设置字体颜色.<br>目前常用的就是a:hover,浏览器对于p:hover等兼容不好</p>
+<h3 id="选择器优先级"><a href="#选择器优先级" class="headerlink" title="选择器优先级"></a>选择器优先级</h3><p>内联样式 &gt; id选择器 &gt; 类选择器 &gt; 标签选择器 &gt; 通配符选择器</p>
+<h3 id="css继承"><a href="#css继承" class="headerlink" title="css继承"></a>css继承</h3><p>继承是一种规则，它允许样式不仅应用于某个特定html标签元素，而且应用于其后代。</p>
+<h3 id="css权值"><a href="#css权值" class="headerlink" title="css权值"></a>css权值</h3><ul>
+<li>浏览器是根据权值来判断使用哪种css样式的，权值高的就使用哪种css样式</li>
+<li>标签的权值为1，类选择符的权值为10，ID选择符的权值最高为100</li>
+<li>用!important来为某些样式设置最高权值<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;<span class="attribute">color</span>:red;&#125;                   <span class="comment">/*权值为1*/</span></span><br><span class="line"><span class="selector-tag">p</span> <span class="selector-tag">span</span>&#123;<span class="attribute">color</span>:green;&#125;            <span class="comment">/*权值为1+1=2*/</span></span><br><span class="line"><span class="selector-class">.warning</span>&#123;<span class="attribute">color</span>:white;&#125;          <span class="comment">/*权值为10*/</span></span><br><span class="line"><span class="selector-tag">p</span> <span class="selector-tag">span</span><span class="selector-class">.warning</span>&#123;<span class="attribute">color</span>:purple;&#125;   <span class="comment">/*权值为1+1+10=12*/</span></span><br><span class="line"><span class="selector-id">#footer</span> <span class="selector-class">.note</span> <span class="selector-tag">p</span>&#123;<span class="attribute">color</span>:yellow;&#125;  <span class="comment">/*权值为100+10+1=111*/</span></span><br><span class="line"><span class="selector-tag">p</span>&#123;<span class="attribute">color</span>:red<span class="meta">!important</span>;&#125;         <span class="comment">/*最高权值*/</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 字体样式 */</span></span><br><span class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">font-family</span>:<span class="string">"Microsoft Yahei"</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 字体大小 */</span></span><br><span class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">font-size</span>:<span class="string">"12px"</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 字体粗细 */</span></span><br><span class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">font-weight</span>:<span class="string">"bold"</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 字体样式：normal 正常, italic 斜体, oblique 倾斜 */</span></span><br><span class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">font-style</span>:<span class="string">"12px"</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 字体颜色：英文命令, RGB颜色, 十六进制颜色 */</span></span><br><span class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">color</span>:red;&#125;</span><br><span class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">color</span>:<span class="built_in">rgb</span>(<span class="number">133</span>,<span class="number">45</span>,<span class="number">200</span>);&#125;    <span class="comment">/*RGB可为0~255的整数*/</span></span><br><span class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">color</span>:<span class="built_in">rgb</span>(<span class="number">20%</span>,<span class="number">45%</span>,<span class="number">20%</span>);&#125;   <span class="comment">/*RGB可为0~100%的百分数*/</span></span><br><span class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">color</span>:<span class="number">#00ffff</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">对字体样式进行简写</span></span><br><span class="line"><span class="comment">至少指定 font-size 和 font-family 属性</span></span><br><span class="line"><span class="comment">缩写时 font-size 与 line-height 中间要加入"/"斜扛 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">font</span>:italic bold <span class="number">16px</span>/<span class="number">1.5em</span> <span class="string">"times new roman"</span>;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 文本装饰-线：overline 上方线, underline 下方线, line-through 贯穿线 */</span></span><br><span class="line"><span class="selector-tag">p</span>&#123;<span class="attribute">text-decoration</span>: line-through;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 首行缩进 */</span></span><br><span class="line"><span class="selector-tag">p</span>&#123;<span class="attribute">text-indent</span>: <span class="number">2em</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 行间距 */</span></span><br><span class="line"><span class="selector-tag">p</span>&#123;<span class="attribute">line-height</span>: <span class="number">2em</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 字符间距：letter-spacing 文字/字母间距, word-spacing 英文单词间距 */</span></span><br><span class="line"><span class="selector-tag">p</span>&#123;<span class="attribute">letter-spacing</span>: <span class="number">50px</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 排列方式-居中, 针对于块状元素 </span></span><br><span class="line"><span class="comment">元素为文本、图片等行内元素时，通过给父元素设置来实现水平居中 */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;<span class="attribute">text-align</span>: center;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 文字添加阴影效果 */</span></span><br><span class="line"><span class="selector-tag">text-shadow</span>: <span class="selector-tag">h-shadow</span> <span class="selector-tag">v-shadow</span> <span class="selector-tag">blur</span> <span class="selector-tag">color</span>;</span><br><span class="line"><span class="comment">/* 共四个属性：</span></span><br><span class="line"><span class="comment">h-shadow	必需。水平阴影的位置。允许负值。</span></span><br><span class="line"><span class="comment">v-shadow	必需。垂直阴影的位置。允许负值。</span></span><br><span class="line"><span class="comment">blur	    可选。模糊的距离。</span></span><br><span class="line"><span class="comment">color	    可选。阴影的颜色。 */</span></span><br></pre></td></tr></table></figure>
+<h4 id="注：长度值"><a href="#注：长度值" class="headerlink" title="注：长度值"></a>注：长度值</h4><ol>
+<li><p>像素px<br>像素指的是显示器上的小点（CSS规范中假设“90像素=1英寸”，是一个相对值</p>
+</li>
+<li><p>em</p>
+<ul>
+<li>本元素给定字体的 font-size 值，如果元素的 font-size 为 14px ，那么 1em = 14px；如果 font-size 为 18px，那么 1em = 18px</li>
+<li>但当给 font-size 设置单位为 em 时，此时计算的标准以其<strong>父元素</strong>的 font-size 为基础<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;以这个&lt;span&gt;例子&lt;/span&gt;为例。&lt;/p&gt;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span>&#123;<span class="attribute">font-size</span>:<span class="number">14px</span>&#125;</span><br><span class="line"><span class="selector-tag">span</span>&#123;<span class="attribute">font-size</span>:<span class="number">0.8em</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* span 中的字体“例子”字体大小就为 11.2px（14 * 0.8 = 11.2px） */</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>百分比<br>针对文本，百分比也是建立在字体大小的基础上</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;<span class="attribute">font-size</span>:<span class="number">12px</span>;<span class="attribute">line-height</span>:<span class="number">130%</span>&#125;</span><br><span class="line"><span class="comment">/* 设置行高（行间距）为字体的130%（12 * 1.3 = 15.6px） */</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="块"><a href="#块" class="headerlink" title="块"></a>块</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 盒子设置阴影 */</span></span><br><span class="line"><span class="selector-tag">box-shadow</span>: <span class="selector-tag">h-shadow</span> <span class="selector-tag">v-shadow</span> <span class="selector-tag">blur</span> <span class="selector-tag">spread</span> <span class="selector-tag">color</span> <span class="selector-tag">inset</span>;</span><br><span class="line"><span class="comment">/* 给div标签设定盒子外阴影 */</span></span><br><span class="line"><span class="selector-tag">box-shadow</span>: 2<span class="selector-tag">px</span> 2<span class="selector-class">.5px</span> 7<span class="selector-tag">px</span> 4<span class="selector-tag">px</span> <span class="selector-tag">rgba</span>(14, 13, 13, 0<span class="selector-class">.12</span>); </span><br><span class="line"><span class="comment">/* 共有六个属性：</span></span><br><span class="line"><span class="comment">h-shadow	必需。水平阴影的位置。允许负值。</span></span><br><span class="line"><span class="comment">v-shadow	必需。垂直阴影的位置。允许负值。</span></span><br><span class="line"><span class="comment">blur	    可选。模糊距离。	</span></span><br><span class="line"><span class="comment">spread	    可选。阴影的尺寸。	</span></span><br><span class="line"><span class="comment">color	    可选。阴影的颜色。</span></span><br><span class="line"><span class="comment">inset	    可选。将外部阴影 (outset) 改为内部阴影。 */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 水平居中-定宽块状元素 */</span></span><br><span class="line"><span class="comment">/* 设置“左右margin”值为“auto” */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123; </span><br><span class="line"><span class="attribute">margin-left</span>:auto;</span><br><span class="line"><span class="attribute">margin-right</span>:auto;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 也可简写 */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;  </span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;       <span class="comment">/*定宽*/</span></span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">20px</span> auto;  <span class="comment">/* margin-left 与 margin-right 设置为 auto */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 水平居中-定宽高块状元素 */</span></span><br><span class="line"><span class="comment">/* 利用父元素设置相对定位,子元素设置绝对定位,那么子元素就是相对于父元素定位的特性 */</span></span><br><span class="line"><span class="comment">/* 子元素设置上和左偏移的值都为50%，是元素的左上角在父元素中心点的位置 */</span></span><br><span class="line"><span class="comment">/* margin给上和左都给负的自身宽高的一半 */</span></span><br><span class="line"> <span class="selector-class">.box</span> &#123;</span><br><span class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#00ee00</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.box1</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line">        <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">        <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">        <span class="attribute">margin</span>: -<span class="number">100px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">100px</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 水平居中-不定宽高块状元素 */</span></span><br><span class="line"><span class="comment">/* 利用父元素设置相对定位,子元素设置绝对定位,那么子元素就是相对于父元素定位的特性 */</span></span><br><span class="line"><span class="comment">/* 子元素设置上和左偏移的值都为 50% */</span></span><br><span class="line"><span class="comment">/* translate位移,给 上 和 左 都位移 -50% 距离 */</span></span><br><span class="line"> <span class="selector-class">.box</span> &#123;</span><br><span class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#00ee00</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.box1</span> &#123;</span><br><span class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line">        <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">        <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="css盒模型"><a href="#css盒模型" class="headerlink" title="css盒模型"></a>css盒模型</h1><h2 id="标签元素分类"><a href="#标签元素分类" class="headerlink" title="标签元素分类"></a>标签元素分类</h2><p>在CSS中，html中的标签元素大体被分为三种不同的类型：块状元素、内联元素(又叫行内元素)和内联块状元素。</p>
+<p>常用的块状元素有：</p>
+<p><code>&lt;div&gt;、&lt;p&gt;、&lt;h1&gt;...&lt;h6&gt;、&lt;ol&gt;、&lt;ul&gt;、&lt;dl&gt;、&lt;table&gt;、&lt;address&gt;、&lt;blockquote&gt; 、&lt;form&gt;</code></p>
+<p>常用的内联元素有：</p>
+<p><code>&lt;a&gt;、&lt;span&gt;、&lt;br&gt;、&lt;i&gt;、&lt;em&gt;、&lt;strong&gt;、&lt;label&gt;、&lt;q&gt;、&lt;var&gt;、&lt;cite&gt;、&lt;code&gt;</code></p>
+<p>常用的内联块状元素有：</p>
+<p><code>&lt;img&gt;、&lt;input&gt;</code></p>
+<h3 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h3><ul>
+<li>html中<code>&lt;div&gt;、&lt;p&gt;、&lt;h1&gt;、&lt;form&gt;、&lt;ul&gt;、&lt;li&gt;</code>就是块级元素。</li>
+<li>设置 <code>display:block</code> 可将元素显示为块级元素。<ul>
+<li>如将内联元素a转换为块状元素：<code>a{display:block;}</code></li>
+</ul>
+</li>
+<li><strong>块状元素</strong>特点:<ul>
+<li>每个块级元素都从新的一行开始，并且其后的元素也另起一行。（真霸道，一个块级元素独占一行）</li>
+<li>元素的高度、宽度、行高以及顶和底边距都可设置。</li>
+<li>元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度</li>
+</ul>
+</li>
+</ul>
+<h3 id="内联元素"><a href="#内联元素" class="headerlink" title="内联元素"></a>内联元素</h3><ul>
+<li>html中<code>&lt;span&gt;、&lt;a&gt;、&lt;label&gt;、&lt;strong&gt;、&lt;em&gt;</code>就是典型的内联元素（行内元素）（inline）元素。</li>
+<li>设置 <code>display: inline</code> 将元素显示为内联元素<ul>
+<li>如将块状元素div转换为内联元素：<code>div{display:inline}</code></li>
+</ul>
+</li>
+<li><strong>内联元素</strong>特点:<ul>
+<li>和其他元素都在一行上；</li>
+<li>元素的高度、宽度及顶部和底部边距不可设置；</li>
+<li>元素的宽度就是它包含的文字或图片的宽度，不可改变。</li>
+</ul>
+</li>
+</ul>
+<h3 id="内联块状元素"><a href="#内联块状元素" class="headerlink" title="内联块状元素"></a>内联块状元素</h3><ul>
+<li>内联块状元素 (inline-block) 就是同时具备内联元素、块状元素的特点</li>
+<li><code>&lt;img&gt;、&lt;input&gt;</code>标签就是这种内联块状标签</li>
+<li>设置 <code>display:inline-block</code> 就是将元素设置为内联块状元素</li>
+<li><strong>内联块状元素</strong>特点:<ul>
+<li>和其它元素都在一行</li>
+<li>元素的高度、宽度、行高以及顶和底边距都可设置</li>
+</ul>
+</li>
+</ul>
+<h2 id="盒模型组成"><a href="#盒模型组成" class="headerlink" title="盒模型组成"></a>盒模型组成</h2><p>盒模型由本身的 内容 + padding填充 + border边框 + margin边界 组成。<br>一个元素实际宽度（盒子的宽度）=左边界+左边框+左填充+内容宽度+右填充+右边框+右边界。</p>
+<h3 id="盒模型的边框"><a href="#盒模型的边框" class="headerlink" title="盒模型的边框"></a>盒模型的边框</h3><p>盒子模型的边框就是围绕着内容及补白（padding）的线，这条线你可以设置它的粗细、样式和颜色(边框三个属性) </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">border-width（边框宽度）中的宽度也可以设置为：</span></span><br><span class="line"><span class="comment">thin | medium | thick（但不是很常用），最常还是用像素（px）</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">border-style（边框样式）常见样式有：</span></span><br><span class="line"><span class="comment">dashed（虚线）| dotted（点线）| solid（实线）</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">border-color（边框颜色）中的颜色可设置为十六进制颜色，如:</span></span><br><span class="line"><span class="comment">border-color:#888; </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border-width</span>:<span class="number">2px</span>;</span><br><span class="line">    <span class="attribute">border-style</span>:solid;</span><br><span class="line">    <span class="attribute">border-color</span>:red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 可以简写为以下格式 */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;<span class="attribute">border</span>:<span class="number">2px</span> solid red;&#125;</span><br><span class="line"><span class="comment">/* 可以将边框拆开 上右下左 分别设定 */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border-bottom</span>:<span class="number">1px</span> solid red;</span><br><span class="line">    <span class="attribute">border-top</span>:<span class="number">1px</span> solid red;</span><br><span class="line">    <span class="attribute">border-right</span>:<span class="number">2px</span> dashed green; </span><br><span class="line">    <span class="attribute">border-left</span>:<span class="number">2px</span> dashed green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 边框设置圆角 */</span></span><br><span class="line"><span class="comment">/* 圆角可分为左上、右上、右下、左下 */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;<span class="attribute">border-radius</span>: <span class="number">20px</span> <span class="number">10px</span> <span class="number">15px</span> <span class="number">30px</span>;&#125;</span><br><span class="line"><span class="comment">/* 可将圆角拆开四个分别写 */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border-top-left-radius</span>: <span class="number">20px</span>;</span><br><span class="line">   <span class="attribute">border-top-right-radius</span>: <span class="number">10px</span>;</span><br><span class="line">   <span class="attribute">border-bottom-right-radius</span>: <span class="number">15px</span>;</span><br><span class="line">   <span class="attribute">border-bottom-left-radius</span>: <span class="number">30px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 四个圆角都为10px */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123; <span class="attribute">border-radius</span>:<span class="number">10px</span>;&#125;</span><br><span class="line"><span class="comment">/* 左上角和右下角圆角效果一样为10px，右上角和左下角圆角一样为20px */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123; <span class="attribute">border-radius</span>:<span class="number">10px</span> <span class="number">20px</span>;&#125;</span><br><span class="line"><span class="comment">/* 一个正方形，当设置圆角效果值为元素宽度一半（或50%）时，显示效果为圆形 */</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">5px</span> solid red;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="盒模型的内边距（填充）"><a href="#盒模型的内边距（填充）" class="headerlink" title="盒模型的内边距（填充）"></a>盒模型的内边距（填充）</h3><p>元素内容与边框之间是可以设置距离的，称之为“内边距（填充）”。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 填充设定的顺序分为上、右、下、左(顺时针) */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;<span class="attribute">padding</span>:<span class="number">20px</span> <span class="number">10px</span> <span class="number">15px</span> <span class="number">30px</span>;&#125;</span><br><span class="line"><span class="comment">/* 可将四边拆开分别定义大小 */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">   <span class="attribute">padding-top</span>:<span class="number">20px</span>;</span><br><span class="line">   <span class="attribute">padding-right</span>:<span class="number">10px</span>;</span><br><span class="line">   <span class="attribute">padding-bottom</span>:<span class="number">15px</span>;</span><br><span class="line">   <span class="attribute">padding-left</span>:<span class="number">30px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 上、右、下、左的填充都为10px */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;<span class="attribute">padding</span>:<span class="number">10px</span>;&#125;</span><br><span class="line"><span class="comment">/* 如果上下填充一样为10px，左右一样为20px */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;<span class="attribute">padding</span>:<span class="number">10px</span> <span class="number">20px</span>;&#125;</span><br><span class="line"><span class="comment">/* 如果上边界为10px, 下边界为15px, 左右一样为20px */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;<span class="attribute">padding</span>:<span class="number">10px</span> <span class="number">20px</span> <span class="number">15px</span>;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="盒模型的外边距（边界）"><a href="#盒模型的外边距（边界）" class="headerlink" title="盒模型的外边距（边界）"></a>盒模型的外边距（边界）</h3><p>元素与其它元素之间的距离可以使用边界（margin）来设置。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 边界也是可分为上、右、下、左 */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;<span class="attribute">margin</span>:<span class="number">20px</span> <span class="number">10px</span> <span class="number">15px</span> <span class="number">30px</span>;&#125;</span><br><span class="line"><span class="comment">/* 可将四边拆开分别定义大小 */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">   <span class="attribute">margin-top</span>:<span class="number">20px</span>;</span><br><span class="line">   <span class="attribute">margin-right</span>:<span class="number">10px</span>;</span><br><span class="line">   <span class="attribute">margin-bottom</span>:<span class="number">15px</span>;</span><br><span class="line">   <span class="attribute">margin-left</span>:<span class="number">30px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 如果上右下左的边界都为10px */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;<span class="attribute">margin</span>:<span class="number">10px</span>;&#125;</span><br><span class="line"><span class="comment">/* 如果上下边界一样为10px，左右一样为20px */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;<span class="attribute">margin</span>:<span class="number">10px</span> <span class="number">20px</span>;&#125;</span><br><span class="line"><span class="comment">/* 如果上边界为10px, 下边界为15px, 左右一样为20px */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;<span class="attribute">margin</span>:<span class="number">10px</span> <span class="number">20px</span> <span class="number">15px</span>;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="弹性盒模型"><a href="#弹性盒模型" class="headerlink" title="弹性盒模型"></a>弹性盒模型</h2><h3 id="flex属性"><a href="#flex属性" class="headerlink" title="flex属性"></a>flex属性</h3><ul>
+<li>通过 <code>display: flex</code> , 可以使本身独占一行的盒模型显示在一排(一条轴上)</li>
+<li>flex需要添加在父元素上，改变子元素的排列顺序</li>
+<li>默认为从左往右依次排列,且和父元素左边没有间隙</li>
+</ul>
+<h3 id="各块在flex主轴上的对齐方式"><a href="#各块在flex主轴上的对齐方式" class="headerlink" title="各块在flex主轴上的对齐方式"></a>各块在flex主轴上的对齐方式</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* justify-content属性可设定各块在横轴上的排列方式 */</span></span><br><span class="line"><span class="comment">/* 先设置 flex 陈列, 再设置justify-content属性 */</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line"><span class="attribute">display</span>: flex;</span><br><span class="line"><span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* justify-content有五个属性：</span></span><br><span class="line"><span class="comment">flex-start：    交叉轴的起点对齐</span></span><br><span class="line"><span class="comment">flex-end：      右对齐</span></span><br><span class="line"><span class="comment">center：        居中</span></span><br><span class="line"><span class="comment">space-between： 两端对齐，项目之间的间隔都相等</span></span><br><span class="line"><span class="comment">space-around：  每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍 */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* align-items属性可设定各块在纵轴上的排列方式 */</span></span><br><span class="line"><span class="comment">/* 是在多个块在一排的基础上设置纵轴的位置 */</span></span><br><span class="line"><span class="comment">/* 先设置 flex 陈列, 再设置align-items属性 */</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line"><span class="attribute">display</span>: flex;</span><br><span class="line"><span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* align-items有五个属性：</span></span><br><span class="line"><span class="comment">flex-start：        默认值，左对齐，占满整个文字外框大小的范围</span></span><br><span class="line"><span class="comment">flex-end：          交叉轴的终点对齐</span></span><br><span class="line"><span class="comment">center：            交叉轴的中点对齐</span></span><br><span class="line"><span class="comment">baseline:           项目的第一行文字的基线对齐</span></span><br><span class="line"><span class="comment">stretch(默认值):    如果项目未设置高度或设为auto，将占满整个父容器的高度。 */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 设置flex子元素相对于父元素的占比 */</span></span><br><span class="line"><span class="comment">/* flex属性的值只能是正整数,表示占比多少 */</span></span><br><span class="line"><span class="comment">/* 给子元素设置了flex之后,其宽度属性会失效 */</span></span><br><span class="line">    <span class="selector-class">.box</span> &#123;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">        <span class="attribute">background</span>: blue;</span><br><span class="line">        <span class="attribute">display</span>: flex;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.box</span> <span class="selector-tag">div</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.box1</span> &#123;</span><br><span class="line">        <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">        <span class="attribute">background</span>: red;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.box2</span> &#123;</span><br><span class="line">        <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">        <span class="attribute">background</span>: orange;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="css布局"><a href="#css布局" class="headerlink" title="css布局"></a>css布局</h1><h2 id="布局分类"><a href="#布局分类" class="headerlink" title="布局分类"></a>布局分类</h2><p>CSS3包含3种基本的布局模型：</p>
+<ol>
+<li>流动模型（Flow）</li>
+<li>浮动模型 (Float)</li>
+<li>层模型（Layer）</li>
+</ol>
+<h3 id="流动模型"><a href="#流动模型" class="headerlink" title="流动模型"></a>流动模型</h3><ul>
+<li>流动（Flow）是默认的网页布局模式。也就是说网页在默认状态下的 HTML 网页元素都是根据流动模型来分布网页内容的。</li>
+<li>流动布局模型具有2个比较典型的特征：<ul>
+<li>块状元素都会在所处的包含元素内自上而下按顺序垂直延伸分布，因为在默认状态下，块状元素的宽度都为100%。实际上，块状元素都会以行的形式占据位置。</li>
+<li>在流动模型下，内联元素都会在所处的包含元素内从左到右水平分布显示, 作用于<strong>同一级</strong>的多个元素。</li>
+</ul>
+</li>
+</ul>
+<h3 id="浮动模型"><a href="#浮动模型" class="headerlink" title="浮动模型"></a>浮动模型</h3><ul>
+<li>任何元素在默认情况下是不能浮动的，但可以用 CSS 定义为浮动，如 div、p、table、img 等元素都可以被定义为浮动。</li>
+<li>设置元素浮动就可以实现让两个块状元素并排显示: <code>div{float: left}</code></li>
+</ul>
+<h3 id="层模型"><a href="#层模型" class="headerlink" title="层模型"></a>层模型</h3><ul>
+<li><p>如何让html元素在网页中精确定位，就像PhotoShop中的图层一样可以对每个图层能够精确定位操作。CSS定义了一组定位（positioning）属性来支持层布局模型。</p>
+</li>
+<li><p>层模型形式：</p>
+<ul>
+<li>绝对定位(<code>position: absolute</code>)</li>
+<li>相对定位(<code>position: relative</code>)</li>
+<li>固定定位(<code>position: fixed</code>)</li>
+</ul>
+</li>
+</ul>
+<h4 id="层模型之绝对定位absolute"><a href="#层模型之绝对定位absolute" class="headerlink" title="层模型之绝对定位absolute"></a>层模型之绝对定位absolute</h4><ul>
+<li>设置 <code>position:absolute</code> (表示绝对定位)，这条语句的作用将元素从文档流中拖出来。</li>
+<li><p>同时使用left、right、top、bottom属性<strong>相对于其最接近的一个具有定位属性的父包含块</strong>进行绝对定位。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* div 相对于其父级左边隔开 100px , 上边相隔 50px */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">2px</span> red solid;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果不存在这样的包含块，则相对于body元素，即相对于浏览器窗口。</p>
+</li>
+</ul>
+<h4 id="层模型之相对定位relative"><a href="#层模型之相对定位relative" class="headerlink" title="层模型之相对定位relative"></a>层模型之相对定位relative</h4><ul>
+<li>设置position:relative（表示相对定位）</li>
+<li>通过left、right、top、bottom属性确定元素在正常文档流中的偏移位置。</li>
+<li>相对定位完成的过程是首先按static(float)方式生成一个元素(并且元素像层一样浮动了起来)，然后相对于以前的位置移动，移动的方向和幅度由left、right、top、bottom属性确定，偏移前的位置保留不动。</li>
+<li>其他标签依旧按原来的排布进行排布，变的只是设定相对定位的元素标签。</li>
+</ul>
+<h4 id="层模型之固定定位fixed"><a href="#层模型之固定定位fixed" class="headerlink" title="层模型之固定定位fixed"></a>层模型之固定定位fixed</h4><ul>
+<li>fixed 定位与 absolute 的区别是 fixed 不是相对于父包含块定位，而是相对于视图（屏幕内的网页窗口）本身</li>
+<li>固定定位的元素会始终位于浏览器窗口内视图的某个位置，不会受文档流动影响，这与 <code>background-attachment:fixed;</code> 属性功能相同。</li>
+</ul>
+<h4 id="用法：相对元素定位"><a href="#用法：相对元素定位" class="headerlink" title="用法：相对元素定位"></a>用法：相对元素定位</h4><ul>
+<li>除相对父包含块/网页窗口定位，也可实现元素相对于其他元素定位：<ul>
+<li>参照定位的元素必须是相对定位元素的前辈元素</li>
+<li>参照定位的元素必须加入 <code>position:relative;</code></li>
+<li>定位元素加入 <code>position:absolute;</code> ,即可使用top、bottom、left、right定位</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2019/05/06/2-frontend-css1/" class="article-date">
+	  <time datetime="2019-05-05T16:00:00.000Z" itemprop="datePublished">五月 6, 2019</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">4.9k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/05/08/6-nginx-redirect/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Nginx | 配置conf文件使网站http自动跳转https
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/04/09/5-linux1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Linux | Linux学习笔记Ⅰ：系统</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注释"><span class="nav-number">1.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#css形式"><span class="nav-number">2.</span> <span class="nav-text">css形式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#css组成"><span class="nav-number">3.</span> <span class="nav-text">css组成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择器"><span class="nav-number">3.1.</span> <span class="nav-text">选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择器分类"><span class="nav-number">3.1.1.</span> <span class="nav-text">选择器分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标签选择器"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">标签选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类选择器"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">类选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注："><span class="nav-number">3.1.1.2.1.</span> <span class="nav-text">注：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#id选择器"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">id选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注：-1"><span class="nav-number">3.1.1.3.1.</span> <span class="nav-text">注：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子选择器"><span class="nav-number">3.1.1.4.</span> <span class="nav-text">子选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后代选择器"><span class="nav-number">3.1.1.5.</span> <span class="nav-text">后代选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通用选择器"><span class="nav-number">3.1.1.6.</span> <span class="nav-text">通用选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#伪类选择器"><span class="nav-number">3.1.1.7.</span> <span class="nav-text">伪类选择器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择器优先级"><span class="nav-number">3.1.2.</span> <span class="nav-text">选择器优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css继承"><span class="nav-number">3.1.3.</span> <span class="nav-text">css继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css权值"><span class="nav-number">3.1.4.</span> <span class="nav-text">css权值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样式"><span class="nav-number">3.2.</span> <span class="nav-text">样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字体"><span class="nav-number">3.2.1.</span> <span class="nav-text">字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本"><span class="nav-number">3.2.2.</span> <span class="nav-text">文本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注：长度值"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">注：长度值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块"><span class="nav-number">3.2.3.</span> <span class="nav-text">块</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#css盒模型"><span class="nav-number">4.</span> <span class="nav-text">css盒模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标签元素分类"><span class="nav-number">4.1.</span> <span class="nav-text">标签元素分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#块级元素"><span class="nav-number">4.1.1.</span> <span class="nav-text">块级元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内联元素"><span class="nav-number">4.1.2.</span> <span class="nav-text">内联元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内联块状元素"><span class="nav-number">4.1.3.</span> <span class="nav-text">内联块状元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#盒模型组成"><span class="nav-number">4.2.</span> <span class="nav-text">盒模型组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#盒模型的边框"><span class="nav-number">4.2.1.</span> <span class="nav-text">盒模型的边框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#盒模型的内边距（填充）"><span class="nav-number">4.2.2.</span> <span class="nav-text">盒模型的内边距（填充）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#盒模型的外边距（边界）"><span class="nav-number">4.2.3.</span> <span class="nav-text">盒模型的外边距（边界）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弹性盒模型"><span class="nav-number">4.3.</span> <span class="nav-text">弹性盒模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#flex属性"><span class="nav-number">4.3.1.</span> <span class="nav-text">flex属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各块在flex主轴上的对齐方式"><span class="nav-number">4.3.2.</span> <span class="nav-text">各块在flex主轴上的对齐方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#css布局"><span class="nav-number">5.</span> <span class="nav-text">css布局</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布局分类"><span class="nav-number">5.1.</span> <span class="nav-text">布局分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流动模型"><span class="nav-number">5.1.1.</span> <span class="nav-text">流动模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮动模型"><span class="nav-number">5.1.2.</span> <span class="nav-text">浮动模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#层模型"><span class="nav-number">5.1.3.</span> <span class="nav-text">层模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#层模型之绝对定位absolute"><span class="nav-number">5.1.3.1.</span> <span class="nav-text">层模型之绝对定位absolute</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#层模型之相对定位relative"><span class="nav-number">5.1.3.2.</span> <span class="nav-text">层模型之相对定位relative</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#层模型之固定定位fixed"><span class="nav-number">5.1.3.3.</span> <span class="nav-text">层模型之固定定位fixed</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用法：相对元素定位"><span class="nav-number">5.1.3.4.</span> <span class="nav-text">用法：相对元素定位</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2022 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.2k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

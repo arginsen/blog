@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | Vue + Express + MongoDB 制作电商应用 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendVueExpressMongoDB">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,Vue,Express,MongoDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | Vue + Express + MongoDB 制作电商应用">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/07/16/2-frontend-pt6/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/vue.jpg">
+<meta property="og:updated_time" content="2021-08-07T06:11:51.875Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | Vue + Express + MongoDB 制作电商应用">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/vue.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-pt6" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/vue.jpg" rel="gallery_clbdnvly8007jh8uvshdrcsas">
+        <img src="/blog/img/vue.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      前端 | Vue + Express + MongoDB 制作电商应用
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="page"><a href="#page" class="headerlink" title="page"></a>page</h1><p><a href="http://www.lixupeng.cn:8082/" target="_blank" rel="noopener">http://www.lixupeng.cn:8082</a></p>
+<h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><ol>
+<li><p>新版的 @vue/cli 与老版的 vue-cli 在初始化项目（<code>vue init webpack my-project</code>）上有区别，可以安装 @vue/cli-init，但安装后不管用。于是直接 <code>vue create my-project</code>，选择 eslint，vue-router</p>
+</li>
+<li><p>相比原教程，新版的 vue-router 使用 view 文件夹将 components 中页面级别的组件单独提出来。</p>
+</li>
+<li><p>使用 eslint 检测真的很严格，子对象后要有逗号，语句后要有封号，简写函数不能和括号有空格（data() {}），.vue 页最后要留一空行，标签与其他语句至多空一行，换行的规则要是 LF，windows 的 CRLF 不行，这个问题看有的回答说 改 eslintrc.js，不管用，直接在 vscode 右下角改了</p>
+</li>
+<li><p>Vue 在写 v-for 循环语法时，使用了一个额外的标签 template 来包裹我们需要渲染的 HTML 元素</p>
+</li>
+<li><p>当前组件 list 通过计算属性从 this.$store.state 获取 vuex.Store 实例中存储的数组数据 products，可以在当前组件利用 v-for 得到数组元素 product，再通过 v-for 中遍历输出的子组件 item 的属性绑定 bind:product，这样就可以在子组件 item 中，通过 props 来获取 product 的值</p>
+</li>
+</ol>
+<h1 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h1><ol>
+<li><p>使用 yarn 安装 express，express 命令不能执行，但 yarn 文件夹下 bin 内有 express，因此将 yarn 文件夹添加到环境变量下，再执行下 <code>yarn global install</code>，可能之前 yarn 没加入环境变量，导致它 bin 下的都运行不了</p>
+</li>
+<li><p>express 默认使用 jade 预编译，想用 ejs 可以后期安装，或者创建项目时，<code>express --ejs my-project</code></p>
+</li>
+<li><p>设置跨源，直接给 express 中间件设置请求信息的处理方法；或者安装 cors 模块来配置</p>
+</li>
+<li><p>在导入模块时，查看模块源码都是 export = xxx，因此在引入时需要注意，为整体导入，可以使用 const … = require 或 import * as … from 或 import … = require（ts 官方推荐，但仅适用于 ts 文件）</p>
+</li>
+<li><p>express 作为单独的后端应用发布，所以前端使用的后端接口应为对应服务器的 ip，而不能是 localhost 或 127.0.0.0，比如 vue 项目发布后，在局域网访问 192.168.1.7:8080，此时如果 actions 里使用的后端接口是 localhost，电脑当然没问题，后端项目就发布在本地 3000 端口上，但此时局域网下手机访问则不行，因为手机本地没用后端项目，所以在接口此时应该用 192.168.1.7:3000</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CORS config here</span></span><br><span class="line">app.all(<span class="string">'/*'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// CORS headers</span></span><br><span class="line">  res.header(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="literal">true</span>); <span class="comment">//允许后端发送cookie</span></span><br><span class="line">  res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"*"</span>); <span class="comment">// restrict it to the required domain</span></span><br><span class="line">  res.header(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET,PUT,POST,DELETE,OPTIONS'</span>);</span><br><span class="line">  <span class="comment">// Set custom headers for CORS</span></span><br><span class="line">  res.header(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Content-type,Accept,X-Access-Token,X-Key'</span>);</span><br><span class="line">  <span class="comment">// </span></span><br><span class="line">  req.method === <span class="string">'OPTIONS'</span> ? res.status(<span class="number">204</span>).end() : next()</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>编写 ERST API，相当于 MVC 模式里的 controller，设定 express 路由方法，方法参数为路由地址和具体对象（model）的方法，分别编写每个数据模型的操控方法，MC 的关联。此外测试 API 可以使用 VS Code 插件 REST Client，直接编写 <code>POST/GET url HTTP/1.1</code>，下方指定 json 数据类型就可直接请求了。</li>
+</ol>
+<h1 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h1><ol>
+<li>需要在 connect 方法添加第二个参数申明，不然会警告当前服务器发现和监视引擎已弃用，将在将来的版本中删除</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// connect mongodb</span></span><br><span class="line">mongoose.connect(<span class="string">`mongodb://localhost:27017/test`</span>, &#123;</span><br><span class="line">  useNewUrlParser: <span class="literal">true</span>,</span><br><span class="line">  useUnifiedTopology: <span class="literal">true</span>     <span class="comment">// 在第二个参数添加设置</span></span><br><span class="line">&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'mongodb connected'</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生产环境部署</span></span><br><span class="line"><span class="comment"># 安装 nginx</span></span><br><span class="line">apt-get install nginx</span><br><span class="line"></span><br><span class="line">service nginx status <span class="comment"># Failed to read PID from file /run/nginx.pid </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># nginx 启动需要时间，而 systemd 在 nginx 完成启动前就去读取 pid file</span></span><br><span class="line"><span class="comment"># 造成读取 pid 失败</span></span><br><span class="line">mkdir -p /etc/systemd/system/nginx.service.d</span><br><span class="line"><span class="built_in">printf</span> <span class="string">"[Service]\nExecStartPost=/bin/sleep 0.1\n"</span> &gt;/etc/systemd/system/nginx.service.d/override.conf</span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart nginx.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此时 nginx 正常运行</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 把前后端资源都放在服务器上</span></span><br><span class="line"><span class="comment"># 打包前端项目 </span></span><br><span class="line">yarn build</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行后端项目</span></span><br><span class="line">yarn start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生产环境有 nginx 就可</span></span><br><span class="line"><span class="comment"># 将打包后的 dist 放在指定目录，在 nginx 配置里说明项目根目录即可，</span></span><br><span class="line"><span class="comment"># nginx 此时便起 web 服务器的作为</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开发环境也可以部署在服务器上，等于 linux 操作系统搞开发，</span></span><br><span class="line"><span class="comment"># 只不过发布的测试环境互联网就能看到</span></span><br><span class="line"><span class="comment"># 将 vue 开发环境依赖安装齐全，发布后访问 8080 端口即可</span></span><br><span class="line"><span class="comment"># 只不过 linux 上安装依赖这一块会碰到很多问题，yarn npm 安装的问题</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 node npm</span></span><br><span class="line">apt-get update</span><br><span class="line"></span><br><span class="line">apt-get install nodejs</span><br><span class="line">apt-get install nodejs-legacy</span><br><span class="line">apt-get install npm</span><br><span class="line"></span><br><span class="line">node -v <span class="comment"># 8.10.0</span></span><br><span class="line">npm -v <span class="comment"># 3.5.2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新 node npm</span></span><br><span class="line">npm install -g n</span><br><span class="line">n stable</span><br><span class="line"></span><br><span class="line"><span class="built_in">command</span> -v npm <span class="comment">#/usr/bin/npm</span></span><br><span class="line"><span class="comment"># 最新版的 npm 的位置在 /usr/local/bin/npm，且已经正常运行</span></span><br><span class="line"><span class="comment"># Bash 的缓存依然显示的是旧版的 /usr/bin/npm</span></span><br><span class="line"><span class="comment"># 清理 bash 缓存</span></span><br><span class="line"><span class="built_in">hash</span> -d npm</span><br><span class="line"></span><br><span class="line"><span class="built_in">command</span> -v npm <span class="comment"># /usr/local/bin/npm</span></span><br><span class="line"></span><br><span class="line">node -v <span class="comment"># v12.18.3</span></span><br><span class="line">npm -v <span class="comment"># 3.5.2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 mongodb</span></span><br><span class="line">apt-get install mongodb</span><br><span class="line"></span><br><span class="line">systemctl status mongodb <span class="comment"># 可看到已启动</span></span><br><span class="line"></span><br><span class="line">mongo <span class="comment"># 进入 mongo shell</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 @vue/cli</span></span><br><span class="line">yarn global add @vue/cli</span><br><span class="line">yarn global add @vue/cli-service</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/arginsen/Vue-Express.git</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在后端 data 下给 mongodb 导入数据</span></span><br><span class="line">mongoimport -d <span class="built_in">test</span> -c manufacturers manufacturers.json</span><br><span class="line">mongoimport -d <span class="built_in">test</span> -c products products.json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 分别安装前后端的依赖</span></span><br><span class="line">yarn install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行项目 命令可自定义 也可以直接写个 shell 脚本</span></span><br><span class="line"><span class="comment"># 后端</span></span><br><span class="line">yarn start</span><br><span class="line"><span class="comment"># 前端</span></span><br><span class="line">yarn serve</span><br></pre></td></tr></table></figure>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://segmentfault.com/a/1190000022512695" target="_blank" rel="noopener">node 设置 cors，解决跨源</a><br><a href="https://www.jianshu.com/p/f650dfad5574" target="_blank" rel="noopener">node 跨域 cors 模块</a><br><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">跨域资源共享 CORS 详解</a><br><a href="https://ts.xcatliu.com/basics/declaration-files.html#export-%3D" target="_blank" rel="noopener">typescript export</a><br><a href="https://mp.weixin.qq.com/s/0tXWPUtnx0bUB1kfU2i_kg" target="_blank" rel="noopener">VS Code 上调试并共享你的 REST API 调用</a><br><a href="https://my.oschina.net/u/4408277/blog/3344005" target="_blank" rel="noopener">ESlint 规则配置</a><br><a href="https://cloud.tencent.com/developer/section/1135651" target="_blank" rel="noopener">ESlint 规则</a><br><a href="https://www.jianshu.com/p/1ca21344a4b2" target="_blank" rel="noopener">Ubuntu 18.04 安装的 NPM</a></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/practice/">practice</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Express/">Express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/MongoDB/">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Vue/">Vue</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/07/16/2-frontend-pt6/" class="article-date">
+	  <time datetime="2020-07-16T00:20:33.000Z" itemprop="datePublished">七月 16, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.4k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/07/16/7-mongodb/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          MongoDB | MongoDB 学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/07/15/2-frontend-pt5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">前端 | 学习 WebGL</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#page"><span class="nav-number">1.</span> <span class="nav-text">page</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue"><span class="nav-number">2.</span> <span class="nav-text">Vue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Express"><span class="nav-number">3.</span> <span class="nav-text">Express</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB"><span class="nav-number">4.</span> <span class="nav-text">MongoDB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境部署"><span class="nav-number">5.</span> <span class="nav-text">环境部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2022 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.2k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>
