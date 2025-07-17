@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>python爬虫学习笔记Ⅲ：信息标记 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Pythonclawer">
+  
+  
+  
+  
+  <meta name="keywords" content="Python,clawer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫学习笔记Ⅲ：信息标记">
+<meta property="og:url" content="https://arginsen.github.io/blog/2019/12/12/4-python-crawler3/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/crawler.jpg">
+<meta property="og:updated_time" content="2025-07-17T09:32:52.167Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python爬虫学习笔记Ⅲ：信息标记">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/crawler.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-4-python-crawler3" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/crawler.jpg" rel="gallery_cmd7c6bzz00kfbtpubnu4049u">
+        <img src="/blog/img/crawler.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      python爬虫学习笔记Ⅲ：信息标记
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="三种信息标记"><a href="#三种信息标记" class="headerlink" title="三种信息标记"></a>三种信息标记</h1><h2 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h2><ul>
+<li>定义：eXtensible Markup Lauguage 扩展标记语言</li>
+<li><p>表达形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">有内容双标签:</span><br><span class="line">&lt;name&gt;...&lt;/name&gt;</span><br><span class="line">无内容单标签:</span><br><span class="line">&lt;name /&gt;</span><br><span class="line">注释:       </span><br><span class="line">&lt;!-- 注释 --&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>特点：最早的通用标记语言，可扩展性好，繁琐；internet上的信息交互与传递</p>
+</li>
+</ul>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><ul>
+<li>定义：JavaScript Object Notation  JavaScript语言中对面向对象的一种表达形式</li>
+<li><p>表达形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">有类型键值对:</span><br><span class="line">&quot;key&quot; : &quot;value&quot; </span><br><span class="line">多值:</span><br><span class="line">&quot;key&quot; : [&quot;value1&quot;, &quot;value2&quot;] </span><br><span class="line">键值对嵌套:            </span><br><span class="line">&quot;key&quot; : &#123;                      </span><br><span class="line">         &quot;subkey1&quot; : &quot;subvalue1&quot;, </span><br><span class="line">         &quot;subkey2&quot; : &quot;subvalue2&quot;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>特点：信息有类型，适合程序处理(js)，较XML简洁；移动应用云端和节点的信息通信，无注释</p>
+</li>
+</ul>
+<h2 id="TAML"><a href="#TAML" class="headerlink" title="TAML"></a>TAML</h2><ul>
+<li>定义：YAML Ain’t Markup Language  </li>
+<li><p>表达形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">无类型键值对:        </span><br><span class="line">key : value</span><br><span class="line">缩进表所属关系:</span><br><span class="line">key :</span><br><span class="line">    subkey : subvalue</span><br><span class="line">并列关系:            </span><br><span class="line">key :</span><br><span class="line">- value1</span><br><span class="line">- value2</span><br><span class="line">表示下方整块数据:</span><br><span class="line">key : |</span><br><span class="line">...</span><br><span class="line">注释:</span><br><span class="line">key = value  #注释</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>特点：信息误类型，文本信息比例最高，可读性好；各类系统的配置文件，有注释易读</p>
+</li>
+</ul>
+<h1 id="基于bs4库的内容查找方法"><a href="#基于bs4库的内容查找方法" class="headerlink" title="基于bs4库的内容查找方法"></a>基于bs4库的内容查找方法</h1><p>&lt;&gt;.find_all(name, attrs, recursive, string, **kwargs)</p>
+<p>name: 对标签名称的检索字符串<br>attrs: 对标签属性值的检索字符串，可标注属性检索<br>recursive: 是否对子孙全部检索，默认True<br>string: &lt;&gt;…&lt;/&gt;中字符串区域的检索字符串</p>
+<p>扩展：<br>方法 | 说明<br>—- | —-<br>&lt;&gt;.find() | 搜索且只返回-个结果，字符串类型，同.find all()参数<br>&lt;&gt;.find_parents() | 在先辈节点中搜索，返回列表类型，同.find_all()参数<br>&lt;&gt;.find_parent() | 在先辈节点中返回一个结果，字符串类型，同.find()参数<br>&lt;&gt;.find_next_siblings() | 在后续平行节点中搜索，返回列表类型，同.find_all()参数<br>&lt;&gt;.find_next_sibling() | 在后续平行节点中返回一个结果，字符串类型，同.find()参数<br>&lt;&gt;.find_previous_siblings() | 在前序平行节点中搜索，返回列表类型，同.find_all()参数<br>&lt;&gt;.find_previous_sibling() | 在前序平行节点中返回一个结果，字符串类型，同.find()参数</p>
+<h1 id="实践：爬取中国大学排名"><a href="#实践：爬取中国大学排名" class="headerlink" title="实践：爬取中国大学排名"></a>实践：爬取中国大学排名</h1><ol>
+<li>从网络上获取大学排名网页内容 getHTMLText()</li>
+<li>提取网页内容中信息到合适的数据结构 fillUnivList()</li>
+<li>利用数据结构展示并输出结果 printUnivList()</li>
+</ol>
+<h2 id="构建函数框架"><a href="#构建函数框架" class="headerlink" title="构建函数框架"></a>构建函数框架</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span><span class="params">(url)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fillUnivList</span><span class="params">(ulist, html)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printUnivList</span><span class="params">(ulist, num)</span>:</span></span><br><span class="line">    print(<span class="string">"Suc"</span> + str(num))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    uinfo = []</span><br><span class="line">    url = <span class="string">'http://www.zuihaodaxue.cn/zuihaodaxuepaiming2019.html'</span></span><br><span class="line">    html = getHTMLText(url)</span><br><span class="line">    fillUnivList(uinfo, html)</span><br><span class="line">    printUnivList(unifo, <span class="number">20</span>)</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<h2 id="填充具体函数"><a href="#填充具体函数" class="headerlink" title="填充具体函数"></a>填充具体函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># from bs4 import BeautifulSoup</span></span><br><span class="line"><span class="keyword">import</span> bs4</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span><span class="params">(url)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        r = requests.get(url, timeout=<span class="number">30</span>)</span><br><span class="line">        r.raise_for_status()</span><br><span class="line">        r.encoding = r.apparent_encoding</span><br><span class="line">        <span class="keyword">return</span> r.text</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fillUnivList</span><span class="params">(ulist, html)</span>:</span></span><br><span class="line">   soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</span><br><span class="line">   <span class="keyword">for</span> tr <span class="keyword">in</span> soup.find(<span class="string">'tbody'</span>).children:</span><br><span class="line">        <span class="keyword">if</span> isinstance(tr, bs4.element.Tag):</span><br><span class="line">            tds = tr(<span class="string">'td'</span>)</span><br><span class="line">            ulist.append([tds[<span class="number">0</span>].string, tds[<span class="number">1</span>].string, tds[<span class="number">3</span>].string])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printUnivList</span><span class="params">(ulist, num)</span>:</span></span><br><span class="line">    print(<span class="string">"&#123;:^5&#125;\t&#123;:&lt;8&#125;\t&#123;:^5&#125;"</span>.format(<span class="string">"排名"</span>,<span class="string">"学校名称"</span>,<span class="string">"总分"</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num):</span><br><span class="line">        u=ulist[i]</span><br><span class="line">        print(<span class="string">"&#123;:^7&#125;\t&#123;:&lt;8&#125;\t&#123;:^6&#125;"</span>.format(u[<span class="number">0</span>],u[<span class="number">1</span>],u[<span class="number">2</span>]))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    uinfo = []</span><br><span class="line">    url = <span class="string">'http://www.zuihaodaxue.cn/zuihaodaxuepaiming2019.html'</span></span><br><span class="line">    html = getHTMLText(url)</span><br><span class="line">    fillUnivList(uinfo, html)</span><br><span class="line">    printUnivList(uinfo, <span class="number">20</span>)      <span class="comment"># list 20 univs</span></span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<p>其中，可以对printUnivList()进行优化，使输出间距更整齐<br>采用中文字符空格填充chr(12288)<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printUnivList</span><span class="params">(ulist, num)</span>:</span></span><br><span class="line">    tplt = <span class="string">"&#123;0:^10&#125;\t&#123;1:&#123;3&#125;^10&#125;\t&#123;2:^10&#125;"</span>           <span class="comment"># 定义变量tplt控制表头及数值的间距</span></span><br><span class="line">    print(tplt.format(<span class="string">"排名"</span>,<span class="string">"学校名称"</span>,<span class="string">"总分"</span>,chr(<span class="number">12288</span>)))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num):</span><br><span class="line">        u=ulist[i]</span><br><span class="line">        print(tplt.format(u[<span class="number">0</span>],u[<span class="number">1</span>],u[<span class="number">2</span>],chr(<span class="number">12288</span>)))</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/clawer/">clawer</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2019/12/12/4-python-crawler3/" class="article-date">
+	  <time datetime="2019-12-12T15:25:00.000Z" itemprop="datePublished">十二月 12, 2019</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">869字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/12/13/5-linux-set-nmap/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux | nmap测远程ip和端口是否通
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/12/11/4-python-crawler2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">python爬虫学习笔记Ⅱ：BeautifulSoup库</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#三种信息标记"><span class="nav-number">1.</span> <span class="nav-text">三种信息标记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#XML"><span class="nav-number">1.1.</span> <span class="nav-text">XML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON"><span class="nav-number">1.2.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TAML"><span class="nav-number">1.3.</span> <span class="nav-text">TAML</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于bs4库的内容查找方法"><span class="nav-number">2.</span> <span class="nav-text">基于bs4库的内容查找方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实践：爬取中国大学排名"><span class="nav-number">3.</span> <span class="nav-text">实践：爬取中国大学排名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建函数框架"><span class="nav-number">3.1.</span> <span class="nav-text">构建函数框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#填充具体函数"><span class="nav-number">3.2.</span> <span class="nav-text">填充具体函数</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.1k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

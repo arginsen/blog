@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>python爬虫学习笔记Ⅶ：Scrapy框架 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="PythonclawerScrapy">
+  
+  
+  
+  
+  <meta name="keywords" content="Python,clawer,Scrapy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫学习笔记Ⅶ：Scrapy框架">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/03/02/4-python-crawler7/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/crawler.jpg">
+<meta property="og:updated_time" content="2025-07-17T09:32:52.167Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python爬虫学习笔记Ⅶ：Scrapy框架">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/crawler.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-4-python-crawler7" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/crawler.jpg" rel="gallery_cmd7c6c0800l0btpu11lg979s">
+        <img src="/blog/img/crawler.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      python爬虫学习笔记Ⅶ：Scrapy框架
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="Scrapy爬虫框架结构-5-2"><a href="#Scrapy爬虫框架结构-5-2" class="headerlink" title="Scrapy爬虫框架结构(5+2)"></a>Scrapy爬虫框架结构(5+2)</h1><h2 id="5"><a href="#5" class="headerlink" title="5"></a>5</h2><ul>
+<li><p>Engine</p>
+<ul>
+<li>控制所有木块之间的数据流</li>
+<li>根据条件触发事件</li>
+</ul>
+</li>
+<li><p>Downloader    </p>
+<ul>
+<li>根据请求下载网页</li>
+</ul>
+</li>
+<li><p>Scheduler</p>
+<ul>
+<li>对所有爬取请求进行调度管理</li>
+</ul>
+</li>
+<li><p>Spider    需用户编辑</p>
+<ul>
+<li>解析Downloader返回的响应(Response)</li>
+<li>产生爬取项(scraped item)</li>
+<li>产生额外的爬取请求(Request)</li>
+</ul>
+</li>
+<li><p>Item Pipelines    需用户编写</p>
+<ul>
+<li>以流水线方式处理Spider产生的爬取项</li>
+<li>由一组操作顺序组成，类似流水线，每个操作是一个Item Pipeline类型</li>
+<li>可能操作包括：清理、检查和查重爬取项中的HTML数据、将数据存储到数据库</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-中间件"><a href="#2-中间件" class="headerlink" title="2 - 中间件"></a>2 - 中间件</h2><ul>
+<li><p>Download MIddleware   用户可编辑</p>
+<ul>
+<li>目的：实施Engine、Scheduler和Downloader之间进行用户可配置的控制</li>
+<li>功能：修改、丢弃、新增请求或响应</li>
+</ul>
+</li>
+<li><p>Spider Middleware     用户可编辑</p>
+<ul>
+<li>目的：对请求和爬取项的再处理</li>
+<li>功能：修改、丢弃、新增请求或爬取项</li>
+</ul>
+</li>
+</ul>
+<h1 id="Scrapy常用命令"><a href="#Scrapy常用命令" class="headerlink" title="Scrapy常用命令"></a>Scrapy常用命令</h1><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>startproject</td>
+<td>创建一个新工程</td>
+<td><code>scrapy startproject &lt;name&gt; [dir]</code></td>
+</tr>
+<tr>
+<td>genspider</td>
+<td>创建一个爬虫</td>
+<td><code>scrapy genspider [options] &lt;name&gt; &lt;domain&gt;</code></td>
+</tr>
+<tr>
+<td>settings</td>
+<td>获得爬虫配置信息</td>
+<td><code>scrapy settings [option]</code></td>
+</tr>
+<tr>
+<td>crawl</td>
+<td>运行一个爬虫</td>
+<td><code>scrapy crawl &lt;spider&gt;</code></td>
+</tr>
+<tr>
+<td>list</td>
+<td>列出工程中所有爬虫</td>
+<td><code>scrapy list</code> </td>
+</tr>
+<tr>
+<td>shell</td>
+<td>启动URL调试命令行</td>
+<td><code>scrapyshell [url]</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="实例-建立股票爬虫"><a href="#实例-建立股票爬虫" class="headerlink" title="实例-建立股票爬虫"></a>实例-建立股票爬虫</h1><ol>
+<li><p>建立工程和Spider模板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; scrapy startproject BaiduStocks</span><br><span class="line">&gt; cd BaiduStocks</span><br><span class="line">&gt; scrapy genspider stocks baidu.com</span><br><span class="line">&gt; vim spider/stocks.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写Spider</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_stock</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    indoDict = &#123;&#125;</span><br><span class="line">    stockIndo = response.css(<span class="string">'.stock-bets'</span>)</span><br><span class="line">    name = stockInfo.css(<span class="string">'dt'</span>).extract()[<span class="number">0</span>]</span><br><span class="line">    keyList = stockInfo.css(<span class="string">'dd'</span>).extract()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(keyList)):</span><br><span class="line">        key = re.findall(<span class="string">r'\d+\.?.*&lt;/dd?&gt;'</span>, keyList[i])[<span class="number">0</span>][<span class="number">0</span>:<span class="number">-5</span>])</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            val = re.findall(<span class="string">r'\d+\.?.*&lt;/dd?&gt;'</span>, valueList[i])[<span class="number">0</span>][<span class="number">0</span>:<span class="number">-5</span>])</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            val = <span class="string">'--'</span></span><br><span class="line">        infoDict[key] = val</span><br><span class="line">    </span><br><span class="line">    infoDict.update(</span><br><span class="line">        &#123;<span class="string">'股票名称'</span>: re.findall(<span class="string">'\s.*\('</span>, name)[<span class="number">0</span>].split()[<span class="number">0</span>] + \</span><br><span class="line">        re.findall(<span class="string">'\&gt;/*\&lt;'</span>, name)[<span class="number">0</span>][<span class="number">1</span>:<span class="number">-1</span>]&#125;)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">yield</span> infoDict</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写Item Pipelines</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置pipelines.py</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaidustocksPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> item</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaidustocksInfoPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">open_spider</span><span class="params">(self, spider)</span>:</span></span><br><span class="line">        self.f = open(<span class="string">'BaiduStockInfo.txt'</span>, <span class="string">'w'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self, spider)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            line = str(dict(item)) + <span class="string">"\n"</span></span><br><span class="line">            self.f.write(line)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">return</span> item</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置settings.py中pipelines选项</span></span><br><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">    <span class="string">'BaiduStocks.pipelines.BaidustocksInfoPipeline'</span>: <span class="number">300</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行爬虫</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; scrapy crawl stocks</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Scrapy/">Scrapy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/clawer/">clawer</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/03/02/4-python-crawler7/" class="article-date">
+	  <time datetime="2020-03-02T03:25:00.000Z" itemprop="datePublished">三月 2, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">522字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/04/06/1-conda-manage/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          conda管理命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/02/25/4-python-crawler6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">python爬虫学习笔记Ⅵ：爬取淘宝物品信息</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Scrapy爬虫框架结构-5-2"><span class="nav-number">1.</span> <span class="nav-text">Scrapy爬虫框架结构(5+2)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5"><span class="nav-number">1.1.</span> <span class="nav-text">5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-中间件"><span class="nav-number">1.2.</span> <span class="nav-text">2 - 中间件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Scrapy常用命令"><span class="nav-number">2.</span> <span class="nav-text">Scrapy常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例-建立股票爬虫"><span class="nav-number">3.</span> <span class="nav-text">实例-建立股票爬虫</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.1k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

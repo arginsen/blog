@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | NPM 包管理工具 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Frontendnpm">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,npm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | NPM 包管理工具">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/05/29/2-frontend-npm/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/npm.jpg">
+<meta property="og:updated_time" content="2025-07-17T09:32:52.162Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | NPM 包管理工具">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/npm.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-npm" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/npm.jpg" rel="gallery_cmd7c6bvn007wbtpu3tcfzgpd">
+        <img src="/blog/img/npm.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      前端 | NPM 包管理工具
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 node 环境</span></span><br><span class="line"><span class="comment"># 在 https://nodejs.org 下载安装</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装后查看 npm 版本</span></span><br><span class="line">npm -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装后查看 node 版本</span></span><br><span class="line">node -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新最新稳定版本 node 至全局</span></span><br><span class="line">npm install npm@latest -g</span><br></pre></td></tr></table></figure>
+<h1 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 项目目录初始化</span></span><br><span class="line">npm init -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装包</span></span><br><span class="line"><span class="comment"># 或者在 package.json 配置依赖</span></span><br><span class="line">npm i jquery</span><br><span class="line">npm i jquery@3.2.1  <span class="comment"># 安装旧版本</span></span><br><span class="line">npm i vue</span><br><span class="line">npm i bootstrap</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载包</span></span><br><span class="line">npm uninstall normalize.css</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装至开发环境</span></span><br><span class="line">npm i webpack --save-dev</span><br></pre></td></tr></table></figure>
+<h1 id="npm-指令速查"><a href="#npm-指令速查" class="headerlink" title="npm 指令速查"></a>npm 指令速查</h1><p><strong>常用</strong></p>
+<ul>
+<li><code>npm init</code> 初始化项目，其实就是创建一个 package.json 文件。</li>
+<li><code>npm install</code> 安装所有项目依赖。</li>
+<li><code>npm help xxx</code> 查看xxx命令的帮助信息。</li>
+</ul>
+<p><strong>搜索</strong> npm search （快捷方式：find, s）</p>
+<ul>
+<li>xxx 搜索xxx 如：<code>npm search jquery</code>。</li>
+</ul>
+<p><strong>安装</strong> npm install （快捷方式：i）</p>
+<ul>
+<li>xxx 搜索并安装xxx（局部）。安装多个依赖可用空格分割，如 <code>npm i jquery bootstrap</code>。</li>
+<li>xxx -g 搜索并安装xxx（全局）。安装多个同上。</li>
+<li>xxx -D 安装并将依赖信息写在 package.json 中的 devDependencies 中。</li>
+<li>快捷方式 i 均可，如 <code>npm i jquery</code>。</li>
+<li>xxx@版本号 指定需要安装的版本号，若不指定将安装最新的稳定版本。</li>
+</ul>
+<p><strong>卸载</strong> <code>npm uninstall</code> （快捷方式：rm, r）</p>
+<ul>
+<li>xxx 卸载xxx。多个依赖可用空格分割。</li>
+<li>xxx -D 卸载xxx，并将依赖信息从 package.json 中的 devDependencies 中清除。</li>
+</ul>
+<p><strong>列出已安装依赖</strong> <code>npm list</code> （快捷方式：ls）</p>
+<ul>
+<li>默认列出局部依赖。</li>
+<li><code>npm list -g</code> 列出已安装的全局依赖。</li>
+</ul>
+<p><strong>检查过期依赖</strong> <code>npm outdated</code></p>
+<p><strong>更新依赖</strong> <code>npm update</code> （快捷方式：up）</p>
+<ul>
+<li>xxx 局部更新xxx。</li>
+<li>xxx -g 全局更新xxx。</li>
+</ul>
+<p><strong>查看依赖安装路径</strong> <code>npm root</code> （也就是node_modules的路径）</p>
+<ul>
+<li>默认查看局部安装路径。</li>
+<li>-g 查看全局安装路径。</li>
+</ul>
+<p><strong>查看模块的注册信息</strong> <code>npm view</code> </p>
+<ul>
+<li>xxx versions 列出xxx的所有版本， 如：<code>npm view jquery versions</code>。</li>
+<li>xxx dependencies 列出xxx的所有依赖， 如：<code>npm view gulp dependencies</code>。</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://github.com/wangdoc/node-tutorial/blob/master/docs/npm/basic.md" target="_blank" rel="noopener">npm 基础</a><br><a href="https://github.com/wangdoc/node-tutorial/tree/master/docs/npm" target="_blank" rel="noopener">npm 相关资料</a></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/npm/">npm</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/05/29/2-frontend-npm/" class="article-date">
+	  <time datetime="2020-05-28T16:00:00.000Z" itemprop="datePublished">五月 29, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">492字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/05/29/2-frontend-es6-10/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          前端 | ES6笔记 | 十、Generator 函数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/05/28/2-frontend-es6-9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">前端 | ES6笔记 | 九、Promise 对象</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用操作"><span class="nav-number">2.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#npm-指令速查"><span class="nav-number">3.</span> <span class="nav-text">npm 指令速查</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.1k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

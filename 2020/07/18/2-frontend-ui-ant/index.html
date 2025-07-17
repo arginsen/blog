@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | Ant-UI for Vue 使用体验 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendVueAnt-UI">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,Vue,Ant-UI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | Ant-UI for Vue 使用体验">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/07/18/2-frontend-ui-ant/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/vue.jpg">
+<meta property="og:updated_time" content="2025-07-17T09:32:52.163Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | Ant-UI for Vue 使用体验">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/vue.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-ui-ant" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/vue.jpg" rel="gallery_cmd7c6bvy008obtpuh0yodzzm">
+        <img src="/blog/img/vue.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      前端 | Ant-UI for Vue 使用体验
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 vue 中用脚手架工具创建项目，安装脚手架工具</span></span><br><span class="line">$ npm install -g @vue/cli</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">$ yarn global add @vue/cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个项目</span></span><br><span class="line">$ vue create antd-demo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在项目中安装 ant-design-vue</span></span><br><span class="line">$ npm i --save ant-design-vue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 App.vue 中完整引入</span></span><br><span class="line">import Vue from <span class="string">'vue'</span>;</span><br><span class="line">import Antd from <span class="string">'ant-design-vue'</span>;</span><br><span class="line">import App from <span class="string">'./App'</span>;</span><br><span class="line">import <span class="string">'ant-design-vue/dist/antd.css'</span>;</span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(Antd);</span><br><span class="line"></span><br><span class="line">/* eslint-disable no-new */</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h1><h2 id="menu"><a href="#menu" class="headerlink" title="menu"></a>menu</h2><blockquote>
+<p>mode 可以确认菜单栏的布局是水平还是竖直排布的，有多中形式供选择。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a-menu</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">"menu"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">mode</span>=<span class="string">"horizontal"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-menu-item</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a-menu-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-menu-item</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/cart"</span>&gt;</span>Cart<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a-menu-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-sub-menu</span> <span class="attr">key</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">slot</span>=<span class="string">"title"</span>&gt;</span>Admin<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-menu-item</span> <span class="attr">key</span>=<span class="string">"3a"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/admin"</span>&gt;</span>查看商品<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-menu-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-menu-item</span> <span class="attr">key</span>=<span class="string">"3b"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/admin/new"</span>&gt;</span>添加商品<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-menu-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-menu-item</span> <span class="attr">key</span>=<span class="string">"3c"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/admin/manufacturers"</span>&gt;</span>查看生产商<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-menu-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-menu-item</span> <span class="attr">key</span>=<span class="string">"3d"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/admin/manufacturers/new"</span>&gt;</span>添加生产商<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-menu-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a-sub-menu</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-menu</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">router-view</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="breadcrumb"><a href="#breadcrumb" class="headerlink" title="breadcrumb"></a>breadcrumb</h2><blockquote>
+<p>可以用来做一个当前的 <code>pwd</code> 展示，item 按从上往下依次进入目录，使用路由提供的 <code>this.$route</code> 对象，可以获得当前的路由名和路径</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a-breadcrumb</span> <span class="attr">class</span>=<span class="string">"admin-index"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-breadcrumb-item</span>&gt;</span></span><br><span class="line">    Admin</span><br><span class="line">  <span class="tag">&lt;/<span class="name">a-breadcrumb-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-breadcrumb-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">'this.$route.path'</span>&gt;</span>&#123;&#123;this.$route.name&#125;&#125;<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a-breadcrumb-item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-breadcrumb</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="button"><a href="#button" class="headerlink" title="button"></a>button</h2><blockquote>
+<p>使用 block 会使按钮长度充满父级，type 有多种选择，区分颜色可以使用 <code>:icon=&quot;&quot;</code> 引入图标</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- isAdding 作为计算属性返回布尔值，并绑定点击按钮事件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-button</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-if</span>=<span class="string">"isAdding"</span></span></span><br><span class="line"><span class="tag">      @<span class="attr">click</span>=<span class="string">"addToCart"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">type</span>=<span class="string">"primary"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">block</span>&gt;</span></span><br><span class="line">      加入购物车</span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-button</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-else</span></span></span><br><span class="line"><span class="tag">      @<span class="attr">click</span>=<span class="string">"removeFromCart(id)"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">type</span>=<span class="string">"primary"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">block</span>&gt;</span></span><br><span class="line">      从购物车移除<span class="tag">&lt;/<span class="name">a-button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="carousel"><a href="#carousel" class="headerlink" title="carousel"></a>carousel</h2><blockquote>
+<p>使用 a-carousel 标签实现跑马灯，将其作为组件插到导航下方，在标签内用 v-for 获取 store 里的图片数据</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- products 作为计算属性返回 store 里的数据 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-carousel</span> <span class="attr">autoplay</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"product in products"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:to</span>=<span class="string">"'/detail/' + product._id"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:key</span>=<span class="string">"product._id"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">"product-link"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"product.image"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"product__image"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a-carousel</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="table"><a href="#table" class="headerlink" title="table"></a>table</h2><blockquote>
+<p>ant-ui 的 table 将列先定义在 data 里，在标签里引入表头和数据，列通过数据索引直接被提出来，title 表示列名，dataIndex 和数据对象的属性一致，slot-scope 中 text 表示列的数据，单独指定列再用 slot 指明列名，record 表示 整个 data-source，从整个对象中拿出一个其他的给当前列</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a-table</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:columns</span>=<span class="string">"columns"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:data-source</span>=<span class="string">"data"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:pagination</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">bordered</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot</span>=<span class="string">"name"</span> <span class="attr">slot-scope</span>=<span class="string">"text"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"table-name"</span>&gt;</span>&#123;&#123; text &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot</span>=<span class="string">"operation"</span> <span class="attr">slot-scope</span>=<span class="string">"text, record"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-button-group</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a-button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">"primary"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">size</span>=<span class="string">"small"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">"'/admin/edit/' + record._id"</span> <span class="attr">class</span>=<span class="string">"edit"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">a-icon</span> <span class="attr">type</span>=<span class="string">"form"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a-button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a-button</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">click</span>=<span class="string">"removeProduct(record._id)"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">"danger"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">size</span>=<span class="string">"small"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">a-icon</span> <span class="attr">type</span>=<span class="string">"delete"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-button-group</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-table</span>&gt;</span></span><br><span class="line"></span><br><span class="line">data() &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    columns: [</span><br><span class="line">      &#123;</span><br><span class="line">        title: 'Name',</span><br><span class="line">        dataIndex: 'name',</span><br><span class="line">        scopedSlots: &#123; customRender: 'name' &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        title: 'Price',</span><br><span class="line">        dataIndex: 'price',</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        title: 'Manufacturer',</span><br><span class="line">        dataIndex: 'manufacturer.name',</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        title: 'Operation',</span><br><span class="line">        dataIndex: 'operation',</span><br><span class="line">        scopedSlots: &#123; customRender: 'operation' &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">    data: this.products,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="form-model"><a href="#form-model" class="headerlink" title="form-model"></a>form-model</h2><blockquote>
+<p>form-model 具有双向绑定式的校验功能，通过 <code>:model</code> 指定数据源，通过 rules 指定每个表单的输入校验规则；label-col 与 wrapper-col 指定列的位置和大小；每个表单用 label 是输入框的名字，prop 绑定对应的规则名；规则里的 message 相当于 placeholder，required 表示是否必填项，用 <code>this.$refs.ruleForm.validate</code> 提交时进行校验</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a-form-model</span></span></span><br><span class="line"><span class="tag">  <span class="attr">ref</span>=<span class="string">"ruleForm"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:model</span>=<span class="string">"modelData"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:rules</span>=<span class="string">"rules"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:label-col</span>=<span class="string">"labelCol"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:wrapper-col</span>=<span class="string">"wrapperCol"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-form-model-item</span></span></span><br><span class="line"><span class="tag">    <span class="attr">label</span>=<span class="string">"Name"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">prop</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-input</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-model</span>=<span class="string">"modelData.name"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">placeholder</span>=<span class="string">"please input product name"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a-form-model-item</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-form-model-item</span> <span class="attr">:wrapper-col</span>=<span class="string">"&#123; span: 10, offset: 7 &#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-button</span> <span class="attr">v-if</span>=<span class="string">"isEditing"</span> <span class="attr">type</span>=<span class="string">"primary"</span> @<span class="attr">click</span>=<span class="string">"onSubmit"</span>&gt;</span></span><br><span class="line">      Update</span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-button</span> <span class="attr">v-else</span> <span class="attr">type</span>=<span class="string">"primary"</span> @<span class="attr">click</span>=<span class="string">"onSubmit"</span>&gt;</span></span><br><span class="line">      Create</span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-button</span> <span class="attr">style</span>=<span class="string">"margin-left: 10px;"</span> @<span class="attr">click</span>=<span class="string">"resetForm"</span>&gt;</span></span><br><span class="line">      Reset</span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a-form-model-item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-form-model</span>&gt;</span></span><br><span class="line"></span><br><span class="line">data() &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    modelData: &#123;&#125;,</span><br><span class="line">    labelCol: &#123; span: 4, offset: 4 &#125;,</span><br><span class="line">    wrapperCol: &#123; span: 10 &#125;,</span><br><span class="line">    rules: &#123;</span><br><span class="line">      name: [</span><br><span class="line">        &#123;</span><br><span class="line">          required: true,</span><br><span class="line">          message: 'Please input validate name',</span><br><span class="line">          trigger: 'blur',</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          min: 2,</span><br><span class="line">          max: 15,</span><br><span class="line">          trigger: 'blur',</span><br><span class="line">          message: 'Length should be 2 to 15',</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="message"><a href="#message" class="headerlink" title="message"></a>message</h2><blockquote>
+<p>message 可用于全局消息提示，比如表单点提交按钮后，页面出现提示：”提交成功”，有 secccess，loading 等提示，也可以加 then 方法，在上一个提示后接着再出一个提示。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在 onSubmit() 方法里</span></span><br><span class="line"><span class="keyword">this</span>.$message</span><br><span class="line">  .loading(<span class="string">'Action in progress..'</span>, <span class="number">1</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.$message.success(<span class="string">'Loading finished'</span>, <span class="number">2.5</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://antdv.com/docs/vue/introduce-cn/" target="_blank" rel="noopener">Ant Design Vue</a></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/practice/">practice</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Ant-UI/">Ant-UI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Vue/">Vue</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/07/18/2-frontend-ui-ant/" class="article-date">
+	  <time datetime="2020-07-18T07:20:33.000Z" itemprop="datePublished">七月 18, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.3k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/08/12/1-vim/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          vim 学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/07/16/7-mongodb/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">MongoDB | MongoDB 学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件"><span class="nav-number">2.</span> <span class="nav-text">组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#menu"><span class="nav-number">2.1.</span> <span class="nav-text">menu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#breadcrumb"><span class="nav-number">2.2.</span> <span class="nav-text">breadcrumb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#button"><span class="nav-number">2.3.</span> <span class="nav-text">button</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#carousel"><span class="nav-number">2.4.</span> <span class="nav-text">carousel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#table"><span class="nav-number">2.5.</span> <span class="nav-text">table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#form-model"><span class="nav-number">2.6.</span> <span class="nav-text">form-model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#message"><span class="nav-number">2.7.</span> <span class="nav-text">message</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.1k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | 学习 WebGL | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendJavaScript">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | 学习 WebGL">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/07/15/2-frontend-pt5/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/javascript.jpg">
+<meta property="og:updated_time" content="2025-07-17T09:32:52.162Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | 学习 WebGL">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/javascript.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-pt5" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/javascript.jpg" rel="gallery_cmd7c6bvw008ebtpuzw53qc3t">
+        <img src="/blog/img/javascript.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      前端 | 学习 WebGL
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="show"><a href="#show" class="headerlink" title="show"></a>show</h1><canvas id="draw" width="500" height="500"></canvas>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('draw');
+    const gl = canvas.getContext('webgl');
+
+    gl.clearColor(1, 1, 1, 1);
+
+    const sourceV = `
+        attribute vec3 position;
+        varying vec4 color;
+
+        void main() {
+            gl_Position = vec4(position, 1);
+            color = gl_Position * 0.5 + 0.5;
+        }
+    `;
+
+    const shaderV = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(shaderV, sourceV);
+    gl.compileShader(shaderV);
+
+    if (!gl.getShaderParameter(shaderV, gl.COMPILE_STATUS)) {
+        console.error(gl.getShaderInfoLog(shaderV));
+        throw new Error('Failed to compile vertex shader');
+    }
+
+    const sourceF = `
+        precision mediump float;
+        varying vec4 color;
+
+        void main() {
+            gl_FragColor = color;
+        }
+    `;
+
+    const shaderF = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(shaderF, sourceF);
+    gl.compileShader(shaderF);
+
+    if (!gl.getShaderParameter(shaderF, gl.COMPILE_STATUS)) {
+        console.error(gl.getShaderInfoLog(shaderF));
+        throw new Error('Failed to compile fragment shader');
+    }
+
+    const program = gl.createProgram();
+    gl.attachShader(program, shaderV);
+    gl.attachShader(program, shaderF);
+    gl.linkProgram(program);
+
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.error(gl.getProgramInfoLog(program));
+        throw new Error('Failed to link program');
+    }
+
+    gl.useProgram(program);
+
+    const positionsData = new Float32Array([
+    -0.75, -0.65, -1,
+     0.75, -0.65, -1,
+     0   ,  0.65, -1,
+    ]);
+
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, positionsData, gl.STATIC_DRAW);
+
+    const attribute = gl.getAttribLocation(program, 'position');
+    gl.enableVertexAttribArray(attribute);
+    gl.vertexAttribPointer(attribute, 3, gl.FLOAT, false, 0, 0);
+
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+});
+</script>
+
+<h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"draw"</span> <span class="attr">width</span>=<span class="string">"500"</span> <span class="attr">height</span>=<span class="string">"500"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>, () =&gt; &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'draw'</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> gl = canvas.getContext(<span class="string">'webgl'</span>);</span></span><br><span class="line"></span><br><span class="line">    gl.clearColor(1, 1, 1, 1);</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> sourceV = <span class="string">`</span></span></span><br><span class="line">        attribute vec3 position;</span><br><span class="line">        varying vec4 color;</span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="keyword">void</span> main() &#123;</span></span><br><span class="line">            gl_Position = vec4(position, 1);</span><br><span class="line">            color = gl_Position * 0.5 + 0.5;</span><br><span class="line">        &#125;</span><br><span class="line">    `;</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> shaderV = gl.createShader(gl.VERTEX_SHADER);</span></span><br><span class="line">    gl.shaderSource(shaderV, sourceV);</span><br><span class="line">    gl.compileShader(shaderV);</span><br><span class="line"></span><br><span class="line">    if (!gl.getShaderParameter(shaderV, gl.COMPILE_STATUS)) &#123;</span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.error(gl.getShaderInfoLog(shaderV));</span></span><br><span class="line"><span class="javascript">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Failed to compile vertex shader'</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> sourceF = <span class="string">`</span></span></span><br><span class="line">        precision mediump float;</span><br><span class="line">        varying vec4 color;</span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="keyword">void</span> main() &#123;</span></span><br><span class="line">            gl_FragColor = color;</span><br><span class="line">        &#125;</span><br><span class="line">    `;</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> shaderF = gl.createShader(gl.FRAGMENT_SHADER);</span></span><br><span class="line">    gl.shaderSource(shaderF, sourceF);</span><br><span class="line">    gl.compileShader(shaderF);</span><br><span class="line"></span><br><span class="line">    if (!gl.getShaderParameter(shaderF, gl.COMPILE_STATUS)) &#123;</span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.error(gl.getShaderInfoLog(shaderF));</span></span><br><span class="line"><span class="javascript">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Failed to compile fragment shader'</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> program = gl.createProgram();</span></span><br><span class="line">    gl.attachShader(program, shaderV);</span><br><span class="line">    gl.attachShader(program, shaderF);</span><br><span class="line">    gl.linkProgram(program);</span><br><span class="line"></span><br><span class="line">    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) &#123;</span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.error(gl.getProgramInfoLog(program));</span></span><br><span class="line"><span class="javascript">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Failed to link program'</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    gl.useProgram(program);</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> positionsData = <span class="keyword">new</span> <span class="built_in">Float32Array</span>([</span></span><br><span class="line">    -0.75, -0.65, -1,</span><br><span class="line">     0.75, -0.65, -1,</span><br><span class="line">     0   ,  0.65, -1,</span><br><span class="line">    ]);</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> buffer = gl.createBuffer();</span></span><br><span class="line">    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);</span><br><span class="line">    gl.bufferData(gl.ARRAY_BUFFER, positionsData, gl.STATIC_DRAW);</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> attribute = gl.getAttribLocation(program, <span class="string">'position'</span>);</span></span><br><span class="line">    gl.enableVertexAttribArray(attribute);</span><br><span class="line"><span class="javascript">    gl.vertexAttribPointer(attribute, <span class="number">3</span>, gl.FLOAT, <span class="literal">false</span>, <span class="number">0</span>, <span class="number">0</span>);</span></span><br><span class="line"></span><br><span class="line">    gl.clear(gl.COLOR_BUFFER_BIT);</span><br><span class="line">    gl.drawArrays(gl.TRIANGLES, 0, 3);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="link"><a href="#link" class="headerlink" title="link"></a>link</h1><ul>
+<li><p>翻译：<a href="https://mp.weixin.qq.com/s/dIBe9oaPQaTdSBFPXeD8jg" target="_blank" rel="noopener">最简WebGL教程，仅需 75 行代码</a></p>
+</li>
+<li><p>原文：<a href="https://avikdas.com/2020/07/08/barebones-webgl-in-75-lines-of-code.html" target="_blank" rel="noopener">Barebones WebGL in 75 lines of code</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/practice/">practice</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/07/15/2-frontend-pt5/" class="article-date">
+	  <time datetime="2020-07-14T16:00:00.000Z" itemprop="datePublished">七月 15, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">482字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/07/16/2-frontend-pt6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          前端 | Vue + Express + MongoDB 制作电商应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/06/29/2-frontend-yarn/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">前端 | yarn 包管理工具</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#show"><span class="nav-number">1.</span> <span class="nav-text">show</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#code"><span class="nav-number">2.</span> <span class="nav-text">code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#link"><span class="nav-number">3.</span> <span class="nav-text">link</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.1k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

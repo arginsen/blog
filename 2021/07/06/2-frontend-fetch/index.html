@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | Fetch API | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendBrowserHTTP">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,Browser,HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | Fetch API">
+<meta property="og:url" content="https://arginsen.github.io/blog/2021/07/06/2-frontend-fetch/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/fetch.jpg">
+<meta property="og:updated_time" content="2025-07-17T09:32:52.160Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | Fetch API">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/fetch.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-fetch" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/fetch.jpg" rel="gallery_cmd7c6bv2006gbtpu4mcpo3uw">
+        <img src="/blog/img/fetch.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      前端 | Fetch API
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<p><code>fetch()</code> 是 XMLHttpRequest 的升级版，用于在 JavaScript 脚本里面发出 HTTP 请求。浏览器原生提供这个对象。</p>
+<h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h1><p><code>fetch()</code> 的功能与 XMLHttpRequest 基本相同，但有三个主要的差异。</p>
+<p>（1）<code>fetch()</code> 使用 Promise，不使用回调函数，因此大大简化了写法，写起来更简洁。</p>
+<p>（2）<code>fetch()</code> 采用模块化设计，API 分散在多个对象上（Response 对象、Request 对象、Headers 对象），更合理一些；相比之下，XMLHttpRequest 的 API 设计并不是很好，输入、输出、状态都在同一个接口管理，容易写出非常混乱的代码。</p>
+<p>（3）<code>fetch()</code> 通过数据流（Stream 对象）处理数据，可以分块读取，有利于提高网站性能表现，减少内存占用，对于请求大文件或者网速慢的场景相当有用。XMLHTTPRequest 对象不支持数据流，所有的数据必须放在缓存里，不支持分块读取，必须等待全部拿到后，再一次性吐出来。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fetch(url)</span><br><span class="line">  .then(...)</span><br><span class="line">  .catch(...)</span><br></pre></td></tr></table></figure>
+<p>如下例书写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://v1.hitokoto.cn'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">response</span> =&gt;</span> response.json())</span><br><span class="line">  .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> hitokoto = <span class="built_in">document</span>.getElementById(<span class="string">'hitokoto'</span>);</span><br><span class="line">    hitokoto.innerText = data.hitokoto</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="built_in">console</span>.error);</span><br></pre></td></tr></table></figure>
+<p><code>fetch()</code> 接收到的 <code>response</code> 是一个 Stream 对象，<code>response.json()</code> 是一个异步操作，取出所有内容，并将其转为 JSON 对象。</p>
+<p><code>Promise</code> 可以使用 <code>await</code> 语法改写，使得语义更清晰。<code>await</code> 语句必须放在 <code>try...catch</code> 里面，这样才能捕捉异步操作中可能发生的错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 上例可以写为</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getOneword</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> response = <span class="keyword">await</span> fetch(<span class="string">'https://v1.hitokoto.cn'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> response.json()</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Request Failed'</span>, error)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h1><p><code>fetch(url, optionObj)</code> 方法接受两个参数，第一个为参数，第二个为自定义的配置。</p>
+<ul>
+<li><code>method</code>：HTTP 请求的方法，POST、DELETE、PUT都在这个属性设置。</li>
+<li><code>headers</code>：一个对象，用来定制 HTTP 请求的标头。</li>
+<li><code>body</code>：POST 请求的数据体。</li>
+<li><code>cache</code>：指定如何处理缓存。可能的取值如下：<ul>
+<li><code>default</code>：默认值，先在缓存里面寻找匹配的请求。</li>
+<li><code>no-store</code>：直接请求远程服务器，并且不更新缓存。</li>
+<li><code>reload</code>：直接请求远程服务器，并且更新缓存。</li>
+<li><code>no-cache</code>：将服务器资源跟本地缓存进行比较，有新版本才使用服务器资源，否则使用缓存。</li>
+<li><code>force-cache</code>：缓存优先，只有不存在缓存的情况下，才请求远程服务器。</li>
+<li><code>only-if-cached</code>：只检查缓存，如果缓存里面不存在，将返回504错误。</li>
+</ul>
+</li>
+<li><code>mode</code>：指定请求的模式。可能的取值如下：<ul>
+<li><code>cors</code>：默认值，允许跨域请求。</li>
+<li><code>same-origin</code>：只允许同源请求。</li>
+<li><code>no-cors</code>：请求方法只限于 GET、POST 和 HEAD，并且只能使用有限的几个简单标头，不能添加跨域的复杂标头，相当于提交表单所能发出的请求。</li>
+</ul>
+</li>
+<li><code>credentials</code>：指定是否发送 Cookie。可能的取值如下：<ul>
+<li><code>same-origin</code>：默认值，同源请求时发送 Cookie，跨域请求时不发送。</li>
+<li><code>include</code>：不管同源请求，还是跨域请求，一律发送 Cookie。（跨域需设定）</li>
+<li><code>omit</code>：一律不发送。</li>
+</ul>
+</li>
+<li><code>signal</code>：指定一个 AbortSignal 实例，用于取消 fetch() 请求。</li>
+<li><code>keepalive</code>：用于页面卸载时，告诉浏览器在后台保持连接，继续发送数据。</li>
+<li><code>redirect</code>：指定 HTTP 跳转的处理方法。可能的取值如下：<ul>
+<li><code>follow</code>：默认值，fetch() 跟随 HTTP 跳转。</li>
+<li><code>error</code>：如果发生跳转，fetch() 就报错。</li>
+<li><code>manual</code>：fetch() 不跟随 HTTP 跳转，但是 response.url 属性会指向新的 URL，response.redirected 属性会变为 true，由开发者自己决定后续如何处理跳转。</li>
+</ul>
+</li>
+<li><code>integrity</code>：指定一个哈希值，用于检查 HTTP 回应传回的数据是否等于这个预先设定的哈希值。</li>
+<li><code>referrer</code>：用于设定fetch()请求的referer标头。</li>
+<li><code>referrerPolicy</code>：用于设定Referer标头的规则。可能的取值如下：<ul>
+<li><code>no-referrer-when-downgrade</code>：默认值，总是发送Referer标头，除非从 HTTPS 页面请求 HTTP 资源时不发送。</li>
+<li><code>no-referrer</code>：不发送Referer标头。</li>
+<li><code>origin</code>：Referer标头只包含域名，不包含完整的路径。</li>
+<li><code>origin-when-cross-origin</code>：同源请求Referer标头包含完整的路径，跨域请求只包含域名。</li>
+<li><code>same-origin</code>：跨域请求不发送 Referer，同源请求发送。</li>
+<li><code>strict-origin</code>：Referer 标头只包含域名，HTTPS 页面请求 HTTP 资源时不发送Referer标头。</li>
+<li><code>strict-origin-when-cross-origin</code>：同源请求时 Referer 标头包含完整路径，跨域请求时只包含域名，HTTPS 页面请求 HTTP 资源时不发送该标头。</li>
+<li><code>unsafe-url</code>：不管什么情况，总是发送 Referer 标头。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> response = fetch(url, &#123;</span><br><span class="line">  method: <span class="string">"GET"</span>,</span><br><span class="line">  headers: &#123;</span><br><span class="line">    <span class="string">"Content-Type"</span>: <span class="string">"text/plain;charset=UTF-8"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  body: <span class="literal">undefined</span>,</span><br><span class="line">  referrer: <span class="string">"about:client"</span>,</span><br><span class="line">  referrerPolicy: <span class="string">"no-referrer-when-downgrade"</span>,</span><br><span class="line">  mode: <span class="string">"cors"</span>, </span><br><span class="line">  credentials: <span class="string">"same-origin"</span>,</span><br><span class="line">  cache: <span class="string">"default"</span>,</span><br><span class="line">  redirect: <span class="string">"follow"</span>,</span><br><span class="line">  integrity: <span class="string">""</span>,</span><br><span class="line">  keepalive: <span class="literal">false</span>,</span><br><span class="line">  signal: <span class="literal">undefined</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="取消请求"><a href="#取消请求" class="headerlink" title="取消请求"></a>取消请求</h2><p><code>fetch()</code> 请求发送以后，如果中途想要取消，需要使用 <code>AbortController</code> 对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一秒后取消请求</span></span><br><span class="line"><span class="keyword">let</span> controller = <span class="keyword">new</span> AbortController();</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> controller.abort(), <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> response = <span class="keyword">await</span> fetch(<span class="string">'/long-operation'</span>, &#123;</span><br><span class="line">    signal: controller.signal</span><br><span class="line">  &#125;);</span><br><span class="line">&#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">  <span class="keyword">if</span> (err.name == <span class="string">'AbortError'</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Aborted!'</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> err;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实际同 axios 的取消模式差不多：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> CancelToken = axios.CancelToken;</span><br><span class="line"><span class="keyword">const</span> source = CancelToken.source();</span><br><span class="line">source.cancel(message);</span><br><span class="line"></span><br><span class="line">axios.get(<span class="string">'/get/server'</span>, &#123;</span><br><span class="line">  cancelToken: source.token</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h1><p>fetch() 请求后返回一个 promise 对象，也是 Stream 对象。该 response 对象上定义了完整的属性、方法供使用</p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="response-ok"><a href="#response-ok" class="headerlink" title="response.ok"></a>response.ok</h3><p>返回一个布尔值，表示请求是否成功，<code>true</code> 对应 HTTP 请求的状态码 200 到 299，false对应其他的状态码。</p>
+<h3 id="response-status"><a href="#response-status" class="headerlink" title="response.status"></a>response.status</h3><p>返回一个数字，表示 HTTP 回应的状态码（例如200，表示成功请求）。fetch 请求发出后只有网络错误或无法连接时才会报错，其他请求均认为请求成功，所以需要加以判断</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过 response.status 判断请求是否成功</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fetchText</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> response = <span class="keyword">await</span> fetch(<span class="string">'/readme.txt'</span>);</span><br><span class="line">  <span class="keyword">if</span> (response.status &gt;= <span class="number">200</span> &amp;&amp; response.status &lt; <span class="number">300</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> response.text();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(response.statusText);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者也可以用上一个属性 ok</span></span><br><span class="line"><span class="keyword">if</span> (response.ok) &#123;</span><br><span class="line">  <span class="comment">// success</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="response-statusText"><a href="#response-statusText" class="headerlink" title="response.statusText"></a>response.statusText</h3><p>返回一个字符串，表示 HTTP 回应的状态信息（例如请求成功以后，服务器返回”OK”）。</p>
+<h3 id="response-url"><a href="#response-url" class="headerlink" title="response.url"></a>response.url</h3><p>返回请求的 URL。如果 URL 存在跳转，该属性返回的是最终 URL。</p>
+<h3 id="response-type"><a href="#response-type" class="headerlink" title="response.type"></a>response.type</h3><p>返回请求的类型。可能的值如下：</p>
+<p>basic：普通请求，即同源请求。<br>cors：跨域请求。<br>error：网络错误，主要用于 Service Worker。<br>opaque：如果 <code>fetch()</code> 请求的 type 属性设为 <code>no-cors</code>，就会返回这个值<br>opaqueredirect：如果 <code>fetch()</code> 请求的 <code>redirect</code> 属性设为 <code>manual</code>，就会返回这个值</p>
+<h3 id="response-redirected"><a href="#response-redirected" class="headerlink" title="response.redirected"></a>response.redirected</h3><p>返回一个布尔值，表示请求是否发生过跳转。</p>
+<h3 id="response-headers"><a href="#response-headers" class="headerlink" title="response.headers"></a>response.headers</h3><p>一个对象，为 HTTP 回应的所有标头。提供如下方法操作标头</p>
+<p>Headers.get()：根据指定的键名，返回键值。<br>Headers.has()： 返回一个布尔值，表示是否包含某个标头。<br>Headers.set()：将指定的键名设置为新的键值，如果该键名不存在则会添加。<br>Headers.append()：添加标头。<br>Headers.delete()：删除标头。<br>Headers.keys()：返回一个遍历器，可以依次遍历所有键名。<br>Headers.values()：返回一个遍历器，可以依次遍历所有键值。<br>Headers.entries()：返回一个遍历器，可以依次遍历所有键值对（[key, value]）。<br>Headers.forEach()：依次遍历标头，每个标头都会执行一次参数函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 读取标头</span></span><br><span class="line"><span class="keyword">let</span> response =  <span class="keyword">await</span> fetch(url);  </span><br><span class="line"><span class="keyword">let</span> headers = response.headers</span><br><span class="line">headers.get(<span class="string">'Content-Type'</span>) <span class="comment">// application/json; charset=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历键名</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">of</span> headers.keys()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历键值</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> value <span class="keyword">of</span> headers.values()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历键名与值</span></span><br><span class="line">headers.forEach(</span><br><span class="line">  (value, key) =&gt; <span class="built_in">console</span>.log(key, <span class="string">':'</span>, value)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="response-body"><a href="#response-body" class="headerlink" title="response.body"></a>response.body</h3><p>Response 对象暴露出的底层接口，返回一个 ReadableStream 对象，可以用来分块读取内容，应用之一就是显示下载的进度。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> response = <span class="keyword">await</span> fetch(<span class="string">'flower.jpg'</span>);</span><br><span class="line"><span class="keyword">const</span> reader = response.body.getReader(); <span class="comment">// getReader 方法返回一个遍历器</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;done, value&#125; = <span class="keyword">await</span> reader.read(); <span class="comment">// read 方法每次返回一个对象，表示本次读取的内容块</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// done 是一个布尔值，判断有没有读完，若读完跳出循环</span></span><br><span class="line">  <span class="keyword">if</span> (done) &#123;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// value 是一个 arrayBuffer 数组，表示内容块的内容</span></span><br><span class="line">  <span class="comment">// value.length 表示当前块的大小</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Received <span class="subst">$&#123;value.length&#125;</span> bytes`</span>) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>reponse 对象根据服务器返回的不同类型的数据，提供了不同的读取方法。以下方法均是异步，返回 promise 对象</p>
+<h3 id="response-text"><a href="#response-text" class="headerlink" title="response.text()"></a>response.text()</h3><p>用于获取文本数据，如 html 文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> response = <span class="keyword">await</span> fetch(<span class="string">'/users.html'</span>);</span><br><span class="line"><span class="keyword">const</span> body = <span class="keyword">await</span> response.text();</span><br><span class="line"><span class="built_in">document</span>.body.innerHTML = body</span><br></pre></td></tr></table></figure>
+<h3 id="response-json"><a href="#response-json" class="headerlink" title="response.json()"></a>response.json()</h3><p>获取服务器返回的 JSON 数据</p>
+<h3 id="response-formData"><a href="#response-formData" class="headerlink" title="response.formData()"></a>response.formData()</h3><p>主要用在 Service Worker 里面，拦截用户提交的表单，修改某些数据以后，再提交给服务器。</p>
+<h3 id="response-blob"><a href="#response-blob" class="headerlink" title="response.blob()"></a>response.blob()</h3><p>用于获取二进制文件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 根据获取的照片的二进制，生成 url</span></span><br><span class="line"><span class="keyword">const</span> response = <span class="keyword">await</span> fetch(<span class="string">'flower.jpg'</span>);</span><br><span class="line"><span class="keyword">const</span> myBlob = <span class="keyword">await</span> response.blob();</span><br><span class="line"><span class="keyword">const</span> objectURL = URL.createObjectURL(myBlob);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myImage = <span class="built_in">document</span>.querySelector(<span class="string">'img'</span>);</span><br><span class="line">myImage.src = objectURL;</span><br></pre></td></tr></table></figure>
+<h3 id="response-arrayBuffer"><a href="#response-arrayBuffer" class="headerlink" title="response.arrayBuffer()"></a>response.arrayBuffer()</h3><p>主要用于获取流媒体文件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 浏览器创建音频控件，再获取音频文件，将读取的缓存阵列连接到浏览器的音频播放控件</span></span><br><span class="line"><span class="keyword">const</span> audioCtx = <span class="keyword">new</span> <span class="built_in">window</span>.AudioContext();</span><br><span class="line"><span class="keyword">const</span> source = audioCtx.createBufferSource();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> response = <span class="keyword">await</span> fetch(<span class="string">'song.ogg'</span>);</span><br><span class="line"><span class="keyword">const</span> buffer = <span class="keyword">await</span> response.arrayBuffer();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> decodeData = <span class="keyword">await</span> audioCtx.decodeAudioData(buffer);</span><br><span class="line">source.buffer = buffer;</span><br><span class="line">source.connect(audioCtx.destination);</span><br><span class="line">source.loop = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Response-clone"><a href="#Response-clone" class="headerlink" title="Response.clone()"></a>Response.clone()</h3><p>Stream 对象只能读取一次，读取完就没了。因此之前五个读取方法，只能使用一个，否则会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text =  <span class="keyword">await</span> response.text();</span><br><span class="line"><span class="keyword">let</span> json =  <span class="keyword">await</span> response.json();  <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<p>而 clone() 方法可以创建 response 副本，供多次读取</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> response1 = <span class="keyword">await</span> fetch(<span class="string">'flowers.jpg'</span>);</span><br><span class="line"><span class="keyword">const</span> response2 = response1.clone();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myBlob1 = <span class="keyword">await</span> response1.blob();</span><br><span class="line"><span class="keyword">const</span> myBlob2 = <span class="keyword">await</span> response2.blob();</span><br><span class="line"></span><br><span class="line">image1.src = URL.createObjectURL(myBlob1);</span><br><span class="line">image2.src = URL.createObjectURL(myBlob2);</span><br></pre></td></tr></table></figure>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>fetch 教程：<a href="https://www.ruanyifeng.com/blog/2020/12/fetch-tutorial.html" target="_blank" rel="noopener">https://www.ruanyifeng.com/blog/2020/12/fetch-tutorial.html</a></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Browser/">Browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/HTTP/">HTTP</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2021/07/06/2-frontend-fetch/" class="article-date">
+	  <time datetime="2021-07-05T16:00:00.000Z" itemprop="datePublished">七月 6, 2021</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">2.4k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2021/07/08/2-frontend-jsdp-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          前端 | JS 设计模式 | 观察者模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2021/07/05/2-frontend-cors/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">前端 | Cors</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本用法"><span class="nav-number">1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求"><span class="nav-number">2.</span> <span class="nav-text">请求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#取消请求"><span class="nav-number">2.1.</span> <span class="nav-text">取消请求</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应"><span class="nav-number">3.</span> <span class="nav-text">响应</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性"><span class="nav-number">3.1.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#response-ok"><span class="nav-number">3.1.1.</span> <span class="nav-text">response.ok</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response-status"><span class="nav-number">3.1.2.</span> <span class="nav-text">response.status</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response-statusText"><span class="nav-number">3.1.3.</span> <span class="nav-text">response.statusText</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response-url"><span class="nav-number">3.1.4.</span> <span class="nav-text">response.url</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response-type"><span class="nav-number">3.1.5.</span> <span class="nav-text">response.type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response-redirected"><span class="nav-number">3.1.6.</span> <span class="nav-text">response.redirected</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response-headers"><span class="nav-number">3.1.7.</span> <span class="nav-text">response.headers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response-body"><span class="nav-number">3.1.8.</span> <span class="nav-text">response.body</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">3.2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#response-text"><span class="nav-number">3.2.1.</span> <span class="nav-text">response.text()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response-json"><span class="nav-number">3.2.2.</span> <span class="nav-text">response.json()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response-formData"><span class="nav-number">3.2.3.</span> <span class="nav-text">response.formData()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response-blob"><span class="nav-number">3.2.4.</span> <span class="nav-text">response.blob()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response-arrayBuffer"><span class="nav-number">3.2.5.</span> <span class="nav-text">response.arrayBuffer()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Response-clone"><span class="nav-number">3.2.6.</span> <span class="nav-text">Response.clone()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 307.1k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>
