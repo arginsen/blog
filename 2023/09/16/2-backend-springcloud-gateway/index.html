@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>后端 | SpringCloud -&gt; 网关路由 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="BackendSpringCloud">
+  
+  
+  
+  
+  <meta name="keywords" content="Backend,SpringCloud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后端 | SpringCloud -&gt; 网关路由">
+<meta property="og:url" content="https://arginsen.github.io/blog/2023/09/16/2-backend-springcloud-gateway/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/springcloud.jpg">
+<meta property="og:updated_time" content="2025-07-21T10:58:26.787Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="后端 | SpringCloud -&gt; 网关路由">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/springcloud.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-backend-springcloud-gateway" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/springcloud.jpg" rel="gallery_cmdczvqas003hoapux9sn5l4j">
+        <img src="/blog/img/springcloud.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      后端 | SpringCloud -&gt; 网关路由
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<p>网关的三块：</p>
+<ul>
+<li>网关路由，解决前端请求入口的问题。</li>
+<li>网关鉴权，解决统一登录校验和用户信息获取的问题。</li>
+<li>统一配置管理，解决微服务的配置文件重复和配置热更新问题。</li>
+</ul>
+<p>前端请求不能直接访问微服务，而是要请求网关：</p>
+<ul>
+<li>网关可以做安全控制，也就是登录身份校验，校验通过才放行</li>
+<li>通过认证后，网关再根据请求判断应该访问哪个微服务，将请求转发过去</li>
+</ul>
+<h1 id="SpringCloudGateway"><a href="#SpringCloudGateway" class="headerlink" title="SpringCloudGateway"></a>SpringCloudGateway</h1><p>网关本身是一个独立的微服务，所以与其他微服务交流就需要注册中心的中转。</p>
+<ol>
+<li>在 hm-gateway 模块的 pom.xml 中引入依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--common--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mps<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hm-common<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--网关--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-gateway<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Eureka Client --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--负载均衡--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-loadbalancer<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在hm-gateway模块的com.opgs.gateway包下新建一个启动类</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.opgs.gateway;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GatewayApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(GatewayApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在 hm-gateway 模块的 resources 目录新建一个 application.yaml</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway-service</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">eureka:</span></span><br><span class="line">      <span class="attr">client:</span></span><br><span class="line">        <span class="attr">service-url:</span></span><br><span class="line">          <span class="attr">defaultZone:</span> <span class="string">http://localhost:8761/eureka/</span></span><br><span class="line">        <span class="attr">register-with-eureka:</span> <span class="literal">true</span>      <span class="comment"># 将 gateway 注册到 eureka</span></span><br><span class="line">        <span class="attr">fetch-registry:</span> <span class="literal">true</span>            <span class="comment"># 拉取注册信息</span></span><br><span class="line">      <span class="attr">instance:</span></span><br><span class="line">        <span class="attr">prefer-ip-address:</span> <span class="literal">true</span>         <span class="comment"># 注册时使用 IP 而不是主机名</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">mps</span> <span class="comment"># 路由规则id，自定义，唯一</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://mps-service</span> <span class="comment"># 路由的目标服务，lb代表负载均衡，会从注册中心拉取服务列表</span></span><br><span class="line">          <span class="attr">predicates:</span> <span class="comment"># 路由断言，判断当前请求是否符合当前规则，符合则路由到目标服务</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/mps/**</span> <span class="comment"># 这里是以请求路径作为判断规则</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">cup</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://cup-service</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/cup/**</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">opgs</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://gateway-service</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/opgs/**</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">cips</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://cips-service</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/cips/**</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>用户访问：<a href="http://localhost:8080/opgs/user/info" target="_blank" rel="noopener">http://localhost:8080/opgs/user/info</a></li>
+<li>Gateway 匹配 /opgs/**，去掉 /opgs 前缀后转发给 gateway-service 的 /user/info</li>
+</ul>
+<h1 id="网关登录验证"><a href="#网关登录验证" class="headerlink" title="网关登录验证"></a>网关登录验证</h1><p>每个微服务都独立部署，不再共享数据。也就意味着每个微服务都需要做登录校验，而现在通过网关鉴权则不用重复去做。<br>网关作为所有微服务的入口，一切请求都需要先经过网关。登录校验的工作由网关去做，这样就解决了：</p>
+<ul>
+<li>只需要在网关和用户服务保存秘钥</li>
+<li>只需要在网关开发登录校验功能</li>
+</ul>
+<h2 id="网关过滤器"><a href="#网关过滤器" class="headerlink" title="网关过滤器"></a>网关过滤器</h2><p>网关转发之前需要登录校验，网关校验后，还需将用户信息传给微服务，微服务间不经过网关还需相互调用。</p>
+<p>网关过滤器链中的过滤器有两种：</p>
+<ul>
+<li>GatewayFilter：路由过滤器，作用范围比较灵活，可以是任意指定的路由Route. </li>
+<li>GlobalFilter：全局过滤器，作用范围是所有路由，不可配置。</li>
+</ul>
+<p>Gateway 内置的 GatewayFilter 过滤器使用起来非常简单，无需编码，只要在yaml文件中简单配置即可。而且其作用范围也很灵活，配置在哪个Route下，就作用于哪个Route</p>
+<p>自定义 GlobalFilter </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintAnyGlobalFilter</span> <span class="keyword">implements</span> <span class="title">GlobalFilter</span>, <span class="title">Ordered</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;Void&gt; <span class="title">filter</span><span class="params">(ServerWebExchange exchange, GatewayFilterChain chain)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 编写过滤器逻辑</span></span><br><span class="line">        System.out.println(<span class="string">"未登录，无法访问"</span>);</span><br><span class="line">        <span class="comment">// 放行</span></span><br><span class="line">        <span class="comment">// return chain.filter(exchange);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 拦截</span></span><br><span class="line">        ServerHttpResponse response = exchange.getResponse();</span><br><span class="line">        response.setRawStatusCode(<span class="number">401</span>);</span><br><span class="line">        <span class="keyword">return</span> response.setComplete();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOrder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 过滤器执行顺序，值越小，优先级越高</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>网关应用的 application.yaml 中配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">default-filters:</span> <span class="comment"># default-filters下的过滤器可以作用于所有路由</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">PrintAny</span></span><br></pre></td></tr></table></figure>
+<h2 id="登录校验"><a href="#登录校验" class="headerlink" title="登录校验"></a>登录校验</h2><p>登录校验需要用到JWT，而且JWT的加密需要秘钥和加密工具。<br>需要对应的 config 配置文件：</p>
+<ul>
+<li>AuthProperties：配置登录校验需要拦截的路径，因为不是所有的路径都需要登录才能访问</li>
+<li>JwtProperties：定义与JWT工具有关的属性，比如秘钥文件位置</li>
+<li>SecurityConfig：工具的自动装配</li>
+<li>JwtTool：JWT工具，其中包含了校验和解析token的功能</li>
+<li>opgs.jks：秘钥文件</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">opgs:</span></span><br><span class="line">  <span class="attr">jwt:</span></span><br><span class="line">    <span class="attr">location:</span> <span class="string">classpath:opgs.jks</span> <span class="comment"># 秘钥地址</span></span><br><span class="line">    <span class="attr">alias:</span> <span class="string">opgs</span> <span class="comment"># 秘钥别名</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123</span> <span class="comment"># 秘钥文件密码</span></span><br><span class="line">    <span class="attr">tokenTTL:</span> <span class="string">30m</span> <span class="comment"># 登录有效期</span></span><br><span class="line">  <span class="attr">auth:</span></span><br><span class="line">    <span class="attr">excludePaths:</span> <span class="comment"># 无需登录校验的路径</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/login</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/opgs/**</span></span><br></pre></td></tr></table></figure>
+<p>接着定义登录校验过滤器，在 com.opgs.gateway 下创建 filter/AuthGobalFilter.java。</p>
+<ol>
+<li>检查当前访问路径是否是需要登录后需要访问的，例如 /login，或登录页、其他页上的一些图片也需要提前获取到，/images</li>
+<li>此类在经过第一层 isExclude 校验</li>
+<li>接着验证请求头的 authorization， 解析出 token 是否正确</li>
+<li>验证符合条件后进入下一轮过滤链 GatewayFilterChain</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.opgs.gateway.filter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.opgs.common.exception.UnauthorizedException;</span><br><span class="line"><span class="keyword">import</span> com.opgs.common.utils.CollUtils;</span><br><span class="line"><span class="keyword">import</span> com.opgs.gateway.config.AuthProperties;</span><br><span class="line"><span class="keyword">import</span> com.opgs.gateway.util.JwtTool;</span><br><span class="line"><span class="keyword">import</span> lombok.RequiredArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.EnableConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.gateway.filter.GatewayFilterChain;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.gateway.filter.GlobalFilter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.Ordered;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.server.reactive.ServerHttpRequest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.server.reactive.ServerHttpResponse;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.AntPathMatcher;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.server.ServerWebExchange;</span><br><span class="line"><span class="keyword">import</span> reactor.core.publisher.Mono;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="meta">@EnableConfigurationProperties</span>(AuthProperties<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">AuthGlobalFilter</span> <span class="keyword">implements</span> <span class="title">GlobalFilter</span>, <span class="title">Ordered</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> JwtTool jwtTool;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> AuthProperties authProperties;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> AntPathMatcher antPathMatcher = <span class="keyword">new</span> AntPathMatcher();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;Void&gt; <span class="title">filter</span><span class="params">(ServerWebExchange exchange, GatewayFilterChain chain)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1.获取Request</span></span><br><span class="line">        ServerHttpRequest request = exchange.getRequest();</span><br><span class="line">        <span class="comment">// 2.判断是否不需要拦截</span></span><br><span class="line">        <span class="keyword">if</span>(isExclude(request.getPath().toString()))&#123;</span><br><span class="line">            <span class="comment">// 无需拦截，直接放行，进行下一步过滤</span></span><br><span class="line">            <span class="keyword">return</span> chain.filter(exchange);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 3.获取请求头中的token</span></span><br><span class="line">        String token = <span class="keyword">null</span>;</span><br><span class="line">        List&lt;String&gt; headers = request.getHeaders().get(<span class="string">"authorization"</span>);</span><br><span class="line">        <span class="keyword">if</span> (!CollUtils.isEmpty(headers)) &#123;</span><br><span class="line">            token = headers.get(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 4.校验并解析token</span></span><br><span class="line">        Long userId = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            userId = jwtTool.parseToken(token);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (UnauthorizedException e) &#123;</span><br><span class="line">            <span class="comment">// 如果无效，拦截</span></span><br><span class="line">            ServerHttpResponse response = exchange.getResponse();</span><br><span class="line">            response.setRawStatusCode(<span class="number">401</span>);</span><br><span class="line">            <span class="keyword">return</span> response.setComplete();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// TODO 5.如果有效，传递用户信息</span></span><br><span class="line">        System.out.println(<span class="string">"userId = "</span> + userId);</span><br><span class="line">        <span class="comment">// 6.放行，进行下一步过滤</span></span><br><span class="line">        <span class="keyword">return</span> chain.filter(exchange);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isExclude</span><span class="params">(String antPath)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (String pathPattern : authProperties.getExcludePaths()) &#123;</span><br><span class="line">            <span class="keyword">if</span>(antPathMatcher.match(pathPattern, antPath))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOrder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="用户信息获取"><a href="#用户信息获取" class="headerlink" title="用户信息获取"></a>用户信息获取</h2><p>经过过滤后完成登录校验，用户信息通过请求头继续传递到下游其他微服务。通常会使用 SpringMVC 的拦截器来实现登录用户信息获取，并存入 ThreadLocal，方便后续使用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接着上边代码第 5 步，存储用户信息</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 4.校验并解析token</span></span><br><span class="line">Long userId = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    userId = jwtTool.parseToken(token);</span><br><span class="line">&#125; <span class="keyword">catch</span> (UnauthorizedException e) &#123;</span><br><span class="line">    <span class="comment">// 如果无效，拦截</span></span><br><span class="line">    ServerHttpResponse response = exchange.getResponse();</span><br><span class="line">    response.setRawStatusCode(<span class="number">401</span>);</span><br><span class="line">    <span class="keyword">return</span> response.setComplete();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 5.获取用户信息后 传递用户信息</span></span><br><span class="line">String userInfo = userId.toString();</span><br><span class="line">ServerWebExchange ex = exchange.mutate()</span><br><span class="line">    .request(b -&gt; b.header(<span class="string">"user-info"</span>, userInfo))</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<p>接着定义另一个拦截器，获取用户信息并保存到 UserContext</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hmall.common.interceptor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.hutool.core.util.StrUtil;</span><br><span class="line"><span class="keyword">import</span> com.hmall.common.utils.UserContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfoInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 1.获取请求头中的用户信息</span></span><br><span class="line">        String userInfo = request.getHeader(<span class="string">"user-info"</span>);</span><br><span class="line">        <span class="comment">// 2.判断是否为空</span></span><br><span class="line">        <span class="keyword">if</span> (StrUtil.isNotBlank(userInfo)) &#123;</span><br><span class="line">            <span class="comment">// 不为空，保存到ThreadLocal</span></span><br><span class="line">                UserContext.setUser(Long.valueOf(userInfo));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 3.放行</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 移除用户</span></span><br><span class="line">        UserContext.removeUser();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编写SpringMVC的配置类，配置登录拦截器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.opgs.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.opgs.common.interceptors.UserInfoInterceptor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnClass;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.DispatcherServlet;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.InterceptorRegistry;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass</span>(DispatcherServlet<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">MvcConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> UserInfoInterceptor());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同时在 resources 目录下的 META-INF/spring.factories 文件中增加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration=\</span><br><span class="line">  com.hmall.common.config.MyBatisConfig,\</span><br><span class="line">  com.hmall.common.config.MvcConfig</span><br></pre></td></tr></table></figure>
+<p>接下来使用用户信息只需要在 mps-service 模块的 com.mps.service.impl.MsgServiceImpl 中使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UserContext.getUser()</span><br></pre></td></tr></table></figure>
+<h2 id="微服务间调用携带用户信息"><a href="#微服务间调用携带用户信息" class="headerlink" title="微服务间调用携带用户信息"></a>微服务间调用携带用户信息</h2><p>微服务发起调用时把用户信息存入请求头，需借助 OpenFeign 中提供的一个拦截器接口：feign.RequestInterceptor</p>
+<p>在上篇将 微服务调用 的笔记中，openFeign 可以单独写在微服务 API 一起，这样只需像其他 API 调用一样的写法。因此可以在 opgs-api 模块的 com.opgs.api.config.DefaultFeignConfig 中编写这个拦截器, 此后在每次使用 openFeign 调用时请求头都会携带用户信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RequestInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Called for every request. </span></span><br><span class="line"><span class="comment">   * Add data using methods on the supplied &#123;<span class="doctag">@link</span> RequestTemplate&#125;.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">apply</span><span class="params">(RequestTemplate template)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 获取登录用户</span></span><br><span class="line">        Long userId = UserContext.getUser();</span><br><span class="line">        <span class="keyword">if</span>(userId == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 如果为空则直接跳过</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果不为空则放入请求头中，传递给下游微服务</span></span><br><span class="line">        template.header(<span class="string">"user-info"</span>, userId.toString());</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/SpringCloud/">SpringCloud</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2023/09/16/2-backend-springcloud-gateway/" class="article-date">
+	  <time datetime="2023-09-15T16:00:00.000Z" itemprop="datePublished">九月 16, 2023</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">2.2k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2023/10/12/8-bank-message1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          支付 | 报文解析、入库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2023/08/20/2-backend-springcloud-service/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">后端 | SpringCloud -&gt; 微服务调用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringCloudGateway"><span class="nav-number">1.</span> <span class="nav-text">SpringCloudGateway</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网关登录验证"><span class="nav-number">2.</span> <span class="nav-text">网关登录验证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网关过滤器"><span class="nav-number">2.1.</span> <span class="nav-text">网关过滤器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录校验"><span class="nav-number">2.2.</span> <span class="nav-text">登录校验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户信息获取"><span class="nav-number">2.3.</span> <span class="nav-text">用户信息获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务间调用携带用户信息"><span class="nav-number">2.4.</span> <span class="nav-text">微服务间调用携带用户信息</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 311.3k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

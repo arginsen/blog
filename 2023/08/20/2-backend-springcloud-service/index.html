@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>后端 | SpringCloud -&gt; 微服务调用 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="BackendSpringCloud">
+  
+  
+  
+  
+  <meta name="keywords" content="Backend,SpringCloud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后端 | SpringCloud -&gt; 微服务调用">
+<meta property="og:url" content="https://arginsen.github.io/blog/2023/08/20/2-backend-springcloud-service/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/springcloud.jpg">
+<meta property="og:updated_time" content="2025-07-21T10:57:48.640Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="后端 | SpringCloud -&gt; 微服务调用">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/springcloud.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-backend-springcloud-service" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/springcloud.jpg" rel="gallery_cmdczvqay003poapuec47t235">
+        <img src="/blog/img/springcloud.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      后端 | SpringCloud -&gt; 微服务调用
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h1><ul>
+<li>一个微服务负责一部分业务功能，并且其核心数据不依赖于其它模块。</li>
+<li>每个微服务都有自己独立的开发、测试、发布、运维。</li>
+<li>每个微服务都独立打包部署，访问自己独立的数据库。</li>
+<li>每个微服务的职责要尽量单一，包含的业务相互关联度高、完整度高。</li>
+<li>每个微服务的功能要相对独立，尽量减少对其它微服务的依赖，或者依赖接口的稳定性要强。</li>
+</ul>
+<h1 id="服务注册与发现"><a href="#服务注册与发现" class="headerlink" title="服务注册与发现"></a>服务注册与发现</h1><p>有时微服务需要提供接口供其它微服务访问，比如前端调用后端一般直接访问网关的微服务，再由网关转发到注册中心指定的微服务。</p>
+<p>通常会在服务的 application.yml 中配置 eureka 地址、端口、密码，这样服务启动时就会注册自己的服务信息（服务名、IP、端口）到注册中心</p>
+<ul>
+<li>服务提供者会定期向注册中心发送请求，报告自己的健康状态</li>
+<li>当服务有新实例启动时，会发送注册服务请求，其信息会被记录在注册中心的服务实例列表</li>
+</ul>
+<p>引入 eureka 依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="服务调用试例"><a href="#服务调用试例" class="headerlink" title="服务调用试例"></a>服务调用试例</h1><p>使用 RestTemplate 可以进行微服务间调用。<br>在用 eureka 实现服务治理后，之前的写死 IP 和端口可以改成利用 DiscoveryClient 服务发现 + RestTemplate 服务调用</p>
+<p>如下 mps-service 服务中调用 cup-service</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MsgServiceImpl</span> <span class="keyword">extends</span> <span class="title">ServiceImpl</span>&lt;<span class="title">MsgMapper</span>, <span class="title">Msg</span>&gt; <span class="keyword">implements</span> <span class="title">IMsgService</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 服务调用</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> RestTemplate restTemplate;</span><br><span class="line">    <span class="comment">// 服务发现</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> DiscoveryClient discoveryClient;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleMessages</span><span class="params">(List&lt;MsgVO&gt; msg)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 发现 cup 服务实例</span></span><br><span class="line">        List&lt;ServiceInstance&gt; instances = discoveryClient.getInstances(<span class="string">"cup-service"</span>);</span><br><span class="line">        <span class="comment">// 负载均衡</span></span><br><span class="line">        ServiceInstance instance = instances.get(RandomUtil.randomInt(instances.size()));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 服务调用</span></span><br><span class="line">        ResponseEntity&lt;List&lt;MsgDTO&gt;&gt; response = restTemplate.exchange(</span><br><span class="line">            <span class="comment">// 用 DiscoveryClient 取代</span></span><br><span class="line">            <span class="comment">//  "http://localhost:8081/Msgs?ids=&#123;ids&#125;",</span></span><br><span class="line">            instance.getUri() + <span class="string">"Msgs?ids=&#123;ids&#125;"</span></span><br><span class="line">            HttpMethod.GET,</span><br><span class="line">            <span class="keyword">null</span>,</span><br><span class="line">            <span class="keyword">new</span> ParameterizedTypeReference&lt;List&lt;MsgDTO&gt;&gt;() &#123;</span><br><span class="line">            &#125;,</span><br><span class="line">            Map.of(<span class="string">"ids"</span>, CollUtil.join(itemIds, <span class="string">","</span>))</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="openfeign"><a href="#openfeign" class="headerlink" title="openfeign"></a>openfeign</h1><p>OpenFeign 基于动态代理帮我们生成远程调用的代码，而无需我们手动再编写以上调用手续</p>
+<p>哪个微服务需要调用其他微服务，就需要在这个微服务引入 openFeign 依赖和配置，比如 mps-service 调用 cup-service，就需要在 mps-service 中增加配置</p>
+<h2 id="mps-引入依赖"><a href="#mps-引入依赖" class="headerlink" title="mps 引入依赖"></a>mps 引入依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--openFeign--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--负载均衡器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-loadbalancer<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="需在启动类上添加注解，启动-OpenFeign-功能"><a href="#需在启动类上添加注解，启动-OpenFeign-功能" class="headerlink" title="需在启动类上添加注解，启动 OpenFeign 功能"></a>需在启动类上添加注解，启动 OpenFeign 功能</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MpsApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(MpsApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="直接定义调用接口，使用注解-OpenFeign-指向微服务"><a href="#直接定义调用接口，使用注解-OpenFeign-指向微服务" class="headerlink" title="直接定义调用接口，使用注解 @OpenFeign 指向微服务"></a>直接定义调用接口，使用注解 @OpenFeign 指向微服务</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mps.msg.client;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.mps.msg.domain.dto.MsgDTO;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.openfeign.FeignClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指向目标微服务</span></span><br><span class="line"><span class="meta">@FeignClient</span>(<span class="string">"cup-service"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MsgClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/msgs"</span>)</span><br><span class="line">    <span class="function">List&lt;MsgDTO&gt; <span class="title">queryMsgByIds</span><span class="params">(@RequestParam(<span class="string">"ids"</span>)</span> Collection&lt;Long&gt; ids)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>@FeignClient(“cup-service”) ：声明服务名称</li>
+<li>@GetMapping ：声明请求方式</li>
+<li>@GetMapping(“/msgs”) ：声明请求路径</li>
+<li>@RequestParam(“ids”) Collection<long> ids ：声明请求参数</long></li>
+</ul>
+<h2 id="mps-service-简化调用-cup"><a href="#mps-service-简化调用-cup" class="headerlink" title="mps-service 简化调用 cup"></a>mps-service 简化调用 cup</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.mps.msg.client.MsgClient</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MsgServiceImpl</span> <span class="keyword">extends</span> <span class="title">ServiceImpl</span>&lt;<span class="title">MsgMapper</span>, <span class="title">Msg</span>&gt; <span class="keyword">implements</span> <span class="title">IMsgService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> MsgClient msgClient;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleMessages</span><span class="params">(List&lt;MsgVO&gt; msg)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 服务调用</span></span><br><span class="line">        Set&lt;Long&gt; msgId = msg.stream().map(MsgVO::getMsgId).collect(Collectors.toSet());</span><br><span class="line">        &lt;List&lt;MsgDTO&gt; msgs = MsgClient.queryMsgByIds(msgId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="对应-cup-service-也应开启配置支持-openfeign"><a href="#对应-cup-service-也应开启配置支持-openfeign" class="headerlink" title="对应 cup-service 也应开启配置支持 openfeign"></a>对应 cup-service 也应开启配置支持 openfeign</h2><p>引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.openfeign<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-okhttp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>application.yml 中</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">okhttp:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment"># 开启OKHttp功能</span></span><br></pre></td></tr></table></figure>
+<h2 id="将-openfeign-抽取为公共-API，每个微服务都可以使用"><a href="#将-openfeign-抽取为公共-API，每个微服务都可以使用" class="headerlink" title="将 openfeign 抽取为公共 API，每个微服务都可以使用"></a>将 openfeign 抽取为公共 API，每个微服务都可以使用</h2><p>opgs-common<br>opgs-api<br>gateway-service<br>mps-service<br>cup-service</p>
+<p>将上方配置都转移到 opgs-api，任何微服务要调用 cup-service 中的接口，只需要引入opgs-api 模块依赖即可，无需自己编写 Feign 客户端了</p>
+<p>MsgClient 现在定义到了 com.opgs.api.client 包下, 需在调用方服务的启动类上添加声明即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.opgs.mps;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.opgs.api.client.MsgClient;</span><br><span class="line"></span><br><span class="line"><span class="meta">@EnableFeignClients</span>(clients = &#123;MsgClient<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">SpringBootApplication</span></span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">MpsApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(MpsApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="定义日志"><a href="#定义日志" class="headerlink" title="定义日志"></a>定义日志</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mps.api.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> feign.Logger;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultFeignConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Logger.<span class="function">Level <span class="title">feignLogLevel</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Logger.Level.FULL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>局部生效：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient</span>(value = <span class="string">"item-service"</span>, configuration = DefaultFeignConfig<span class="class">.<span class="keyword">class</span>)</span></span><br></pre></td></tr></table></figure>
+<p>全局生效：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients</span>(defaultConfiguration = DefaultFeignConfig<span class="class">.<span class="keyword">class</span>)</span></span><br></pre></td></tr></table></figure>
+<p>输出日志：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">17:35:32:148 DEBUG 18620 --- [nio-8082-exec-1] com.mps.api.client.ItemClient          : [ItemClient#queryItemByIds] ---&gt; GET http://item-service/items?ids=100000006163 HTTP/1.1</span><br><span class="line">17:35:32:148 DEBUG 18620 --- [nio-8082-exec-1] com.mps.api.client.ItemClient          : [ItemClient#queryItemByIds] ---&gt; END HTTP (0-byte body)</span><br><span class="line">17:35:32:278 DEBUG 18620 --- [nio-8082-exec-1] com.mps.api.client.ItemClient          : [ItemClient#queryItemByIds] &lt;--- HTTP/1.1 200  (127ms)</span><br><span class="line">17:35:32:279 DEBUG 18620 --- [nio-8082-exec-1] com.mps.api.client.ItemClient          : [ItemClient#queryItemByIds] connection: keep-alive</span><br><span class="line">17:35:32:279 DEBUG 18620 --- [nio-8082-exec-1] com.mps.api.client.ItemClient          : [ItemClient#queryItemByIds] content-type: application/json</span><br><span class="line">17:35:32:279 DEBUG 18620 --- [nio-8082-exec-1] com.mps.api.client.ItemClient          : [ItemClient#queryItemByIds] date: Fri, 26 May 2023 09:35:32 GMT</span><br><span class="line">17:35:32:279 DEBUG 18620 --- [nio-8082-exec-1] com.mps.api.client.ItemClient          : [ItemClient#queryItemByIds] keep-alive: timeout=60</span><br><span class="line">17:35:32:279 DEBUG 18620 --- [nio-8082-exec-1] com.mps.api.client.ItemClient          : [ItemClient#queryItemByIds] transfer-encoding: chunked</span><br><span class="line">17:35:32:279 DEBUG 18620 --- [nio-8082-exec-1] com.mps.api.client.ItemClient          : [ItemClient#queryItemByIds] </span><br><span class="line">17:35:32:280 DEBUG 18620 --- [nio-8082-exec-1] com.mps.api.client.ItemClient          : [ItemClient#queryItemByIds] [&#123;&quot;id&quot;:100000006163,&quot;name&quot;:&quot;巴布豆(BOBDOG)柔薄悦动婴儿拉拉裤XXL码80片(15kg以上)&quot;,&quot;price&quot;:67100,&quot;stock&quot;:10000,&quot;image&quot;:&quot;https://m.360buyimg.com/mobilecms/s720x720_jfs/t23998/350/2363990466/222391/a6e9581d/5b7cba5bN0c18fb4f.jpg!q70.jpg.webp&quot;,&quot;category&quot;:&quot;拉拉裤&quot;,&quot;brand&quot;:&quot;巴布豆&quot;,&quot;spec&quot;:&quot;&#123;&#125;&quot;,&quot;sold&quot;:11,&quot;commentCount&quot;:33343434,&quot;isAD&quot;:false,&quot;status&quot;:2&#125;]</span><br><span class="line">17:35:32:281 DEBUG 18620 --- [nio-8082-exec-1] com.mps.api.client.ItemClient          : [ItemClient#queryItemByIds] &lt;--- END HTTP (369-byte body)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/SpringCloud/">SpringCloud</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2023/08/20/2-backend-springcloud-service/" class="article-date">
+	  <time datetime="2023-08-19T16:00:00.000Z" itemprop="datePublished">八月 20, 2023</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.5k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2023/09/16/2-backend-springcloud-gateway/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          后端 | SpringCloud -&gt; 网关路由
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2023/07/18/2-backend-springcloud-eureka/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">后端 | SpringCloud -&gt; 微服务治理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务"><span class="nav-number">1.</span> <span class="nav-text">微服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务注册与发现"><span class="nav-number">2.</span> <span class="nav-text">服务注册与发现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务调用试例"><span class="nav-number">3.</span> <span class="nav-text">服务调用试例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#openfeign"><span class="nav-number">4.</span> <span class="nav-text">openfeign</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mps-引入依赖"><span class="nav-number">4.1.</span> <span class="nav-text">mps 引入依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需在启动类上添加注解，启动-OpenFeign-功能"><span class="nav-number">4.2.</span> <span class="nav-text">需在启动类上添加注解，启动 OpenFeign 功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接定义调用接口，使用注解-OpenFeign-指向微服务"><span class="nav-number">4.3.</span> <span class="nav-text">直接定义调用接口，使用注解 @OpenFeign 指向微服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mps-service-简化调用-cup"><span class="nav-number">4.4.</span> <span class="nav-text">mps-service 简化调用 cup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对应-cup-service-也应开启配置支持-openfeign"><span class="nav-number">4.5.</span> <span class="nav-text">对应 cup-service 也应开启配置支持 openfeign</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将-openfeign-抽取为公共-API，每个微服务都可以使用"><span class="nav-number">4.6.</span> <span class="nav-text">将 openfeign 抽取为公共 API，每个微服务都可以使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义日志"><span class="nav-number">4.7.</span> <span class="nav-text">定义日志</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 311.3k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>
