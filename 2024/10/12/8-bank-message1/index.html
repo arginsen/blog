@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>银行系统软开 | 支付报文（swift）解析、入库 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="JavaBackend">
+  
+  
+  
+  
+  <meta name="keywords" content="Java,Backend">
+<meta property="og:type" content="article">
+<meta property="og:title" content="银行系统软开 | 支付报文（swift）解析、入库">
+<meta property="og:url" content="https://arginsen.github.io/blog/2024/10/12/8-bank-message1/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/java.jpg">
+<meta property="og:updated_time" content="2025-07-21T15:26:47.656Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="银行系统软开 | 支付报文（swift）解析、入库">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/java.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-8-bank-message1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/java.jpg" rel="gallery_cmdd9e92p00oftzpuq4g7mley">
+        <img src="/blog/img/java.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      银行系统软开 | 支付报文（swift）解析、入库
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<p>一般会提前先准备好報文 XSD 对应的 java 对象 然后 Swift 報文傳送至我方 MQ 再接收进我们系统后，使用定時任務監控，用 JAXB（Java Architecture for XML Binding: Java 中用于 XML 与 Java 对象互转的标准框架） 将 XML 转换成 java 对象，獲取所需保溫要素存入數據庫。</p>
+<h1 id="配置报文-XSD-文件"><a href="#配置报文-XSD-文件" class="headerlink" title="配置报文 XSD 文件"></a>配置报文 XSD 文件</h1><p>提前准备好 ISO20022 报文结构定义 （pacs.008.sxd）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xs:schema</span> <span class="attr">xmlns:xs</span>=<span class="string">"http://www.w3.org/2001/XMLSchema"</span></span></span><br><span class="line"><span class="tag">           <span class="attr">targetNamespace</span>=<span class="string">"urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02"</span></span></span><br><span class="line"><span class="tag">           <span class="attr">xmlns</span>=<span class="string">"urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02"</span></span></span><br><span class="line"><span class="tag">           <span class="attr">elementFormDefault</span>=<span class="string">"qualified"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">"Document"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xs:complexType</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">xs:sequence</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">"FIToFICstmrCdtTrf"</span> <span class="attr">type</span>=<span class="string">"FIToFICstmrCdtTrfType"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">xs:sequence</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">xs:complexType</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">xs:element</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">xs:complexType</span> <span class="attr">name</span>=<span class="string">"FIToFICstmrCdtTrfType"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xs:sequence</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">"GrpHdr"</span> <span class="attr">type</span>=<span class="string">"GrpHdrType"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">"CdtTrfTxInf"</span> <span class="attr">type</span>=<span class="string">"CdtTrfTxInfType"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">xs:sequence</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">xs:complexType</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- More complex types... --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xs:schema</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="使用-xjc-生成-Java-Bean"><a href="#使用-xjc-生成-Java-Bean" class="headerlink" title="使用 xjc 生成 Java Bean"></a>使用 xjc 生成 Java Bean</h1><p>使用 xjc 命令或 Maven 插件把 XSD 转换成 Java 对象（JAXB 对象）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xjc -d src -p com.bank.iso20022.pacs008 pacs.008.001.02.xsd</span><br></pre></td></tr></table></figure>
+<p>执行后会在 com.bank.iso20022.pacs008 包中生成 Document.java、FIToFICstmrCdtTrfType.java 等类。</p>
+<h1 id="接收-MQ-发送过来的报文-xml-文件"><a href="#接收-MQ-发送过来的报文-xml-文件" class="headerlink" title="接收 MQ 发送过来的报文 xml 文件"></a>接收 MQ 发送过来的报文 xml 文件</h1><p>如 pacs.008 报文:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Document</span> <span class="attr">xmlns</span>=<span class="string">"urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">FIToFICstmrCdtTrf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">GrpHdr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">MsgId</span>&gt;</span>ABC123456789<span class="tag">&lt;/<span class="name">MsgId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">CreDtTm</span>&gt;</span>2025-07-18T12:00:00<span class="tag">&lt;/<span class="name">CreDtTm</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">GrpHdr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">CdtTrfTxInf</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">PmtId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">InstrId</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">InstrId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">PmtId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Amt</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">InstdAmt</span> <span class="attr">Ccy</span>=<span class="string">"USD"</span>&gt;</span>1000.00<span class="tag">&lt;/<span class="name">InstdAmt</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Amt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">CdtTrfTxInf</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">FIToFICstmrCdtTrf</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Document</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String xmlContent = mqMessage.getText(); <span class="comment">// MQ消息正文（即XML）</span></span><br></pre></td></tr></table></figure>
+<h1 id="使用-JAXB-解析-XML-为-Java-对象"><a href="#使用-JAXB-解析-XML-为-Java-对象" class="headerlink" title="使用 JAXB 解析 XML 为 Java 对象"></a>使用 JAXB 解析 XML 为 Java 对象</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.bank.iso20022.pacs008.Document;</span><br><span class="line"><span class="keyword">import</span> jakarta.xml.bind.JAXBContext;</span><br><span class="line"><span class="keyword">import</span> jakarta.xml.bind.Unmarshaller; <span class="comment">// 反序列化</span></span><br><span class="line"><span class="keyword">import</span> java.io.StringReader;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XmlParser</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 接收报文 xml</span></span><br><span class="line">        String xmlContent = mqMessage.getText();</span><br><span class="line">        JAXBContext jaxbContext = JAXBContext.newInstance(Document<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();</span><br><span class="line">        StringReader reader = <span class="keyword">new</span> StringReader(xmlContent);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 得到报文对象</span></span><br><span class="line">        Document document = (Document) unmarshaller.unmarshal(reader);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"Message ID: "</span> +</span><br><span class="line">            document.getFIToFICstmrCdtTrf().getGrpHdr().getMsgId());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取报文要素，存储报文原文至数据库</span></span><br><span class="line">        String msgId = doc.getFIToFICstmrCdtTrf().getGrpHdr().getMsgId();</span><br><span class="line">        BigDecimal amt = doc.getFIToFICstmrCdtTrf().getCdtTrfTxInf().getAmt().getInstdAmt().getValue();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取到报文后，通常还有报文验签，报文幂等校验，报文原文备份等</p>
+<p>以上只是介绍获取报文后怎么处理，通常银行系统为分布式架构，在 SpringCloud 框架中是如何接收转换还得将以上方法适配进 spring 框架，涉及到 MybatisPlus 的应用。</p>
+<h1 id="报文入库示例"><a href="#报文入库示例" class="headerlink" title="报文入库示例"></a>报文入库示例</h1><h2 id="报文表结构"><a href="#报文表结构" class="headerlink" title="报文表结构"></a>报文表结构</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> swift_pacs008_message (</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">BIGINT</span> AUTO_INCREMENT PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  msg_id <span class="built_in">VARCHAR</span>(<span class="number">64</span>),</span><br><span class="line">  instr_id <span class="built_in">VARCHAR</span>(<span class="number">64</span>),</span><br><span class="line">  amount <span class="built_in">DECIMAL</span>(<span class="number">18</span>,<span class="number">2</span>),</span><br><span class="line">  currency <span class="built_in">VARCHAR</span>(<span class="number">10</span>),</span><br><span class="line">  sender_bic <span class="built_in">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">  receiver_bic <span class="built_in">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">  raw_xml <span class="built_in">TEXT</span>,</span><br><span class="line">  create_time DATETIME <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="报文对应实体类"><a href="#报文对应实体类" class="headerlink" title="报文对应实体类"></a>报文对应实体类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@TableName</span>(<span class="string">"swift_pacs008_message"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Swift_Pacs008_Message</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String msgId;</span><br><span class="line">    <span class="keyword">private</span> String instrId;</span><br><span class="line">    <span class="keyword">private</span> BigDecimal amount;</span><br><span class="line">    <span class="keyword">private</span> String currency;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String senderBic;</span><br><span class="line">    <span class="keyword">private</span> String receiverBic;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String rawXml;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> LocalDateTime createTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="mapper-接口"><a href="#mapper-接口" class="headerlink" title="mapper 接口"></a>mapper 接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Swift_Pacs008_MessageMapper</span> <span class="keyword">extends</span> <span class="title">BaseMapper</span>&lt;<span class="title">Swift_Pacs008_Message</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">// 可使用默认的 insert/update 方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Service-接口与实现"><a href="#Service-接口与实现" class="headerlink" title="Service 接口与实现"></a>Service 接口与实现</h2><h3 id="Service-接口继承定义"><a href="#Service-接口继承定义" class="headerlink" title="Service 接口继承定义"></a>Service 接口继承定义</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Swift_Pacs008_MessageService</span> <span class="keyword">extends</span> <span class="title">IService</span>&lt;<span class="title">Swift_Pacs008_Message</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saveParsedMessage</span><span class="params">(String xmlContent)</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ServiceImpl-接口继承定义"><a href="#ServiceImpl-接口继承定义" class="headerlink" title="ServiceImpl 接口继承定义"></a>ServiceImpl 接口继承定义</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Swift_Pacs008_MessageServiceImpl</span> <span class="keyword">extends</span> <span class="title">ServiceImpl</span>&lt;<span class="title">Swift_Pacs008_MessageMapper</span>, <span class="title">Swift_Pacs008_Message</span>&gt; <span class="keyword">implements</span> <span class="title">Swift_Pacs008_MessageService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveParsedMessage</span><span class="params">(String xmlContent)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 1. JAXB 解析 XML</span></span><br><span class="line">        JAXBContext context = JAXBContext.newInstance(Document<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        Unmarshaller unmarshaller = context.createUnmarshaller();</span><br><span class="line">        Document doc = (Document) unmarshaller.unmarshal(<span class="keyword">new</span> StringReader(xmlContent));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 抽取报文要素字段</span></span><br><span class="line">        String msgId = doc.getFIToFICstmrCdtTrf().getGrpHdr().getMsgId();</span><br><span class="line">        String instrId = doc.getFIToFICstmrCdtTrf().getCdtTrfTxInf().getPmtId().getInstrId();</span><br><span class="line">        BigDecimal amt = doc.getFIToFICstmrCdtTrf().getCdtTrfTxInf().getAmt().getInstdAmt().getValue();</span><br><span class="line">        String ccy = doc.getFIToFICstmrCdtTrf().getCdtTrfTxInf().getAmt().getInstdAmt().getCcy();</span><br><span class="line">        String sender = doc.getFIToFICstmrCdtTrf().getGrpHdr().getInstgAgt().getFinInstnId().getBICFI();</span><br><span class="line">        String receiver = doc.getFIToFICstmrCdtTrf().getGrpHdr().getInstdAgt().getFinInstnId().getBICFI();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. 构建报文对象实体</span></span><br><span class="line">        Swift_Pacs008_Message entity = <span class="keyword">new</span> Swift_Pacs008_Message();</span><br><span class="line">        entity.setMsgId(msgId);</span><br><span class="line">        entity.setInstrId(instrId);</span><br><span class="line">        entity.setAmount(amt);</span><br><span class="line">        entity.setCurrency(ccy);</span><br><span class="line">        entity.setSenderBic(sender);</span><br><span class="line">        entity.setReceiverBic(receiver);</span><br><span class="line">        entity.setRawXml(xmlContent);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4. 入库</span></span><br><span class="line">        <span class="keyword">this</span>.save(entity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Controller（或-MQ-消费监听）调用方式"><a href="#Controller（或-MQ-消费监听）调用方式" class="headerlink" title="Controller（或 MQ 消费监听）调用方式"></a>Controller（或 MQ 消费监听）调用方式</h2><p>提供接口接收报文 xml，由 ServiceImpl 部分完成解析入库。</p>
+<h3 id="Controller-调用"><a href="#Controller-调用" class="headerlink" title="Controller 调用"></a>Controller 调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/swift"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SwiftController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> SwiftMessageService swiftMessageService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/receive"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity&lt;String&gt; <span class="title">receiveSwiftXml</span><span class="params">(@RequestBody String xml)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            swiftMessageService.saveParsedMessage(xml);</span><br><span class="line">            <span class="keyword">return</span> ResponseEntity.ok(<span class="string">"OK"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">return</span> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(<span class="string">"解析失败："</span> + e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="MQ-消费监听"><a href="#MQ-消费监听" class="headerlink" title="MQ 消费监听"></a>MQ 消费监听</h3><p>MQ 接收方式可参考之前的笔记【支付 | ibm mq 接受报文】，查阅 ibm mq 大概是如何配置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MqListener</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> SwiftMessageService swiftMessageService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JmsListener</span>(destination = <span class="string">"$&#123;ibm.mq.queue&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receive</span><span class="params">(String xml)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"接收到消息: "</span> + xml);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Java/">Java</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2024/10/12/8-bank-message1/" class="article-date">
+	  <time datetime="2024-10-11T16:00:00.000Z" itemprop="datePublished">十月 12, 2024</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.1k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2024/11/06/8-bank-ibmmq1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          银行系统软开 | ibm mq 接受报文
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2024/08/15/2-backend-mq1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">后端 | RabbitMQ</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置报文-XSD-文件"><span class="nav-number">1.</span> <span class="nav-text">配置报文 XSD 文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-xjc-生成-Java-Bean"><span class="nav-number">2.</span> <span class="nav-text">使用 xjc 生成 Java Bean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接收-MQ-发送过来的报文-xml-文件"><span class="nav-number">3.</span> <span class="nav-text">接收 MQ 发送过来的报文 xml 文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-JAXB-解析-XML-为-Java-对象"><span class="nav-number">4.</span> <span class="nav-text">使用 JAXB 解析 XML 为 Java 对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#报文入库示例"><span class="nav-number">5.</span> <span class="nav-text">报文入库示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#报文表结构"><span class="nav-number">5.1.</span> <span class="nav-text">报文表结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文对应实体类"><span class="nav-number">5.2.</span> <span class="nav-text">报文对应实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mapper-接口"><span class="nav-number">5.3.</span> <span class="nav-text">mapper 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-接口与实现"><span class="nav-number">5.4.</span> <span class="nav-text">Service 接口与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-接口继承定义"><span class="nav-number">5.4.1.</span> <span class="nav-text">Service 接口继承定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ServiceImpl-接口继承定义"><span class="nav-number">5.4.2.</span> <span class="nav-text">ServiceImpl 接口继承定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller（或-MQ-消费监听）调用方式"><span class="nav-number">5.5.</span> <span class="nav-text">Controller（或 MQ 消费监听）调用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller-调用"><span class="nav-number">5.5.1.</span> <span class="nav-text">Controller 调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MQ-消费监听"><span class="nav-number">5.5.2.</span> <span class="nav-text">MQ 消费监听</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 313k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

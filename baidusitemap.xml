@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/10/12/8-bank-message1/</loc>
+    <lastmod>2025-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/11/06/8-bank-ibmmq1/</loc>
+    <lastmod>2025-07-21</lastmod>
+  </url>
+  <url>
     <loc>https://arginsen.github.io/blog/blog/2023/09/16/2-backend-springcloud-gateway/</loc>
     <lastmod>2025-07-21</lastmod>
   </url>
@@ -14,10 +22,6 @@
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2023/07/18/2-backend-springcloud-eureka/</loc>
-    <lastmod>2025-07-20</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2023/10/12/8-bank-message1/</loc>
     <lastmod>2025-07-20</lastmod>
   </url>
   <url>
@@ -53,7 +57,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/01/20/7-mysql-recover/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/12/04/7-mysql-rowtoolarge/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2019/07/02/7-mysql/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -61,11 +69,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/12/04/7-mysql-rowtoolarge/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/01/20/7-mysql-recover/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/07/02/7-mysql/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/07/09/6-nginx/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -85,15 +93,7 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/07/09/6-nginx/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/11/19/5-linux-set-diskpartition/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/12/13/5-linux-set-nmap/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/07/30/5-linux-set-dns-ping/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -101,15 +101,15 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/07/30/5-linux-set-dns-ping/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2019/12/18/5-linux-set-hometoroot/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/08/15/5-linux-set-rootlogin/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/12/13/5-linux-set-nmap/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2019/11/19/5-linux-set-diskpartition/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -117,11 +117,7 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/08/20/5-linux2/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/10/13/5-win-diskpart/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/08/15/5-linux-set-rootlogin/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -129,11 +125,19 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
+    <loc>https://arginsen.github.io/blog/blog/2019/08/20/5-linux2/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
     <loc>https://arginsen.github.io/blog/blog/2019/08/20/5-linux3/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/04/09/5-linux1/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/10/13/5-win-diskpart/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/08/15/6-docker/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -141,7 +145,7 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/08/15/6-docker/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/04/09/5-linux1/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -161,15 +165,19 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/12/12/4-python-crawler3/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/02/22/4-python-crawler5/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
+    <loc>https://arginsen.github.io/blog/blog/2019/12/12/4-python-crawler3/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/02/13/4-python-crawler4/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/02/25/4-python-crawler6/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -181,11 +189,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/02/25/4-python-crawler6/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2021/12/06/4-python-excel-handle/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2021/12/06/4-python-excel-handle/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/09/07/2-backend-c&c++1/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -201,19 +209,19 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/09/07/2-backend-c&c++1/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/09/09/2-backend-c&c++5/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/06/08/2-frontend-vuex/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/06/05/2-frontend-vueRouter/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2020/06/21/2-frontend-webpack/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/06/08/2-frontend-vuex/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -229,7 +237,7 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/06/05/2-frontend-vueRouter/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/12/27/2-frontend-work-jsonapi/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -237,11 +245,7 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/12/27/2-frontend-work-jsonapi/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2021/10/03/2-frontend-vue3-basic/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2021/08/07/2-frontend-vue-source-mount/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -249,7 +253,7 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2021/07/26/2-frontend-vue-source-init/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2021/10/03/2-frontend-vue3-basic/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -257,7 +261,7 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2021/08/07/2-frontend-vue-source-mount/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2021/07/26/2-frontend-vue-source-init/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -265,11 +269,15 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
+    <loc>https://arginsen.github.io/blog/blog/2021/08/12/2-frontend-vue-source-etc/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
     <loc>https://arginsen.github.io/blog/blog/2021/10/10/2-frontend-vue3-source-flow/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2021/08/12/2-frontend-vue-source-etc/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2021/10/03/2-frontend-vite/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -281,15 +289,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2021/10/03/2-frontend-vite/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/06/02/2-frontend-vue-render/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/06/01/2-frontend-vue-basic/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2021/07/22/2-frontend-vue-reactivity/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -301,11 +305,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2021/08/02/2-frontend-vue-source-compile/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/06/01/2-frontend-vue-basic/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2021/07/22/2-frontend-vue-reactivity/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2021/08/02/2-frontend-vue-source-compile/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -313,19 +317,19 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/05/29/2-frontend-npm/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2021/07/08/2-frontend-jsdp-1/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/04/11/2-frontend-js-xjm1/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/05/29/2-frontend-npm/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2021/06/28/2-frontend-nvm/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/04/11/2-frontend-js-xjm1/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -337,11 +341,15 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/06/20/2-frontend-pt4/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/04/17/2-frontend-pt2/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/06/20/2-frontend-pt4/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/07/16/2-frontend-pt6/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -350,10 +358,6 @@
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2020/07/15/2-frontend-pt5/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/07/16/2-frontend-pt6/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -377,19 +381,19 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/04/27/2-frontend-js-jc6/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/05/09/2-frontend-js-sr3/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/05/09/2-frontend-js-sr4/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/04/27/2-frontend-js-jc6/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2020/05/11/2-frontend-js-sr5/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/05/09/2-frontend-js-sr4/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -401,11 +405,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/05/26/2-frontend-es6-6/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/05/27/2-frontend-es6-7/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/05/27/2-frontend-es6-7/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/05/26/2-frontend-es6-6/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -433,15 +437,15 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/04/24/2-frontend-js-jc2/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/04/23/2-frontend-js-jc1/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2020/04/27/2-frontend-js-jc5/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/04/24/2-frontend-js-jc2/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -457,11 +461,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/05/29/2-frontend-es6-10/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/05/20/2-frontend-es6-1/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/05/20/2-frontend-es6-1/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/05/29/2-frontend-es6-10/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -473,19 +477,19 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/05/06/2-frontend-css1/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/05/30/2-frontend-es6-12/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/05/23/2-frontend-es6-3/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/05/06/2-frontend-css1/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2020/05/21/2-frontend-es6-2/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/05/23/2-frontend-es6-3/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -501,15 +505,7 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/10/02/2-datastructure-c3/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/06/13/2-datastructure-fe2/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/10/16/2-datastructure-c5/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -517,11 +513,19 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/04/16/2-frontend-bootstrap/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/10/02/2-datastructure-c3/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/10/16/2-datastructure-c5/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2021/07/04/2-frontend-ajax/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/04/16/2-frontend-bootstrap/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -533,11 +537,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/06/17/2-algorithm-fe1/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/03/23/1-vpn/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/03/23/1-vpn/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/06/17/2-algorithm-fe1/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -573,7 +577,7 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/08/28/1-interview-web/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/08/27/1-interview-vue/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -581,11 +585,7 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/03/25/1-markdown/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/08/27/1-interview-vue/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/08/28/1-interview-web/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -593,11 +593,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/04/06/1-conda-manage/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/03/25/1-markdown/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/03/27/1-hexo2/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/04/06/1-conda-manage/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -605,11 +605,15 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/04/07/1-hexo3/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/04/10/1-hexo4/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/04/10/1-hexo4/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/03/27/1-hexo2/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/04/07/1-hexo3/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -617,11 +621,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/08/29/1-interview-browser/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/08/29/1-interview-algorithm/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/08/29/1-interview-algorithm/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/08/29/1-interview-browser/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
