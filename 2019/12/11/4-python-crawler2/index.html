@@ -17,7 +17,7 @@
 <meta property="og:title" content="python爬虫学习笔记Ⅱ：BeautifulSoup库">
 <meta property="og:url" content="https://arginsen.github.io/blog/2019/12/11/4-python-crawler2/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/crawler.jpg">
 <meta property="og:updated_time" content="2025-07-17T09:32:52.167Z">
 <meta name="twitter:card" content="summary">
@@ -84,13 +84,13 @@
             <div class="clearfix sf-menu">
               <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首頁</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">彙整</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分類</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">關于</a> </li>
                     
               </ul>
             </div>
@@ -307,7 +307,7 @@
 <nav id="article-nav">
   
     <a href="/blog/2019/12/12/4-python-crawler3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           python爬虫学习笔记Ⅲ：信息标记
@@ -317,7 +317,7 @@
   
   
     <a href="/blog/2019/12/10/4-python-crawler1/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">python爬虫学习笔记Ⅰ：requests库</div>
     </a>
   
@@ -330,7 +330,7 @@
 
   <aside id="sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
+    <strong class="toc-title">文章目錄</strong>
     
       <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Beautiful-Soup的介绍"><span class="nav-number">1.</span> <span class="nav-text">Beautiful Soup的介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Beautiful-Soup库解析器"><span class="nav-number">2.</span> <span class="nav-text">Beautiful Soup库解析器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BeautifulSoup库的基本元素"><span class="nav-number">3.</span> <span class="nav-text">BeautifulSoup库的基本元素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tag标签"><span class="nav-number">3.1.</span> <span class="nav-text">Tag标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tag的name-名字"><span class="nav-number">3.2.</span> <span class="nav-text">Tag的name(名字)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tag的attrs-属性"><span class="nav-number">3.3.</span> <span class="nav-text">Tag的attrs(属性)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tag的NavigableString-非属性字符串"><span class="nav-number">3.4.</span> <span class="nav-text">Tag的NavigableString(非属性字符串)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tag的Comment-字符串注释部分"><span class="nav-number">3.5.</span> <span class="nav-text">Tag的Comment(字符串注释部分)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bs4库的HTML内容遍历"><span class="nav-number">4.</span> <span class="nav-text">bs4库的HTML内容遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下行遍历"><span class="nav-number">4.1.</span> <span class="nav-text">下行遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上行遍历"><span class="nav-number">4.2.</span> <span class="nav-text">上行遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平行遍历"><span class="nav-number">4.3.</span> <span class="nav-text">平行遍历</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bs4库的HTML格式输出"><span class="nav-number">5.</span> <span class="nav-text">bs4库的HTML格式输出</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#prettify"><span class="nav-number">5.1.</span> <span class="nav-text">prettify()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BeautifulSoup库的实现"><span class="nav-number">6.</span> <span class="nav-text">BeautifulSoup库的实现</span></a></li></ol>
     

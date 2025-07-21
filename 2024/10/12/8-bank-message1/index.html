@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
   
-  <title>银行系统软开 | 支付报文（swift）解析、入库 | Arginsen&#39;s Blog</title>
+  <title>银行系统软开 | 支付报文（SWIFT）解析、入库 | Arginsen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="JavaBackend">
@@ -14,14 +14,14 @@
   
   <meta name="keywords" content="Java,Backend">
 <meta property="og:type" content="article">
-<meta property="og:title" content="银行系统软开 | 支付报文（swift）解析、入库">
+<meta property="og:title" content="银行系统软开 | 支付报文（SWIFT）解析、入库">
 <meta property="og:url" content="https://arginsen.github.io/blog/2024/10/12/8-bank-message1/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/java.jpg">
-<meta property="og:updated_time" content="2025-07-21T15:26:47.656Z">
+<meta property="og:updated_time" content="2025-07-21T17:22:32.678Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="银行系统软开 | 支付报文（swift）解析、入库">
+<meta name="twitter:title" content="银行系统软开 | 支付报文（SWIFT）解析、入库">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/java.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
@@ -84,13 +84,13 @@
             <div class="clearfix sf-menu">
               <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首頁</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">彙整</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分類</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">關于</a> </li>
                     
               </ul>
             </div>
@@ -123,7 +123,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      银行系统软开 | 支付报文（swift）解析、入库
+      银行系统软开 | 支付报文（SWIFT）解析、入库
     </h1>
   
 
@@ -184,17 +184,17 @@
 <nav id="article-nav">
   
     <a href="/blog/2024/11/06/8-bank-ibmmq1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          银行系统软开 | ibm mq 接受报文
+          银行系统软开 | IBM MQ 接收报文
         
       </div>
     </a>
   
   
     <a href="/blog/2024/08/15/2-backend-mq1/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">后端 | RabbitMQ</div>
     </a>
   
@@ -207,7 +207,7 @@
 
   <aside id="sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
+    <strong class="toc-title">文章目錄</strong>
     
       <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置报文-XSD-文件"><span class="nav-number">1.</span> <span class="nav-text">配置报文 XSD 文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-xjc-生成-Java-Bean"><span class="nav-number">2.</span> <span class="nav-text">使用 xjc 生成 Java Bean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接收-MQ-发送过来的报文-xml-文件"><span class="nav-number">3.</span> <span class="nav-text">接收 MQ 发送过来的报文 xml 文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-JAXB-解析-XML-为-Java-对象"><span class="nav-number">4.</span> <span class="nav-text">使用 JAXB 解析 XML 为 Java 对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#报文入库示例"><span class="nav-number">5.</span> <span class="nav-text">报文入库示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#报文表结构"><span class="nav-number">5.1.</span> <span class="nav-text">报文表结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文对应实体类"><span class="nav-number">5.2.</span> <span class="nav-text">报文对应实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mapper-接口"><span class="nav-number">5.3.</span> <span class="nav-text">mapper 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-接口与实现"><span class="nav-number">5.4.</span> <span class="nav-text">Service 接口与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-接口继承定义"><span class="nav-number">5.4.1.</span> <span class="nav-text">Service 接口继承定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ServiceImpl-接口继承定义"><span class="nav-number">5.4.2.</span> <span class="nav-text">ServiceImpl 接口继承定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller（或-MQ-消费监听）调用方式"><span class="nav-number">5.5.</span> <span class="nav-text">Controller（或 MQ 消费监听）调用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller-调用"><span class="nav-number">5.5.1.</span> <span class="nav-text">Controller 调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MQ-消费监听"><span class="nav-number">5.5.2.</span> <span class="nav-text">MQ 消费监听</span></a></li></ol></li></ol></li></ol>
     
