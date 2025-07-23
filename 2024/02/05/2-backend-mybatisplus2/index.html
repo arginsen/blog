@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>后端 | MybatisPlus 实践 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="BackendMybatisPlus">
+  
+  
+  
+  
+  <meta name="keywords" content="Backend,MybatisPlus">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后端 | MybatisPlus 实践">
+<meta property="og:url" content="https://arginsen.github.io/blog/2024/02/05/2-backend-mybatisplus2/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/mybatisplus.jpg">
+<meta property="og:updated_time" content="2025-07-23T16:40:18.293Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="后端 | MybatisPlus 实践">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/mybatisplus.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首頁</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">彙整</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分類</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">關于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-backend-mybatisplus2" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/mybatisplus.jpg" rel="gallery_cmdg7prmq000036pu5koui8ts">
+        <img src="/blog/img/mybatisplus.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      后端 | MybatisPlus 实践
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<p>整个关于 MyBatisPlus 配套的例子以系统中的 User 功能为例，涉及如何操作用户数据。</p>
+<h1 id="定义基础实体-BaseEntity"><a href="#定义基础实体-BaseEntity" class="headerlink" title="定义基础实体 BaseEntity"></a>定义基础实体 BaseEntity</h1><p>抽象出对于 MyBatisPlus 的基础配置，也就是适用于项目的每个数据库表。编写具体表实体的时候可以扩展该基础实体 BaseEntity 即可。</p>
+<p>抽取出每个表的共同字段，例如 id createBy createTime updateBy updateTime 。</p>
+<p>该类被定义在系统公共部分的 MyBatis 下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// money-pos/qk-money-common/money-common-mybatis/src/main/java/com/money/mb/base/BaseEntity.java</span></span><br><span class="line"><span class="keyword">package</span> com.money.mb.base;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.FieldFill;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.IdType;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.TableField;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.TableId;</span><br><span class="line"><span class="keyword">import</span> lombok.Getter;</span><br><span class="line"><span class="keyword">import</span> lombok.Setter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.LocalDateTime;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseEntity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableId</span>(type = IdType.ASSIGN_ID)</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建者</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(fill = FieldFill.INSERT)</span><br><span class="line">    <span class="keyword">private</span> String createBy;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建时间</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(fill = FieldFill.INSERT)</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime createTime;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 更新者</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(fill = FieldFill.INSERT_UPDATE)</span><br><span class="line">    <span class="keyword">private</span> String updateBy;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 更新时间</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(fill = FieldFill.INSERT_UPDATE)</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime updateTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="定义系统公共数据实体-SysUser"><a href="#定义系统公共数据实体-SysUser" class="headerlink" title="定义系统公共数据实体 SysUser"></a>定义系统公共数据实体 SysUser</h1><p>根据数据库表 定义（转换）对象+字段。</p>
+<p>系统公共数据，例如：User 表、Role 表、Permission 表，此类作为系统框架的公共数据维护，通常也会被抽出放在一个模块下，比如此处的 entity/SysUser.java 就放在收银系统的 money-app-system 模块下。</p>
+<p>该文件主要定义 sys_user 表的实体类 SysUser，并从上边定义的 MyBatisPlus 基础类 BaseEntity 扩展。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// money-pos/qk-money-app/money-app-system/src/main/java/com/money/entity/SysUser.java</span></span><br><span class="line"><span class="keyword">package</span> com.money.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.TableName;</span><br><span class="line"><span class="keyword">import</span> com.money.mb.base.BaseEntity;</span><br><span class="line"><span class="keyword">import</span> io.swagger.v3.oas.annotations.media.Schema;</span><br><span class="line"><span class="keyword">import</span> lombok.Getter;</span><br><span class="line"><span class="keyword">import</span> lombok.Setter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.LocalDateTime;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@TableName</span>(<span class="string">"sys_user"</span>) <span class="comment">// 该实体类 SysUser 对应的数据表</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SysUser</span> <span class="keyword">extends</span> <span class="title">BaseEntity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description = <span class="string">"用户名"</span>)</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description = <span class="string">"密码"</span>)</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description = <span class="string">"昵称"</span>)</span><br><span class="line">    <span class="keyword">private</span> String nickname;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description = <span class="string">"头像"</span>)</span><br><span class="line">    <span class="keyword">private</span> String avatar;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description = <span class="string">"手机号码"</span>)</span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description = <span class="string">"邮箱"</span>)</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description = <span class="string">"备注"</span>)</span><br><span class="line">    <span class="keyword">private</span> String remark;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description = <span class="string">"可用状态：0-禁用；1-启用"</span>)</span><br><span class="line">    <span class="keyword">private</span> Boolean enabled;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description = <span class="string">"初次登录：0-不是；1-是"</span>)</span><br><span class="line">    <span class="keyword">private</span> Boolean initLogin;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description = <span class="string">"最后登录时间"</span>)</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime lastTime;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description = <span class="string">"租户id"</span>)</span><br><span class="line">    <span class="keyword">private</span> Long tenantId;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>系统相关的实体被放在 <strong>money-app-system</strong> 模块下， 但其他模块也会定义实体类需要操作数据库，比如业务相关的表，文件自然会放在 <strong>money-app-api</strong> 业务模块下，但是包依旧需定义为：<code>package com.money.entity;</code> 表示同一功能。之后打包后也会在一个目录下，我们按模块编写代码只是方便逻辑上的思考。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// money-pos/qk-money-app/money-app-api/src/main/java/com/money/entity/GmsBrand.java</span></span><br><span class="line"><span class="keyword">package</span> com.money.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.TableName;</span><br><span class="line"><span class="keyword">import</span> com.money.mb.base.BaseEntity;</span><br><span class="line"><span class="keyword">import</span> io.swagger.v3.oas.annotations.media.Schema;</span><br><span class="line"><span class="keyword">import</span> lombok.Getter;</span><br><span class="line"><span class="keyword">import</span> lombok.Setter;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@TableName</span>(<span class="string">"gms_brand"</span>)</span><br><span class="line"><span class="meta">@Schema</span>(description = <span class="string">"商品品牌表"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GmsBrand</span> <span class="keyword">extends</span> <span class="title">BaseEntity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description=<span class="string">"品牌logo"</span>)</span><br><span class="line">    <span class="keyword">private</span> String logo;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Schema</span>(description=<span class="string">"品牌名称"</span>)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 。。。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="配置-Mapper-——-SysUserMapper"><a href="#配置-Mapper-——-SysUserMapper" class="headerlink" title="配置 Mapper —— SysUserMapper"></a>配置 Mapper —— SysUserMapper</h1><p>同样是放在整个目录下的 mapper 目录下：<code>package com.money.mapper;</code> ，之后会打包在一起，同时也需要清楚，会有其他模块的 mapper 也会定义在该 package 下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// money-pos/qk-money-app/money-app-system/src/main/java/com/money/mapper/SysUserMapper.java</span></span><br><span class="line"><span class="keyword">package</span> com.money.mapper;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.mapper.BaseMapper;</span><br><span class="line"><span class="keyword">import</span> com.money.entity.SysUser;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 管理员表(SysAdmin)表数据库访问层</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> money</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2021-09-08 22:34:42</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SysUserMapper</span> <span class="keyword">extends</span> <span class="title">BaseMapper</span>&lt;<span class="title">SysUser</span>&gt; </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="定义-SysUserService"><a href="#定义-SysUserService" class="headerlink" title="定义 SysUserService"></a>定义 SysUserService</h1><p>定义 SysUserService 接口，直接扩展 MyBatisPlus 自带的 IService，直接就获得了基础的<strong>增删改查</strong>方法，在此基础上定义我们所需的个别方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// money-pos/qk-money-app/money-app-system/src/main/java/com/money/service/SysUserService.java</span></span><br><span class="line"><span class="keyword">package</span> com.money.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.service.IService;</span><br><span class="line"><span class="keyword">import</span> com.money.dto.query.SysUserPageQueryDTO;</span><br><span class="line"><span class="keyword">import</span> com.money.web.vo.PageVO;</span><br><span class="line"><span class="keyword">import</span> com.money.dto.SysUserDTO; <span class="comment">// 新增时的用户表单</span></span><br><span class="line"><span class="keyword">import</span> com.money.entity.SysUser; <span class="comment">// 此作为 user 表的 PO，和数据表一一对应</span></span><br><span class="line"><span class="keyword">import</span> com.money.vo.SysUserVO; <span class="comment">// 查询的返回结果表单</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户表(SysUser)表服务接口</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> money</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2021-09-08 22:35:10</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SysUserService</span> <span class="keyword">extends</span> <span class="title">IService</span>&lt;<span class="title">SysUser</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过用户名获取用户</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> username 用户名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> &#123;<span class="doctag">@link</span> SysUser&#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">SysUser <span class="title">getByUsername</span><span class="params">(String username)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ============================================================</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 查询用户列表</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> queryDTO 查询dto</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> &#123;<span class="doctag">@link</span> PageVO&#125;&lt;&#123;<span class="doctag">@link</span> SysUserVO&#125;&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">PageVO&lt;SysUserVO&gt; <span class="title">list</span><span class="params">(SysUserPageQueryDTO queryDTO)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加用户</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> sysUserDTO 系统用户dto</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(SysUserDTO sysUserDTO)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 修改用户</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> sysUserDTO 系统用户dto</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updateById</span><span class="params">(SysUserDTO sysUserDTO)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除用户</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ids id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">deleteById</span><span class="params">(Set&lt;Long&gt; ids)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="定义-SysUserServiceImpl"><a href="#定义-SysUserServiceImpl" class="headerlink" title="定义 SysUserServiceImpl"></a>定义 SysUserServiceImpl</h1><p>在 Service 对应的实例 SysUserServiceImpl 中用注解 <code>@Override</code> 实现具体方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// money-pos/qk-money-app/money-app-system/src/main/java/com/money/service/impl/SysUserServiceImpl.java</span></span><br><span class="line"><span class="keyword">package</span> com.money.service.impl;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.hutool.core.bean.BeanUtil;</span><br><span class="line"><span class="keyword">import</span> cn.hutool.core.util.ObjectUtil;</span><br><span class="line"><span class="keyword">import</span> cn.hutool.core.util.StrUtil;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.metadata.IPage;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;</span><br><span class="line"><span class="keyword">import</span> com.money.web.exception.BaseException;</span><br><span class="line"><span class="keyword">import</span> com.money.web.vo.PageVO;</span><br><span class="line"><span class="keyword">import</span> com.money.constant.SysErrorStatus;</span><br><span class="line"><span class="keyword">import</span> com.money.dto.SysUserDTO;</span><br><span class="line"><span class="keyword">import</span> com.money.dto.query.SysUserPageQueryDTO;</span><br><span class="line"><span class="keyword">import</span> com.money.entity.SysUser;</span><br><span class="line"><span class="keyword">import</span> com.money.entity.SysUserRoleRelation;</span><br><span class="line"><span class="keyword">import</span> com.money.mapper.SysUserMapper;</span><br><span class="line"><span class="keyword">import</span> com.money.service.SysRoleService;</span><br><span class="line"><span class="keyword">import</span> com.money.service.SysUserService;</span><br><span class="line"><span class="keyword">import</span> com.money.util.PageUtil;</span><br><span class="line"><span class="keyword">import</span> com.money.vo.SysUserVO;</span><br><span class="line"><span class="keyword">import</span> lombok.RequiredArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cache.annotation.CacheConfig;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.crypto.password.PasswordEncoder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Optional;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line"><span class="meta">@CacheConfig</span>(cacheNames = <span class="string">"user"</span>)</span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">SysUserServiceImpl</span> <span class="keyword">extends</span> <span class="title">ServiceImpl</span>&lt;<span class="title">SysUserMapper</span>, <span class="title">SysUser</span>&gt; <span class="keyword">implements</span> <span class="title">SysUserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> PasswordEncoder passwordEncoder;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> SysRoleService sysRoleService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过用户名获取用户</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SysUser <span class="title">getByUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lambdaQuery().eq(SysUser::getUsername, username).one();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查询用户列表</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> PageVO&lt;SysUserVO&gt; <span class="title">list</span><span class="params">(SysUserPageQueryDTO queryDTO)</span> </span>&#123;</span><br><span class="line">        IPage&lt;SysUser&gt; page = <span class="keyword">this</span>.lambdaQuery()</span><br><span class="line">                .eq(ObjectUtil.isNotNull(queryDTO.getEnabled()), SysUser::getEnabled, queryDTO.getEnabled())</span><br><span class="line">                .like(StrUtil.isNotBlank(queryDTO.getPhone()), SysUser::getPhone, queryDTO.getPhone())</span><br><span class="line">                .and(StrUtil.isNotBlank(queryDTO.getName()), wrapper -&gt; wrapper.like(SysUser::getUsername, queryDTO.getName())</span><br><span class="line">                        .or(orWrapper -&gt; orWrapper.like(SysUser::getNickname, queryDTO.getName())))</span><br><span class="line">                .orderByDesc(StrUtil.isBlank(queryDTO.getOrderBy()), SysUser::getLastTime)</span><br><span class="line">                .last(StrUtil.isNotBlank(queryDTO.getOrderBy()), queryDTO.getOrderBySql())</span><br><span class="line">                .page(PageUtil.toPage(queryDTO));</span><br><span class="line">        <span class="keyword">return</span> PageUtil.toPageVO(page, sysUser -&gt; &#123;</span><br><span class="line">            SysUserVO sysUserVO = <span class="keyword">new</span> SysUserVO();</span><br><span class="line">            BeanUtil.copyProperties(sysUser, sysUserVO);</span><br><span class="line">            sysUserVO.setRoles(sysRoleService.getByUser(sysUserVO.getId()));</span><br><span class="line">            <span class="keyword">return</span> sysUserVO;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加用户</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(SysUserDTO sysUserDTO)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 唯一性判断</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.getByUsername(sysUserDTO.getUsername()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> BaseException(SysErrorStatus.DATA_ALREADY_EXIST, <span class="string">"用户已存在"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        SysUser sysUser = <span class="keyword">new</span> SysUser();</span><br><span class="line">        BeanUtil.copyProperties(sysUserDTO, sysUser);</span><br><span class="line">        <span class="comment">// 加密密码</span></span><br><span class="line">        sysUser.setPassword(passwordEncoder.encode(<span class="string">"123456"</span>));</span><br><span class="line">        <span class="keyword">this</span>.save(sysUser);</span><br><span class="line">        <span class="comment">// 关联角色</span></span><br><span class="line">        List&lt;SysUserRoleRelation&gt; userRoleRelations = sysUserDTO.getRoles().stream().map(roleId -&gt; &#123;</span><br><span class="line">            SysUserRoleRelation relation = <span class="keyword">new</span> SysUserRoleRelation();</span><br><span class="line">            relation.setUserId(sysUser.getId());</span><br><span class="line">            relation.setRoleId(roleId);</span><br><span class="line">            <span class="keyword">return</span> relation;</span><br><span class="line">        &#125;).collect(Collectors.toList());</span><br><span class="line">        sysRoleService.relate(userRoleRelations);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 修改用户</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateById</span><span class="params">(SysUserDTO sysUserDTO)</span> </span>&#123;</span><br><span class="line">        SysUser sysUser = <span class="keyword">new</span> SysUser();</span><br><span class="line">        BeanUtil.copyProperties(sysUserDTO, sysUser);</span><br><span class="line">        <span class="comment">// 用户名不允许修改</span></span><br><span class="line">        sysUser.setUsername(<span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">this</span>.updateById(sysUser);</span><br><span class="line">        Optional.ofNullable(sysUserDTO.getRoles()).ifPresent(roles -&gt; &#123;</span><br><span class="line">            <span class="comment">// 重新关联角色</span></span><br><span class="line">            sysRoleService.relevanceByUser(sysUserDTO.getId());</span><br><span class="line">            List&lt;SysUserRoleRelation&gt; userRoleRelations = roles.stream().map(roleId -&gt; &#123;</span><br><span class="line">                SysUserRoleRelation relation = <span class="keyword">new</span> SysUserRoleRelation();</span><br><span class="line">                relation.setUserId(sysUser.getId());</span><br><span class="line">                relation.setRoleId(roleId);</span><br><span class="line">                <span class="keyword">return</span> relation;</span><br><span class="line">            &#125;).collect(Collectors.toList());</span><br><span class="line">            sysRoleService.relate(userRoleRelations);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除用户</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteById</span><span class="params">(Set&lt;Long&gt; ids)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.removeBatchByIds(ids);</span><br><span class="line">        <span class="comment">// 删除角色关联</span></span><br><span class="line">        ids.forEach(sysRoleService::relevanceByUser);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="调用-sysUserService-方法"><a href="#调用-sysUserService-方法" class="headerlink" title="调用 sysUserService 方法"></a>调用 sysUserService 方法</h1><p>在登录校验时使用，通过用户名获取用户的所有信息。</p>
+<h2 id="getByUsername-使用"><a href="#getByUsername-使用" class="headerlink" title="getByUsername 使用"></a>getByUsername 使用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// money-pos/qk-money-app/money-app-system/src/main/java/com/money/service/impl/SysAuthServiceImpl.java</span></span><br><span class="line"><span class="keyword">package</span> com.money.service.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.money.service.SysAuthService;</span><br><span class="line"><span class="keyword">import</span> com.money.service.SysUserService;</span><br><span class="line"><span class="keyword">import</span> com.money.dto.LoginDTO;</span><br><span class="line"><span class="keyword">import</span> com.money.entity.SysUser;</span><br><span class="line"><span class="keyword">import</span> com.money.vo.AuthTokenVO;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.RequiredArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SysAuthServiceImpl</span> <span class="keyword">implements</span> <span class="title">SysAuthService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> SysUserService sysUserService;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> AuthTokenVO <span class="title">login</span><span class="params">(LoginDTO loginDto)</span> </span>&#123;</span><br><span class="line">        SysUser sysUser = sysUserService.getByUsername(loginDto.getUsername());</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上边定义了 Service，接着再定义 Controller，login 作为接口接收前端传参</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.money.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.money.dto.LoginDTO;</span><br><span class="line"><span class="keyword">import</span> com.money.service.SysAuthService;</span><br><span class="line"><span class="keyword">import</span> io.swagger.v3.oas.annotations.tags.Tag;</span><br><span class="line"><span class="keyword">import</span> lombok.RequiredArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> io.swagger.v3.oas.annotations.Operation;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.annotation.Validated;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*; <span class="comment">// 包含 RequestMapping PostMapping RequestBody 等注解</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Tag</span>(name = <span class="string">"auth"</span>, description = <span class="string">"认证访问"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/auth"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SysAuthController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> SysAuthService sysAuthService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Operation</span>(summary = <span class="string">"登录"</span>)</span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/login"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> AuthTokenVO <span class="title">login</span><span class="params">(@Validated @RequestBody LoginDTO loginDto)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sysAuthService.login(loginDto);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/MybatisPlus/">MybatisPlus</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2024/02/05/2-backend-mybatisplus2/" class="article-date">
+	  <time datetime="2024-02-04T16:00:00.000Z" itemprop="datePublished">二月 5, 2024</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.9k字</span>
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2024/04/25/2-backend-redis1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          后端 | Redis
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2024/01/10/2-backend-mybatisplus1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">后端 | MybatisPlus</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目錄</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义基础实体-BaseEntity"><span class="nav-number">1.</span> <span class="nav-text">定义基础实体 BaseEntity</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义系统公共数据实体-SysUser"><span class="nav-number">2.</span> <span class="nav-text">定义系统公共数据实体 SysUser</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置-Mapper-——-SysUserMapper"><span class="nav-number">3.</span> <span class="nav-text">配置 Mapper —— SysUserMapper</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义-SysUserService"><span class="nav-number">4.</span> <span class="nav-text">定义 SysUserService</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义-SysUserServiceImpl"><span class="nav-number">5.</span> <span class="nav-text">定义 SysUserServiceImpl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用-sysUserService-方法"><span class="nav-number">6.</span> <span class="nav-text">调用 sysUserService 方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#getByUsername-使用"><span class="nav-number">6.1.</span> <span class="nav-text">getByUsername 使用</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 319k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>
