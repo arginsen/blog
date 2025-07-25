@@ -17,7 +17,7 @@
 <meta property="og:title" content="前端 | Vue2 初始化流程 - init">
 <meta property="og:url" content="https://arginsen.github.io/blog/2021/07/26/2-frontend-vue-source-init/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
-<meta property="og:locale" content="zh-TW">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/vue.jpg">
 <meta property="og:updated_time" content="2025-07-17T09:32:52.164Z">
 <meta name="twitter:card" content="summary">
@@ -84,13 +84,13 @@
             <div class="clearfix sf-menu">
               <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首頁</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">Home</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">彙整</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">Archives</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分類</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">Categories</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">關于</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">About</a> </li>
                     
               </ul>
             </div>
@@ -111,7 +111,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/blog/img/vue.jpg" rel="gallery_cmdd9e8ye00a1tzpuwq11mbb6">
+      <a class="article-gallery-img fancybox" href="/blog/img/vue.jpg" rel="gallery_cmdik2o1600a0cvpurtk6zum1">
         <img src="/blog/img/vue.jpg" itemprop="image">
       </a>
     
@@ -237,7 +237,7 @@
       
 	<span class="ico-date"></span>
 	<a href="/blog/2021/07/26/2-frontend-vue-source-init/" class="article-date">
-	  <time datetime="2021-07-25T16:00:00.000Z" itemprop="datePublished">七月 26, 2021</time>
+	  <time datetime="2021-07-25T16:00:00.000Z" itemprop="datePublished">July 26, 2021</time>
 	</a>
 
       <!-- 添加字数统计 -->
@@ -300,7 +300,7 @@
 
   <aside id="sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目錄</strong>
+    <strong class="toc-title">Contents</strong>
     
       <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#package-json"><span class="nav-number">1.1.</span> <span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#launch-json"><span class="nav-number">1.2.</span> <span class="nav-text">launch.json</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#断点调试整个流程"><span class="nav-number">2.</span> <span class="nav-text">断点调试整个流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#init"><span class="nav-number">2.1.</span> <span class="nav-text">init</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mergeOptions"><span class="nav-number">2.1.1.</span> <span class="nav-text">mergeOptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initProxy"><span class="nav-number">2.1.2.</span> <span class="nav-text">initProxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initLifecycle"><span class="nav-number">2.1.3.</span> <span class="nav-text">initLifecycle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initEvents"><span class="nav-number">2.1.4.</span> <span class="nav-text">initEvents</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initRender"><span class="nav-number">2.1.5.</span> <span class="nav-text">initRender</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeCreate"><span class="nav-number">2.1.6.</span> <span class="nav-text">__beforeCreate__</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initInjections"><span class="nav-number">2.1.7.</span> <span class="nav-text">initInjections</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initState"><span class="nav-number">2.1.8.</span> <span class="nav-text">initState</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#initProps"><span class="nav-number">2.1.8.1.</span> <span class="nav-text">initProps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#initMethods"><span class="nav-number">2.1.8.2.</span> <span class="nav-text">initMethods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#initData"><span class="nav-number">2.1.8.3.</span> <span class="nav-text">initData</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#getData"><span class="nav-number">2.1.8.3.1.</span> <span class="nav-text">getData</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#observe"><span class="nav-number">2.1.8.3.2.</span> <span class="nav-text">observe</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#initComputed"><span class="nav-number">2.1.8.4.</span> <span class="nav-text">initComputed</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#initWatch"><span class="nav-number">2.1.8.5.</span> <span class="nav-text">initWatch</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initProvide"><span class="nav-number">2.1.9.</span> <span class="nav-text">initProvide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#created"><span class="nav-number">2.1.10.</span> <span class="nav-text">created</span></a></li></ol></li></ol></li></ol>
     

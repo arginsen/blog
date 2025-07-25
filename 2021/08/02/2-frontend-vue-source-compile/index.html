@@ -17,7 +17,7 @@
 <meta property="og:title" content="前端 | Vue2 初始化流程 - compile">
 <meta property="og:url" content="https://arginsen.github.io/blog/2021/08/02/2-frontend-vue-source-compile/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
-<meta property="og:locale" content="zh-TW">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/vue.jpg">
 <meta property="og:updated_time" content="2025-07-17T09:32:52.163Z">
 <meta name="twitter:card" content="summary">
@@ -84,13 +84,13 @@
             <div class="clearfix sf-menu">
               <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首頁</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">Home</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">彙整</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">Archives</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分類</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">Categories</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">關于</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">About</a> </li>
                     
               </ul>
             </div>
@@ -111,7 +111,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/blog/img/vue.jpg" rel="gallery_cmdd9e8y4009mtzpuq7m7aouq">
+      <a class="article-gallery-img fancybox" href="/blog/img/vue.jpg" rel="gallery_cmdik2o15009xcvpuqwg1viyc">
         <img src="/blog/img/vue.jpg" itemprop="image">
       </a>
     
@@ -213,7 +213,7 @@
       
 	<span class="ico-date"></span>
 	<a href="/blog/2021/08/02/2-frontend-vue-source-compile/" class="article-date">
-	  <time datetime="2021-08-01T16:00:00.000Z" itemprop="datePublished">八月 2, 2021</time>
+	  <time datetime="2021-08-01T16:00:00.000Z" itemprop="datePublished">August 2, 2021</time>
 	</a>
 
       <!-- 添加字数统计 -->
@@ -276,7 +276,7 @@
 
   <aside id="sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目錄</strong>
+    <strong class="toc-title">Contents</strong>
     
       <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#compile"><span class="nav-number">1.</span> <span class="nav-text">compile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mount-–-with-compiler"><span class="nav-number">1.1.</span> <span class="nav-text">mount – with compiler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译方法加载过程"><span class="nav-number">1.2.</span> <span class="nav-text">编译方法加载过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#compileToFunctions-lt-createCompiler"><span class="nav-number">1.2.1.</span> <span class="nav-text">compileToFunctions &lt;- createCompiler</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#createCompiler-lt-createCompilerCreator"><span class="nav-number">1.2.2.</span> <span class="nav-text">createCompiler &lt;- createCompilerCreator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#createCompilerCreator"><span class="nav-number">1.2.3.</span> <span class="nav-text">createCompilerCreator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#createCompileToFunctionFn"><span class="nav-number">1.2.4.</span> <span class="nav-text">createCompileToFunctionFn</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#compileToFunctions"><span class="nav-number">1.3.</span> <span class="nav-text">compileToFunctions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#compile-1"><span class="nav-number">1.4.</span> <span class="nav-text">compile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#baseCompile"><span class="nav-number">1.5.</span> <span class="nav-text">baseCompile</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#parse"><span class="nav-number">1.5.1.</span> <span class="nav-text">parse</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#parseHTML"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">parseHTML</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AST"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">AST</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#optimize"><span class="nav-number">1.5.2.</span> <span class="nav-text">optimize</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#generate"><span class="nav-number">1.5.3.</span> <span class="nav-text">generate</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#createFunction"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">createFunction</span></a></li></ol></li></ol></li></ol></li></ol>
     

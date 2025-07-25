@@ -17,7 +17,7 @@
 <meta property="og:title" content="前端 | ES6笔记 | 十二、类">
 <meta property="og:url" content="https://arginsen.github.io/blog/2020/05/30/2-frontend-es6-12/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
-<meta property="og:locale" content="zh-TW">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/es6.jpg">
 <meta property="og:updated_time" content="2025-07-17T09:32:52.159Z">
 <meta name="twitter:card" content="summary">
@@ -84,13 +84,13 @@
             <div class="clearfix sf-menu">
               <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首頁</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">Home</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">彙整</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">Archives</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分類</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">Categories</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">關于</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">About</a> </li>
                     
               </ul>
             </div>
@@ -111,7 +111,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/blog/img/es6.jpg" rel="gallery_cmdd9e8we005rtzpu2p49kxcu">
+      <a class="article-gallery-img fancybox" href="/blog/img/es6.jpg" rel="gallery_cmdik2nzr0060cvpupic772c7">
         <img src="/blog/img/es6.jpg" itemprop="image">
       </a>
     
@@ -225,7 +225,7 @@
       
 	<span class="ico-date"></span>
 	<a href="/blog/2020/05/30/2-frontend-es6-12/" class="article-date">
-	  <time datetime="2020-05-30T03:45:21.000Z" itemprop="datePublished">五月 30, 2020</time>
+	  <time datetime="2020-05-30T03:45:21.000Z" itemprop="datePublished">May 30, 2020</time>
 	</a>
 
       <!-- 添加字数统计 -->
@@ -288,7 +288,7 @@
 
   <aside id="sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目錄</strong>
+    <strong class="toc-title">Contents</strong>
     
       <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#类的概念"><span class="nav-number">1.</span> <span class="nav-text">类的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#constructor-方法"><span class="nav-number">1.1.</span> <span class="nav-text">constructor 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类的实例"><span class="nav-number">1.2.</span> <span class="nav-text">类的实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#取值函数（getter）和存值函数（setter）"><span class="nav-number">1.3.</span> <span class="nav-text">取值函数（getter）和存值函数（setter）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性表达式"><span class="nav-number">1.4.</span> <span class="nav-text">属性表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class-表达式"><span class="nav-number">1.5.</span> <span class="nav-text">Class 表达式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的注意事项"><span class="nav-number">2.</span> <span class="nav-text">类的注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态方法"><span class="nav-number">3.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例属性"><span class="nav-number">4.</span> <span class="nav-text">实例属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态属性"><span class="nav-number">5.</span> <span class="nav-text">静态属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的继承"><span class="nav-number">6.</span> <span class="nav-text">类的继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-getPrototypeOf"><span class="nav-number">6.1.</span> <span class="nav-text">Object.getPrototypeOf()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#super-关键字"><span class="nav-number">6.2.</span> <span class="nav-text">super 关键字</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的-prototype-属性和proto属性"><span class="nav-number">7.</span> <span class="nav-text">类的 prototype 属性和proto属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol>
     
