@@ -11,5 +11,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: https://arginsen.github.io/blog/sitemap.xml
-Sitemap: https://arginsen.github.io/blog/baidusitemap.xml
+Sitemap: https://lixupeng.cn/blog/sitemap.xml
+Sitemap: https://lixupeng.cn/blog/baidusitemap.xml
