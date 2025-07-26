@@ -17,7 +17,7 @@
 <meta property="og:title" content="前端 | Vue2 响应式流程学习与实现">
 <meta property="og:url" content="https://arginsen.github.io/blog/2021/07/22/2-frontend-vue-reactivity/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/vue.jpg">
 <meta property="og:updated_time" content="2025-07-17T09:32:52.163Z">
 <meta name="twitter:card" content="summary">
@@ -84,13 +84,13 @@
             <div class="clearfix sf-menu">
               <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">Home</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">Archives</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">Categories</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">About</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
                     
               </ul>
             </div>
@@ -214,7 +214,7 @@
       
 	<span class="ico-date"></span>
 	<a href="/blog/2021/07/22/2-frontend-vue-reactivity/" class="article-date">
-	  <time datetime="2021-07-21T16:00:00.000Z" itemprop="datePublished">July 22, 2021</time>
+	  <time datetime="2021-07-21T16:00:00.000Z" itemprop="datePublished">七月 22, 2021</time>
 	</a>
 
       <!-- 添加字数统计 -->
@@ -254,7 +254,7 @@
 <nav id="article-nav">
   
     <a href="/blog/2021/07/26/2-frontend-vue-source-init/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           前端 | Vue2 初始化流程 - init
@@ -264,7 +264,7 @@
   
   
     <a href="/blog/2021/07/15/2-frontend-vue-source-build/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">前端 | Vue2 打包流程</div>
     </a>
   
@@ -277,7 +277,7 @@
 
   <aside id="sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
+    <strong class="toc-title">文章目录</strong>
     
       <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#tips"><span class="nav-number">1.</span> <span class="nav-text">tips</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化流程"><span class="nav-number">2.</span> <span class="nav-text">初始化流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-index-js"><span class="nav-number">2.1.</span> <span class="nav-text">vue/index.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-reactivity-observer-js"><span class="nav-number">2.2.</span> <span class="nav-text">vue/reactivity/observer.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-compile-index-js"><span class="nav-number">2.3.</span> <span class="nav-text">vue/compile/index.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-reactivity-watcher-js"><span class="nav-number">2.4.</span> <span class="nav-text">vue/reactivity/watcher.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-reactivity-dep-js"><span class="nav-number">2.5.</span> <span class="nav-text">vue/reactivity/dep.js</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应式更改值流程"><span class="nav-number">3.</span> <span class="nav-text">响应式更改值流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#触发-set"><span class="nav-number">3.1.</span> <span class="nav-text">触发 set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dep-通知更新"><span class="nav-number">3.2.</span> <span class="nav-text">dep 通知更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watcher-执行更新"><span class="nav-number">3.3.</span> <span class="nav-text">watcher 执行更新</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol>
     
@@ -319,7 +319,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 320.8k 字</span>
+        <span class="post-count">全站共 321.3k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

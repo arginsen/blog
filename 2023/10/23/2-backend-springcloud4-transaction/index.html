@@ -4,24 +4,24 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
   
-  <title>后端 | SpringCloud -&gt; 微服务治理 | Arginsen&#39;s Blog</title>
+  <title>后端 | SpringCloud -&gt; 分布式事务 | Arginsen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="BackendSpringCloudEureka">
+  <meta name="keywords" content="BackendSpringCloud">
   
   
   
   
-  <meta name="keywords" content="Backend,SpringCloud,Eureka">
+  <meta name="keywords" content="Backend,SpringCloud">
 <meta property="og:type" content="article">
-<meta property="og:title" content="后端 | SpringCloud -&gt; 微服务治理">
-<meta property="og:url" content="https://arginsen.github.io/blog/2023/07/18/2-backend-springcloud-eureka/index.html">
+<meta property="og:title" content="后端 | SpringCloud -&gt; 分布式事务">
+<meta property="og:url" content="https://arginsen.github.io/blog/2023/10/23/2-backend-springcloud4-transaction/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/springcloud.jpg">
-<meta property="og:updated_time" content="2025-07-20T17:44:44.171Z">
+<meta property="og:updated_time" content="2025-07-20T17:47:15.750Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="后端 | SpringCloud -&gt; 微服务治理">
+<meta name="twitter:title" content="后端 | SpringCloud -&gt; 分布式事务">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/springcloud.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
@@ -84,13 +84,13 @@
             <div class="clearfix sf-menu">
               <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">Home</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">Archives</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">Categories</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">About</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
                     
               </ul>
             </div>
@@ -105,13 +105,13 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-2-backend-springcloud-eureka" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-2-backend-springcloud4-transaction" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/blog/img/springcloud.jpg" rel="gallery_cmdik2nz40040cvpuo2y4wjmz">
+      <a class="article-gallery-img fancybox" href="/blog/img/springcloud.jpg" rel="gallery_cmdjzi0c90008wmpu5goum6en">
         <img src="/blog/img/springcloud.jpg" itemprop="image">
       </a>
     
@@ -123,7 +123,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      后端 | SpringCloud -&gt; 微服务治理
+      后端 | SpringCloud -&gt; 分布式事务
     </h1>
   
 
@@ -133,30 +133,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
-<h1 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h1><ul>
-<li>一个微服务负责一部分业务功能，并且其核心数据不依赖于其它模块。</li>
-<li>每个微服务都有自己独立的开发、测试、发布、运维。</li>
-<li>每个微服务都独立打包部署，访问自己独立的数据库。</li>
-<li>每个微服务的职责要尽量单一，包含的业务相互关联度高、完整度高。</li>
-<li>每个微服务的功能要相对独立，尽量减少对其它微服务的依赖，或者依赖接口的稳定性要强。</li>
-</ul>
-<h1 id="服务注册与发现"><a href="#服务注册与发现" class="headerlink" title="服务注册与发现"></a>服务注册与发现</h1><p>有时微服务需要提供接口供其它微服务访问，比如前端调用后端一般直接访问网关的微服务，再由网关转发到注册中心指定的微服务。</p>
-<p>通常会在服务的 application.yml 中配置 eureka 地址、端口、密码，这样服务启动时就会注册自己的服务信息（服务名、IP、端口）到注册中心</p>
-<ul>
-<li>服务提供者会定期向注册中心发送请求，报告自己的健康状态</li>
-<li>当服务有新实例启动时，会发送注册服务请求，其信息会被记录在注册中心的服务实例列表</li>
-</ul>
-<p>引入 eureka 依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>Eureka和Nacos的区别有：</p>
-<ul>
-<li>Eureka的心跳是30秒一次，Nacos则是5秒一次</li>
-<li>Eureka如果90秒未收到心跳，则认为服务疑似故障，可能被剔除。Nacos中则是15秒超时，30秒剔除。</li>
-<li>Eureka每隔60秒执行一次服务检测和清理任务；Nacos是每隔5秒执行一次。</li>
-<li>Eureka只能等微服务自己每隔30秒更新一次服务列表；Nacos即有定时更新，也有在服务变更时的广播推送</li>
-<li>Eureka仅有注册中心功能，而Nacos同时支持注册中心、配置管理</li>
-<li>Eureka和Nacos都支持集群，而且默认都是AP模式</li>
-</ul>
 
       
     </div>
@@ -168,17 +144,17 @@
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Eureka/">Eureka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/SpringCloud/">SpringCloud</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/SpringCloud/">SpringCloud</a></li></ul>
 
       
 	<span class="ico-date"></span>
-	<a href="/blog/2023/07/18/2-backend-springcloud-eureka/" class="article-date">
-	  <time datetime="2023-07-17T16:00:00.000Z" itemprop="datePublished">July 18, 2023</time>
+	<a href="/blog/2023/10/23/2-backend-springcloud4-transaction/" class="article-date">
+	  <time datetime="2023-10-22T16:00:00.000Z" itemprop="datePublished">十月 23, 2023</time>
 	</a>
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">506字</span>
+        <span class="ico-fontcount"></span><span class="post-count">0字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -212,19 +188,19 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2023/08/20/2-backend-springcloud-service/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+    <a href="/blog/2024/01/10/2-backend-mybatisplus1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          后端 | SpringCloud -&gt; 微服务调用
+          后端 | MybatisPlus 功能与应用
         
       </div>
     </a>
   
   
-    <a href="/blog/2022/05/28/2-backend-java-4/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">语言 | Java 基础Ⅳ：面向对象编程</div>
+    <a href="/blog/2023/09/16/2-backend-springcloud3-gateway/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">后端 | SpringCloud -&gt; 网关路由</div>
     </a>
   
 </nav>
@@ -236,9 +212,9 @@
 
   <aside id="sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
+    <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务"><span class="nav-number">1.</span> <span class="nav-text">微服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务注册与发现"><span class="nav-number">2.</span> <span class="nav-text">服务注册与发现</span></a></li></ol>
+      <ol class="nav">无</ol>
     
     </div>
   </aside>
@@ -278,7 +254,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 320.8k 字</span>
+        <span class="post-count">全站共 321.3k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
