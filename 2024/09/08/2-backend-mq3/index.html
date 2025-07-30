@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/mq.jpg">
-<meta property="og:updated_time" content="2025-07-29T16:21:04.137Z">
+<meta property="og:updated_time" content="2025-07-30T10:50:04.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端 | RabbitMQ 实现延迟消息">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/mq.jpg">
@@ -153,8 +153,8 @@
 <li>收集因TTL（有效期）到期的消息</li>
 </ol>
 <h2 id="延迟消息-1"><a href="#延迟消息-1" class="headerlink" title="延迟消息"></a>延迟消息</h2><p>通过发送消息到指定交换机（fanout），设置 routingkey 和消息有效期（eg： 5000ms），消息投递到指定队列（queue），但该队列没有消费者，因此 5s 之后消息过期成为死信，接着消息被投递到死信交换机，且沿用之前的 routingkey，而该死信交换机下有某个队列对应的 bindingkey 和该消息的 routingkey 相同，因此落入死信交换机下的此队列，如果有消费者绑定了该队列，那么这条消息也会被成功消费。此时刚好过了 5s，由此我们实现了 5s 的延迟消息。</p>
-<p>Publishing the message to the specific exchange(fanout) configured with routing key and message valid peroid. The message will be published to the specific queue without the consumer. So the message will become a dead letter after 5s and then will be published to dead-letter exchange using the former routing key. The queue in dead letter exchange have the same routing key with the message. So the message will come in this queue and will be consumed successfully if the queue has a bound the consumer. After of that，exactly 5s have passed. So wo achieve the 5s delayed message.</p>
-<h2 id="DelayExchange-插件"><a href="#DelayExchange-插件" class="headerlink" title="DelayExchange 插件"></a>DelayExchange 插件</h2><p>基于死信队列虽然可以实现延迟消息，但是太麻烦了。因此 RabbitMQ 社区提供了一个延迟消息插件来实现相同的效果。</p>
+<p>Publishing the message to the specific exchange(fanout) configured with routing key and message valid peroid. The message will be published to the specific queue without the consumer. So the message will become a dead letter after 5s and then will be published to dead-letter exchange using the former routing key. The queue in dead letter exchange have the same routing key with the message. So the message will fall into this queue and will be consumed successfully if the queue has a bound the consumer. After of that，exactly 5s have passed. So wo achieve the 5s delayed message.</p>
+<h2 id="DelayExchange-插件"><a href="#DelayExchange-插件" class="headerlink" title="DelayExchange 插件"></a>DelayExchange 插件</h2><p>基于死信队列虽然可以实现延迟消息，但是太麻烦了。因此 RabbitMQ 社区提供了一个<strong>延迟消息插件</strong>来实现相同的效果。</p>
 <h3 id="install-the-extension"><a href="#install-the-extension" class="headerlink" title="install the extension"></a>install the extension</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume inspect mq-plugins</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mq rabbitmq-plugins <span class="built_in">enable</span> rabbitmq_delayed_message_exchange</span><br></pre></td></tr></table></figure>
 <h3 id="declare-the-delay-exchange-with-annotations"><a href="#declare-the-delay-exchange-with-annotations" class="headerlink" title="declare the delay exchange with annotations"></a>declare the delay exchange with annotations</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RabbitListener</span>(bindings = <span class="meta">@QueueBinding</span>(</span><br><span class="line">        value = <span class="meta">@Queue</span>(name = <span class="string">"delay.queue"</span>, durable = <span class="string">"true"</span>),</span><br><span class="line">        exchange = <span class="meta">@Exchange</span>(name = <span class="string">"delay.direct"</span>, delayed = <span class="string">"true"</span>),</span><br><span class="line">        key = <span class="string">"delay"</span></span><br><span class="line">))</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">listenDelayMessage</span><span class="params">(String msg)</span></span>&#123;</span><br><span class="line">    log.info(<span class="string">"接收到delay.queue的延迟消息：&#123;&#125;"</span>, msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -280,7 +280,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 328.7k 字</span>
+        <span class="post-count">全站共 330k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
