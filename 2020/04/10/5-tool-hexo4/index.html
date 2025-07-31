@@ -15,7 +15,7 @@
   <meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo博客 | substring定义路径读取与配置目录可滚动">
-<meta property="og:url" content="https://arginsen.github.io/blog/2020/04/10/1-hexo4/index.html">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/04/10/5-tool-hexo4/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/hexo.jpg">
@@ -105,13 +105,13 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-1-hexo4" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-5-tool-hexo4" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/blog/img/hexo.jpg" rel="gallery_cmdraqvhm000drlpu315fl5qh">
+      <a class="article-gallery-img fancybox" href="/blog/img/hexo.jpg" rel="gallery_cmdroixdh000d1ypuaizdajv1">
         <img src="/blog/img/hexo.jpg" itemprop="image">
       </a>
     
@@ -160,7 +160,7 @@
 
       
 	<span class="ico-date"></span>
-	<a href="/blog/2020/04/10/1-hexo4/" class="article-date">
+	<a href="/blog/2020/04/10/5-tool-hexo4/" class="article-date">
 	  <time datetime="2020-04-09T16:00:00.000Z" itemprop="datePublished">四月 10, 2020</time>
 	</a>
 
@@ -172,35 +172,29 @@
     <!-- 文章添加评论 -->
     
       
-    <!-- <script defer src="//unpkg.com/leancloud-storage@3/dist/av-min.js"></script>
-    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script> -->
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
     <div id="vcomments"></div>
-    <script async>
-		// 获取 comments 节点
-		var comm = document.getElementById('vcomments');
-		// 创建 av-min.js
-		var av = document.createElement('script');
-		av.src = '//unpkg.com/leancloud-storage@3/dist/av-min.js';
-		comm.parentNode.insertBefore(av,comm);
-		// 创建 valine.js
-		var val = document.createElement('script');
-		val.src = '//unpkg.com/valine@latest/dist/Valine.min.js';
-		comm.parentNode.insertBefore(val,comm);
+    <script>
 
         var notify = 'false' == true ? true : false;
         var verify = 'false' == true ? true : false;
-        window.onload = function() {
-            new Valine({
-                el: '#vcomments',
-                notify: notify,
-                verify: verify,
-                app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
-                app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
-                placeholder: 'say something bro ~',
-                avatar: 'monsterid',
-				avatarCDN:'https://cravatar.cn/avatar/'
-            });
-        }
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/'
+				});
+			}
+		}, 1000);
     </script>
 
 
@@ -222,7 +216,7 @@
     </a>
   
   
-    <a href="/blog/2020/04/07/1-hexo3/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/blog/2020/04/07/5-tool-hexo3/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">hexo博客 | Hexo博客个别主题添加valine评论</div>
     </a>

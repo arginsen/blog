@@ -16,7 +16,7 @@
 <meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo博客 | Hexo主题细节配置">
-<meta property="og:url" content="https://arginsen.github.io/blog/2019/03/27/1-hexo2/index.html">
+<meta property="og:url" content="https://arginsen.github.io/blog/2019/03/27/5-tool-hexo2/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:description" content="前言在建站的过程中，可谓是碰到了很多坑，但是作为一个初学者，这些坑也是能让我更好的消化所接触的知识，理解一些基础的东西。所以说实战还是养人，实际去做，提出问题，后边系统再学时就会有一种很好的代入感。">
 <meta property="og:locale" content="zh-CN">
@@ -108,13 +108,13 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-1-hexo2" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-5-tool-hexo2" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/blog/img/hexo.jpg" rel="gallery_cmdraqvhb0006rlput1fj3lsr">
+      <a class="article-gallery-img fancybox" href="/blog/img/hexo.jpg" rel="gallery_cmdroioyh00071ypu47celmny">
         <img src="/blog/img/hexo.jpg" itemprop="image">
       </a>
     
@@ -164,7 +164,7 @@
 
       
 	<span class="ico-date"></span>
-	<a href="/blog/2019/03/27/1-hexo2/" class="article-date">
+	<a href="/blog/2019/03/27/5-tool-hexo2/" class="article-date">
 	  <time datetime="2019-03-26T16:00:00.000Z" itemprop="datePublished">三月 27, 2019</time>
 	</a>
 
@@ -176,35 +176,29 @@
     <!-- 文章添加评论 -->
     
       
-    <!-- <script defer src="//unpkg.com/leancloud-storage@3/dist/av-min.js"></script>
-    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script> -->
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
     <div id="vcomments"></div>
-    <script async>
-		// 获取 comments 节点
-		var comm = document.getElementById('vcomments');
-		// 创建 av-min.js
-		var av = document.createElement('script');
-		av.src = '//unpkg.com/leancloud-storage@3/dist/av-min.js';
-		comm.parentNode.insertBefore(av,comm);
-		// 创建 valine.js
-		var val = document.createElement('script');
-		val.src = '//unpkg.com/valine@latest/dist/Valine.min.js';
-		comm.parentNode.insertBefore(val,comm);
+    <script>
 
         var notify = 'false' == true ? true : false;
         var verify = 'false' == true ? true : false;
-        window.onload = function() {
-            new Valine({
-                el: '#vcomments',
-                notify: notify,
-                verify: verify,
-                app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
-                app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
-                placeholder: 'say something bro ~',
-                avatar: 'monsterid',
-				avatarCDN:'https://cravatar.cn/avatar/'
-            });
-        }
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/'
+				});
+			}
+		}, 1000);
     </script>
 
 
@@ -216,19 +210,19 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2019/03/29/4-tool-typecho/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/2019/03/27/5-tool-hexo1/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          ubuntu下搭建typecho博客
+          hexo博客 | 简单搭建hexo博客
         
       </div>
     </a>
   
   
-    <a href="/blog/2019/03/27/1-hexo1/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/blog/2019/03/25/5-tool-markdown/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">hexo博客 | 简单搭建hexo博客</div>
+      <div class="article-nav-title">Markdown 使用指南</div>
     </a>
   
 </nav>

@@ -166,35 +166,29 @@
     <!-- 文章添加评论 -->
     
       
-    <!-- <script defer src="//unpkg.com/leancloud-storage@3/dist/av-min.js"></script>
-    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script> -->
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
     <div id="vcomments"></div>
-    <script async>
-		// 获取 comments 节点
-		var comm = document.getElementById('vcomments');
-		// 创建 av-min.js
-		var av = document.createElement('script');
-		av.src = '//unpkg.com/leancloud-storage@3/dist/av-min.js';
-		comm.parentNode.insertBefore(av,comm);
-		// 创建 valine.js
-		var val = document.createElement('script');
-		val.src = '//unpkg.com/valine@latest/dist/Valine.min.js';
-		comm.parentNode.insertBefore(val,comm);
+    <script>
 
         var notify = 'false' == true ? true : false;
         var verify = 'false' == true ? true : false;
-        window.onload = function() {
-            new Valine({
-                el: '#vcomments',
-                notify: notify,
-                verify: verify,
-                app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
-                app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
-                placeholder: 'say something bro ~',
-                avatar: 'monsterid',
-				avatarCDN:'https://cravatar.cn/avatar/'
-            });
-        }
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/'
+				});
+			}
+		}, 1000);
     </script>
 
 
