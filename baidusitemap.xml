@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2024/10/12/8-bank-message1/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2024/10/12/1-business-bank-message1/</loc>
     <lastmod>2025-07-31</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2024/11/06/8-bank-ibmmq1/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2024/11/06/1-business-bank-ibmmq1/</loc>
     <lastmod>2025-07-31</lastmod>
   </url>
   <url>
@@ -89,99 +89,99 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/11/21/7-mysql-installmysql4win/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/11/21/2-backend-mysql-installmysql4win/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/01/20/7-mysql-recover/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/12/04/2-backend-mysql-rowtoolarge/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/07/02/7-mysql/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/01/20/2-backend-mysql-recover/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/12/18/7-mysql-update&in/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/12/18/2-backend-mysql-update&in/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/12/04/7-mysql-rowtoolarge/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/07/02/2-backend-mysql/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/12/04/7-mysql-changecolumnformer/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/07/16/2-backend-mongodb/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/11/13/6-zookeeper/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/12/04/2-backend-mysql-changecolumnformer/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/07/16/7-mongodb/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/11/13/2-backend-zookeeper/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/07/09/6-nginx/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/07/09/2-backend-tomcat/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/07/09/6-tomcat/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/07/09/2-frontend-nginx/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/11/19/5-linux-set-diskpartition/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/08/15/2-backend-docker/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/07/30/5-linux-set-dns-ping/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/05/08/2-frontend-nginx-redirect/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/12/18/5-linux-set-hometoroot/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/08/20/3-linux-2/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/10/12/5-linux-set-downloadfromserver/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/08/20/3-linux-3/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/12/13/5-linux-set-nmap/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/07/30/3-linux-set-dns-ping/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/08/14/5-linux-set-ssh-default-port/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/10/12/3-linux-set-downloadfromserver/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/08/13/5-linux-set-nonpasswd/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/04/09/3-linux-1/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/08/15/5-linux-set-rootlogin/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/12/18/3-linux-set-hometoroot/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/08/20/5-linux2/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/12/13/3-linux-set-nmap/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/08/20/5-linux3/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/11/19/3-linux-set-diskpartition/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/08/15/6-docker/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/08/13/3-linux-set-nonpasswd/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/10/13/5-win-diskpart/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/08/15/3-linux-set-rootlogin/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/04/09/5-linux1/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/08/14/3-linux-set-ssh-default-port/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/05/08/6-nginx-redirect/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/10/13/3-win-diskpart/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -190,10 +190,6 @@
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2019/12/10/4-python-crawler1/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/05/01/2-regex1/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -217,15 +213,19 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/11/25/5-linux-set-cache&buffer/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/02/22/4-python-crawler5/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2021/12/06/4-python-excel-handle/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2019/11/25/3-linux-set-cache&buffer/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/05/01/4-app-regex1/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -369,23 +369,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/04/17/2-frontend-pt2/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2021/09/26/2-frontend-promise/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/04/13/2-frontend-pt1/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/07/16/2-frontend-pt6/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/04/18/2-frontend-pt3/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -397,7 +385,19 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/06/20/2-frontend-pt4/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2020/04/17/2-frontend-practice2/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/04/13/2-frontend-practice1/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/04/18/2-frontend-practice3/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/06/20/2-frontend-practice4/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -569,19 +569,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/08/12/1-vim/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/06/17/2-algorithm-fe1/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2020/06/17/2-algorithm-fe2/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/03/23/1-vpn/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -601,6 +593,14 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/08/12/4-app-vim/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2019/03/23/5-tool-vpn/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/08/30/1-interview-internet/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
@@ -617,23 +617,19 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/03/30/1-oneword/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/03/25/1-markdown/</loc>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://arginsen.github.io/blog/blog/2020/08/28/1-interview-web/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2019/03/29/1-typecho/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/03/30/5-tool-oneword/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://arginsen.github.io/blog/blog/2020/04/06/1-conda-manage/</loc>
+    <loc>https://arginsen.github.io/blog/blog/2019/03/29/4-tool-typecho/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2019/03/25/5-tool-markdown/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
@@ -666,6 +662,10 @@
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2020/08/29/1-interview-browser/</loc>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2020/04/06/5-tool-conda-manage/</loc>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>

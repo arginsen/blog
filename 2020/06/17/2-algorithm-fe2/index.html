@@ -231,10 +231,21 @@
     <!-- 文章添加评论 -->
     
       
-    <script defer src="//unpkg.com/leancloud-storage@3/dist/av-min.js"></script>
-    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <!-- <script defer src="//unpkg.com/leancloud-storage@3/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script> -->
     <div id="vcomments"></div>
-    <script defer>
+    <script async>
+		// 获取 comments 节点
+		var comm = document.getElementById('vcomments');
+		// 创建 av-min.js
+		var av = document.createElement('script');
+		av.src = '//unpkg.com/leancloud-storage@3/dist/av-min.js';
+		comm.parentNode.insertBefore(av,comm);
+		// 创建 valine.js
+		var val = document.createElement('script');
+		val.src = '//unpkg.com/valine@latest/dist/Valine.min.js';
+		comm.parentNode.insertBefore(val,comm);
+
         var notify = 'false' == true ? true : false;
         var verify = 'false' == true ? true : false;
         window.onload = function() {
@@ -242,11 +253,11 @@
                 el: '#vcomments',
                 notify: notify,
                 verify: verify,
-                app_id: "AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz",
-                app_key: "bIYBhlht4PSXI4pCWuH7Gnuo",
-                placeholder: "say something bro ~",
-                avatar: "monsterid",
-				avatarCDN:"https://cravatar.cn/avatar/"
+                app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+                app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+                placeholder: 'say something bro ~',
+                avatar: 'monsterid',
+				avatarCDN:'https://cravatar.cn/avatar/'
             });
         }
     </script>
@@ -260,7 +271,7 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2020/06/20/2-frontend-pt4/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/2020/06/20/2-frontend-practice4/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
@@ -365,7 +376,7 @@
     });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 
 

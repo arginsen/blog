@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>vim 学习笔记 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="vim">
+  
+  
+  
+  
+  <meta name="keywords" content="vim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim 学习笔记">
+<meta property="og:url" content="https://arginsen.github.io/blog/2020/08/12/4-app-vim/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/vim.jpg">
+<meta property="og:updated_time" content="2025-07-17T09:32:52.157Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vim 学习笔记">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/vim.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-4-app-vim" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/vim.jpg" rel="gallery_cmdrn34es002qacpumqb0y5yj">
+        <img src="/blog/img/vim.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      vim 学习笔记
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<p>Vim 有三种模式：</p>
+<ul>
+<li>导航模式。 这时候，字母就是上下左右键。在其他模式下，按”ESC”就回到了导航模式</li>
+<li>输入模式。这时候，你按字母键（a, i, o），才会输入字母。</li>
+<li>命令模式。需要先输入”:” 冒号，才会进入。</li>
+</ul>
+<h1 id="键位"><a href="#键位" class="headerlink" title="键位"></a>键位</h1><h2 id="导航模式"><a href="#导航模式" class="headerlink" title="导航模式"></a>导航模式</h2><h3 id="上下左右"><a href="#上下左右" class="headerlink" title="上下左右"></a>上下左右</h3><ul>
+<li><code>h</code>: 左</li>
+<li><code>j</code>: 下</li>
+<li><code>k</code>: 上</li>
+<li><code>l</code>: 右</li>
+</ul>
+<h3 id="下一个词，上一个词"><a href="#下一个词，上一个词" class="headerlink" title="下一个词，上一个词"></a>下一个词，上一个词</h3><ul>
+<li><code>w</code>: 下一个词。 (word)</li>
+<li><code>b</code>: 上一个词。 (backword)</li>
+</ul>
+<h3 id="向下一屏，向上一屏"><a href="#向下一屏，向上一屏" class="headerlink" title="向下一屏，向上一屏"></a>向下一屏，向上一屏</h3><ul>
+<li><code>ctrl + f</code>: 向下一屏（f = forward)</li>
+<li><code>ctrl + b</code>: 向上一屏（b = backward)</li>
+</ul>
+<h3 id="跳到行首，-行末"><a href="#跳到行首，-行末" class="headerlink" title="跳到行首， 行末"></a>跳到行首， 行末</h3><ul>
+<li>跳到当前行的末尾： <code>shift + 4</code> (意为 $ , 这是正则表达式中 末尾的意思）</li>
+<li>跳到当前行的行首： <code>0</code></li>
+</ul>
+<h3 id="跳到文件首行-，-尾行。"><a href="#跳到文件首行-，-尾行。" class="headerlink" title="跳到文件首行 ， 尾行。"></a>跳到文件首行 ， 尾行。</h3><ul>
+<li><code>gg</code>: 第一行</li>
+<li><code>shift + g</code>: 末行。</li>
+</ul>
+<h3 id="选择多行"><a href="#选择多行" class="headerlink" title="选择多行"></a>选择多行</h3><ul>
+<li><code>shift + v</code>， 然后上下移动。</li>
+</ul>
+<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><ul>
+<li>斜杠后接要搜索的词 <code>/some_thing</code></li>
+<li>继续搜索下一个： n</li>
+<li>搜索前一个： shift + n</li>
+</ul>
+<h3 id="全局替换"><a href="#全局替换" class="headerlink" title="全局替换"></a>全局替换</h3><p><code>:%s/old/new/</code></p>
+<h3 id="局部替换"><a href="#局部替换" class="headerlink" title="局部替换"></a>局部替换</h3><ol>
+<li>先 <code>shift + v</code> 选中若干行</li>
+<li><code>:s/old/new</code></li>
+</ol>
+<h2 id="输入模式"><a href="#输入模式" class="headerlink" title="输入模式"></a>输入模式</h2><h3 id="输入文本"><a href="#输入文本" class="headerlink" title="输入文本"></a>输入文本</h3><p>从导航模式到编辑模式，有下面几种方法:</p>
+<ul>
+<li>在光标前输入： <code>i</code>( insert )</li>
+<li>在光标后输入： <code>a</code> (append / after )</li>
+<li>在行首增加内容： shift + i</li>
+<li>在行末增加内容： shift + a</li>
+<li>在光标下行增加内容： o</li>
+<li>在光标上行增加内容： shift + o</li>
+</ul>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>以下删除都以当前光标作为起始位置。</p>
+<ul>
+<li>删掉一个字母：<code>x</code></li>
+<li>删掉一个单词： <code>dw</code></li>
+<li>删掉一行： <code>dd</code></li>
+<li>删掉多行： <code>shift + v</code>, 然后 <code>x</code> 或者 <code>d</code></li>
+</ul>
+<h3 id="复制与粘贴"><a href="#复制与粘贴" class="headerlink" title="复制与粘贴"></a>复制与粘贴</h3><p>复制，或者删除（vim 认为删除就是剪切，所有被删掉的内容，都会被放到复制缓冲区中）后，就可以粘贴了。</p>
+<ul>
+<li>复制一个单词： <code>yw</code></li>
+<li>复制当前行： <code>yy</code></li>
+<li>粘贴: <code>p</code></li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://www.imooc.com/article/13269" target="_blank" rel="noopener">最牛编辑器: Vim1</a><br><a href="http://www.imooc.com/article/13272" target="_blank" rel="noopener">最牛编辑器: Vim2</a><br><a href="http://www.imooc.com/article/13275" target="_blank" rel="noopener">最牛编辑器: Vim3</a></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vim/">vim</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/08/12/4-app-vim/" class="article-date">
+	  <time datetime="2020-08-11T16:00:00.000Z" itemprop="datePublished">八月 12, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">467字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <!-- <script defer src="//unpkg.com/leancloud-storage@3/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script> -->
+    <div id="vcomments"></div>
+    <script async>
+		// 获取 comments 节点
+		var comm = document.getElementById('vcomments');
+		// 创建 av-min.js
+		var av = document.createElement('script');
+		av.src = '//unpkg.com/leancloud-storage@3/dist/av-min.js';
+		comm.parentNode.insertBefore(av,comm);
+		// 创建 valine.js
+		var val = document.createElement('script');
+		val.src = '//unpkg.com/valine@latest/dist/Valine.min.js';
+		comm.parentNode.insertBefore(val,comm);
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        window.onload = function() {
+            new Valine({
+                el: '#vcomments',
+                notify: notify,
+                verify: verify,
+                app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+                app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+                placeholder: 'say something bro ~',
+                avatar: 'monsterid',
+				avatarCDN:'https://cravatar.cn/avatar/'
+            });
+        }
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/08/15/2-backend-docker/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          docker 学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/07/18/2-frontend-ui-ant/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">前端 | Ant-UI for Vue 使用体验</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#键位"><span class="nav-number">1.</span> <span class="nav-text">键位</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导航模式"><span class="nav-number">1.1.</span> <span class="nav-text">导航模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上下左右"><span class="nav-number">1.1.1.</span> <span class="nav-text">上下左右</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下一个词，上一个词"><span class="nav-number">1.1.2.</span> <span class="nav-text">下一个词，上一个词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向下一屏，向上一屏"><span class="nav-number">1.1.3.</span> <span class="nav-text">向下一屏，向上一屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跳到行首，-行末"><span class="nav-number">1.1.4.</span> <span class="nav-text">跳到行首， 行末</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跳到文件首行-，-尾行。"><span class="nav-number">1.1.5.</span> <span class="nav-text">跳到文件首行 ， 尾行。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择多行"><span class="nav-number">1.1.6.</span> <span class="nav-text">选择多行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索"><span class="nav-number">1.1.7.</span> <span class="nav-text">搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局替换"><span class="nav-number">1.1.8.</span> <span class="nav-text">全局替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部替换"><span class="nav-number">1.1.9.</span> <span class="nav-text">局部替换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入模式"><span class="nav-number">1.2.</span> <span class="nav-text">输入模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入文本"><span class="nav-number">1.2.1.</span> <span class="nav-text">输入文本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">1.2.2.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制与粘贴"><span class="nav-number">1.2.3.</span> <span class="nav-text">复制与粘贴</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 330k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

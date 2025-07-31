@@ -137,10 +137,21 @@
     <!-- 文章添加评论 -->
     
       
-    <script defer src="//unpkg.com/leancloud-storage@3/dist/av-min.js"></script>
-    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <!-- <script defer src="//unpkg.com/leancloud-storage@3/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script> -->
     <div id="vcomments"></div>
-    <script defer>
+    <script async>
+		// 获取 comments 节点
+		var comm = document.getElementById('vcomments');
+		// 创建 av-min.js
+		var av = document.createElement('script');
+		av.src = '//unpkg.com/leancloud-storage@3/dist/av-min.js';
+		comm.parentNode.insertBefore(av,comm);
+		// 创建 valine.js
+		var val = document.createElement('script');
+		val.src = '//unpkg.com/valine@latest/dist/Valine.min.js';
+		comm.parentNode.insertBefore(val,comm);
+
         var notify = 'false' == true ? true : false;
         var verify = 'false' == true ? true : false;
         window.onload = function() {
@@ -148,11 +159,11 @@
                 el: '#vcomments',
                 notify: notify,
                 verify: verify,
-                app_id: "AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz",
-                app_key: "bIYBhlht4PSXI4pCWuH7Gnuo",
-                placeholder: "say something bro ~",
-                avatar: "monsterid",
-				avatarCDN:"https://cravatar.cn/avatar/"
+                app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+                app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+                placeholder: 'say something bro ~',
+                avatar: 'monsterid',
+				avatarCDN:'https://cravatar.cn/avatar/'
             });
         }
     </script>
@@ -226,12 +237,12 @@
 
             
               <div class="widget-entry-thumbnail">
-                <a href="/blog/2024/11/06/8-bank-ibmmq1/" title=""><img width="50" height="50" src="/blog/img/bank.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
+                <a href="/blog/2024/11/06/1-business-bank-ibmmq1/" title=""><img width="50" height="50" src="/blog/img/bank.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
               </div>
               <div class="widget-entry-summary">
             
 
-              <h6 style="margin: 0;"><a href="/blog/2024/11/06/8-bank-ibmmq1/">🌟 银行系统软开 | IBM MQ 接收报文</a></h6>
+              <h6 style="margin: 0;"><a href="/blog/2024/11/06/1-business-bank-ibmmq1/">🌟 银行系统软开 | IBM MQ 接收报文</a></h6>
               <span>十一月 6, 2024</span>
             </div>
 
@@ -241,12 +252,12 @@
 
             
               <div class="widget-entry-thumbnail">
-                <a href="/blog/2024/10/12/8-bank-message1/" title=""><img width="50" height="50" src="/blog/img/bank.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
+                <a href="/blog/2024/10/12/1-business-bank-message1/" title=""><img width="50" height="50" src="/blog/img/bank.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
               </div>
               <div class="widget-entry-summary">
             
 
-              <h6 style="margin: 0;"><a href="/blog/2024/10/12/8-bank-message1/">🌟 银行系统软开 | 支付报文（SWIFT）解析、入库</a></h6>
+              <h6 style="margin: 0;"><a href="/blog/2024/10/12/1-business-bank-message1/">🌟 银行系统软开 | 支付报文（SWIFT）解析、入库</a></h6>
               <span>十月 12, 2024</span>
             </div>
 
@@ -422,7 +433,7 @@
     });
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 
 
