@@ -105,19 +105,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#package-json"><span class="nav-number">1.1.</span> <span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#launch-json"><span class="nav-number">1.2.</span> <span class="nav-text">launch.json</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#断点调试整个流程"><span class="nav-number">2.</span> <span class="nav-text">断点调试整个流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#init"><span class="nav-number">2.1.</span> <span class="nav-text">init</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mergeOptions"><span class="nav-number">2.1.1.</span> <span class="nav-text">mergeOptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initProxy"><span class="nav-number">2.1.2.</span> <span class="nav-text">initProxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initLifecycle"><span class="nav-number">2.1.3.</span> <span class="nav-text">initLifecycle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initEvents"><span class="nav-number">2.1.4.</span> <span class="nav-text">initEvents</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initRender"><span class="nav-number">2.1.5.</span> <span class="nav-text">initRender</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeCreate"><span class="nav-number">2.1.6.</span> <span class="nav-text">__beforeCreate__</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initInjections"><span class="nav-number">2.1.7.</span> <span class="nav-text">initInjections</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initState"><span class="nav-number">2.1.8.</span> <span class="nav-text">initState</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#initProps"><span class="nav-number">2.1.8.1.</span> <span class="nav-text">initProps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#initMethods"><span class="nav-number">2.1.8.2.</span> <span class="nav-text">initMethods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#initData"><span class="nav-number">2.1.8.3.</span> <span class="nav-text">initData</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#getData"><span class="nav-number">2.1.8.3.1.</span> <span class="nav-text">getData</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#observe"><span class="nav-number">2.1.8.3.2.</span> <span class="nav-text">observe</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#initComputed"><span class="nav-number">2.1.8.4.</span> <span class="nav-text">initComputed</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#initWatch"><span class="nav-number">2.1.8.5.</span> <span class="nav-text">initWatch</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initProvide"><span class="nav-number">2.1.9.</span> <span class="nav-text">initProvide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#created"><span class="nav-number">2.1.10.</span> <span class="nav-text">created</span></a></li></ol></li></ol></li></ol>
-    
-    </div>
-  </aside>
-
-<!-- body of article -->
-<article id="post-2-frontend-vue-source-init" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-2-frontend-vue-source-init" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
@@ -260,8 +248,8 @@
     <!-- 文章添加评论 -->
     
       
-    <script src="//code.bdstatic.com/npm/leancloud-storage@4.13.2/dist/av-min.js"></script>
-    <script src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <script async src="//code.bdstatic.com/npm/leancloud-storage@4.13.2/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
     <div id="vcomments"></div>
     <script>
         var notify = 'false' == true ? true : false;
@@ -309,6 +297,16 @@
   
 </article>
 
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#package-json"><span class="nav-number">1.1.</span> <span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#launch-json"><span class="nav-number">1.2.</span> <span class="nav-text">launch.json</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#断点调试整个流程"><span class="nav-number">2.</span> <span class="nav-text">断点调试整个流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#init"><span class="nav-number">2.1.</span> <span class="nav-text">init</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mergeOptions"><span class="nav-number">2.1.1.</span> <span class="nav-text">mergeOptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initProxy"><span class="nav-number">2.1.2.</span> <span class="nav-text">initProxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initLifecycle"><span class="nav-number">2.1.3.</span> <span class="nav-text">initLifecycle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initEvents"><span class="nav-number">2.1.4.</span> <span class="nav-text">initEvents</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initRender"><span class="nav-number">2.1.5.</span> <span class="nav-text">initRender</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeCreate"><span class="nav-number">2.1.6.</span> <span class="nav-text">__beforeCreate__</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initInjections"><span class="nav-number">2.1.7.</span> <span class="nav-text">initInjections</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initState"><span class="nav-number">2.1.8.</span> <span class="nav-text">initState</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#initProps"><span class="nav-number">2.1.8.1.</span> <span class="nav-text">initProps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#initMethods"><span class="nav-number">2.1.8.2.</span> <span class="nav-text">initMethods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#initData"><span class="nav-number">2.1.8.3.</span> <span class="nav-text">initData</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#getData"><span class="nav-number">2.1.8.3.1.</span> <span class="nav-text">getData</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#observe"><span class="nav-number">2.1.8.3.2.</span> <span class="nav-text">observe</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#initComputed"><span class="nav-number">2.1.8.4.</span> <span class="nav-text">initComputed</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#initWatch"><span class="nav-number">2.1.8.5.</span> <span class="nav-text">initWatch</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initProvide"><span class="nav-number">2.1.9.</span> <span class="nav-text">initProvide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#created"><span class="nav-number">2.1.10.</span> <span class="nav-text">created</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
 </section>
         
       </div>

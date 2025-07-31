@@ -105,19 +105,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置报文-XSD-文件"><span class="nav-number">1.</span> <span class="nav-text">配置报文 XSD 文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-xjc-生成-Java-Bean"><span class="nav-number">2.</span> <span class="nav-text">使用 xjc 生成 Java Bean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接收-MQ-发送过来的报文-xml-文件"><span class="nav-number">3.</span> <span class="nav-text">接收 MQ 发送过来的报文 xml 文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-JAXB-解析-XML-为-Java-对象"><span class="nav-number">4.</span> <span class="nav-text">使用 JAXB 解析 XML 为 Java 对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#报文入库示例"><span class="nav-number">5.</span> <span class="nav-text">报文入库示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#报文表结构"><span class="nav-number">5.1.</span> <span class="nav-text">报文表结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文对应实体类"><span class="nav-number">5.2.</span> <span class="nav-text">报文对应实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mapper-接口"><span class="nav-number">5.3.</span> <span class="nav-text">mapper 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-接口与实现"><span class="nav-number">5.4.</span> <span class="nav-text">Service 接口与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-接口继承定义"><span class="nav-number">5.4.1.</span> <span class="nav-text">Service 接口继承定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ServiceImpl-接口继承定义"><span class="nav-number">5.4.2.</span> <span class="nav-text">ServiceImpl 接口继承定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller（或-MQ-消费监听）调用方式"><span class="nav-number">5.5.</span> <span class="nav-text">Controller（或 MQ 消费监听）调用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller-调用"><span class="nav-number">5.5.1.</span> <span class="nav-text">Controller 调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MQ-消费监听"><span class="nav-number">5.5.2.</span> <span class="nav-text">MQ 消费监听</span></a></li></ol></li></ol></li></ol>
-    
-    </div>
-  </aside>
-
-<!-- body of article -->
-<article id="post-8-bank-message1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-8-bank-message1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
@@ -192,8 +180,8 @@
     <!-- 文章添加评论 -->
     
       
-    <script src="//code.bdstatic.com/npm/leancloud-storage@4.13.2/dist/av-min.js"></script>
-    <script src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <script async src="//code.bdstatic.com/npm/leancloud-storage@4.13.2/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
     <div id="vcomments"></div>
     <script>
         var notify = 'false' == true ? true : false;
@@ -241,6 +229,16 @@
   
 </article>
 
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置报文-XSD-文件"><span class="nav-number">1.</span> <span class="nav-text">配置报文 XSD 文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-xjc-生成-Java-Bean"><span class="nav-number">2.</span> <span class="nav-text">使用 xjc 生成 Java Bean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接收-MQ-发送过来的报文-xml-文件"><span class="nav-number">3.</span> <span class="nav-text">接收 MQ 发送过来的报文 xml 文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-JAXB-解析-XML-为-Java-对象"><span class="nav-number">4.</span> <span class="nav-text">使用 JAXB 解析 XML 为 Java 对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#报文入库示例"><span class="nav-number">5.</span> <span class="nav-text">报文入库示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#报文表结构"><span class="nav-number">5.1.</span> <span class="nav-text">报文表结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文对应实体类"><span class="nav-number">5.2.</span> <span class="nav-text">报文对应实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mapper-接口"><span class="nav-number">5.3.</span> <span class="nav-text">mapper 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-接口与实现"><span class="nav-number">5.4.</span> <span class="nav-text">Service 接口与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-接口继承定义"><span class="nav-number">5.4.1.</span> <span class="nav-text">Service 接口继承定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ServiceImpl-接口继承定义"><span class="nav-number">5.4.2.</span> <span class="nav-text">ServiceImpl 接口继承定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller（或-MQ-消费监听）调用方式"><span class="nav-number">5.5.</span> <span class="nav-text">Controller（或 MQ 消费监听）调用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller-调用"><span class="nav-number">5.5.1.</span> <span class="nav-text">Controller 调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MQ-消费监听"><span class="nav-number">5.5.2.</span> <span class="nav-text">MQ 消费监听</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
 </section>
         
       </div>

@@ -105,19 +105,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务"><span class="nav-number">1.</span> <span class="nav-text">微服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务注册与发现"><span class="nav-number">2.</span> <span class="nav-text">服务注册与发现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务调用试例"><span class="nav-number">3.</span> <span class="nav-text">服务调用试例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#openfeign"><span class="nav-number">4.</span> <span class="nav-text">openfeign</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mps-引入依赖"><span class="nav-number">4.1.</span> <span class="nav-text">mps 引入依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需在启动类上添加注解，启动-OpenFeign-功能"><span class="nav-number">4.2.</span> <span class="nav-text">需在启动类上添加注解，启动 OpenFeign 功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接定义调用接口，使用注解-OpenFeign-指向微服务"><span class="nav-number">4.3.</span> <span class="nav-text">直接定义调用接口，使用注解 @OpenFeign 指向微服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mps-service-简化调用-cup"><span class="nav-number">4.4.</span> <span class="nav-text">mps-service 简化调用 cup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对应-cup-service-也应开启配置支持-openfeign"><span class="nav-number">4.5.</span> <span class="nav-text">对应 cup-service 也应开启配置支持 openfeign</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将-openfeign-抽取为公共-API，每个微服务都可以使用"><span class="nav-number">4.6.</span> <span class="nav-text">将 openfeign 抽取为公共 API，每个微服务都可以使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义日志"><span class="nav-number">4.7.</span> <span class="nav-text">定义日志</span></a></li></ol></li></ol>
-    
-    </div>
-  </aside>
-
-<!-- body of article -->
-<article id="post-2-backend-springcloud2-service" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-2-backend-springcloud2-service" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
@@ -216,8 +204,8 @@
     <!-- 文章添加评论 -->
     
       
-    <script src="//code.bdstatic.com/npm/leancloud-storage@4.13.2/dist/av-min.js"></script>
-    <script src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <script async src="//code.bdstatic.com/npm/leancloud-storage@4.13.2/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
     <div id="vcomments"></div>
     <script>
         var notify = 'false' == true ? true : false;
@@ -265,6 +253,16 @@
   
 </article>
 
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务"><span class="nav-number">1.</span> <span class="nav-text">微服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务注册与发现"><span class="nav-number">2.</span> <span class="nav-text">服务注册与发现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务调用试例"><span class="nav-number">3.</span> <span class="nav-text">服务调用试例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#openfeign"><span class="nav-number">4.</span> <span class="nav-text">openfeign</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mps-引入依赖"><span class="nav-number">4.1.</span> <span class="nav-text">mps 引入依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需在启动类上添加注解，启动-OpenFeign-功能"><span class="nav-number">4.2.</span> <span class="nav-text">需在启动类上添加注解，启动 OpenFeign 功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接定义调用接口，使用注解-OpenFeign-指向微服务"><span class="nav-number">4.3.</span> <span class="nav-text">直接定义调用接口，使用注解 @OpenFeign 指向微服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mps-service-简化调用-cup"><span class="nav-number">4.4.</span> <span class="nav-text">mps-service 简化调用 cup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对应-cup-service-也应开启配置支持-openfeign"><span class="nav-number">4.5.</span> <span class="nav-text">对应 cup-service 也应开启配置支持 openfeign</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将-openfeign-抽取为公共-API，每个微服务都可以使用"><span class="nav-number">4.6.</span> <span class="nav-text">将 openfeign 抽取为公共 API，每个微服务都可以使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义日志"><span class="nav-number">4.7.</span> <span class="nav-text">定义日志</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
 </section>
         
       </div>

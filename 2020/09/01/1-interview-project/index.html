@@ -105,19 +105,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack"><span class="nav-number">1.</span> <span class="nav-text">webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-是什么，有哪些功能"><span class="nav-number">1.1.</span> <span class="nav-text">webpack 是什么，有哪些功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-于-grunt、gulp-的不同？"><span class="nav-number">1.2.</span> <span class="nav-text">webpack 于 grunt、gulp 的不同？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-和-rollup-的优劣"><span class="nav-number">1.3.</span> <span class="nav-text">webpack 和 rollup 的优劣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有哪些常见的-loader"><span class="nav-number">1.4.</span> <span class="nav-text">有哪些常见的 loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-的-plugin-是什么？-有哪些常见的-plugin"><span class="nav-number">1.5.</span> <span class="nav-text">webpack 的 plugin 是什么？ 有哪些常见的 plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-的-loader-和-plugin-的不同？"><span class="nav-number">1.6.</span> <span class="nav-text">webpack 的 loader 和 plugin 的不同？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-的构建流程"><span class="nav-number">1.7.</span> <span class="nav-text">webpack 的构建流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何编写一个-loader-或-plugin？"><span class="nav-number">1.8.</span> <span class="nav-text">如何编写一个 loader 或 plugin？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-的热更新"><span class="nav-number">1.9.</span> <span class="nav-text">webpack 的热更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用-webpack-优化前端性能"><span class="nav-number">1.10.</span> <span class="nav-text">利用 webpack 优化前端性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何提高-webpack-的构建速度？"><span class="nav-number">1.11.</span> <span class="nav-text">如何提高 webpack 的构建速度？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSR"><span class="nav-number">2.</span> <span class="nav-text">SSR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSR-解决了什么问题"><span class="nav-number">2.1.</span> <span class="nav-text">SSR 解决了什么问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol>
-    
-    </div>
-  </aside>
-
-<!-- body of article -->
-<article id="post-1-interview-project" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-1-interview-project" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
@@ -233,8 +221,8 @@
     <!-- 文章添加评论 -->
     
       
-    <script src="//code.bdstatic.com/npm/leancloud-storage@4.13.2/dist/av-min.js"></script>
-    <script src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <script async src="//code.bdstatic.com/npm/leancloud-storage@4.13.2/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
     <div id="vcomments"></div>
     <script>
         var notify = 'false' == true ? true : false;
@@ -282,6 +270,16 @@
   
 </article>
 
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack"><span class="nav-number">1.</span> <span class="nav-text">webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-是什么，有哪些功能"><span class="nav-number">1.1.</span> <span class="nav-text">webpack 是什么，有哪些功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-于-grunt、gulp-的不同？"><span class="nav-number">1.2.</span> <span class="nav-text">webpack 于 grunt、gulp 的不同？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-和-rollup-的优劣"><span class="nav-number">1.3.</span> <span class="nav-text">webpack 和 rollup 的优劣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有哪些常见的-loader"><span class="nav-number">1.4.</span> <span class="nav-text">有哪些常见的 loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-的-plugin-是什么？-有哪些常见的-plugin"><span class="nav-number">1.5.</span> <span class="nav-text">webpack 的 plugin 是什么？ 有哪些常见的 plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-的-loader-和-plugin-的不同？"><span class="nav-number">1.6.</span> <span class="nav-text">webpack 的 loader 和 plugin 的不同？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-的构建流程"><span class="nav-number">1.7.</span> <span class="nav-text">webpack 的构建流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何编写一个-loader-或-plugin？"><span class="nav-number">1.8.</span> <span class="nav-text">如何编写一个 loader 或 plugin？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-的热更新"><span class="nav-number">1.9.</span> <span class="nav-text">webpack 的热更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用-webpack-优化前端性能"><span class="nav-number">1.10.</span> <span class="nav-text">利用 webpack 优化前端性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何提高-webpack-的构建速度？"><span class="nav-number">1.11.</span> <span class="nav-text">如何提高 webpack 的构建速度？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSR"><span class="nav-number">2.</span> <span class="nav-text">SSR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSR-解决了什么问题"><span class="nav-number">2.1.</span> <span class="nav-text">SSR 解决了什么问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol>
+    
+    </div>
+  </aside>
 </section>
         
       </div>
