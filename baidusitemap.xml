@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/01/10/2-backend-mybatisplus1/</loc>
+    <lastmod>2025-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/09/20/2-backend-mq4/</loc>
+    <lastmod>2025-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/09/08/2-backend-mq3/</loc>
+    <lastmod>2025-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/08/27/2-backend-mq2/</loc>
+    <lastmod>2025-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/08/15/2-backend-mq1/</loc>
+    <lastmod>2025-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2022/07/21/2-backend-java+2/</loc>
+    <lastmod>2025-07-31</lastmod>
+  </url>
+  <url>
     <loc>https://arginsen.github.io/blog/blog/2022/07/21/2-backend-java+1/</loc>
     <lastmod>2025-07-31</lastmod>
   </url>
@@ -42,30 +66,6 @@
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2024/02/05/2-backend-mybatisplus2/</loc>
-    <lastmod>2025-07-31</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2024/01/10/2-backend-mybatisplus1/</loc>
-    <lastmod>2025-07-31</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2024/09/20/2-backend-mq4/</loc>
-    <lastmod>2025-07-31</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2024/09/08/2-backend-mq3/</loc>
-    <lastmod>2025-07-31</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2024/08/27/2-backend-mq2/</loc>
-    <lastmod>2025-07-31</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2024/08/15/2-backend-mq1/</loc>
-    <lastmod>2025-07-31</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2022/07/21/2-backend-java+2/</loc>
     <lastmod>2025-07-31</lastmod>
   </url>
   <url>
