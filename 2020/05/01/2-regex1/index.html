@@ -105,7 +105,19 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-2-regex1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字面量字符和元字符"><span class="nav-number">1.</span> <span class="nav-text">字面量字符和元字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转义符"><span class="nav-number">2.</span> <span class="nav-text">转义符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特殊字符"><span class="nav-number">3.</span> <span class="nav-text">特殊字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符类"><span class="nav-number">4.</span> <span class="nav-text">字符类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#预定义模式"><span class="nav-number">5.</span> <span class="nav-text">预定义模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重复类"><span class="nav-number">6.</span> <span class="nav-text">重复类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#量词符"><span class="nav-number">7.</span> <span class="nav-text">量词符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贪婪模式"><span class="nav-number">8.</span> <span class="nav-text">贪婪模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修饰符"><span class="nav-number">9.</span> <span class="nav-text">修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#g-修饰符"><span class="nav-number">9.1.</span> <span class="nav-text">g 修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#i-修饰符"><span class="nav-number">9.2.</span> <span class="nav-text">i 修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#m-修饰符"><span class="nav-number">9.3.</span> <span class="nav-text">m 修饰符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组匹配"><span class="nav-number">10.</span> <span class="nav-text">组匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#非捕获组"><span class="nav-number">10.1.</span> <span class="nav-text">非捕获组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先行断言"><span class="nav-number">10.2.</span> <span class="nav-text">先行断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先行否定断言"><span class="nav-number">10.3.</span> <span class="nav-text">先行否定断言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">11.</span> <span class="nav-text">参考链接</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+<!-- body of article -->
+<article id="post-2-regex1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
@@ -424,16 +436,6 @@
   
 </article>
 
-<!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字面量字符和元字符"><span class="nav-number">1.</span> <span class="nav-text">字面量字符和元字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转义符"><span class="nav-number">2.</span> <span class="nav-text">转义符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特殊字符"><span class="nav-number">3.</span> <span class="nav-text">特殊字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符类"><span class="nav-number">4.</span> <span class="nav-text">字符类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#预定义模式"><span class="nav-number">5.</span> <span class="nav-text">预定义模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重复类"><span class="nav-number">6.</span> <span class="nav-text">重复类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#量词符"><span class="nav-number">7.</span> <span class="nav-text">量词符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贪婪模式"><span class="nav-number">8.</span> <span class="nav-text">贪婪模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修饰符"><span class="nav-number">9.</span> <span class="nav-text">修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#g-修饰符"><span class="nav-number">9.1.</span> <span class="nav-text">g 修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#i-修饰符"><span class="nav-number">9.2.</span> <span class="nav-text">i 修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#m-修饰符"><span class="nav-number">9.3.</span> <span class="nav-text">m 修饰符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组匹配"><span class="nav-number">10.</span> <span class="nav-text">组匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#非捕获组"><span class="nav-number">10.1.</span> <span class="nav-text">非捕获组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先行断言"><span class="nav-number">10.2.</span> <span class="nav-text">先行断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先行否定断言"><span class="nav-number">10.3.</span> <span class="nav-text">先行否定断言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">11.</span> <span class="nav-text">参考链接</span></a></li></ol>
-    
-    </div>
-  </aside>
 </section>
         
       </div>

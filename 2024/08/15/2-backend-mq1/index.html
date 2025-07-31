@@ -4,25 +4,25 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
   
-  <title>后端 | RabbitMQ 基础 | Arginsen&#39;s Blog</title>
+  <title>(*)后端 | RabbitMQ 基础 | Arginsen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="BackendMQ">
+  <meta name="keywords" content="BackendRabbitMQ">
   
   
   
   
-  <meta name="keywords" content="Backend,MQ">
+  <meta name="keywords" content="Backend,RabbitMQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="后端 | RabbitMQ 基础">
+<meta property="og:title" content="(*)后端 | RabbitMQ 基础">
 <meta property="og:url" content="https://arginsen.github.io/blog/2024/08/15/2-backend-mq1/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://arginsen.github.io/blog/img/mq.jpg">
-<meta property="og:updated_time" content="2025-07-30T08:26:23.647Z">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/rabbitmq.jpg">
+<meta property="og:updated_time" content="2025-07-31T10:42:32.929Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="后端 | RabbitMQ 基础">
-<meta name="twitter:image" content="https://arginsen.github.io/blog/img/mq.jpg">
+<meta name="twitter:title" content="(*)后端 | RabbitMQ 基础">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/rabbitmq.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
   
@@ -105,14 +105,26 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-2-backend-mq1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#同步与异步"><span class="nav-number">1.</span> <span class="nav-text">同步与异步</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RabbitMQ"><span class="nav-number">2.</span> <span class="nav-text">RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-安装"><span class="nav-number">2.1.</span> <span class="nav-text">docker 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网页操作"><span class="nav-number">2.2.</span> <span class="nav-text">网页操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-AMQP"><span class="nav-number">3.</span> <span class="nav-text">Spring AMQP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目配置依赖"><span class="nav-number">3.1.</span> <span class="nav-text">项目配置依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息发送"><span class="nav-number">3.2.</span> <span class="nav-text">消息发送</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#publisher-配置-mq-地址"><span class="nav-number">3.2.1.</span> <span class="nav-text">publisher 配置 mq 地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息发送类-SpringAmqpTest"><span class="nav-number">3.2.2.</span> <span class="nav-text">消息发送类 SpringAmqpTest</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息接收"><span class="nav-number">3.3.</span> <span class="nav-text">消息接收</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#consumer-配置-mq-地址"><span class="nav-number">3.3.1.</span> <span class="nav-text">consumer 配置 mq 地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息监听类-SpringRabbitListener"><span class="nav-number">3.3.2.</span> <span class="nav-text">消息监听类 SpringRabbitListener</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WorkQueues-模型"><span class="nav-number">3.4.</span> <span class="nav-text">WorkQueues 模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交换机类型"><span class="nav-number">3.5.</span> <span class="nav-text">交换机类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fanout-交换机"><span class="nav-number">3.5.1.</span> <span class="nav-text">Fanout 交换机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Direct-交换机"><span class="nav-number">3.5.2.</span> <span class="nav-text">Direct 交换机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#消息接收-1"><span class="nav-number">3.5.2.1.</span> <span class="nav-text">消息接收</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息发送-1"><span class="nav-number">3.5.2.2.</span> <span class="nav-text">消息发送</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Topic-交换机"><span class="nav-number">3.5.3.</span> <span class="nav-text">Topic 交换机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明队列和交换机"><span class="nav-number">3.6.</span> <span class="nav-text">声明队列和交换机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fanout-声明"><span class="nav-number">3.6.1.</span> <span class="nav-text">fanout 声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#direct-声明"><span class="nav-number">3.6.2.</span> <span class="nav-text">direct 声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于注解声明"><span class="nav-number">3.6.3.</span> <span class="nav-text">基于注解声明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Direct-注解声明"><span class="nav-number">3.6.3.1.</span> <span class="nav-text">Direct 注解声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Topic-注解声明"><span class="nav-number">3.6.3.2.</span> <span class="nav-text">Topic 注解声明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息转换器"><span class="nav-number">3.7.</span> <span class="nav-text">消息转换器</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+<!-- body of article -->
+<article id="post-2-backend-mq1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/blog/img/mq.jpg" rel="gallery_cmdik2nyw003ccvpukoo1kdqv">
-        <img src="/blog/img/mq.jpg" itemprop="image">
+      <a class="article-gallery-img fancybox" href="/blog/img/rabbitmq.jpg" rel="gallery_cmdik2nyw003ccvpukoo1kdqv">
+        <img src="/blog/img/rabbitmq.jpg" itemprop="image">
       </a>
     
   </div>
@@ -123,7 +135,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      后端 | RabbitMQ 基础
+      (*)后端 | RabbitMQ 基础
     </h1>
   
 
@@ -325,7 +337,7 @@
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/MQ/">MQ</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/RabbitMQ/">RabbitMQ</a></li></ul>
 
       
 	<span class="ico-date"></span>
@@ -374,7 +386,7 @@
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          后端 | RabbitMQ 消息的可靠性
+          (*)后端 | RabbitMQ 消息的可靠性
         
       </div>
     </a>
@@ -382,7 +394,7 @@
   
     <a href="/blog/2024/04/25/2-backend-redis1/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">后端 | Redis</div>
+      <div class="article-nav-title">(*)后端 | Redis</div>
     </a>
   
 </nav>
@@ -390,16 +402,6 @@
   
 </article>
 
-<!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#同步与异步"><span class="nav-number">1.</span> <span class="nav-text">同步与异步</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RabbitMQ"><span class="nav-number">2.</span> <span class="nav-text">RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-安装"><span class="nav-number">2.1.</span> <span class="nav-text">docker 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网页操作"><span class="nav-number">2.2.</span> <span class="nav-text">网页操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-AMQP"><span class="nav-number">3.</span> <span class="nav-text">Spring AMQP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目配置依赖"><span class="nav-number">3.1.</span> <span class="nav-text">项目配置依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息发送"><span class="nav-number">3.2.</span> <span class="nav-text">消息发送</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#publisher-配置-mq-地址"><span class="nav-number">3.2.1.</span> <span class="nav-text">publisher 配置 mq 地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息发送类-SpringAmqpTest"><span class="nav-number">3.2.2.</span> <span class="nav-text">消息发送类 SpringAmqpTest</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息接收"><span class="nav-number">3.3.</span> <span class="nav-text">消息接收</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#consumer-配置-mq-地址"><span class="nav-number">3.3.1.</span> <span class="nav-text">consumer 配置 mq 地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息监听类-SpringRabbitListener"><span class="nav-number">3.3.2.</span> <span class="nav-text">消息监听类 SpringRabbitListener</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WorkQueues-模型"><span class="nav-number">3.4.</span> <span class="nav-text">WorkQueues 模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交换机类型"><span class="nav-number">3.5.</span> <span class="nav-text">交换机类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fanout-交换机"><span class="nav-number">3.5.1.</span> <span class="nav-text">Fanout 交换机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Direct-交换机"><span class="nav-number">3.5.2.</span> <span class="nav-text">Direct 交换机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#消息接收-1"><span class="nav-number">3.5.2.1.</span> <span class="nav-text">消息接收</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息发送-1"><span class="nav-number">3.5.2.2.</span> <span class="nav-text">消息发送</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Topic-交换机"><span class="nav-number">3.5.3.</span> <span class="nav-text">Topic 交换机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明队列和交换机"><span class="nav-number">3.6.</span> <span class="nav-text">声明队列和交换机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fanout-声明"><span class="nav-number">3.6.1.</span> <span class="nav-text">fanout 声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#direct-声明"><span class="nav-number">3.6.2.</span> <span class="nav-text">direct 声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于注解声明"><span class="nav-number">3.6.3.</span> <span class="nav-text">基于注解声明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Direct-注解声明"><span class="nav-number">3.6.3.1.</span> <span class="nav-text">Direct 注解声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Topic-注解声明"><span class="nav-number">3.6.3.2.</span> <span class="nav-text">Topic 注解声明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息转换器"><span class="nav-number">3.7.</span> <span class="nav-text">消息转换器</span></a></li></ol></li></ol>
-    
-    </div>
-  </aside>
 </section>
         
       </div>

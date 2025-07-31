@@ -105,7 +105,19 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-2-frontend-ts-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原始数据类型"><span class="nav-number">2.</span> <span class="nav-text">原始数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔值"><span class="nav-number">2.1.</span> <span class="nav-text">布尔值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值"><span class="nav-number">2.2.</span> <span class="nav-text">数值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">2.3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空值"><span class="nav-number">2.4.</span> <span class="nav-text">空值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Null-和-Undefined"><span class="nav-number">2.5.</span> <span class="nav-text">Null 和 Undefined</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#任意值"><span class="nav-number">3.</span> <span class="nav-text">任意值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型推论"><span class="nav-number">4.</span> <span class="nav-text">类型推论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#联合类型"><span class="nav-number">5.</span> <span class="nav-text">联合类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象的类型——接口"><span class="nav-number">6.</span> <span class="nav-text">对象的类型——接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可选属性"><span class="nav-number">6.1.</span> <span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任意属性"><span class="nav-number">6.2.</span> <span class="nav-text">任意属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只读属性"><span class="nav-number">6.3.</span> <span class="nav-text">只读属性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的类型"><span class="nav-number">7.</span> <span class="nav-text">数组的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组泛型"><span class="nav-number">7.1.</span> <span class="nav-text">数组泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用接口表示数组"><span class="nav-number">7.2.</span> <span class="nav-text">用接口表示数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类数组"><span class="nav-number">7.3.</span> <span class="nav-text">类数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组中的-any"><span class="nav-number">7.4.</span> <span class="nav-text">数组中的 any</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+<!-- body of article -->
+<article id="post-2-frontend-ts-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
@@ -251,16 +263,6 @@
   
 </article>
 
-<!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原始数据类型"><span class="nav-number">2.</span> <span class="nav-text">原始数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔值"><span class="nav-number">2.1.</span> <span class="nav-text">布尔值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值"><span class="nav-number">2.2.</span> <span class="nav-text">数值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">2.3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空值"><span class="nav-number">2.4.</span> <span class="nav-text">空值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Null-和-Undefined"><span class="nav-number">2.5.</span> <span class="nav-text">Null 和 Undefined</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#任意值"><span class="nav-number">3.</span> <span class="nav-text">任意值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型推论"><span class="nav-number">4.</span> <span class="nav-text">类型推论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#联合类型"><span class="nav-number">5.</span> <span class="nav-text">联合类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象的类型——接口"><span class="nav-number">6.</span> <span class="nav-text">对象的类型——接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可选属性"><span class="nav-number">6.1.</span> <span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任意属性"><span class="nav-number">6.2.</span> <span class="nav-text">任意属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只读属性"><span class="nav-number">6.3.</span> <span class="nav-text">只读属性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的类型"><span class="nav-number">7.</span> <span class="nav-text">数组的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组泛型"><span class="nav-number">7.1.</span> <span class="nav-text">数组泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用接口表示数组"><span class="nav-number">7.2.</span> <span class="nav-text">用接口表示数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类数组"><span class="nav-number">7.3.</span> <span class="nav-text">类数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组中的-any"><span class="nav-number">7.4.</span> <span class="nav-text">数组中的 any</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol>
-    
-    </div>
-  </aside>
 </section>
         
       </div>

@@ -4,25 +4,25 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
   
-  <title>后端 | RabbitMQ 实现超时订单 | Arginsen&#39;s Blog</title>
+  <title>(*)后端 | RabbitMQ 实现超时订单 | Arginsen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="BackendMQ">
+  <meta name="keywords" content="BackendRabbitMQ">
   
   
   
   
-  <meta name="keywords" content="Backend,MQ">
+  <meta name="keywords" content="Backend,RabbitMQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="后端 | RabbitMQ 实现超时订单">
+<meta property="og:title" content="(*)后端 | RabbitMQ 实现超时订单">
 <meta property="og:url" content="https://arginsen.github.io/blog/2024/09/20/2-backend-mq4/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://arginsen.github.io/blog/img/mq.jpg">
-<meta property="og:updated_time" content="2025-07-30T10:55:21.873Z">
+<meta property="og:image" content="https://arginsen.github.io/blog/img/rabbitmq.jpg">
+<meta property="og:updated_time" content="2025-07-31T10:42:42.957Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="后端 | RabbitMQ 实现超时订单">
-<meta name="twitter:image" content="https://arginsen.github.io/blog/img/mq.jpg">
+<meta name="twitter:title" content="(*)后端 | RabbitMQ 实现超时订单">
+<meta name="twitter:image" content="https://arginsen.github.io/blog/img/rabbitmq.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
   
@@ -105,14 +105,26 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-2-backend-mq4" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#define-constants"><span class="nav-number">1.</span> <span class="nav-text">define constants</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#configure-MQ"><span class="nav-number">2.</span> <span class="nav-text">configure MQ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-the-publisher-of-messages"><span class="nav-number">3.</span> <span class="nav-text">define the publisher of messages</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#write-the-payment-status-query-interface"><span class="nav-number">4.</span> <span class="nav-text">write the payment status query interface</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PayOrderDTO"><span class="nav-number">4.1.</span> <span class="nav-text">PayOrderDTO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PayClient"><span class="nav-number">4.2.</span> <span class="nav-text">PayClient</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PayClientFallback"><span class="nav-number">4.3.</span> <span class="nav-text">PayClientFallback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PayController"><span class="nav-number">4.4.</span> <span class="nav-text">PayController</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-the-listener-of-messages-for-payment-status"><span class="nav-number">5.</span> <span class="nav-text">define the listener of messages for payment status</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cancelOrder"><span class="nav-number">6.</span> <span class="nav-text">cancelOrder</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+<!-- body of article -->
+<article id="post-2-backend-mq4" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/blog/img/mq.jpg" rel="gallery_cmdoqunw50001xypuu72lnb54">
-        <img src="/blog/img/mq.jpg" itemprop="image">
+      <a class="article-gallery-img fancybox" href="/blog/img/rabbitmq.jpg" rel="gallery_cmdoqunw50001xypuu72lnb54">
+        <img src="/blog/img/rabbitmq.jpg" itemprop="image">
       </a>
     
   </div>
@@ -123,7 +135,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      后端 | RabbitMQ 实现超时订单
+      (*)后端 | RabbitMQ 实现超时订单
     </h1>
   
 
@@ -174,7 +186,7 @@
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/MQ/">MQ</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/RabbitMQ/">RabbitMQ</a></li></ul>
 
       
 	<span class="ico-date"></span>
@@ -223,7 +235,7 @@
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          银行系统软开 | 支付报文（SWIFT）解析、入库
+          (*)银行系统软开 | 支付报文（SWIFT）解析、入库
         
       </div>
     </a>
@@ -231,7 +243,7 @@
   
     <a href="/blog/2024/09/08/2-backend-mq3/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">后端 | RabbitMQ 实现延迟消息</div>
+      <div class="article-nav-title">(*)后端 | RabbitMQ 实现延迟消息</div>
     </a>
   
 </nav>
@@ -239,16 +251,6 @@
   
 </article>
 
-<!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#define-constants"><span class="nav-number">1.</span> <span class="nav-text">define constants</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#configure-MQ"><span class="nav-number">2.</span> <span class="nav-text">configure MQ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-the-publisher-of-messages"><span class="nav-number">3.</span> <span class="nav-text">define the publisher of messages</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#write-the-payment-status-query-interface"><span class="nav-number">4.</span> <span class="nav-text">write the payment status query interface</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PayOrderDTO"><span class="nav-number">4.1.</span> <span class="nav-text">PayOrderDTO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PayClient"><span class="nav-number">4.2.</span> <span class="nav-text">PayClient</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PayClientFallback"><span class="nav-number">4.3.</span> <span class="nav-text">PayClientFallback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PayController"><span class="nav-number">4.4.</span> <span class="nav-text">PayController</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-the-listener-of-messages-for-payment-status"><span class="nav-number">5.</span> <span class="nav-text">define the listener of messages for payment status</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cancelOrder"><span class="nav-number">6.</span> <span class="nav-text">cancelOrder</span></a></li></ol>
-    
-    </div>
-  </aside>
 </section>
         
       </div>

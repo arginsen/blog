@@ -105,7 +105,19 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-2-frontend-vue-reactivity" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#tips"><span class="nav-number">1.</span> <span class="nav-text">tips</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化流程"><span class="nav-number">2.</span> <span class="nav-text">初始化流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-index-js"><span class="nav-number">2.1.</span> <span class="nav-text">vue/index.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-reactivity-observer-js"><span class="nav-number">2.2.</span> <span class="nav-text">vue/reactivity/observer.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-compile-index-js"><span class="nav-number">2.3.</span> <span class="nav-text">vue/compile/index.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-reactivity-watcher-js"><span class="nav-number">2.4.</span> <span class="nav-text">vue/reactivity/watcher.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-reactivity-dep-js"><span class="nav-number">2.5.</span> <span class="nav-text">vue/reactivity/dep.js</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应式更改值流程"><span class="nav-number">3.</span> <span class="nav-text">响应式更改值流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#触发-set"><span class="nav-number">3.1.</span> <span class="nav-text">触发 set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dep-通知更新"><span class="nav-number">3.2.</span> <span class="nav-text">dep 通知更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watcher-执行更新"><span class="nav-number">3.3.</span> <span class="nav-text">watcher 执行更新</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+<!-- body of article -->
+<article id="post-2-frontend-vue-reactivity" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
@@ -274,16 +286,6 @@
   
 </article>
 
-<!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#tips"><span class="nav-number">1.</span> <span class="nav-text">tips</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化流程"><span class="nav-number">2.</span> <span class="nav-text">初始化流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-index-js"><span class="nav-number">2.1.</span> <span class="nav-text">vue/index.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-reactivity-observer-js"><span class="nav-number">2.2.</span> <span class="nav-text">vue/reactivity/observer.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-compile-index-js"><span class="nav-number">2.3.</span> <span class="nav-text">vue/compile/index.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-reactivity-watcher-js"><span class="nav-number">2.4.</span> <span class="nav-text">vue/reactivity/watcher.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-reactivity-dep-js"><span class="nav-number">2.5.</span> <span class="nav-text">vue/reactivity/dep.js</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应式更改值流程"><span class="nav-number">3.</span> <span class="nav-text">响应式更改值流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#触发-set"><span class="nav-number">3.1.</span> <span class="nav-text">触发 set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dep-通知更新"><span class="nav-number">3.2.</span> <span class="nav-text">dep 通知更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watcher-执行更新"><span class="nav-number">3.3.</span> <span class="nav-text">watcher 执行更新</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol>
-    
-    </div>
-  </aside>
 </section>
         
       </div>
