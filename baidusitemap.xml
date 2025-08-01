@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/08/06/2-backend-redis9/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/07/30/2-backend-redis8/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/07/17/2-backend-redis7/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/07/08/2-backend-redis6/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/06/29/2-backend-redis5/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/06/11/2-backend-redis4/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/05/28/2-backend-redis3/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/05/15/2-backend-redis2/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/04/25/2-backend-redis1/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2023/04/16/2-backend-mysql6/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2023/03/10/2-backend-mysql5/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2023/02/18/2-backend-mysql4/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2023/01/27/2-backend-mysql3/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2023/01/12/2-backend-mysql2/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
     <loc>https://arginsen.github.io/blog/blog/2022/07/21/2-backend-java+1/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -334,14 +390,6 @@
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2023/06/18/2-backend-springcloud1-eureka/</loc>
-    <lastmod>2025-07-31</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2024/04/25/2-backend-redis1/</loc>
-    <lastmod>2025-07-31</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2023/11/19/2-backend-mysql2/</loc>
     <lastmod>2025-07-31</lastmod>
   </url>
   <url>
