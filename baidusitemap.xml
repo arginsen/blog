@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/10/12/1-business-bank-message1/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://arginsen.github.io/blog/blog/2024/11/06/1-business-bank-ibmmq1/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
     <loc>https://arginsen.github.io/blog/blog/2024/08/06/2-backend-redis9/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -362,14 +370,6 @@
   </url>
   <url>
     <loc>https://arginsen.github.io/blog/blog/2021/07/15/2-frontend-vue-source1-build/</loc>
-    <lastmod>2025-07-31</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2024/10/12/1-business-bank-message1/</loc>
-    <lastmod>2025-07-31</lastmod>
-  </url>
-  <url>
-    <loc>https://arginsen.github.io/blog/blog/2024/11/06/1-business-bank-ibmmq1/</loc>
     <lastmod>2025-07-31</lastmod>
   </url>
   <url>
