@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/springcloud.jpg">
-<meta property="og:updated_time" content="2025-07-31T15:50:40.374Z">
+<meta property="og:updated_time" content="2025-08-03T17:22:44.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 后端 | SpringCloud -&gt; 分布式事务">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/springcloud.jpg">
@@ -133,6 +133,158 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
+<p><a href="https://seata.apache.org/zh-cn/docs/overview/what-is-seata/" target="_blank" rel="noopener">Seata 官方文档</a></p>
+<p>不同的微服务都会有自己独立的数据库，完成一个业务通常也会跨多个数据库完成业务。而每个微服务都会执行自己负责的本地事务。</p>
+<p>整个业务中，各个本地事务是有关联的，因此每个微服务的本地事务，也可以称为<strong>分支事务</strong>。多个有关联的分支事务一起就组成了全局事务。我们必须保证整个全局事务同时成功或失败。</p>
+<p>每个单独的分支事务就是传统的单体事务，都可以满足 ACID 特性，但全局事务跨越多个服务、多个数据库则相互之间没有协同，无法保证最终结果的统一。</p>
+<h1 id="CAP-定理"><a href="#CAP-定理" class="headerlink" title="CAP 定理"></a>CAP 定理</h1><p>分布式系统（Distributed System）是指由多个<strong>独立的计算节点</strong>组成的系统，这些节点<strong>通过网络协同工作</strong>，共同完成一项任务或<strong>提供一个统一的服务</strong>。每个节点可能是物理上分开的服务器或虚拟机，它们之间<strong>通过消息传递</strong>进行通信，看起来像是一个整体。</p>
+<p>分布式系统有三个指标：</p>
+<ul>
+<li>Consistency（一致性）：用户访问分布式系统中的任意节点，得到的数据必须一致。</li>
+<li>Availability（可用性）：用户访问分布式系统时，读或写操作总能成功。</li>
+<li>Partition tolerance （分区容错性）：当分布式系统节点之间出现网络故障导致节点之间无法通信的情况，节点形成几个独立的网络分区，整个系统也要持续对外提供服务。</li>
+</ul>
+<p>但是通常 A 和 C 只能选一个，想要一致，那就不能让用户再继续更新信息，那么就牺牲了可用性；而允许用户在出现网络状态后继续更新信息，那么就不用保证数据同步，因此一致性不能保证。</p>
+<ul>
+<li>AP 思想：各个子事务分别执行和提交，无需锁定数据。允许出现结果不一致，然后采用弥补措施恢复，实现最终一致即可。例如 <strong>AT 模式</strong>就是如此</li>
+<li>CP 思想：各个子事务执行后不要提交，而是等待彼此结果，然后同时提交或回滚。在这个过程中锁定资源，不允许其它人访问，数据处于不可用状态，但能保证一致性。例如 <strong>XA 模式</strong></li>
+</ul>
+<h1 id="BASE-理论"><a href="#BASE-理论" class="headerlink" title="BASE 理论"></a>BASE 理论</h1><p>BASE 理论就是一种取舍的方案，不再追求完美，而是最终达成目标。</p>
+<ul>
+<li>Basically Available （基本可用）：分布式系统在出现故障时，允许损失部分可用性，即保证核心可用。</li>
+<li>Soft State（软状态）：在一定时间内，允许出现中间状态，比如临时的不一致状态。</li>
+<li>Eventually Consistent（最终一致性）：虽然无法保证强一致性，但是在软状态结束后，最终达到数据一致。</li>
+</ul>
+<h1 id="Seata"><a href="#Seata" class="headerlink" title="Seata"></a>Seata</h1><p>Seata 作为一款解决分布式事务的框架，目前功能最完善、使用最多。</p>
+<p>解决分布式事务的思想其实很简单，即找一个<strong>统一的事务协调者</strong>，与多个分支事务通信，检测每个分支事务的执行状态，保证全局事务下的每一个分支事务<strong>同时</strong>成功或失败。<br>The thought solving the problem of distributed transaction is simple. It just needs to find the one that is unified <strong>transaction coordinator</strong>, conmunicating with multiple branch, checking the execution status of each branch transaction and ensuring that branch transaction under the global transaction succeeds or fails at the same time.</p>
+<p>Seata 也是这样实现，Seata 事务管理拥有 3 个重要的角色：</p>
+<ul>
+<li>TC (Transaction Coordinator) - 事务协调者：维护全局和分支事务的状态，协调全局事务提交或回滚。 </li>
+<li>TM (Transaction Manager) - 事务管理器：定义<strong>全局</strong>事务的范围、开始<strong>全局</strong>事务、提交或回滚<strong>全局</strong>事务。 </li>
+<li>RM (Resource Manager) - 资源管理器：管理<strong>分支</strong>事务，与TC交谈以注册分支事务和报告分支事务的状态，并驱动分支事务提交或回滚。 </li>
+</ul>
+<p>TM 和 RM 可以理解为 Seata 的<strong>客户端部分</strong>，引入到参与事务的微服务依赖中即可。将来 TM 和 RM 就会协助微服务，实现本地分支事务与 TC 之间交互，实现事务的提交或回滚。</p>
+<p>而 TC 服务则是事务协调中心，是一个<strong>独立的微服务</strong>，需要单独部署。</p>
+<h1 id="微服务部署-TC-服务"><a href="#微服务部署-TC-服务" class="headerlink" title="微服务部署 TC 服务"></a>微服务部署 TC 服务</h1><h2 id="数据库表-持久化"><a href="#数据库表-持久化" class="headerlink" title="数据库表 - 持久化"></a>数据库表 - 持久化</h2><p>单独的微服务，则需要单独的数据库。需建立：</p>
+<ul>
+<li>branch_table</li>
+<li>distributed_table</li>
+<li>global_table</li>
+<li>lock_table</li>
+</ul>
+<h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><p>为方便各个微服务集成 seata，可以把 seata 的配置共享到注册中心（nacos），通常微服务也需要同时引入 seata、nacos 依赖。</p>
+<p>The config of Seata can be shared in the register center like Nacos for facilitating the microservice integration with Seata. Usually the microservice needs to add the dependencies of seata and nacos at the same time.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--统一配置管理--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--读取bootstrap文件--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-bootstrap<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--seata--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-seata<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="配置-Seata"><a href="#配置-Seata" class="headerlink" title="配置 Seata"></a>配置 Seata</h2><p>在 nacos 上添加一个共享的 seata 配置，命名为 shared-seata.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">seata:</span></span><br><span class="line">  <span class="attr">registry:</span> <span class="comment"># TC服务注册中心的配置，微服务根据这些信息去注册中心获取tc服务地址</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">nacos</span> <span class="comment"># 注册中心类型 nacos</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">      <span class="attr">namespace:</span> <span class="string">""</span> <span class="comment"># namespace，默认为空</span></span><br><span class="line">      <span class="attr">group:</span> <span class="string">DEFAULT_GROUP</span> <span class="comment"># 分组，默认是DEFAULT_GROUP</span></span><br><span class="line">      <span class="attr">application:</span> <span class="string">seata-server</span> <span class="comment"># seata服务名称</span></span><br><span class="line">      <span class="attr">username:</span> <span class="string">nacos</span></span><br><span class="line">      <span class="attr">password:</span> <span class="string">nacos</span></span><br><span class="line">  <span class="attr">tx-service-group:</span> <span class="string">hmall</span> <span class="comment"># 事务组名称</span></span><br><span class="line">  <span class="attr">service:</span></span><br><span class="line">    <span class="attr">vgroup-mapping:</span> <span class="comment"># 事务组与tc集群的映射关系</span></span><br><span class="line">      <span class="attr">hmall:</span> <span class="string">"default"</span></span><br></pre></td></tr></table></figure>
+<p>在微服务模块 application.yaml 同级下添加 bootstrap.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">trade-service</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span> <span class="comment"># nacos地址</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 文件后缀名</span></span><br><span class="line">        <span class="attr">shared-configs:</span> <span class="comment"># 共享配置</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">dataId:</span> <span class="string">shared-jdbc.yaml</span> <span class="comment"># 共享 mybatis 配置</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">dataId:</span> <span class="string">shared-log.yaml</span> <span class="comment"># 共享日志配置</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">dataId:</span> <span class="string">shared-swagger.yaml</span> <span class="comment"># 共享日志配置</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">dataId:</span> <span class="string">shared-seata.yaml</span> <span class="comment"># 共享 seata 配置</span></span><br></pre></td></tr></table></figure>
+<p>改造 application.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8085</span></span><br><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">okhttp:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment"># 开启OKHttp连接池支持</span></span><br><span class="line">  <span class="attr">sentinel:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment"># 开启Feign对Sentinel的整合</span></span><br><span class="line"><span class="attr">hm:</span></span><br><span class="line">  <span class="attr">swagger:</span></span><br><span class="line">    <span class="attr">title:</span> <span class="string">交易服务接口文档</span></span><br><span class="line">    <span class="attr">package:</span> <span class="string">com.hmall.trade.controller</span></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">database:</span> <span class="string">hm-trade</span></span><br></pre></td></tr></table></figure>
+<p>在业务方法前边使用 @GlobalTransactional 注解，也就是在标记事务的起点，将来 TM 就会基于这个方法判断<strong>全局事务范围</strong>，初始化全局事务。</p>
+<h1 id="Seata-分布式事务解决方案"><a href="#Seata-分布式事务解决方案" class="headerlink" title="Seata 分布式事务解决方案"></a>Seata 分布式事务解决方案</h1><ul>
+<li>XA</li>
+<li>TCC</li>
+<li>AT</li>
+<li>SAGA</li>
+</ul>
+<h2 id="XA"><a href="#XA" class="headerlink" title="XA"></a>XA</h2><p>XA 规范 是 X/Open 组织定义的分布式事务处理（DTP，Distributed Transaction Processing）标准，XA 规范 描述了全局的 TM 与局部的 RM 之间的接口，几乎所有主流的数据库都对 XA 规范 提供了支持。</p>
+<h3 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h3><p>一阶段</p>
+<ul>
+<li>事务协调者通知每个事务参与者执行本地事务</li>
+<li>本地事务执行完成后报告事务执行状态给事务协调者，此时事务不提交，继续持有数据库锁</li>
+</ul>
+<p>二阶段</p>
+<ul>
+<li>事务协调者基于一阶段的报告来判断下一步操作</li>
+<li>如果一阶段都成功，则通知所有事务参与者，提交事务</li>
+<li>如果一阶段任意一个参与者失败，则通知所有事务参与者回滚事务</li>
+</ul>
+<h3 id="XA-模型"><a href="#XA-模型" class="headerlink" title="XA 模型"></a>XA 模型</h3><p>RM 一阶段的工作：</p>
+<ol>
+<li>注册分支事务到 TC</li>
+<li>执行分支业务 sql 但不提交</li>
+<li>报告执行状态到 TC</li>
+</ol>
+<p>TC 二阶段的工作：</p>
+<ul>
+<li>TC 检测各分支事务执行状态<ul>
+<li>如果都成功，通知所有 RM 提交事务</li>
+<li>如果有失败，通知所有 RM 回滚事务 </li>
+</ul>
+</li>
+</ul>
+<p>RM 二阶段的工作：</p>
+<ul>
+<li>接收 TC 指令，提交或回滚事务</li>
+</ul>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>XA模式的优点是什么？</p>
+<ul>
+<li>事务的强一致性，满足 ACID 原则</li>
+<li>常用数据库都支持，实现简单，并且没有代码侵入</li>
+</ul>
+<p>XA模式的缺点是什么？</p>
+<ul>
+<li>因为一阶段需要锁定数据库资源，等待二阶段结束才释放，性能较差</li>
+<li>依赖关系型数据库实现事务</li>
+</ul>
+<h3 id="实现-XA"><a href="#实现-XA" class="headerlink" title="实现 XA"></a>实现 XA</h3><ol>
+<li>在 shared-seata.yaml 配置文件中设置：</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">seata:</span></span><br><span class="line">  <span class="attr">data-source-proxy-mode:</span> <span class="string">XA</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>利用 @GlobalTransactional 标记分布式事务的入口方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GlobalTransactional</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Long <span class="title">createOrder</span><span class="params">(OrderFormDTO orderFormDTO)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1. 订单数据</span></span><br><span class="line">    Order order = <span class="keyword">new</span> Order();</span><br><span class="line">    <span class="comment">// 1.1 查询商品</span></span><br><span class="line">    List&lt;OrderDetailDTO&gt; detailDTOS = orderFormDTO.getDetails();</span><br><span class="line">    <span class="comment">// 1.2 ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="AT"><a href="#AT" class="headerlink" title="AT"></a>AT</h2><p>AT 模式同样是分阶段提交的事务模型，不过弥补了 XA 模型中资源锁定周期过长的缺陷。</p>
+<h3 id="AT-模型"><a href="#AT-模型" class="headerlink" title="AT 模型"></a>AT 模型</h3><p>阶段一 RM 的工作：</p>
+<ul>
+<li>注册分支事务</li>
+<li>记录 undo-log（数据快照）</li>
+<li>执行业务 sql 并提交</li>
+<li>报告事务状态</li>
+</ul>
+<p>阶段二提交时 RM 的工作：</p>
+<ul>
+<li>删除undo-log即可</li>
+</ul>
+<p>阶段二回滚时 RM 的工作：</p>
+<ul>
+<li>根据 undo-log 恢复数据到更新前</li>
+</ul>
+<h3 id="流程梳理"><a href="#流程梳理" class="headerlink" title="流程梳理"></a>流程梳理</h3><p>一阶段：</p>
+<ol>
+<li>TM 发起并注册全局事务到 TC</li>
+<li>TM 调用分支事务</li>
+<li>分支事务准备执行业务 SQL</li>
+<li>RM 拦截业务 SQL，根据 where 条件查询原始数据，形成快照。</li>
+<li>RM 执行业务 SQL，提交本地事务，释放数据库锁。此时 money = 90</li>
+<li>RM 报告本地事务状态给 TC</li>
+</ol>
+<p>二阶段：</p>
+<ol>
+<li>TM 通知 TC 事务结束</li>
+<li>TC 检查分支事务状态<ul>
+<li>如果都成功，则立即删除快照</li>
+<li>如果有分支事务失败，需要回滚。读取快照数据，将快照恢复到数据库。此时数据库再次恢复为 初始数据</li>
+</ul>
+</li>
+</ol>
+<h3 id="脏写问题"><a href="#脏写问题" class="headerlink" title="脏写问题"></a>脏写问题</h3><p>在极端情况下，特别是多线程并发访问 AT 模式的分布式事务时，有可能出现脏写问题。在有时事务执行失败回退时是根据快照恢复，再删除快照，然而在<strong>该事务提交完成到删除</strong>这一时间段，另一个事务刚好进来更新，那么就造成了一次更新失败的情况，出现脏写。</p>
+<p>解决思路就是引入了<strong>全局锁</strong>的概念。在释放 DB 锁之前，先拿到全局锁。避免<strong>同一时刻有另外一个事务来操作当前数据</strong>。</p>
+<h2 id="AT-与-XA-的区别"><a href="#AT-与-XA-的区别" class="headerlink" title="AT 与 XA 的区别"></a>AT 与 XA 的区别</h2><p>AT 模式与 XA 模式最大的区别：</p>
+<ul>
+<li>XA 模式一阶段不提交事务，锁定资源；AT模式一阶段<strong>直接提交</strong>，不锁定资源。</li>
+<li>XA 模式依赖数据库机制实现回滚；AT模式<strong>利用数据快照</strong>实现数据回滚。</li>
+<li>XA 模式强一致；AT 模式<strong>最终一致</strong></li>
+</ul>
+<p>可见，AT 模式使用起来更加简单，无业务侵入，性能更好。<br>因此企业 90% 的分布式事务都可以用 AT 模式来解决。</p>
+<h2 id="TCC"><a href="#TCC" class="headerlink" title="TCC"></a>TCC</h2><p>TCC 模式与 AT 模式非常相似，每阶段都是独立事务，不同的是 TCC 通过<strong>人工编码</strong>来实现数据恢复。需要实现三个方法：</p>
+<ul>
+<li>try：资源的检测和预留； </li>
+<li>confirm：完成资源操作业务；要求 try 成功 confirm 一定要能成功。 </li>
+<li>cancel：预留资源释放，可以理解为try的反向操作。 </li>
+</ul>
 
       
     </div>
@@ -154,7 +306,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">0字</span>
+        <span class="ico-fontcount"></span><span class="post-count">2.8k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -220,7 +372,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav">无</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CAP-定理"><span class="nav-number">1.</span> <span class="nav-text">CAP 定理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BASE-理论"><span class="nav-number">2.</span> <span class="nav-text">BASE 理论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Seata"><span class="nav-number">3.</span> <span class="nav-text">Seata</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务部署-TC-服务"><span class="nav-number">4.</span> <span class="nav-text">微服务部署 TC 服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库表-持久化"><span class="nav-number">4.1.</span> <span class="nav-text">数据库表 - 持久化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入依赖"><span class="nav-number">4.2.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Seata"><span class="nav-number">4.3.</span> <span class="nav-text">配置 Seata</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Seata-分布式事务解决方案"><span class="nav-number">5.</span> <span class="nav-text">Seata 分布式事务解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#XA"><span class="nav-number">5.1.</span> <span class="nav-text">XA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两阶段提交"><span class="nav-number">5.1.1.</span> <span class="nav-text">两阶段提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XA-模型"><span class="nav-number">5.1.2.</span> <span class="nav-text">XA 模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点"><span class="nav-number">5.1.3.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-XA"><span class="nav-number">5.1.4.</span> <span class="nav-text">实现 XA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AT"><span class="nav-number">5.2.</span> <span class="nav-text">AT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AT-模型"><span class="nav-number">5.2.1.</span> <span class="nav-text">AT 模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程梳理"><span class="nav-number">5.2.2.</span> <span class="nav-text">流程梳理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脏写问题"><span class="nav-number">5.2.3.</span> <span class="nav-text">脏写问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AT-与-XA-的区别"><span class="nav-number">5.3.</span> <span class="nav-text">AT 与 XA 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCC"><span class="nav-number">5.4.</span> <span class="nav-text">TCC</span></a></li></ol></li></ol>
     
     </div>
   </aside>
@@ -260,7 +412,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 335.3k 字</span>
+        <span class="post-count">全站共 338.3k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

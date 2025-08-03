@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://arginsen.github.io/blog/img/springcloud.jpg">
-<meta property="og:updated_time" content="2025-08-03T14:45:46.490Z">
+<meta property="og:updated_time" content="2025-08-03T17:06:39.143Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 后端 | SpringCloud -&gt; 微服务保护">
 <meta name="twitter:image" content="https://arginsen.github.io/blog/img/springcloud.jpg">
@@ -145,7 +145,13 @@
 <p>请求限流往往会有一个限流器，数量高低起伏的并发请求曲线，经过限流器就变的非常平稳。这就像是水电站的大坝。</p>
 <h3 id="线程隔离"><a href="#线程隔离" class="headerlink" title="线程隔离"></a>线程隔离</h3><p>当一个业务接口响应时间长，而且并发高时，就可能耗尽服务器的线程资源，导致服务内的其它接口受到影响。</p>
 <p>为了避免某个接口故障或压力过大导致整个服务不可用，我们可以限定每个接口可以使用的资源范围，也就是将其“隔离”起来。</p>
-<p>线程隔离是将不同接口都分配固定的 tomcat 线程资源。使用<strong>线程池</strong>的方法，tomcat 线程收到了请求，对于<strong>堵塞的调用</strong>，tomcat 线程自己不处理，而是调用该<strong>服务的特定线程池</strong>处理。这里的线程池调用是<strong>假异步</strong>，tomcat 依旧在等待线程池的响应，然后再来写回response。而关键就是线程池是可以限制数量的，通过<strong>限制线程池的数量</strong>就可以借此来限制tomcat 线程的数量，而一旦有<strong>超过这个线程池数量</strong>的 tomcat 再次请求线程池的服务的时候，线程池会直接 fail，并且释放该 tomcat 线程，达到线程隔离的目的。通过这样控制了一个接口服务只能安排多少个 tomcat 线程来处理，而不至于全部消耗掉。</p>
+<p>实现方式有两种：</p>
+<ol>
+<li><p>线程池隔离<br>给每个服务调用业务分配一个线程池，利用线程池本身实现隔离效果。<br>线程隔离是将不同接口都分配固定的 tomcat 线程资源。使用<strong>线程池</strong>的方法，tomcat 线程收到了请求，对于<strong>堵塞的调用</strong>，tomcat 线程自己不处理，而是调用该<strong>服务的特定线程池</strong>处理。这里的线程池调用是<strong>假异步</strong>，tomcat 依旧在等待线程池的响应，然后再来写回 response。而关键就是线程池是可以<strong>限制数量</strong>的，通过<strong>限制线程池的数量</strong>就可以借此来限制 tomcat 线程的数量，而一旦有<strong>超过这个线程池数量</strong>的 tomcat 再次请求线程池的服务的时候，线程池会直接 fail，并且释放该 tomcat 线程，达到线程隔离的目的。通过这样控制了一个接口服务只能安排多少个 tomcat 线程来处理，而不至于全部消耗掉。</p>
+</li>
+<li><p>信号量隔离<br>不创建线程池，而是计数器模式，记录业务使用的线程数量，达到信号量上限时，禁止新的请求</p>
+</li>
+</ol>
 <h3 id="服务熔断"><a href="#服务熔断" class="headerlink" title="服务熔断"></a>服务熔断</h3><p>线程隔离虽然避免了雪崩问题，但故障服务（被调用服务）依然会拖慢服务使用方（服务调用方）的接口响应速度。因为可以从以下两点调控：</p>
 <ul>
 <li>编写服务降级逻辑：就是服务调用失败后的处理逻辑，根据业务场景，可以抛出异常，也可以返回友好提示或默认数据。</li>
@@ -163,7 +169,8 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span> </span><br><span class="line">    <span class="attr">sentinel:</span></span><br><span class="line">      <span class="attr">transport:</span></span><br><span class="line">        <span class="attr">dashboard:</span> <span class="string">localhost:8090</span> <span class="comment"># sentinel 控制台</span></span><br><span class="line">      <span class="attr">http-method-specify:</span> <span class="literal">true</span> <span class="comment"># 开启请求方式前缀 POST/GET/PUT</span></span><br></pre></td></tr></table></figure>
 <p>默认情况下，Sentinel 会监控 SpringMVC 的每一个 Endpoint（接口）</p>
 <h2 id="请求限流-1"><a href="#请求限流-1" class="headerlink" title="请求限流"></a>请求限流</h2><p>在 sentinel 控制台可对指定接口的请求方式作限流配置，可以设置【流控】，使用阈值 QPS ，设置单机阈值，如设为 6 个，意思是该请求接口每秒流量为 6 个上限，如我们测试发送 10 个请求，则会被调控到 6 附近，其余 4 则会被拒绝。</p>
-<h2 id="线程隔离-1"><a href="#线程隔离-1" class="headerlink" title="线程隔离"></a>线程隔离</h2><p>限流可以降低服务器压力，尽量减少因并发流量引起的服务故障的概率，但并不能完全避免服务故障。一旦某个服务出现故障，我们必须<strong>隔离对这个服务的调用</strong>，避免发生雪崩。</p>
+<h2 id="线程隔离-1"><a href="#线程隔离-1" class="headerlink" title="线程隔离"></a>线程隔离</h2><p>Sentinel 的线程隔离就是基于<strong>信号量隔离</strong>实现的，而 Hystix 两种都支持，但默认是基于线程池隔离。</p>
+<p>限流可以降低服务器压力，尽量减少因并发流量引起的服务故障的概率，但并不能完全避免服务故障。一旦某个服务出现故障，我们必须<strong>隔离对这个服务的调用</strong>，避免发生雪崩。</p>
 <p>默认情况下 SpringBoot 项目的 tomcat 最大线程数是 200，允许的最大连接是 8492，单机测试很难打满。</p>
 <h3 id="OpenFeign-配置-Sentinel"><a href="#OpenFeign-配置-Sentinel" class="headerlink" title="OpenFeign 配置 Sentinel"></a>OpenFeign 配置 Sentinel</h3><p>application.yml 文件，开启 Feign 的 sentinel 功能：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">sentinel:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment"># 开启feign对sentinel的支持</span></span><br></pre></td></tr></table></figure>
@@ -209,7 +216,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">2.1k字</span>
+        <span class="ico-fontcount"></span><span class="post-count">2.2k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -315,7 +322,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 335.3k 字</span>
+        <span class="post-count">全站共 338.3k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
