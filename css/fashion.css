@@ -555,6 +555,11 @@ object {
 	margin: 0 0 1.25em;
 	text-align: center;
 	}
+.entry-tips {
+    padding: .8rem;
+    margin-top: .8rem;
+	border-bottom: 1px solid #333;
+	}
 .entry-title {
 	margin: 0 40px;
 	font-size: 16px;
@@ -612,8 +617,8 @@ object {
 .entry-footer {
 	clear: both;
 	padding: 8px 0;
-	border: solid #333;
-	border-width: 0 0 1px;
+	margin-bottom: 8px;
+	border-top: 1px solid #333;
 	}
 .entry-footer-hr {
 	margin: 1px 0 0 0 ;
