@@ -2,21 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://lixupeng.cn/blog/2022/09/29/2-backend-java+9/</loc>
+    <loc>https://lixupeng.cn/blog/2022/10/12/2-backend-java+11/</loc>
     
-    <lastmod>2025-08-06T16:28:03.784Z</lastmod>
+    <lastmod>2025-08-10T18:26:23.357Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2022/09/10/2-backend-java+7-2/</loc>
+    <loc>https://lixupeng.cn/blog/2022/09/24/2-backend-java+10/</loc>
+    
+    <lastmod>2025-08-08T10:31:41.241Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2022/09/15/2-backend-java+9/</loc>
+    
+    <lastmod>2025-08-08T08:42:47.630Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2022/09/10/2-backend-java+8/</loc>
     
     <lastmod>2025-08-04T17:33:43.357Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2022/09/05/2-backend-java+7-1/</loc>
+    <loc>https://lixupeng.cn/blog/2022/09/05/2-backend-java+7/</loc>
     
     <lastmod>2025-08-04T16:47:22.372Z</lastmod>
     
@@ -170,44 +184,30 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2022/12/10/2-backend-java+14/</loc>
+    <loc>https://lixupeng.cn/blog/2022/12/10/2-backend-java+15/</loc>
     
     <lastmod>2025-08-01T17:46:27.448Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2022/11/25/2-backend-java+13/</loc>
+    <loc>https://lixupeng.cn/blog/2022/11/25/2-backend-java+14/</loc>
     
     <lastmod>2025-08-01T17:45:39.480Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2022/11/14/2-backend-java+12/</loc>
+    <loc>https://lixupeng.cn/blog/2022/11/14/2-backend-java+13/</loc>
     
     <lastmod>2025-08-01T17:45:16.298Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2022/10/27/2-backend-java+11/</loc>
+    <loc>https://lixupeng.cn/blog/2022/10/27/2-backend-java+12/</loc>
     
     <lastmod>2025-08-01T17:44:29.140Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2022/10/12/2-backend-java+10/</loc>
-    
-    <lastmod>2025-08-01T17:44:18.681Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2022/09/18/2-backend-java+8/</loc>
-    
-    <lastmod>2025-08-01T17:43:57.976Z</lastmod>
     
   </url>
   
@@ -807,13 +807,6 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2019/11/21/2-backend-mysql-installmysql4win/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.170Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://lixupeng.cn/blog/2019/12/04/2-backend-mysql-rowtoolarge/</loc>
     
     <lastmod>2025-07-17T09:32:52.170Z</lastmod>
@@ -821,7 +814,7 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2019/12/18/2-backend-mysql-update+in/</loc>
+    <loc>https://lixupeng.cn/blog/2019/11/21/2-backend-mysql-installmysql4win/</loc>
     
     <lastmod>2025-07-17T09:32:52.170Z</lastmod>
     
@@ -829,6 +822,13 @@
   
   <url>
     <loc>https://lixupeng.cn/blog/2020/01/20/2-backend-mysql-recover/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.170Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2019/12/18/2-backend-mysql-update+in/</loc>
     
     <lastmod>2025-07-17T09:32:52.170Z</lastmod>
     
@@ -856,13 +856,6 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2019/08/20/3-linux-2/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.168Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://lixupeng.cn/blog/2019/04/09/3-linux-1/</loc>
     
     <lastmod>2025-07-17T09:32:52.168Z</lastmod>
@@ -870,7 +863,14 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2019/10/12/3-linux-set-downloadfromserver/</loc>
+    <loc>https://lixupeng.cn/blog/2019/08/20/3-linux-2/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.168Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2019/07/30/3-linux-set-dns-ping/</loc>
     
     <lastmod>2025-07-17T09:32:52.168Z</lastmod>
     
@@ -884,7 +884,7 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2019/07/30/3-linux-set-dns-ping/</loc>
+    <loc>https://lixupeng.cn/blog/2019/10/12/3-linux-set-downloadfromserver/</loc>
     
     <lastmod>2025-07-17T09:32:52.168Z</lastmod>
     
@@ -919,21 +919,7 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2019/12/10/4-python-crawler1/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.167Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://lixupeng.cn/blog/2019/12/11/4-python-crawler2/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.167Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2020/02/22/4-python-crawler5/</loc>
     
     <lastmod>2025-07-17T09:32:52.167Z</lastmod>
     
@@ -947,7 +933,7 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/03/02/4-python-crawler7/</loc>
+    <loc>https://lixupeng.cn/blog/2020/02/22/4-python-crawler5/</loc>
     
     <lastmod>2025-07-17T09:32:52.167Z</lastmod>
     
@@ -955,6 +941,20 @@
   
   <url>
     <loc>https://lixupeng.cn/blog/2020/02/25/4-python-crawler6/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.167Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2019/12/10/4-python-crawler1/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.167Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2020/03/02/4-python-crawler7/</loc>
     
     <lastmod>2025-07-17T09:32:52.167Z</lastmod>
     
@@ -975,21 +975,14 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/12/27/2-frontend-work-jsonapi/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.165Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2020/12/15/2-frontend-work-videojs/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.165Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://lixupeng.cn/blog/2021/01/15/2-frontend-work-vue-depserver/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.165Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2020/12/27/2-frontend-work-jsonapi/</loc>
     
     <lastmod>2025-07-17T09:32:52.165Z</lastmod>
     
@@ -1003,9 +996,23 @@
   </url>
   
   <url>
+    <loc>https://lixupeng.cn/blog/2020/12/15/2-frontend-work-videojs/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.165Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lixupeng.cn/blog/2020/06/08/2-frontend-vuex/</loc>
     
     <lastmod>2025-07-17T09:32:52.165Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2020/07/18/2-frontend-ui-ant/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.163Z</lastmod>
     
   </url>
   
@@ -1024,21 +1031,7 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/07/18/2-frontend-ui-ant/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.163Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://lixupeng.cn/blog/2021/05/28/2-frontend-js-sr7/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.162Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2021/07/08/2-frontend-jsdp-1/</loc>
     
     <lastmod>2025-07-17T09:32:52.162Z</lastmod>
     
@@ -1052,14 +1045,28 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/07/16/2-frontend-practice6/</loc>
+    <loc>https://lixupeng.cn/blog/2021/07/08/2-frontend-jsdp-1/</loc>
     
     <lastmod>2025-07-17T09:32:52.162Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/07/15/2-frontend-practice5/</loc>
+    <loc>https://lixupeng.cn/blog/2020/04/17/2-frontend-practice2/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.162Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2020/04/13/2-frontend-practice1/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.162Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2020/07/16/2-frontend-practice6/</loc>
     
     <lastmod>2025-07-17T09:32:52.162Z</lastmod>
     
@@ -1080,13 +1087,6 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/04/13/2-frontend-practice1/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.162Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://lixupeng.cn/blog/2020/04/18/2-frontend-practice3/</loc>
     
     <lastmod>2025-07-17T09:32:52.162Z</lastmod>
@@ -1094,7 +1094,7 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/04/17/2-frontend-practice2/</loc>
+    <loc>https://lixupeng.cn/blog/2020/07/15/2-frontend-practice5/</loc>
     
     <lastmod>2025-07-17T09:32:52.162Z</lastmod>
     
@@ -1108,14 +1108,14 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/05/06/2-frontend-js-sr1/</loc>
+    <loc>https://lixupeng.cn/blog/2020/05/09/2-frontend-js-sr4/</loc>
     
     <lastmod>2025-07-17T09:32:52.161Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/05/09/2-frontend-js-sr3/</loc>
+    <loc>https://lixupeng.cn/blog/2020/05/06/2-frontend-js-sr1/</loc>
     
     <lastmod>2025-07-17T09:32:52.161Z</lastmod>
     
@@ -1129,14 +1129,7 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/05/09/2-frontend-js-sr4/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2020/05/08/2-frontend-js-sr2/</loc>
+    <loc>https://lixupeng.cn/blog/2020/05/09/2-frontend-js-sr3/</loc>
     
     <lastmod>2025-07-17T09:32:52.161Z</lastmod>
     
@@ -1150,42 +1143,14 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/05/27/2-frontend-es6-8/</loc>
+    <loc>https://lixupeng.cn/blog/2020/05/08/2-frontend-js-sr2/</loc>
     
-    <lastmod>2025-07-17T09:32:52.160Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2020/05/26/2-frontend-es6-6/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.160Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2020/05/26/2-frontend-es6-5/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.160Z</lastmod>
+    <lastmod>2025-07-17T09:32:52.161Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://lixupeng.cn/blog/2020/05/27/2-frontend-es6-7/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.160Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2021/07/06/2-frontend-fetch/</loc>
-    
-    <lastmod>2025-07-17T09:32:52.160Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2020/04/25/2-frontend-js-jc3/</loc>
     
     <lastmod>2025-07-17T09:32:52.160Z</lastmod>
     
@@ -1199,6 +1164,27 @@
   </url>
   
   <url>
+    <loc>https://lixupeng.cn/blog/2020/05/26/2-frontend-es6-5/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.160Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2020/05/26/2-frontend-es6-6/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.160Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2021/07/06/2-frontend-fetch/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.160Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lixupeng.cn/blog/2019/04/06/2-frontend-html1/</loc>
     
     <lastmod>2025-07-17T09:32:52.160Z</lastmod>
@@ -1206,14 +1192,14 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/04/23/2-frontend-js-jc1/</loc>
+    <loc>https://lixupeng.cn/blog/2020/04/25/2-frontend-js-jc3/</loc>
     
     <lastmod>2025-07-17T09:32:52.160Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/04/26/2-frontend-js-jc4/</loc>
+    <loc>https://lixupeng.cn/blog/2020/05/27/2-frontend-es6-8/</loc>
     
     <lastmod>2025-07-17T09:32:52.160Z</lastmod>
     
@@ -1227,7 +1213,21 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/05/29/2-frontend-es6-10/</loc>
+    <loc>https://lixupeng.cn/blog/2020/04/26/2-frontend-js-jc4/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.160Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2020/04/23/2-frontend-js-jc1/</loc>
+    
+    <lastmod>2025-07-17T09:32:52.160Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2021/09/20/2-frontend-echarts/</loc>
     
     <lastmod>2025-07-17T09:32:52.159Z</lastmod>
     
@@ -1241,7 +1241,7 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2021/09/20/2-frontend-echarts/</loc>
+    <loc>https://lixupeng.cn/blog/2020/05/29/2-frontend-es6-10/</loc>
     
     <lastmod>2025-07-17T09:32:52.159Z</lastmod>
     
@@ -1262,14 +1262,14 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/05/21/2-frontend-es6-2/</loc>
+    <loc>https://lixupeng.cn/blog/2020/05/30/2-frontend-es6-12/</loc>
     
     <lastmod>2025-07-17T09:32:52.159Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/05/30/2-frontend-es6-12/</loc>
+    <loc>https://lixupeng.cn/blog/2020/05/25/2-frontend-es6-4/</loc>
     
     <lastmod>2025-07-17T09:32:52.159Z</lastmod>
     
@@ -1283,7 +1283,7 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2020/05/25/2-frontend-es6-4/</loc>
+    <loc>https://lixupeng.cn/blog/2020/05/21/2-frontend-es6-2/</loc>
     
     <lastmod>2025-07-17T09:32:52.159Z</lastmod>
     
