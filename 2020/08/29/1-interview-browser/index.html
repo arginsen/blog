@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>🔥 面试 | 浏览器 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="interviewFrontend">
+  
+  
+  
+  
+  <meta name="keywords" content="interview,Frontend">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🔥 面试 | 浏览器">
+<meta property="og:url" content="https://lixupeng.cn/blog/2020/08/29/1-interview-browser/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lixupeng.cn/blog/img/interview.jpg">
+<meta property="og:updated_time" content="2025-07-31T18:03:23.949Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🔥 面试 | 浏览器">
+<meta name="twitter:image" content="https://lixupeng.cn/blog/img/interview.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-1-interview-browser" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/interview.jpg" rel="gallery_cme7alxft000eynpu5t7ue704">
+        <img src="/blog/img/interview.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      🔥 面试 | 浏览器
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="cookie、localStorage、sessionStorage"><a href="#cookie、localStorage、sessionStorage" class="headerlink" title="cookie、localStorage、sessionStorage"></a>cookie、localStorage、sessionStorage</h1><p>cookie 是网站用来标识用户身份而存储在用户本地终端上的数据，cookie 数据始终在同源的http请求中携带，会在浏览器和服务器间传递<br>localStorage、sessionStorage 仅在本地保存，不参与服务器通信</p>
+<p>相同点：都保存在客户端。<br>不同点：有效期、大小、服务器端通信方面<br>cookie：可设置有效期，默认浏览器关闭失效。大小4K。参与服务器端通信，携带在请求头里。<br>localStorage：永久有效，除非手动删除。大小5M。不参与服务器端通信。<br>sessionStorage：当前会话期有效。大小5M。不参与服务器端通信。</p>
+<h1 id="cookie-有哪些参数"><a href="#cookie-有哪些参数" class="headerlink" title="cookie 有哪些参数"></a>cookie 有哪些参数</h1><p>setcookie()函数向客户端发送一个 HTTP cookie。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setcookie(name, value, expire, path, domain, secure)</span><br></pre></td></tr></table></figure>
+<p>参数    描述<br>name      必需。规定 cookie 的名称。<br>value      必需。规定 cookie 的值。<br>expire    可选。规定 cookie 的有效期。<br>path      可选。规定 cookie 的服务器路径。<br>domain    可选。规定 cookie 的域名。<br>secure    可选。规定是否通过安全的 HTTPS 连接来传输 cookie<br>httpOnly 是否能通过js脚本获取cookie</p>
+<h1 id="浏览器多个标签页面之间通信"><a href="#浏览器多个标签页面之间通信" class="headerlink" title="浏览器多个标签页面之间通信"></a>浏览器多个标签页面之间通信</h1><ol>
+<li>cookie + setInterval</li>
+</ol>
+<p>cookie 是浏览器本地存储机制，通过 <code>document.cookie = &quot;msg=value&quot;</code> , 注意 cookie 是 ‘key = value’ 的形式存储的</p>
+<p>跨标签接受数据时，通过 document.cookie 获取，若是有多个键值，可以将获得的字符串进行处理通过 JSON.parse 转换为对象，再通过 key 提取。通过把 cookie 里的等号换成冒号， 分号空格换成逗号空格，最后再加大括号</p>
+<p>从发送消息页到接收页并不能实时更新，需要手动刷新。因此可以使用 setInterval 定时器解决</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> cookies = <span class="string">'&#123;"'</span>+<span class="built_in">document</span>.cookie.replace(<span class="regexp">/=/g</span>,<span class="string">'":"'</span>).replace(<span class="regexp">/;\s+/g</span>,<span class="string">'", "'</span>)+<span class="string">'"&#125;'</span>;</span><br><span class="line">  cookies = <span class="built_in">JSON</span>.parse(cookies);</span><br><span class="line">  <span class="keyword">return</span> cookies[key];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  recMsg.innerHTML = getValue(<span class="string">"msg1"</span>);</span><br><span class="line">&#125;,<span class="number">500</span>)</span><br></pre></td></tr></table></figure>
+<p>缺点：<br>1) 容量小，每个域名最多设置 30-50 个 cookie，容量就 4k<br>2) 每次 http 请求会把当前域的 cookie 都发送到服务器，包括只在本地使用的，浪费带宽<br>3) setInteval 频率过高影响浏览器性能，过低又影响时效</p>
+<ol start="2">
+<li>localStorage</li>
+</ol>
+<p>localStorage 存东西会自动触发整个浏览器的 storage 事件，别的标签窗口也都可以获取到之前存的东西，只需要监听 storage 事件就可以</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">"msg"</span>, msg.value)</span><br><span class="line"></span><br><span class="line"><span class="comment">// get</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">load</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  recMsg.innerHTML = localStorage.getItem(<span class="string">"msg1"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"storage"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  load();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>websocket</li>
+</ol>
+<p>websocket 用到了服务端，需将消息先发送到 WebSocketServer, WebSocketServer 再实时把消息发给其他使用页面，完成实时通信</p>
+<p>server: 创建 websockect 对象实例，添加 connection 监听事件, 为每个客户端对象绑定 message 事件</p>
+<p>send: 先建立 websocket 连接, 接着用该实例发送消息</p>
+<p>receive: 先建立 websocket 连接, 接着绑定连接打开时的回调, 里边注册接收消息时的处理函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// server.js - 服务端</span></span><br><span class="line"><span class="comment">//获得WebSocketServer类型</span></span><br><span class="line"><span class="keyword">var</span> WebSocketServer = <span class="built_in">require</span>(<span class="string">'ws'</span>).Server;</span><br><span class="line"><span class="comment">//创建WebSocketServer对象实例，监听指定端口</span></span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> WebSocketServer(&#123; <span class="attr">port</span>: <span class="number">8080</span> &#125;);</span><br><span class="line"><span class="comment">//创建保存所有已连接到服务器的客户端对象的数组</span></span><br><span class="line"><span class="keyword">var</span> clients=[];</span><br><span class="line"><span class="comment">//为服务器添加connection事件监听，当有客户端连接到服务端时，立刻将客户端对象保存进数组中。</span></span><br><span class="line">wss.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">client</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"一个客户端连接到服务器"</span>);</span><br><span class="line">  <span class="comment">// 如果没有这个client对象，说明是第一次连接，就加入到clients中</span></span><br><span class="line">  <span class="keyword">if</span>(clients.indexOf(client)===<span class="number">-1</span>)&#123;</span><br><span class="line">    clients.push(client);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"有"</span>+clients.length+<span class="string">"个客户端在线"</span>);</span><br><span class="line">    <span class="comment">//为每个client对象绑定message事件，当某个客户端发来消息时，自动触发</span></span><br><span class="line">    client.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">msg</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"收到消息:"</span>+msg);</span><br><span class="line">      <span class="comment">//遍历clients数组中每个其他客户端对象，并发送消息给其他客户端</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> c <span class="keyword">of</span> clients)&#123;</span><br><span class="line">        <span class="keyword">if</span>(c!=client)&#123;</span><br><span class="line">          c.send(msg);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// send - 客户端</span></span><br><span class="line"><span class="comment">//建立到服务端webSocket连接</span></span><br><span class="line"><span class="keyword">var</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">"ws://localhost:8080"</span>);</span><br><span class="line">ws.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(msg.value.trim()!==<span class="string">""</span>)&#123;</span><br><span class="line">    <span class="comment">// 将消息发到服务器</span></span><br><span class="line">    ws.send(msg.value.trim());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// receive</span></span><br><span class="line"><span class="comment">//建立到服务端webSocket连接</span></span><br><span class="line"><span class="keyword">var</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">"ws://localhost:8080"</span>);</span><br><span class="line"><span class="comment">//当连接被打开时，注册接收消息的处理函数</span></span><br><span class="line">ws.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//当有消息发过来时，就将消息放到显示元素上</span></span><br><span class="line">  ws.onmessage=<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    recMsg.innerHTML=event.data;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="websocket"><a href="#websocket" class="headerlink" title="websocket"></a>websocket</h1><p>websocket 是一种基于http协议的协议，由于http协议是非状态性的，客户端有请求才会响应，关闭连接后需要再次鉴别信息建立新连接，而websocket可以服务端主动通信，<br>websocket需要进行一次http连接，标记upgrade为websocket，也就是连接升级为websocket，服务端确认后就保持websocket连接；</p>
+<p>websocket在服务端创建server，绑定connection事件，在回调中参数即为client，给client绑定message来对client收到的消息进行处理，再用send发送数据给客户端；而客户端通过创建websocket实例来连接到服务端的websocket服务器，使用onopen/onmessage接收服务端的数据,使用onclick/onsend发送数据给服务端</p>
+<p>附:</p>
+<p>有些浏览器可能不支持 websocket , 所以需要考虑到兼容性问题, 使用 sock.js 可以在不支持 websocket 时自动将为轮询的方式</p>
+<p>同时采用 stomp.js 来建立传输协议, 规范 payload 的文本格式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> socket = <span class="keyword">new</span> SockJS(wsLocalUrl+<span class="string">'/websocket'</span>);</span><br><span class="line">  <span class="keyword">let</span> stompClient = Stomp.over(socket);</span><br><span class="line"></span><br><span class="line">  stompClient.connect(<span class="string">''</span>,<span class="string">''</span>,<span class="function"><span class="keyword">function</span>(<span class="params">frame</span>)</span>&#123;</span><br><span class="line">    stompClient.subscribe(<span class="string">`/topic/taskNum.<span class="subst">$&#123;currUserId&#125;</span>.<span class="subst">$&#123;taskClassParent&#125;</span>`</span>, <span class="function"><span class="keyword">function</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">      <span class="comment">//alert(JSON.parse(message.body));</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="前端如何处理大量数据"><a href="#前端如何处理大量数据" class="headerlink" title="前端如何处理大量数据"></a>前端如何处理大量数据</h1><p>使用分页,分表数据传输, 异步渲染, 可见区域局部先渲染,</p>
+<p>使用 web worker 来处理大量数据计算<br>在面对大量数据时, 可以使用 web worker 来创建独立于主线程的一个子线程来处理运算, 这样就不会造成页面卡死<br>使用 new work(url, options) 来读取网络 js 文件创建 worker 实例, 通过 postMessage 来向 worker 实例发送消息, 用 onmessage 来接收处理完的数据; 在 work.js 里通过 onmessage 接收页面传过来的数据, 进行计算, 完后 postMessage 发送处理完的数据; 这样形成一个通信</p>
+<p>worker 接收的脚本文件必须与主线程的脚本文件同源, 且不能读取本地文件系统的文件;<br>worker 与主线程不在一个上下文环境, 无法读取到 dom 对象, 但可以获得 navigator location 对象, worker 必须与主线程通过消息的形式通信; worker 可以使用 xhr 发出 ajax 请求</p>
+<h1 id="输入-url-到页面加载发生了些什么"><a href="#输入-url-到页面加载发生了些什么" class="headerlink" title="输入 url 到页面加载发生了些什么"></a>输入 url 到页面加载发生了些什么</h1><blockquote>
+<p><a href="https://juejin.cn/post/6844903832435032072" target="_blank" rel="noopener">https://juejin.cn/post/6844903832435032072</a></p>
+</blockquote>
+<ol>
+<li>解析域名：搜索本地浏览器 DNS 服务器，如没用则搜索系统的，再是路由器，运营商</li>
+<li>TCP 连接：三次握手、四次挥手</li>
+<li>发送请求报文</li>
+<li>接受响应</li>
+<li>渲染页面：解析 HTML，生成 DOM 树；解析 CSS，生成 CSSOM 树；结合 DOM 和 CSSOM，渲染树；回流（layout），得到各元素几何信息；重绘（painting），得到绝对像素；展示（display），将像素发给 GPU，渲染至页面</li>
+</ol>
+<h1 id="get-和-post-有哪些区别"><a href="#get-和-post-有哪些区别" class="headerlink" title="get 和 post 有哪些区别"></a>get 和 post 有哪些区别</h1><table>
+<thead>
+<tr>
+<th>区别</th>
+<th>GET</th>
+<th>POST</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大小</td>
+<td>GET 传输一般 2K-8K，IE 限制 2K</td>
+<td>无限制</td>
+</tr>
+<tr>
+<td>安全</td>
+<td>url 明文传输，不安全</td>
+<td>通过 body 传输，不安全</td>
+</tr>
+<tr>
+<td>编码方式</td>
+<td>url 编码</td>
+<td>支持多种编码</td>
+</tr>
+<tr>
+<td>TCP 数据包</td>
+<td>1个数据包</td>
+<td>2个数据包</td>
+</tr>
+<tr>
+<td>浏览器记录</td>
+<td>浏览器会记录</td>
+<td>不会记录</td>
+</tr>
+<tr>
+<td>浏览器后退</td>
+<td>无影响</td>
+<td>再次提交</td>
+</tr>
+<tr>
+<td>浏览器收藏</td>
+<td>可收藏</td>
+<td>不可</td>
+</tr>
+<tr>
+<td>浏览器缓存</td>
+<td>可缓存</td>
+<td>不可</td>
+</tr>
+<tr>
+<td>使用方式</td>
+<td>获取数据</td>
+<td>提交保存数据</td>
+</tr>
+</tbody>
+</table>
+<h1 id="跨域问题-cors-（字节、腾讯）"><a href="#跨域问题-cors-（字节、腾讯）" class="headerlink" title="跨域问题 cors （字节、腾讯）"></a>跨域问题 cors （字节、腾讯）</h1><p>允许浏览器向跨域服务器发出 XMLHTTPRequest 请求。<br>所谓同源策略即是：协议、域名、端口三者相等</p>
+<ol>
+<li>浏览器端会自动向请求头部添加 origin 字段，标注请求来源</li>
+<li>在服务器端设置响应头的允许方法、头部、源等</li>
+<li>请求分为两种：简单请求和非简单请求；简单请求的头部可包含 GET/POST/HEAD；非简单请求头部有 PUT/DELETE</li>
+</ol>
+<blockquote>
+<p>对于简单请求，浏览器直接发出CORS请求。具体来说，就是在头信息之中，增加一个Origin字段。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简单请求</span></span><br><span class="line">GET /cors HTTP/1.1</span><br><span class="line">Origin: http://api.bob.com</span><br><span class="line">Host: api.alice.com</span><br><span class="line">Accept-Language: en-US</span><br><span class="line">Connection: keep-alive</span><br><span class="line">User-Agent: Mozilla/5.0...</span><br><span class="line"></span><br><span class="line"><span class="comment">// 服务器返回的响应</span></span><br><span class="line">Access-Control-Allow-Origin: http://api.bob.com</span><br><span class="line">Access-Control-Allow-Credentials: true</span><br><span class="line">Access-Control-Expose-Headers: FooBar</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>非简单请求是那种对服务器有特殊要求的请求，比如请求方法是PUT或DELETE，或者Content-Type字段的类型是application/json。<br>过程：<br>非简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为”预检”请求（preflight）。一旦服务器通过了”预检”请求，以后每次浏览器正常的CORS请求，就都跟简单请求一样，会有一个Origin头信息字段<br>浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。</p>
+</blockquote>
+<ol>
+<li><p>预检请求<br>除了Origin字段，”预检”请求的头信息包括两个特殊字段。<br>Access-Control-Request-Method 该字段是必须的，用来列出浏览器的CORS请求会用到哪些HTTP方法，上例是PUT。<br>Access-Control-Request-Headers 该字段是一个逗号分隔的字符串，指定浏览器CORS请求会额外发送的头信息字段</p>
+</li>
+<li><p>预检请求的回应<br>Access-Control-Allow-Methods 该字段必需，它的值是逗号分隔的一个字符串，表明服务器支持的所有跨域请求的方法。注意，返回的是所有支持的方法，而不单是浏览器请求的那个方法。这是为了避免多次”预检”请求。<br>Access-Control-Allow-Headers 如果浏览器请求包含该字段，则该字段是必需的。表明服务器支持的所有头信息字段，不限于浏览器在”预检”中请求的字段。<br>Access-Control-Allow-Credentials<br>Access-Control-Max-Age 可选，用来指定本次预检请求的有效期，单位为秒</p>
+</li>
+<li><p>浏览器的正常请求和回应<br>与简单请求一样，直接发送cors请求</p>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 预检请求</span></span><br><span class="line">Origin: http://api.bob.com</span><br><span class="line">Access-Control-Request-Method: PUT</span><br><span class="line">Access-Control-Request-Headers: X-Custom-Header</span><br><span class="line"></span><br><span class="line"><span class="comment">// 预检请求的回应</span></span><br><span class="line">Access-Control-Allow-Methods: GET, POST, PUT</span><br><span class="line">Access-Control-Allow-Headers: X-Custom-Header</span><br><span class="line">Access-Control-Allow-Credentials: true</span><br><span class="line">Access-Control-Max-Age: 1728000</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正常cors请求</span></span><br><span class="line">PUT /cors HTTP/1.1</span><br><span class="line">Origin: http://api.bob.com</span><br><span class="line">Host: api.alice.com</span><br><span class="line">X-Custom-Header: value</span><br><span class="line">Accept-Language: en-US</span><br><span class="line">Connection: keep-alive</span><br><span class="line">User-Agent: Mozilla/5.0...</span><br><span class="line"></span><br><span class="line"><span class="comment">// 响应</span></span><br><span class="line">Access-Control-Allow-Origin: http://api.bob.com</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>与 JSONP 相比，JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。</p>
+</blockquote>
+<h1 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h1><p>同步任务指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务；<br>异步任务指的是，不进入主线程、而进入任务队列（task queue）的任务，只有等主线程任务执行完毕，任务队列开始通知主线程，请求执行任务，该任务才会进入主线程执行。</p>
+<p>通常我们把消息队列中的任务称为宏任务，每个宏任务中都包含了一个微任务队列</p>
+<p>当某个宏任务执行完后,会查看是否有微任务队列。如果有，先执行微任务队列中的所有任务；如果没有，在执行环境栈中会读取宏任务队列中排在最前的任务；执行宏任务的过程中，遇到微任务，依次加入微任务队列。栈空后，再次读取微任务队列里的任务，依次类推。</p>
+<p>同步（Promise）&gt;异步（微任务（process.nextTick ，Promises.then, Promise.catch ，resove,reject,MutationObserver)&gt;宏任务（setTimeout，setInterval，setImmediate））</p>
+<h1 id="权限验证"><a href="#权限验证" class="headerlink" title="权限验证"></a>权限验证</h1><p>vue 项目中，在登陆页面输入账号密码后，后端返回一个标识用户身份的 token 存在本地 cookie ，<br>用户登录成功后使用 router.beforeEach 拦截路由，判断是否获得 token，再用 token 获取用户的基本信息及权限 role ，<br>将 role 和路由表的每个页面需要的权限作比较，生成当前用户可访问的路由表，<br>调用 router.addRoutes 添加用户可访问的路由，<br>使用 vuex 管理路由表，根据 vuex 中可访问的路由渲染侧边栏组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (store.getters.token) &#123; <span class="comment">// 判断是否有token</span></span><br><span class="line">    <span class="keyword">if</span> (to.path === <span class="string">'/login'</span>) &#123;</span><br><span class="line">      next(&#123; <span class="attr">path</span>: <span class="string">'/'</span> &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (store.getters.roles.length === <span class="number">0</span>) &#123; <span class="comment">// 判断当前用户是否已拉取完user_info信息</span></span><br><span class="line">        store.dispatch(<span class="string">'GetInfo'</span>).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123; <span class="comment">// 拉取info</span></span><br><span class="line">          <span class="keyword">const</span> roles = res.data.role;</span><br><span class="line">          store.dispatch(<span class="string">'GenerateRoutes'</span>, &#123; roles &#125;).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 生成可访问的路由表</span></span><br><span class="line">            router.addRoutes(store.getters.addRouters) <span class="comment">// 动态添加可访问路由表</span></span><br><span class="line">            next(&#123; ...to, <span class="attr">replace</span>: <span class="literal">true</span> &#125;) <span class="comment">// hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record</span></span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(err);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        next() <span class="comment">//当有用户权限的时候，说明所有可访问路由已生成 如访问没权限的全面会自动进入404页面</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (whiteList.indexOf(to.path) !== <span class="number">-1</span>) &#123; <span class="comment">// 在免登录白名单，直接进入</span></span><br><span class="line">      next();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      next(<span class="string">'/login'</span>); <span class="comment">// 否则全部重定向到登录页</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store/permission.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasPermission</span>(<span class="params">roles, route</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (route.meta &amp;&amp; route.meta.role) &#123;</span><br><span class="line">    <span class="keyword">return</span> roles.some(<span class="function"><span class="params">role</span> =&gt;</span> route.meta.role.indexOf(role) &gt;= <span class="number">0</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterAsyncRoutes</span>(<span class="params">routes, roles</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> res = []</span><br><span class="line">  routes.forEach(<span class="function"><span class="params">route</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> tmp = &#123; ...route &#125;</span><br><span class="line">    <span class="keyword">if</span> (hasPermission(roles, tmp)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (tmp.children) &#123;</span><br><span class="line">        tmp.children = filterAsyncRoutes(tmp.children, roles)</span><br><span class="line">      &#125;</span><br><span class="line">      res.push(tmp)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> permission = &#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    routers: constantRouterMap,</span><br><span class="line">    addRouters: []</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    SET_ROUTERS: <span class="function">(<span class="params">state, routers</span>) =&gt;</span> &#123;</span><br><span class="line">      state.addRouters = routers;</span><br><span class="line">      state.routers = constantRouterMap.concat(routers);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;</span><br><span class="line">    generateRoutes(&#123; commit &#125;, roles) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> accessedRoutes</span><br><span class="line">        <span class="keyword">if</span> (roles.includes(<span class="string">'admin'</span>)) &#123;</span><br><span class="line">          accessedRoutes = asyncRoutes || []</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)</span><br><span class="line">        &#125;</span><br><span class="line">        commit(<span class="string">'SET_ROUTES'</span>, accessedRoutes)</span><br><span class="line">        resolve(accessedRoutes)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/interview/">interview</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/08/29/1-interview-browser/" class="article-date">
+	  <time datetime="2020-08-28T16:00:00.000Z" itemprop="datePublished">八月 29, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">3.5k字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <div id="vcomments"></div>
+    <script>
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/',
+					visitor: 'true',
+                    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                    // 表情title和图片映射
+                    emojiMaps: {
+                        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                        // ... 更多表情
+                    }
+				});
+			}
+		}, 1000);
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/08/30/1-interview-internet/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          🔥 面试 | 网络
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/08/29/1-interview-algorithm/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">🔥 面试 | 编程题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie、localStorage、sessionStorage"><span class="nav-number">1.</span> <span class="nav-text">cookie、localStorage、sessionStorage</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie-有哪些参数"><span class="nav-number">2.</span> <span class="nav-text">cookie 有哪些参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器多个标签页面之间通信"><span class="nav-number">3.</span> <span class="nav-text">浏览器多个标签页面之间通信</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#websocket"><span class="nav-number">4.</span> <span class="nav-text">websocket</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前端如何处理大量数据"><span class="nav-number">5.</span> <span class="nav-text">前端如何处理大量数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入-url-到页面加载发生了些什么"><span class="nav-number">6.</span> <span class="nav-text">输入 url 到页面加载发生了些什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#get-和-post-有哪些区别"><span class="nav-number">7.</span> <span class="nav-text">get 和 post 有哪些区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跨域问题-cors-（字节、腾讯）"><span class="nav-number">8.</span> <span class="nav-text">跨域问题 cors （字节、腾讯）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件循环"><span class="nav-number">9.</span> <span class="nav-text">事件循环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#权限验证"><span class="nav-number">10.</span> <span class="nav-text">权限验证</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 353k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

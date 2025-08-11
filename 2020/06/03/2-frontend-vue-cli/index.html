@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | Vue 学习笔记Ⅱ：@Vue/cli | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendVue">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | Vue 学习笔记Ⅱ：@Vue&#x2F;cli">
+<meta property="og:url" content="https://lixupeng.cn/blog/2020/06/03/2-frontend-vue-cli/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lixupeng.cn/blog/img/vue.jpg">
+<meta property="og:updated_time" content="2025-07-17T09:32:52.163Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | Vue 学习笔记Ⅱ：@Vue&#x2F;cli">
+<meta name="twitter:image" content="https://lixupeng.cn/blog/img/vue.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-vue-cli" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/vue.jpg" rel="gallery_cme7alxkp00dfynpuzxbndhcc">
+        <img src="/blog/img/vue.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      前端 | Vue 学习笔记Ⅱ：@Vue/cli
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
+<p>Vue CLI 是一个基于 Vue.js 进行快速开发的完整系统</p>
+</blockquote>
+<p><strong>提供</strong>：</p>
+<ul>
+<li>通过 @vue/cli 实现的交互式的项目脚手架。</li>
+<li>通过 @vue/cli + @vue/cli-service-global 实现的零配置原型开发。</li>
+<li>一个运行时依赖 (@vue/cli-service)，该依赖：<ul>
+<li>可升级；</li>
+<li>基于 webpack 构建，并带有合理的默认配置；</li>
+<li>可以通过项目内的配置文件进行配置；</li>
+<li>可以通过插件进行扩展。</li>
+</ul>
+</li>
+<li>一个丰富的官方插件集合，集成了前端生态中最好的工具。</li>
+<li>一套完全图形化的创建和管理 Vue.js 项目的用户界面。</li>
+</ul>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><h3 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h3><blockquote>
+<p>CLI (@vue/cli) 是一个全局安装的 npm 包，提供了终端里的 vue 命令。它可以通过 <code>vue create</code> 快速搭建一个新项目，或者直接通过 vue serve 构建新想法的原型。也可以通过 vue ui（一套图形化界面）管理所有项目。</p>
+</blockquote>
+<h3 id="CLI-服务"><a href="#CLI-服务" class="headerlink" title="CLI 服务"></a>CLI 服务</h3><blockquote>
+<p>CLI 服务 (@vue/cli-service) 是一个开发环境依赖。它是一个 npm 包，局部安装在每个 @vue/cli 创建的项目中</p>
+</blockquote>
+<p>CLI 服务是构建于 webpack 和 webpack-dev-server 之上的。它包含了：</p>
+<ul>
+<li>加载其它 CLI 插件的核心服务；</li>
+<li>一个针对绝大部分应用优化过的内部的 webpack 配置；</li>
+<li>项目内部的 vue-cli-service 命令，提供 serve、build 和 inspect 命令</li>
+</ul>
+<h3 id="CLI-插件"><a href="#CLI-插件" class="headerlink" title="CLI 插件"></a>CLI 插件</h3><blockquote>
+<p>CLI 插件是向 Vue 项目提供可选功能的 npm 包，例如 Babel/TypeScript 转译、ESLint 集成、单元测试和 end-to-end 测试等。Vue CLI 插件的名字以 @vue/cli-plugin- (内建插件) 或 vue-cli-plugin- (社区插件) 开头。在项目内部运行 vue-cli-service 命令时，它会自动解析并加载 package.json 中列出的所有 CLI 插件。</p>
+</blockquote>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">npm install -g @vue/cli</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">yarn global add @vue/cli</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">npm uninstall vue-cli -g</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 vue 命令</span></span><br><span class="line">vue -V   <span class="comment"># @vue/cli 4.4.6</span></span><br></pre></td></tr></table></figure>
+<h1 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h1><blockquote>
+<p>使用 <code>vue serve</code> 和 <code>vue build</code> 命令对单个 <em>.vue 文件进行快速原型开发
+</em>快速原型开发需要先安装一个全局的扩展 <code>@vue/cli-service-global</code></p>
+</blockquote>
+<h2 id="vue-serve"><a href="#vue-serve" class="headerlink" title="vue serve"></a>vue serve</h2><blockquote>
+<p>为 .js 或 .vue 文件启动一个服务器。<code>vue serve</code> 使用了和 <code>vue create</code> 创建的项目相同的默认设置 (webpack、Babel、PostCSS 和 ESLint)。它会在当前目录自动推导<strong>入口文件</strong>————入口可以是 main.js、index.js、App.vue 或 app.vue 中的一个。你也可以显式地指定入口文件：<code>vue serve MyComponent.vue</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Usage: serve [options] [entry]</span><br><span class="line"></span><br><span class="line">在开发环境模式下零配置为 .js 或 .vue 文件启动一个服务器</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"></span><br><span class="line">  -o, --open  打开浏览器</span><br><span class="line">  -c, --copy  将本地 URL 复制到剪切板</span><br><span class="line">  -h, --<span class="built_in">help</span>  输出用法信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个 App.vue 文件</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h1&gt;Hello!&lt;/h1&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在这个 App.vue 文件所在的目录下运行</span></span><br><span class="line">vue-cli-service serve</span><br></pre></td></tr></table></figure>
+<h2 id="vue-build"><a href="#vue-build" class="headerlink" title="vue build"></a>vue build</h2><blockquote>
+<p>在生产环境模式下零配置构建一个 .js 或 .vue 文件，也可以将目标文件构建成一个生产环境的包并用来部署，也具有将组件构建成为一个库或一个 Web Components 组件的能力</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Usage: build [options] [entry]</span><br><span class="line"></span><br><span class="line">在生产环境模式下零配置构建一个 .js 或 .vue 文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"></span><br><span class="line">  -t, --target &lt;target&gt;  构建目标 (app | lib | wc | wc-async, 默认值：app)</span><br><span class="line">  -n, --name &lt;name&gt;      库的名字或 Web Components 组件的名字 (默认值：入口文件名)</span><br><span class="line">  -d, --dest &lt;dir&gt;       输出目录 (默认值：dist)</span><br><span class="line">  -h, --<span class="built_in">help</span>             输出用法信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">vue-cli-service build MyComponent.vue</span><br></pre></td></tr></table></figure>
+<h2 id="vue-create"><a href="#vue-create" class="headerlink" title="vue create"></a>vue create</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个新项目</span></span><br><span class="line">vue create hello-world</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># vue create --help</span></span><br><span class="line">用法：create [options] &lt;app-name&gt;</span><br><span class="line"></span><br><span class="line">创建一个由 `vue-cli-service` 提供支持的新项目</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">选项：</span><br><span class="line"></span><br><span class="line">  -p, --preset &lt;presetName&gt;       忽略提示符并使用已保存的或远程的预设选项</span><br><span class="line">  -d, --default                   忽略提示符并使用默认预设选项</span><br><span class="line">  -i, --inlinePreset &lt;json&gt;       忽略提示符并使用内联的 JSON 字符串预设选项</span><br><span class="line">  -m, --packageManager &lt;<span class="built_in">command</span>&gt;  在安装依赖时使用指定的 npm 客户端</span><br><span class="line">  -r, --registry &lt;url&gt;            在安装依赖时使用指定的 npm registry</span><br><span class="line">  -g, --git [message]             强制 / 跳过 git 初始化，并可选的指定初始化提交信息</span><br><span class="line">  -n, --no-git                    跳过 git 初始化</span><br><span class="line">  -f, --force                     覆写目标目录可能存在的配置</span><br><span class="line">  -c, --<span class="built_in">clone</span>                     使用 git <span class="built_in">clone</span> 获取远程预设选项</span><br><span class="line">  -x, --proxy                     使用指定的代理创建项目</span><br><span class="line">  -b, --bare                      创建项目时省略默认组件中的新手指导信息</span><br><span class="line">  -h, --<span class="built_in">help</span>                      输出使用帮助信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开预览项目</span></span><br><span class="line">yarn serve</span><br><span class="line"><span class="comment"># 等同于</span></span><br><span class="line">vue-cli-service serve</span><br></pre></td></tr></table></figure>
+<h2 id="vue-ui"><a href="#vue-ui" class="headerlink" title="vue ui"></a>vue ui</h2><blockquote>
+<p>通过 vue ui 命令以图形化界面创建和管理项目</p>
+</blockquote>
+<h1 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h1><blockquote>
+<p>Vue CLI 使用了一套基于插件的架构，插件可以修改 webpack 的内部配置，也可以向 vue-cli-service 注入命令。在项目创建的过程中，绝大部分列出的特性都是通过插件来实现的。</p>
+<p>每个 CLI 插件都会包含一个 (用来创建文件的) 生成器和一个 (用来调整 webpack 核心配置和注入命令的) 运行时插件。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个新项目的时候，有些插件会根据你选择的特性被预安装好</span></span><br><span class="line">vue create xxx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在一个已经被创建好的项目中安装插件</span></span><br><span class="line">vue add eslint</span><br><span class="line"><span class="comment"># 使用 vue add 安装调用 Vue CLI 插件</span></span><br><span class="line"><span class="comment"># 将 @vue/eslint 解析为完整的包名 @vue/cli-plugin-eslint，</span></span><br><span class="line"><span class="comment"># 然后从 npm 安装它，调用它的生成器。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在项目里直接访问插件 API 而不需要创建一个完整的插件</span></span><br><span class="line"><span class="comment"># 在 package.json 文件中使用 vuePlugins.service </span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"vuePlugins"</span>: &#123;</span><br><span class="line">    <span class="string">"service"</span>: [<span class="string">"my-commands.js"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Preset"><a href="#Preset" class="headerlink" title="Preset"></a>Preset</h1><blockquote>
+<p>一个 Vue CLI preset 是一个包含创建新项目所需预定义选项和插件的 JSON 对象，让用户无需在命令提示中选择它们</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 vue create 过程中保存的 preset 会建立在 home 目录下的配置文件(~/.vuerc)</span></span><br><span class="line"><span class="comment"># 可以通过直接编辑这个文件来调整、添加、删除保存好的 preset。</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"useConfigFiles"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">"cssPreprocessor"</span>: <span class="string">"sass"</span>,</span><br><span class="line">  <span class="string">"plugins"</span>: &#123;</span><br><span class="line">    <span class="string">"@vue/cli-plugin-babel"</span>: &#123;&#125;,</span><br><span class="line">    <span class="string">"@vue/cli-plugin-eslint"</span>: &#123;</span><br><span class="line">      <span class="string">"config"</span>: <span class="string">"airbnb"</span>,</span><br><span class="line">      <span class="string">"lintOn"</span>: [<span class="string">"save"</span>, <span class="string">"commit"</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"@vue/cli-plugin-router"</span>: &#123;&#125;,</span><br><span class="line">    <span class="string">"@vue/cli-plugin-vuex"</span>: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为集成工具添加配置</span></span><br><span class="line"><span class="comment"># useConfigFiles 为 true 时，configs 的值将会被合并到 vue.config.js </span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"useConfigFiles"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">"plugins"</span>: &#123;...&#125;,</span><br><span class="line">  <span class="string">"configs"</span>: &#123;</span><br><span class="line">    <span class="string">"vue"</span>: &#123;...&#125;,</span><br><span class="line">    <span class="string">"postcss"</span>: &#123;...&#125;,</span><br><span class="line">    <span class="string">"eslintConfig"</span>: &#123;...&#125;,</span><br><span class="line">    <span class="string">"jest"</span>: &#123;...&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显式地指定用到的插件的版本</span></span><br><span class="line"><span class="comment"># 未指定时则会在源中选择最新的版本</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"plugins"</span>: &#123;</span><br><span class="line">    <span class="string">"@vue/cli-plugin-eslint"</span>: &#123;</span><br><span class="line">      <span class="string">"version"</span>: <span class="string">"^3.0.0"</span>,</span><br><span class="line">      // ... 该插件的其它选项</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许插件的命令提示</span></span><br><span class="line"><span class="comment"># 使用 preset 使得项目创建过程中的命令提示已经声明，因此不会提示</span></span><br><span class="line"><span class="comment"># 需要声明的插件，可以通过单独注入命令提示</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"plugins"</span>: &#123;</span><br><span class="line">    <span class="string">"@vue/cli-plugin-eslint"</span>: &#123;</span><br><span class="line">      // 让用户选取他们自己的 ESLint config</span><br><span class="line">      <span class="string">"prompts"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过发布 git repo 将一个 preset 分享给其他开发者</span></span><br><span class="line"><span class="comment"># # preset.json: 包含 preset 数据的主要文件（必需）。</span></span><br><span class="line"><span class="comment"># # generator.js: 一个可以注入或是修改项目中文件的 Generator。</span></span><br><span class="line"><span class="comment"># # prompts.js 一个可以通过命令行对话为 generator 收集选项的 prompts 文件。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建项目时从 GitHub repo 使用 preset</span></span><br><span class="line">vue create --preset username/repo my-project</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试时在本地加载 Preset</span></span><br><span class="line"><span class="comment"># ./my-preset 应当是一个包含 preset.json 的文件夹</span></span><br><span class="line">vue create --preset ./my-preset my-project</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者，直接使用当前工作目录下的 json 文件：</span></span><br><span class="line">vue create --preset my-preset.json my-project</span><br></pre></td></tr></table></figure>
+<h1 id="CLI-服务-1"><a href="#CLI-服务-1" class="headerlink" title="CLI 服务"></a>CLI 服务</h1><h2 id="vue-cli-service-serve"><a href="#vue-cli-service-serve" class="headerlink" title="vue-cli-service serve"></a>vue-cli-service serve</h2><blockquote>
+<p>启动一个开发服务器 (基于 webpack-dev-server) 并附带开箱即用的模块热重载 (Hot-Module-Replacement)。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">用法：vue-cli-service serve [options] [entry]</span><br><span class="line"></span><br><span class="line">选项：</span><br><span class="line"></span><br><span class="line">  --open    在服务器启动时打开浏览器</span><br><span class="line">  --copy    在服务器启动时将 URL 复制到剪切版</span><br><span class="line">  --mode    指定环境模式 (默认值：development)</span><br><span class="line">  --host    指定 host (默认值：0.0.0.0)</span><br><span class="line">  --port    指定 port (默认值：8080)</span><br><span class="line">  --https   使用 https (默认值：<span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="vue-cli-service-build"><a href="#vue-cli-service-build" class="headerlink" title="vue-cli-service build"></a>vue-cli-service build</h2><blockquote>
+<p>在 dist/ 目录产生一个可用于生产环境的包，带有 JS/CSS/HTML 的压缩，和为更好的缓存而做的自动的 vendor chunk splitting。它的 chunk manifest 会内联在 HTML 里。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">用法：vue-cli-service build [options] [entry|pattern]</span><br><span class="line"></span><br><span class="line">选项：</span><br><span class="line"></span><br><span class="line">  --mode        指定环境模式 (默认值：production)</span><br><span class="line">  --dest        指定输出目录 (默认值：dist)</span><br><span class="line">  --modern      面向现代浏览器带自动回退地构建应用</span><br><span class="line">  --target      app | lib | wc | wc-async (默认值：app)</span><br><span class="line">  --name        库或 Web Components 模式下的名字 (默认值：package.json 中的 <span class="string">"name"</span> 字段或入口文件名)</span><br><span class="line">  --no-clean    在构建项目之前不清除目标目录</span><br><span class="line">  --report      生成 report.html 以帮助分析包内容</span><br><span class="line">  --report-json 生成 report.json 以帮助分析包内容</span><br><span class="line">  --watch       监听文件变化</span><br></pre></td></tr></table></figure>
+<h2 id="vue-cli-service-inspect"><a href="#vue-cli-service-inspect" class="headerlink" title="vue-cli-service inspect"></a>vue-cli-service inspect</h2><blockquote>
+<p>审查一个 Vue CLI 项目的 webpack config</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">用法：vue-cli-service inspect [options] [...paths]</span><br><span class="line"></span><br><span class="line">选项：</span><br><span class="line"></span><br><span class="line">  --mode    指定环境模式 (默认值：development)</span><br></pre></td></tr></table></figure>
+<h2 id="查看所有的可用命令"><a href="#查看所有的可用命令" class="headerlink" title="查看所有的可用命令"></a>查看所有的可用命令</h2><blockquote>
+<p>除了上述三个，有些 CLI 插件会向 vue-cli-service 注入额外的命令。例如 @vue/cli-plugin-eslint 会注入 <code>vue-cli-service lint</code> 命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有注入的命令</span></span><br><span class="line">npx vue-cli-service <span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每个命令可用的选项</span></span><br><span class="line">npx vue-cli-service <span class="built_in">help</span> [<span class="built_in">command</span>]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Vue/">Vue</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/06/03/2-frontend-vue-cli/" class="article-date">
+	  <time datetime="2020-06-02T16:00:00.000Z" itemprop="datePublished">六月 3, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">2.3k字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <div id="vcomments"></div>
+    <script>
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/',
+					visitor: 'true',
+                    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                    // 表情title和图片映射
+                    emojiMaps: {
+                        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                        // ... 更多表情
+                    }
+				});
+			}
+		}, 1000);
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/06/05/2-frontend-vueRouter/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          前端 | Vue 学习笔记Ⅲ：Vue Router
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/06/02/2-frontend-vue-render/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">🔥 前端 | Vue 语法进阶：render 函数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件"><span class="nav-number">1.1.</span> <span class="nav-text">组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CLI"><span class="nav-number">1.1.1.</span> <span class="nav-text">CLI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CLI-服务"><span class="nav-number">1.1.2.</span> <span class="nav-text">CLI 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CLI-插件"><span class="nav-number">1.1.3.</span> <span class="nav-text">CLI 插件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础命令"><span class="nav-number">3.</span> <span class="nav-text">基础命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-serve"><span class="nav-number">3.1.</span> <span class="nav-text">vue serve</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-build"><span class="nav-number">3.2.</span> <span class="nav-text">vue build</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-create"><span class="nav-number">3.3.</span> <span class="nav-text">vue create</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-ui"><span class="nav-number">3.4.</span> <span class="nav-text">vue ui</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插件"><span class="nav-number">4.</span> <span class="nav-text">插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Preset"><span class="nav-number">5.</span> <span class="nav-text">Preset</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CLI-服务-1"><span class="nav-number">6.</span> <span class="nav-text">CLI 服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-cli-service-serve"><span class="nav-number">6.1.</span> <span class="nav-text">vue-cli-service serve</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-cli-service-build"><span class="nav-number">6.2.</span> <span class="nav-text">vue-cli-service build</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-cli-service-inspect"><span class="nav-number">6.3.</span> <span class="nav-text">vue-cli-service inspect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看所有的可用命令"><span class="nav-number">6.4.</span> <span class="nav-text">查看所有的可用命令</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 353k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>
