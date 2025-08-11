@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>🌟 后端 | SpringCloud -&gt; 分布式事务 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="BackendSpringCloud">
+  
+  
+  
+  
+  <meta name="keywords" content="Backend,SpringCloud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🌟 后端 | SpringCloud -&gt; 分布式事务">
+<meta property="og:url" content="https://lixupeng.cn/blog/2023/11/2-backend-springcloud5-transaction/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lixupeng.cn/blog/img/springcloud.jpg">
+<meta property="og:updated_time" content="2025-08-04T15:14:53.342Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🌟 后端 | SpringCloud -&gt; 分布式事务">
+<meta name="twitter:image" content="https://lixupeng.cn/blog/img/springcloud.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-backend-springcloud5-transaction" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/springcloud.jpg" rel="gallery_cme70iawx007d0hpuf2s4yjdp">
+        <img src="/blog/img/springcloud.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      🌟 后端 | SpringCloud -&gt; 分布式事务
+    </h1>
+  
+
+      </header>
+      <footer class="entry-meta entry-tips">
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+        
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/SpringCloud/">SpringCloud</a></li></ul>
+
+        
+	<span class="ico-date"></span>
+	<a href="/blog/2023/11/2-backend-springcloud5-transaction/" class="article-date">
+	  <time datetime="2023-11-05T16:00:00.000Z" itemprop="datePublished">十一月 6, 2023</time>
+	</a>
+
+        <!-- 添加字数统计 -->
+        
+          <span class="ico-fontcount"></span><span class="post-count">3.2k字</span>
+        
+      </footer>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<p><a href="https://seata.apache.org/zh-cn/docs/overview/what-is-seata/" target="_blank" rel="noopener">Seata 官方文档</a></p>
+<p>不同的微服务都会有自己独立的数据库，完成一个业务通常也会跨多个数据库完成业务。而每个微服务都会执行自己负责的本地事务。</p>
+<p>整个业务中，各个本地事务是有关联的，因此每个微服务的本地事务，也可以称为<strong>分支事务</strong>。多个有关联的分支事务一起就组成了全局事务。我们必须保证整个全局事务同时成功或失败。</p>
+<p>每个单独的分支事务就是传统的单体事务，都可以满足 ACID 特性，但全局事务跨越多个服务、多个数据库则相互之间没有协同，无法保证最终结果的统一。</p>
+<h1 id="CAP-定理"><a href="#CAP-定理" class="headerlink" title="CAP 定理"></a>CAP 定理</h1><p>分布式系统（Distributed System）是指由多个<strong>独立的计算节点</strong>组成的系统，这些节点<strong>通过网络协同工作</strong>，共同完成一项任务或<strong>提供一个统一的服务</strong>。每个节点可能是物理上分开的服务器或虚拟机，它们之间<strong>通过消息传递</strong>进行通信，看起来像是一个整体。</p>
+<p>分布式系统有三个指标：</p>
+<ul>
+<li>Consistency（一致性）：用户访问分布式系统中的任意节点，得到的数据必须一致。</li>
+<li>Availability（可用性）：用户访问分布式系统时，读或写操作总能成功。</li>
+<li>Partition tolerance （分区容错性）：当分布式系统节点之间出现网络故障导致节点之间无法通信的情况，节点形成几个独立的网络分区，整个系统也要持续对外提供服务。</li>
+</ul>
+<p>但是通常 A 和 C 只能选一个，想要一致，那就不能让用户再继续更新信息，那么就牺牲了可用性；而允许用户在出现网络状态后继续更新信息，那么就不用保证数据同步，因此一致性不能保证。</p>
+<ul>
+<li>AP 思想：各个子事务分别执行和提交，无需锁定数据。允许出现结果不一致，然后采用弥补措施恢复，实现最终一致即可。例如 <strong>AT 模式</strong>就是如此</li>
+<li>CP 思想：各个子事务执行后不要提交，而是等待彼此结果，然后同时提交或回滚。在这个过程中锁定资源，不允许其它人访问，数据处于不可用状态，但能保证一致性。例如 <strong>XA 模式</strong></li>
+</ul>
+<h1 id="BASE-理论"><a href="#BASE-理论" class="headerlink" title="BASE 理论"></a>BASE 理论</h1><p>BASE 理论就是一种取舍的方案，不再追求完美，而是最终达成目标。</p>
+<ul>
+<li>Basically Available （基本可用）：分布式系统在出现故障时，允许损失部分可用性，即保证核心可用。</li>
+<li>Soft State（软状态）：在一定时间内，允许出现中间状态，比如临时的不一致状态。</li>
+<li>Eventually Consistent（最终一致性）：虽然无法保证强一致性，但是在软状态结束后，最终达到数据一致。</li>
+</ul>
+<h1 id="Seata"><a href="#Seata" class="headerlink" title="Seata"></a>Seata</h1><p>Seata 作为一款解决分布式事务的框架，目前功能最完善、使用最多。</p>
+<p>解决分布式事务的思想其实很简单，即找一个<strong>统一的事务协调者</strong>，与多个分支事务通信，检测每个分支事务的执行状态，保证全局事务下的每一个分支事务<strong>同时</strong>成功或失败。<br>The thought solving the problem of distributed transaction is simple. It just needs to find the one that is unified <strong>transaction coordinator</strong>, conmunicating with multiple branch, checking the execution status of each branch transaction and ensuring that branch transaction under the global transaction succeeds or fails at the same time.</p>
+<p>Seata 也是这样实现，Seata 事务管理拥有 3 个重要的角色：</p>
+<ul>
+<li>TC (Transaction Coordinator) - 事务协调者：维护全局和分支事务的状态，协调全局事务提交或回滚。 </li>
+<li>TM (Transaction Manager) - 事务管理器：定义<strong>全局</strong>事务的范围、开始<strong>全局</strong>事务、提交或回滚<strong>全局</strong>事务。 </li>
+<li>RM (Resource Manager) - 资源管理器：管理<strong>分支</strong>事务，与TC交谈以注册分支事务和报告分支事务的状态，并驱动分支事务提交或回滚。 </li>
+</ul>
+<p>TM 和 RM 可以理解为 Seata 的<strong>客户端部分</strong>，引入到参与事务的微服务依赖中即可。将来 TM 和 RM 就会协助微服务，实现本地分支事务与 TC 之间交互，实现事务的提交或回滚。</p>
+<p>而 TC 服务则是事务协调中心，是一个<strong>独立的微服务</strong>，需要单独部署。</p>
+<h1 id="微服务部署-TC-服务"><a href="#微服务部署-TC-服务" class="headerlink" title="微服务部署 TC 服务"></a>微服务部署 TC 服务</h1><h2 id="数据库表-持久化"><a href="#数据库表-持久化" class="headerlink" title="数据库表 - 持久化"></a>数据库表 - 持久化</h2><p>单独的微服务，则需要单独的数据库。需建立：</p>
+<ul>
+<li>branch_table</li>
+<li>distributed_table</li>
+<li>global_table</li>
+<li>lock_table</li>
+</ul>
+<h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><p>为方便各个微服务集成 seata，可以把 seata 的配置共享到注册中心（nacos），通常微服务也需要同时引入 seata、nacos 依赖。</p>
+<p>The config of Seata can be shared in the register center like Nacos for facilitating the microservice integration with Seata. Usually the microservice needs to add the dependencies of seata and nacos at the same time.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--统一配置管理--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--读取bootstrap文件--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-bootstrap<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--seata--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-seata<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="配置-Seata"><a href="#配置-Seata" class="headerlink" title="配置 Seata"></a>配置 Seata</h2><p>在 nacos 上添加一个共享的 seata 配置，命名为 shared-seata.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">seata:</span></span><br><span class="line">  <span class="attr">registry:</span> <span class="comment"># TC服务注册中心的配置，微服务根据这些信息去注册中心获取tc服务地址</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">nacos</span> <span class="comment"># 注册中心类型 nacos</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">      <span class="attr">namespace:</span> <span class="string">""</span> <span class="comment"># namespace，默认为空</span></span><br><span class="line">      <span class="attr">group:</span> <span class="string">DEFAULT_GROUP</span> <span class="comment"># 分组，默认是DEFAULT_GROUP</span></span><br><span class="line">      <span class="attr">application:</span> <span class="string">seata-server</span> <span class="comment"># seata服务名称</span></span><br><span class="line">      <span class="attr">username:</span> <span class="string">nacos</span></span><br><span class="line">      <span class="attr">password:</span> <span class="string">nacos</span></span><br><span class="line">  <span class="attr">tx-service-group:</span> <span class="string">hmall</span> <span class="comment"># 事务组名称</span></span><br><span class="line">  <span class="attr">service:</span></span><br><span class="line">    <span class="attr">vgroup-mapping:</span> <span class="comment"># 事务组与tc集群的映射关系</span></span><br><span class="line">      <span class="attr">hmall:</span> <span class="string">"default"</span></span><br></pre></td></tr></table></figure>
+<p>在微服务模块 application.yaml 同级下添加 bootstrap.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">trade-service</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span> <span class="comment"># nacos地址</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 文件后缀名</span></span><br><span class="line">        <span class="attr">shared-configs:</span> <span class="comment"># 共享配置</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">dataId:</span> <span class="string">shared-jdbc.yaml</span> <span class="comment"># 共享 mybatis 配置</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">dataId:</span> <span class="string">shared-log.yaml</span> <span class="comment"># 共享日志配置</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">dataId:</span> <span class="string">shared-swagger.yaml</span> <span class="comment"># 共享日志配置</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">dataId:</span> <span class="string">shared-seata.yaml</span> <span class="comment"># 共享 seata 配置</span></span><br></pre></td></tr></table></figure>
+<p>改造 application.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8085</span></span><br><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">okhttp:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment"># 开启OKHttp连接池支持</span></span><br><span class="line">  <span class="attr">sentinel:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment"># 开启Feign对Sentinel的整合</span></span><br><span class="line"><span class="attr">hm:</span></span><br><span class="line">  <span class="attr">swagger:</span></span><br><span class="line">    <span class="attr">title:</span> <span class="string">交易服务接口文档</span></span><br><span class="line">    <span class="attr">package:</span> <span class="string">com.hmall.trade.controller</span></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">database:</span> <span class="string">hm-trade</span></span><br></pre></td></tr></table></figure>
+<p>在业务方法前边使用 @GlobalTransactional 注解，也就是在标记事务的起点，将来 TM 就会基于这个方法判断<strong>全局事务范围</strong>，初始化全局事务。</p>
+<h1 id="Seata-分布式事务解决方案"><a href="#Seata-分布式事务解决方案" class="headerlink" title="Seata 分布式事务解决方案"></a>Seata 分布式事务解决方案</h1><ul>
+<li>XA</li>
+<li>TCC</li>
+<li>AT</li>
+<li>SAGA</li>
+</ul>
+<h2 id="XA"><a href="#XA" class="headerlink" title="XA"></a>XA</h2><p>XA 规范 是 X/Open 组织定义的分布式事务处理（DTP，Distributed Transaction Processing）标准，XA 规范 描述了全局的 TM 与局部的 RM 之间的接口，几乎所有主流的数据库都对 XA 规范 提供了支持。</p>
+<h3 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h3><p>一阶段</p>
+<ul>
+<li>事务协调者通知每个事务参与者执行本地事务</li>
+<li>本地事务执行完成后报告事务执行状态给事务协调者，此时事务不提交，继续持有数据库锁</li>
+</ul>
+<p>二阶段</p>
+<ul>
+<li>事务协调者基于一阶段的报告来判断下一步操作</li>
+<li>如果一阶段都成功，则通知所有事务参与者，提交事务</li>
+<li>如果一阶段任意一个参与者失败，则通知所有事务参与者回滚事务</li>
+</ul>
+<h3 id="XA-模型"><a href="#XA-模型" class="headerlink" title="XA 模型"></a>XA 模型</h3><p>RM 一阶段的工作：</p>
+<ol>
+<li>注册分支事务到 TC</li>
+<li>执行分支业务 sql 但不提交</li>
+<li>报告执行状态到 TC</li>
+</ol>
+<p>TC 二阶段的工作：</p>
+<ul>
+<li>TC 检测各分支事务执行状态<ul>
+<li>如果都成功，通知所有 RM 提交事务</li>
+<li>如果有失败，通知所有 RM 回滚事务 </li>
+</ul>
+</li>
+</ul>
+<p>RM 二阶段的工作：</p>
+<ul>
+<li>接收 TC 指令，提交或回滚事务</li>
+</ul>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>XA模式的优点是什么？</p>
+<ul>
+<li>事务的强一致性，满足 ACID 原则</li>
+<li>常用数据库都支持，实现简单，并且没有代码侵入</li>
+</ul>
+<p>XA模式的缺点是什么？</p>
+<ul>
+<li>因为一阶段需要锁定数据库资源，等待二阶段结束才释放，性能较差</li>
+<li>依赖关系型数据库实现事务</li>
+</ul>
+<h3 id="实现-XA"><a href="#实现-XA" class="headerlink" title="实现 XA"></a>实现 XA</h3><ol>
+<li>在 shared-seata.yaml 配置文件中设置：</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">seata:</span></span><br><span class="line">  <span class="attr">data-source-proxy-mode:</span> <span class="string">XA</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>利用 @GlobalTransactional 标记分布式事务的入口方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GlobalTransactional</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Long <span class="title">createOrder</span><span class="params">(OrderFormDTO orderFormDTO)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1. 订单数据</span></span><br><span class="line">    Order order = <span class="keyword">new</span> Order();</span><br><span class="line">    <span class="comment">// 1.1 查询商品</span></span><br><span class="line">    List&lt;OrderDetailDTO&gt; detailDTOS = orderFormDTO.getDetails();</span><br><span class="line">    <span class="comment">// 1.2 ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="AT"><a href="#AT" class="headerlink" title="AT"></a>AT</h2><p>AT 模式同样是分阶段提交的事务模型，不过弥补了 XA 模型中资源锁定周期过长的缺陷。</p>
+<h3 id="AT-模型"><a href="#AT-模型" class="headerlink" title="AT 模型"></a>AT 模型</h3><p>阶段一 RM 的工作：</p>
+<ul>
+<li>注册分支事务</li>
+<li>记录 undo-log（数据快照）</li>
+<li>执行业务 sql 并提交</li>
+<li>报告事务状态</li>
+</ul>
+<p>阶段二提交时 RM 的工作：</p>
+<ul>
+<li>删除undo-log即可</li>
+</ul>
+<p>阶段二回滚时 RM 的工作：</p>
+<ul>
+<li>根据 undo-log 恢复数据到更新前</li>
+</ul>
+<h3 id="流程梳理"><a href="#流程梳理" class="headerlink" title="流程梳理"></a>流程梳理</h3><p>一阶段：</p>
+<ol>
+<li>TM 发起并注册全局事务到 TC</li>
+<li>TM 调用分支事务</li>
+<li>分支事务准备执行业务 SQL</li>
+<li>RM 拦截业务 SQL，根据 where 条件查询原始数据，形成快照。</li>
+<li>RM 执行业务 SQL，提交本地事务，释放数据库锁。此时 money = 90</li>
+<li>RM 报告本地事务状态给 TC</li>
+</ol>
+<p>二阶段：</p>
+<ol>
+<li>TM 通知 TC 事务结束</li>
+<li>TC 检查分支事务状态<ul>
+<li>如果都成功，则立即删除快照</li>
+<li>如果有分支事务失败，需要回滚。读取快照数据，将快照恢复到数据库。此时数据库再次恢复为 初始数据</li>
+</ul>
+</li>
+</ol>
+<h3 id="脏写问题"><a href="#脏写问题" class="headerlink" title="脏写问题"></a>脏写问题</h3><p>在极端情况下，特别是多线程并发访问 AT 模式的分布式事务时，有可能出现脏写问题。在有时事务执行失败回退时是根据快照恢复，再删除快照，然而在<strong>该事务提交完成到删除</strong>这一时间段，另一个事务刚好进来更新，那么就造成了一次更新失败的情况，出现脏写。</p>
+<p>解决思路就是引入了<strong>全局锁</strong>的概念。在释放 DB 锁之前，先拿到全局锁。避免<strong>同一时刻有另外一个事务来操作当前数据</strong>。</p>
+<h2 id="AT-与-XA-的区别"><a href="#AT-与-XA-的区别" class="headerlink" title="AT 与 XA 的区别"></a>AT 与 XA 的区别</h2><p>AT 模式与 XA 模式最大的区别：</p>
+<ul>
+<li>XA 模式一阶段不提交事务，锁定资源；AT模式一阶段<strong>直接提交</strong>，不锁定资源。</li>
+<li>XA 模式依赖数据库机制实现回滚；AT模式<strong>利用数据快照</strong>实现数据回滚。</li>
+<li>XA 模式强一致；AT 模式<strong>最终一致</strong></li>
+</ul>
+<p>可见，AT 模式使用起来更加简单，无业务侵入，性能更好。<br>因此企业 90% 的分布式事务都可以用 AT 模式来解决。</p>
+<h2 id="TCC"><a href="#TCC" class="headerlink" title="TCC"></a>TCC</h2><p>TCC 模式与 AT 模式非常相似，每阶段都是独立事务，不同的是 TCC 通过<strong>人工编码</strong>来实现数据恢复。需要实现三个方法：</p>
+<ul>
+<li>try：资源的检测和预留； </li>
+<li>confirm：完成资源操作业务；要求 try 成功 confirm 一定要能成功。 </li>
+<li>cancel：预留资源释放（回滚），可以理解为try的反向操作。 </li>
+</ul>
+<h3 id="事务悬挂和空回滚"><a href="#事务悬挂和空回滚" class="headerlink" title="事务悬挂和空回滚"></a>事务悬挂和空回滚</h3><p>如一个分布式事务中包含两个分支事务，try 阶段（锁定资源）时一个分支执行成功，另一个分支事务阻塞，如果阻塞时间太长，可能导致全局事务超时而出发<strong>二阶段</strong>的 cancel 操作，两个分支事务都会执行 cancel 操作</p>
+<p>但是一个分支是未执行 try 操作的，直接执行 cancel 操作反而导致数据错误。所以这种情况下尽管 cancel 方法需要执行，但却<strong>不能做</strong>任何回滚操作，因此称为空回滚。</p>
+<p>对于整个空回滚的分支事务，将来 try 方法阻塞结束依然会执行，但是整个全局事务其实已经结束了，因此永远不会再有 confirm 和 cancel ，也就是说这个事务执行了一半，处于悬挂状态。</p>
+<h3 id="TCC-的优缺点"><a href="#TCC-的优缺点" class="headerlink" title="TCC 的优缺点"></a>TCC 的优缺点</h3><p>优点：</p>
+<ul>
+<li>一阶段完成直接提交事务，释放数据库资源，性能好</li>
+<li>相比 AT 模型，无需生成快照，无需使用全局锁，<strong>性能最强</strong></li>
+<li>不依赖数据库事务，而是依赖补偿操作，可以用于非事务型数据库</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>有代码侵入，需要<strong>人为编写</strong> try、Confirm 和 Cancel 接口，太麻烦</li>
+<li>软状态，事务是最终一致</li>
+<li>需要考虑 Confirm 和 Cancel 的失败情况，做好幂等处理、事务悬挂和空回滚处理</li>
+</ul>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/SpringCloud/">SpringCloud</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2023/11/2-backend-springcloud5-transaction/" class="article-date">
+	  <time datetime="2023-11-05T16:00:00.000Z" itemprop="datePublished">十一月 6, 2023</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">3.2k字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <div id="vcomments"></div>
+    <script>
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/',
+					visitor: 'true',
+                    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                    // 表情title和图片映射
+                    emojiMaps: {
+                        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                        // ... 更多表情
+                    }
+				});
+			}
+		}, 1000);
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2024/01/2-backend-mybatisplus1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          🌟 后端 | MybatisPlus 功能与应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2023/10/2-backend-springcloud4-protection/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">🌟 后端 | SpringCloud -&gt; 微服务保护</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CAP-定理"><span class="nav-number">1.</span> <span class="nav-text">CAP 定理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BASE-理论"><span class="nav-number">2.</span> <span class="nav-text">BASE 理论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Seata"><span class="nav-number">3.</span> <span class="nav-text">Seata</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务部署-TC-服务"><span class="nav-number">4.</span> <span class="nav-text">微服务部署 TC 服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库表-持久化"><span class="nav-number">4.1.</span> <span class="nav-text">数据库表 - 持久化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入依赖"><span class="nav-number">4.2.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Seata"><span class="nav-number">4.3.</span> <span class="nav-text">配置 Seata</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Seata-分布式事务解决方案"><span class="nav-number">5.</span> <span class="nav-text">Seata 分布式事务解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#XA"><span class="nav-number">5.1.</span> <span class="nav-text">XA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两阶段提交"><span class="nav-number">5.1.1.</span> <span class="nav-text">两阶段提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XA-模型"><span class="nav-number">5.1.2.</span> <span class="nav-text">XA 模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点"><span class="nav-number">5.1.3.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-XA"><span class="nav-number">5.1.4.</span> <span class="nav-text">实现 XA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AT"><span class="nav-number">5.2.</span> <span class="nav-text">AT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AT-模型"><span class="nav-number">5.2.1.</span> <span class="nav-text">AT 模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程梳理"><span class="nav-number">5.2.2.</span> <span class="nav-text">流程梳理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脏写问题"><span class="nav-number">5.2.3.</span> <span class="nav-text">脏写问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AT-与-XA-的区别"><span class="nav-number">5.3.</span> <span class="nav-text">AT 与 XA 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCC"><span class="nav-number">5.4.</span> <span class="nav-text">TCC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务悬挂和空回滚"><span class="nav-number">5.4.1.</span> <span class="nav-text">事务悬挂和空回滚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCC-的优缺点"><span class="nav-number">5.4.2.</span> <span class="nav-text">TCC 的优缺点</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 353k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

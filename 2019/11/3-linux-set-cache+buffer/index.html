@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>Linux | Linux系统cache/buffer利用过高 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Linux">
+  
+  
+  
+  
+  <meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux | Linux系统cache&#x2F;buffer利用过高">
+<meta property="og:url" content="https://lixupeng.cn/blog/2019/11/3-linux-set-cache+buffer/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lixupeng.cn/blog/img/linux1.jpeg">
+<meta property="og:updated_time" content="2025-07-17T09:32:52.167Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux | Linux系统cache&#x2F;buffer利用过高">
+<meta name="twitter:image" content="https://lixupeng.cn/blog/img/linux1.jpeg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-3-linux-set-cache+buffer" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/linux1.jpeg" rel="gallery_cme70ib3n00ms0hpumrtpazsd">
+        <img src="/blog/img/linux1.jpeg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Linux | Linux系统cache/buffer利用过高
+    </h1>
+  
+
+      </header>
+      <footer class="entry-meta entry-tips">
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/practice/">practice</a>
+
+        
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Linux/">Linux</a></li></ul>
+
+        
+	<span class="ico-date"></span>
+	<a href="/blog/2019/11/3-linux-set-cache+buffer/" class="article-date">
+	  <time datetime="2019-11-25T05:30:21.000Z" itemprop="datePublished">十一月 25, 2019</time>
+	</a>
+
+        <!-- 添加字数统计 -->
+        
+          <span class="ico-fontcount"></span><span class="post-count">1.2k字</span>
+        
+      </footer>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; /proc/sys/vm/drop_caches</span><br></pre></td></tr></table></figure></p>
+<h1 id="什么是buffer-cache"><a href="#什么是buffer-cache" class="headerlink" title="什么是buffer/cache"></a>什么是buffer/cache</h1><p>buffer和cache是两个在计算机技术中被用滥的名词，放在不通语境下会有不同的意义。</p>
+<p>在Linux的内存管理中，这里的buffer指Linux内存的：Buffer cache。这里的cache指Linux内存中的：Page cache。翻译成中文可以叫做缓冲区缓存和页面缓存。</p>
+<p>在历史上，它们一个（buffer）被用来当成对io设备写的缓存，而另一个（cache）被用来当作对io设备的读缓存，这里的io设备，主要指的是块设备文件和文件系统上的普通文件。</p>
+<p>但是现在，它们的意义已经不一样了。在当前的内核中，page cache顾名思义就是针对内存页的缓存，说白了就是，如果有内存是以page进行分配管理的，都可以使用page cache作为其缓存来管理使用。<br>当然，不是所有的内存都是以页（page）进行管理的，也有很多是针对块（block）进行管理的，这部分内存使用如果要用到cache功能，则都集中到buffer cache中来使用。（从这个角度出发，是不是buffer cache改名叫做block cache更好？）<br>然而，也不是所有块（block）都有固定长度，系统上块的长度主要是根据所使用的块设备决定的，而页长度在X86上无论是32位还是64位都是4k。<br><!--more--></p>
+<h1 id="page-cache"><a href="#page-cache" class="headerlink" title="page cache"></a>page cache</h1><p>Page cache主要用来作为文件系统上的文件数据的缓存来用，尤其是针对当进程对文件有read／write操作的时候。如果你仔细想想的话，作为可以映射文件到内存的系统调用：mmap是不是很自然的也应该用到page cache？在当前的系统实现里，page cache也被作为其它文件类型的缓存设备来用，所以事实上page cache也负责了大部分的块设备文件的缓存工作。</p>
+<h1 id="buffer-cache"><a href="#buffer-cache" class="headerlink" title="buffer cache"></a>buffer cache</h1><p>Buffer cache则主要是设计用来在系统对块设备进行读写的时候，对块进行数据缓存的系统来使用。这意味着某些对块的操作会使用buffer cache进行缓存，比如我们在格式化文件系统的时候。一般情况下两个缓存系统是一起配合使用的，比如当我们对一个文件进行写操作的时候，page cache的内容会被改变，而buffer cache则可以用来将page标记为不同的缓冲区，并记录是哪一个缓冲区被修改了。这样，内核在后续执行脏数据的回写（writeback）时，就不用将整个page写回，而只需要写回修改的部分即可。</p>
+<h1 id="如何回收cache"><a href="#如何回收cache" class="headerlink" title="如何回收cache"></a>如何回收cache</h1><p>Linux内核会在内存将要耗尽的时候，触发内存回收的工作，以便释放出内存给急需内存的进程使用。一般情况下，这个操作中主要的内存释放都来自于对buffer／cache的释放。尤其是被使用更多的cache空间。既然它主要用来做缓存，只是在内存够用的时候加快进程对文件的读写速度，那么在内存压力较大的情况下，当然有必要清空释放cache，作为free空间分给相关进程使用。所以一般情况下，我们认为buffer/cache空间可以被释放，这个理解是正确的。</p>
+<p>但是这种清缓存的工作也并不是没有成本。理解cache是干什么的就可以明白清缓存必须保证cache中的数据跟对应文件中的数据一致，才能对cache进行释放。所以伴随着cache清除的行为的，一般都是系统IO飙高。因为内核要对比cache中的数据和对应硬盘文件上的数据是否一致，如果不一致需要写回，之后才能回收。</p>
+<p>在系统中除了内存将被耗尽的时候可以清缓存以外，我们还可以使用下面这个文件来人工触发缓存清除的操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/vm/drop_caches</span><br><span class="line">echo 1 &gt; /proc/sys/vm/drop_caches</span><br><span class="line"></span><br><span class="line">#--这个文件可以设置的值分别为1、2、3。它们所表示的含义为：</span><br><span class="line">echo 1 &gt; /proc/sys/vm/drop_caches     #表示清除pagecache。</span><br><span class="line">echo 2 &gt; /proc/sys/vm/drop_caches     #表示清除回收slab分配器中的对象（包括目录项缓存和inode缓存）。slab分配器是内核中管理内存的一种机制，其中很多缓存数据实现都是用的pagecache。</span><br><span class="line">echo 3 &gt; /proc/sys/vm/drop_caches     #表示清除pagecache和slab分配器中的缓存对象。</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/practice/">practice</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Linux/">Linux</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2019/11/3-linux-set-cache+buffer/" class="article-date">
+	  <time datetime="2019-11-25T05:30:21.000Z" itemprop="datePublished">十一月 25, 2019</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.2k字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <div id="vcomments"></div>
+    <script>
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/',
+					visitor: 'true',
+                    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                    // 表情title和图片映射
+                    emojiMaps: {
+                        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                        // ... 更多表情
+                    }
+				});
+			}
+		}, 1000);
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/12/2-backend-mysql-changecolumnformer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          MySQL | MySQL更改某列值的前几位
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/11/2-backend-mysql-installmysql4win/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">MySQL | win10下安装MySQL8</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是buffer-cache"><span class="nav-number">1.</span> <span class="nav-text">什么是buffer/cache</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#page-cache"><span class="nav-number">2.</span> <span class="nav-text">page cache</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#buffer-cache"><span class="nav-number">3.</span> <span class="nav-text">buffer cache</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何回收cache"><span class="nav-number">4.</span> <span class="nav-text">如何回收cache</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 353k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

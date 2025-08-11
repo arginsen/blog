@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>🌟 语言 | Java 并发：乐观锁与悲观锁 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="JavaBackend">
+  
+  
+  
+  
+  <meta name="keywords" content="Java,Backend">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🌟 语言 | Java 并发：乐观锁与悲观锁">
+<meta property="og:url" content="https://lixupeng.cn/blog/2022/09/2-backend-java+10/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lixupeng.cn/blog/img/java+.jpg">
+<meta property="og:updated_time" content="2025-08-08T10:31:41.241Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🌟 语言 | Java 并发：乐观锁与悲观锁">
+<meta name="twitter:image" content="https://lixupeng.cn/blog/img/java+.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-backend-java+10" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/java+.jpg" rel="gallery_cme70iavk002b0hpuznyhnqbp">
+        <img src="/blog/img/java+.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      🌟 语言 | Java 并发：乐观锁与悲观锁
+    </h1>
+  
+
+      </header>
+      <footer class="entry-meta entry-tips">
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+        
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Java/">Java</a></li></ul>
+
+        
+	<span class="ico-date"></span>
+	<a href="/blog/2022/09/2-backend-java+10/" class="article-date">
+	  <time datetime="2022-09-23T16:00:00.000Z" itemprop="datePublished">九月 24, 2022</time>
+	</a>
+
+        <!-- 添加字数统计 -->
+        
+          <span class="ico-fontcount"></span><span class="post-count">2.5k字</span>
+        
+      </footer>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h1><p>悲观锁总是假设最坏的情况，认为共享资源每次被访问的时候就会出现问题（比如恭喜数据被修改），所以每次在获取资源操作的时候都会<strong>上锁</strong>，这样其他线程想拿到这个资源就会<strong>阻塞</strong>直到锁被上一个持有者释放。也就是说，共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程。</p>
+<p>像 Java 中 synchronized 和 ReentranLock 等独占锁就是悲观锁思想的实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performSynchronisedTask</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">        <span class="comment">// 需要同步的操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">lock.lock();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">   <span class="comment">// 需要同步的操作</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    lock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>高并发的场景下，激烈的锁竞争会造成线程阻塞，大量阻塞线程会导致系统的<strong>上下文切换</strong>，增加系统的<strong>性能开销</strong>。并且，悲观锁还可能会存在死锁问题，影响代码的正常运行。</p>
+<h1 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h1><p>乐观锁总是假设最好的情况，认为共享资源每次被访问的时候不会出现问题，线程可以不停地执行，无需加锁也无需等待，只是在<strong>提交修改</strong>的时候去<strong>验证</strong>对应的资源（也就是数据）是否被其它线程修改了（具体方法可以使用版本号机制或 CAS 算法）。</p>
+<p>高并发的场景下，乐观锁相比悲观锁来说，不存在锁竞争造成线程阻塞，也不会有死锁的问题，在性能上往往会更胜一筹。但是，如果<strong>冲突</strong>频繁发生（写占比非常多的情况），会频繁失败和重试，这样同样会非常影响性能，导致 CPU 飙升。</p>
+<h1 id="悲观锁和乐观锁适用场景"><a href="#悲观锁和乐观锁适用场景" class="headerlink" title="悲观锁和乐观锁适用场景"></a>悲观锁和乐观锁适用场景</h1><ul>
+<li><p>悲观锁通常多用于<strong>写比较多</strong>的情况（多写场景，竞争激烈），这样可以避免频繁失败和重试影响性能，悲观锁的开销是固定的。不过，如果乐观锁解决了频繁失败和重试这个问题的话（比如LongAdder），也是可以考虑使用乐观锁的，要视实际情况而定。</p>
+</li>
+<li><p>乐观锁通常多用于<strong>写比较少</strong>的情况（多读场景，<strong>竞争较少</strong>），这样可以避免频繁加锁影响性能。不过，乐观锁主要针对的对象是<strong>单个共享变量</strong>（参考java.util.concurrent.atomic包下面的原子变量类）。</p>
+</li>
+</ul>
+<h1 id="实现乐观锁"><a href="#实现乐观锁" class="headerlink" title="实现乐观锁"></a>实现乐观锁</h1><p>乐观锁一般会使用版本号机制或 CAS 算法实现，CAS 算法相对来说更多一些，这里需要格外注意。</p>
+<h2 id="版本号机制"><a href="#版本号机制" class="headerlink" title="版本号机制"></a>版本号机制</h2><p>一般是在数据表中加上一个数据版本号 version 字段，表示数据被修改的次数。当数据被修改时，version 值会加一。当线程 A 要更新数据值时，在读取数据的同时也会读取 version 值，在提交更新时，若刚才读取到的 version 值为当前数据库中的 version 值<strong>相等时才更新</strong>，否则重试更新操作，直到更新成功。</p>
+<h2 id="CAS-算法"><a href="#CAS-算法" class="headerlink" title="CAS 算法"></a>CAS 算法</h2><p>CAS 的全称是 <strong>Compare And Swap（比较与交换）</strong> ，用于实现乐观锁，被广泛应用于各大框架中。CAS 的思想很简单，就是用一个预期值和要更新的变量值进行比较，两值相等才会进行更新。</p>
+<p>CAS 是一个原子操作，底层依赖于一条 CPU 的原子指令。</p>
+<p><strong>原子操作</strong> 即最小不可拆分的操作，也就是说操作一旦开始，就不能被打断，直到操作完成。</p>
+<p>CAS 涉及到三个操作数：</p>
+<ul>
+<li>V：要更新的变量值(Var)</li>
+<li>E：预期值(Expected)</li>
+<li>N：拟写入的新值(New)</li>
+</ul>
+<p>当且仅当 <strong>V 的值等于 E</strong> 时，CAS 通过原子方式用<strong>新值 N 来更新 V</strong> 的值。如果不等，说明已经有其它线程更新了 V，则当前线程放弃更新。</p>
+<p>当多个线程同时使用 CAS 操作一个变量时，只有一个会胜出，并成功更新，其余均会失败，但失败的线程并不会被挂起，仅是被告知失败，并且<strong>允许再次尝试</strong>，当然也允许失败的线程放弃操作。</p>
+<h1 id="Java-中的-CAS-实现"><a href="#Java-中的-CAS-实现" class="headerlink" title="Java 中的 CAS 实现"></a>Java 中的 CAS 实现</h1><p>Java 中，实现 CAS 操作的一个关键类是 Unsafe</p>
+<p>Unsafe 类位于 <code>sun.misc</code> 包下，是一个提供低级别、不安全操作的类。由于其强大的功能和潜在的危险性，它通常用于 JVM 内部或一些需要极高性能和底层访问的库中，而不推荐普通开发者在应用程序中使用。</p>
+<p><code>sun.misc</code> 包下的 Unsafe 类提供了 compareAndSwapObject、compareAndSwapInt、compareAndSwapLong 方法来实现的对 Object、int、long 类型的 CAS 操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 以原子方式更新对象字段的值。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> o        要操作的对象</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> offset   对象字段的内存偏移量</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> expected 期望的旧值</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> x        要设置的新值</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 如果值被成功更新，则返回 true；否则返回 false</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">compareAndSwapObject</span><span class="params">(Object o, <span class="keyword">long</span> offset, Object expected, Object x)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 以原子方式更新 int 类型的对象字段的值。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">compareAndSwapInt</span><span class="params">(Object o, <span class="keyword">long</span> offset, <span class="keyword">int</span> expected, <span class="keyword">int</span> x)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 以原子方式更新 long 类型的对象字段的值。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">compareAndSwapLong</span><span class="params">(Object o, <span class="keyword">long</span> offset, <span class="keyword">long</span> expected, <span class="keyword">long</span> x)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>Unsafe 类中的 CAS 方法是 native 方法。native 关键字表明这些方法是用本地代码（通常是 C 或 C++）实现的，而不是用 Java 实现的。这些方法直接调用底层的硬件指令来实现原子操作。也就是说，Java 语言并没有直接用 Java 实现 CAS，而是<strong>通过 C++ 内联汇编</strong>的形式实现的（通过 JNI 调用）。因此，CAS 的具体实现与操作系统以及 CPU 密切相关。</p>
+<p>AtomicInteger 是 Java 的原子类之一，主要用于对 int 类型的变量进行原子操作，它利用Unsafe 类提供的低级别原子操作方法实现无锁的线程安全性。</p>
+<p><code>AtomicInteger</code> 的核心源码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取 Unsafe 实例</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Unsafe unsafe = Unsafe.getUnsafe();</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> valueOffset;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 获取“value”字段在 AtomicInteger 类中的内存偏移量</span></span><br><span class="line">        valueOffset = unsafe.objectFieldOffset</span><br><span class="line">            (AtomicInteger.class.getDeclaredField("value"));</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception ex) &#123; <span class="keyword">throw</span> <span class="keyword">new</span> Error(ex); &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 确保“value”字段的可见性</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> value;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果当前值等于预期值，则原子地将值设置为 newValue</span></span><br><span class="line"><span class="comment">// 使用 Unsafe#compareAndSwapInt 方法进行CAS操作</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">compareAndSet</span><span class="params">(<span class="keyword">int</span> expect, <span class="keyword">int</span> update)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.compareAndSwapInt(<span class="keyword">this</span>, valueOffset, expect, update);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原子地将当前值加 delta 并返回旧值</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndAdd</span><span class="params">(<span class="keyword">int</span> delta)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, delta);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原子地将当前值加 1 并返回加之前的值（旧值）</span></span><br><span class="line"><span class="comment">// 使用 Unsafe#getAndAddInt 方法进行CAS操作。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndIncrement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原子地将当前值减 1 并返回减之前的值（旧值）</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndDecrement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, -<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Unsafe#getAndAddInt</code> 源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原子地获取并增加整数值</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndAddInt</span><span class="params">(Object o, <span class="keyword">long</span> offset, <span class="keyword">int</span> delta)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="comment">// 以 volatile 方式获取对象 o 在内存偏移量 offset 处的整数值</span></span><br><span class="line">        v = getIntVolatile(o, offset);</span><br><span class="line">    &#125; <span class="keyword">while</span> (!compareAndSwapInt(o, offset, v, v + delta));</span><br><span class="line">    <span class="comment">// 返回旧值</span></span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>getAndAddInt 使用了 do-while 循环：在 compareAndSwapInt 操作失败时，会不断重试直到成功。也就是说，getAndAddInt 方法会通过 compareAndSwapInt 方法来尝试更新 value 的值，如果更新失败（当前值在此期间被其他线程修改），它会重新获取当前值并再次尝试更新，直到操作成功。</p>
+<h1 id="CAS-算法的问题"><a href="#CAS-算法的问题" class="headerlink" title="CAS 算法的问题"></a>CAS 算法的问题</h1><h2 id="ABA-问题"><a href="#ABA-问题" class="headerlink" title="ABA 问题"></a>ABA 问题</h2><p>如果一个变量 V 初次读取的时候是 A 值，并且在准备赋值的时候查到它仍然是 A 值，那我们就能说明它的值没有被其他线程修改过了吗？很明显是不能的，因为在这段时间它的值可能被改为其他值，然后又改回 A，那 CAS 操作就会误认为它从来没有修改过的，这个问题就被称为 CAS 操作的 ABA 问题。</p>
+<p>ABA 问题的解决思路就是在变量前追加版本号或时间戳。AtomicStampedReference 类就是用来解决 ABA 问题的，其中的 <code>compareAndSet()</code> 方法就是首先检查当前引用是否等于预期引用，并且当前标志是否等于预期标志，如果全部相等，则以原子方式将该引用和该标志的值设置为给定的更新值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">compareAndSet</span><span class="params">(V   expectedReference,</span></span></span><br><span class="line"><span class="function"><span class="params">                             V   newReference,</span></span></span><br><span class="line"><span class="function"><span class="params">                             <span class="keyword">int</span> expectedStamp,</span></span></span><br><span class="line"><span class="function"><span class="params">                             <span class="keyword">int</span> newStamp)</span> </span>&#123;</span><br><span class="line">    Pair&lt;V&gt; current = pair;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">        expectedReference == current.reference &amp;&amp;</span><br><span class="line">        expectedStamp == current.stamp &amp;&amp;</span><br><span class="line">        ((newReference == current.reference &amp;&amp;</span><br><span class="line">          newStamp == current.stamp) ||</span><br><span class="line">         casPair(current, Pair.of(newReference, newStamp)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="循环时间长开销大"><a href="#循环时间长开销大" class="headerlink" title="循环时间长开销大"></a>循环时间长开销大</h2><p>CAS 经常会用到自旋操作来进行重试，也就是不成功就一直循环执行直到成功。如果长时间不成功，会给 CPU 带来非常大的执行开销。</p>
+<p>如果 JVM 能够支持<strong>处理器</strong>提供的 pause 指令，那么自旋操作的效率将有所提升。pause指令有两个重要作用：</p>
+<ul>
+<li>延迟流水线执行指令：pause 指令可以<strong>延迟指令的执行</strong>，从而减少 CPU 的资源消耗。具体的延迟时间取决于处理器的实现版本，在某些处理器上，延迟时间可能为零。</li>
+<li>避免内存顺序冲突：在退出循环时，pause 指令可以避免由于<strong>内存顺序冲突</strong>而导致的 CPU <strong>流水线被清空</strong>，从而提高 CPU 的执行效率。</li>
+</ul>
+<h2 id="只能保证一个共享变量的原子操作"><a href="#只能保证一个共享变量的原子操作" class="headerlink" title="只能保证一个共享变量的原子操作"></a>只能保证一个共享变量的原子操作</h2><p>CAS 操作仅能对单个共享变量有效。当需要操作多个共享变量时，CAS 就显得无能为力。</p>
+<p>从 JDK 1.5 开始，Java 提供了 AtomicReference 类，这使得我们能够保证引用对象之间的原子性。通过将多个变量封装在一个对象中，我们可以使用 AtomicReference 来执行 CAS 操作。</p>
+<p>除了 AtomicReference 这种方式之外，还可以利用加锁来保证。</p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Java/">Java</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2022/09/2-backend-java+10/" class="article-date">
+	  <time datetime="2022-09-23T16:00:00.000Z" itemprop="datePublished">九月 24, 2022</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">2.5k字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <div id="vcomments"></div>
+    <script>
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/',
+					visitor: 'true',
+                    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                    // 表情title和图片映射
+                    emojiMaps: {
+                        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                        // ... 更多表情
+                    }
+				});
+			}
+		}, 1000);
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2022/10/2-backend-java+11/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          🌟 语言 | Java 并发：线程池
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2022/09/2-backend-java+9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">🌟 语言 | Java 并发：JMM（内存模型）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#悲观锁"><span class="nav-number">1.</span> <span class="nav-text">悲观锁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#乐观锁"><span class="nav-number">2.</span> <span class="nav-text">乐观锁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#悲观锁和乐观锁适用场景"><span class="nav-number">3.</span> <span class="nav-text">悲观锁和乐观锁适用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现乐观锁"><span class="nav-number">4.</span> <span class="nav-text">实现乐观锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#版本号机制"><span class="nav-number">4.1.</span> <span class="nav-text">版本号机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAS-算法"><span class="nav-number">4.2.</span> <span class="nav-text">CAS 算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-中的-CAS-实现"><span class="nav-number">5.</span> <span class="nav-text">Java 中的 CAS 实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CAS-算法的问题"><span class="nav-number">6.</span> <span class="nav-text">CAS 算法的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ABA-问题"><span class="nav-number">6.1.</span> <span class="nav-text">ABA 问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环时间长开销大"><span class="nav-number">6.2.</span> <span class="nav-text">循环时间长开销大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只能保证一个共享变量的原子操作"><span class="nav-number">6.3.</span> <span class="nav-text">只能保证一个共享变量的原子操作</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 353k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

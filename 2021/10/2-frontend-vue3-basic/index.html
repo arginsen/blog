@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>🔥 前端 | vue3 语法 - 相比 vue2 的升级 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendVue">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🔥 前端 | vue3 语法 - 相比 vue2 的升级">
+<meta property="og:url" content="https://lixupeng.cn/blog/2021/10/2-frontend-vue3-basic/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lixupeng.cn/blog/img/vue.jpg">
+<meta property="og:updated_time" content="2025-07-31T17:49:32.491Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🔥 前端 | vue3 语法 - 相比 vue2 的升级">
+<meta name="twitter:image" content="https://lixupeng.cn/blog/img/vue.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-vue3-basic" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/vue.jpg" rel="gallery_cme70ib2i00lf0hpuot1f3ezl">
+        <img src="/blog/img/vue.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      🔥 前端 | vue3 语法 - 相比 vue2 的升级
+    </h1>
+  
+
+      </header>
+      <footer class="entry-meta entry-tips">
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+        
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Vue/">Vue</a></li></ul>
+
+        
+	<span class="ico-date"></span>
+	<a href="/blog/2021/10/2-frontend-vue3-basic/" class="article-date">
+	  <time datetime="2021-10-03T10:45:00.000Z" itemprop="datePublished">十月 3, 2021</time>
+	</a>
+
+        <!-- 添加字数统计 -->
+        
+          <span class="ico-fontcount"></span><span class="post-count">2.7k字</span>
+        
+      </footer>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<p>主要对 vue3 新的语法及书写习惯作以整理。</p>
+<h1 id="createApp"><a href="#createApp" class="headerlink" title="createApp"></a>createApp</h1><p>返回一个提供应用上下文的应用实例。应用实例挂载的整个组件树共享同一个上下文。</p>
+<p>createApp 接收一个根组件选项对象作为第一个参数, 第二个参数是根 prop, 可以直接在 ‘app’ 节点渲染出 username</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = createApp(App, &#123; username: <span class="string">'Al'</span> &#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h1><p>setup 函数是一个新的组件选项，作为在 组件内使用组合式 API 的入口</p>
+<p>setup 接收两个参数： props、context</p>
+<p>setup 函数中的 props 是响应式的，当传入新的 props 时会更新，同时也不能使用解构赋值来取值。当然也可以用 toRefs 将 props 转为一组 ref 值的对象，再获取。此外传入的 props 可能读取y一个可选的属性，若该属性没有，则应该使用 toRef 来为 props 的该属性新创建一个 ref</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    title?: <span class="built_in">String</span></span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(props.title)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> &#123; title &#125; = toRefs(props)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> title = toRef(props, <span class="string">'title'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>context 是一个普通的 js 对象，它暴露了一些值</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">    <span class="comment">// Attribute (非响应式对象，等同于 $attrs)</span></span><br><span class="line">    <span class="built_in">console</span>.log(context.attrs)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 插槽 (非响应式对象，等同于 $slots)</span></span><br><span class="line">    <span class="built_in">console</span>.log(context.slots)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 触发事件 (方法，等同于 $emit)</span></span><br><span class="line">    <span class="built_in">console</span>.log(context.emit)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 暴露公共 property (函数)</span></span><br><span class="line">    <span class="built_in">console</span>.log(context.expose)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以对 context 直接使用解构</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup(props, &#123; attrs, slots, emit, expose &#125;) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="lt-script-setup-gt"><a href="#lt-script-setup-gt" class="headerlink" title="&lt;script setup&gt;"></a><code>&lt;script setup&gt;</code></h1><p><code>&lt;script setup&gt;</code> 是在单文件组件（SFC）中使用组合式 API 的编译时语法糖。</p>
+<ol>
+<li>更少的样板内容，更简洁的代码</li>
+<li>能够使用纯 typescript 声明 props 和抛出事件</li>
+<li>更好的运行时性能</li>
+<li>更好的 IDE 类型推断性能</li>
+</ol>
+<h2 id="一般语法"><a href="#一般语法" class="headerlink" title="一般语法"></a>一般语法</h2><p>里面的代码会被编译成组件 setup() 函数的内容。这意味着与普通的 <code>&lt;script&gt;</code> 只在组件被首次引入的时候执行一次不同，<code>&lt;script setup&gt;</code> 中的代码会在每次组件实例被创建的时候执行。</p>
+<p>其内定义的变量均会直接暴露给模板，包括导入的组件，实际也是可以直接在模板使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> &#123; capitalize &#125; <span class="keyword">from</span> <span class="string">'./helpers'</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> MyComponent <span class="keyword">from</span> <span class="string">'./MyComponent.vue'</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">  <span class="comment">// 变量</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> msg = <span class="string">'Hello!'</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">  <span class="comment">// 函数</span></span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(msg)</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"log"</span>&gt;</span>&#123;&#123; msg &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123; capitalize('hello') &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">MyComponent</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h2><p>组件被引用为变量而不是作为字符串键来注册的，使用动态组件时用动态的 <code>:is</code> 来绑定</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> Foo <span class="keyword">from</span> <span class="string">'./Foo.vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> Bar <span class="keyword">from</span> <span class="string">'./Bar.vue'</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">"Foo"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">"someCondition ? Foo : Bar"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="递归组件"><a href="#递归组件" class="headerlink" title="递归组件"></a>递归组件</h2><p>一个单文件组件可以通过它的文件名被自身所引用。但这种方式相比 import 导入的组件优先级更低</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- ./FooBar.vue --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> &#123; FooBar <span class="keyword">as</span> FooBarChild &#125; <span class="keyword">from</span> <span class="string">'./components'</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 直接书写 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">FooBar</span>/&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 同名优先所以起个别名 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">FooBarChild</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="命名空间组件"><a href="#命名空间组件" class="headerlink" title="命名空间组件"></a>命名空间组件</h2><p>可以使用带点的组件标记, 来直接在模板中写入嵌套组件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> * <span class="keyword">as</span> Form <span class="keyword">from</span> <span class="string">'./form-components'</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Form.Input</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Form.Label</span>&gt;</span>label<span class="tag">&lt;/<span class="name">Form.Label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Form.Input</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="defineprops-和-defineEmits"><a href="#defineprops-和-defineEmits" class="headerlink" title="defineprops 和 defineEmits"></a>defineprops 和 defineEmits</h2><p>在 <code>&lt;script setup&gt;</code> 中必须使用 defineProps 和 defineEmits API 来声明 props 和 emits ，它们具备完整的类型推断并且在 <code>&lt;script setup&gt;</code> 中是直接可用的</p>
+<p>两者是只有在 <code>&lt;script setup&gt;</code> 中才能使用的编译器宏。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> props = defineProps(&#123;</span></span><br><span class="line"><span class="javascript">    showText: &#123; <span class="attr">type</span>: <span class="built_in">Boolean</span>, <span class="attr">default</span>: <span class="literal">true</span> &#125;,</span></span><br><span class="line"><span class="javascript">    reload: &#123; <span class="attr">type</span>: <span class="built_in">Boolean</span> &#125;,</span></span><br><span class="line">  &#125;)</span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> emit = defineEmits([<span class="string">'close'</span>])</span></span><br><span class="line"></span><br><span class="line">  if (props.reload) &#123;</span><br><span class="line"><span class="javascript">    emit(<span class="string">'close'</span>)</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"showText"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以上生命 props 和 emits 均使用 vue 运行时生命，可以提供默认值。</p>
+<p>此外也可以使用纯类型语法作为参数给 defineProps 和 defineEmits 来声明。但是每次只能使用一种。使用 TS 类型声明时，静态分析会自动生成等效的运行时声明，以消除双重声明的需要并仍然保证正确的运行时行为</p>
+<p>采用 TS 的类型声明时，可以通过 withDefault 编译器宏来提供默认值</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="comment">// 接口形式</span></span></span><br><span class="line">  interface Props &#123;</span><br><span class="line">    showText?: boolean</span><br><span class="line">    reload?: boolean</span><br><span class="line">  &#125;</span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> props = withDeaults(defineProps&lt;Props&gt;(), &#123;</span></span><br><span class="line"><span class="javascript">    showText: <span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">    reload: <span class="literal">false</span></span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"><span class="javascript">  <span class="comment">// 直接书写</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> props = withDeaults(defineProps&lt;&#123;</span></span><br><span class="line">    showText?: boolean</span><br><span class="line">    reload?: boolean</span><br><span class="line">  &#125;&gt;(), &#123;</span><br><span class="line"><span class="javascript">    showText: <span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">    reload: <span class="literal">false</span></span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"><span class="javascript">  <span class="comment">// emit 的书写</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> emit = defineEmits&lt;&#123;</span></span><br><span class="line"><span class="javascript">    (e: <span class="string">'close'</span>): <span class="keyword">void</span></span></span><br><span class="line">  &#125;&gt;()</span><br><span class="line"></span><br><span class="line">  if (props.reload) &#123;</span><br><span class="line"><span class="javascript">    emit(<span class="string">'close'</span>)</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"showText"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="defineExpose"><a href="#defineExpose" class="headerlink" title="defineExpose"></a>defineExpose</h2><p>使用 ‘<code>&lt;script setup&gt;</code>‘ 的组件是默认关闭的，不会暴露任何在 ‘<code>&lt;script setup&gt;</code>‘ 中声明的绑定。为了在 ‘<code>&lt;script setup&gt;</code>‘ 组件中明确要暴露出去的属性，使用 defineExpose 编译器宏</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">const</span> a = <span class="number">1</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">const</span> b = ref(<span class="number">2</span>)</span></span><br><span class="line"></span><br><span class="line">defineExpose(&#123;</span><br><span class="line">  a,</span><br><span class="line">  b</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="与普通的-lt-script-gt-一起使用"><a href="#与普通的-lt-script-gt-一起使用" class="headerlink" title="与普通的 &lt;script&gt; 一起使用"></a>与普通的 <code>&lt;script&gt;</code> 一起使用</h2><p><code>&lt;script setup&gt;</code> 可以和普通的 <code>&lt;script&gt;</code> 一起使用。普通的 <code>&lt;script&gt;</code> 在有这些需要的情况下或许会被使用到：</p>
+<ol>
+<li>无法在 <code>&lt;script setup&gt;</code> 声明的选项，例如 inheritAttrs 或通过插件启用的自定义的选项。</li>
+<li>声明命名导出。</li>
+<li>运行副作用或者创建只需要执行一次的对象。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="xml">// 普通 <span class="tag">&lt;<span class="name">script</span>&gt;</span>, 在模块范围下执行(只执行一次)</span></span><br><span class="line">runSideEffectOnce()</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="comment">// 声明额外的选项</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  inheritAttrs: <span class="literal">false</span>,</span></span><br><span class="line">  customOptions: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="comment">// 在 setup() 作用域中执行 (对每个实例皆如此)</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="顶层-await"><a href="#顶层-await" class="headerlink" title="顶层 await"></a>顶层 await</h2><p><code>&lt;script setup&gt;</code> 中可以使用顶层 <code>await</code>。结果代码会被编译成 <code>async setup()</code>; await 的表达式会自动编译成在 await 之后保留当前组件实例上下文的格式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> post = <span class="keyword">await</span> fetch(<span class="string">`/api/post/1`</span>).then(<span class="function"><span class="params">r</span> =&gt;</span> r.json())</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="组合式生命周期钩子"><a href="#组合式生命周期钩子" class="headerlink" title="组合式生命周期钩子"></a>组合式生命周期钩子</h1><p>从 vue 中导入所需钩子，在 setup 内直接使用</p>
+<p>组合式 API 与 option API 大致一致，区别是取消掉了 beforeCreate 和 created ，其他钩子的在 setup 中使用，书写习惯多了前缀 on</p>
+<p>因为 setup 是围绕 beforeCreate 和 created 生命周期钩子运行的，所以不要显示地定义它们</p>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beforeMount</td>
+<td>onBeforeMount</td>
+</tr>
+<tr>
+<td>mounted</td>
+<td>onMounted</td>
+</tr>
+<tr>
+<td>beforeUpdate</td>
+<td>onBeforeUpdate</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>onUpdated</td>
+</tr>
+<tr>
+<td>beforeUnmount</td>
+<td>onBeforeUnmount</td>
+</tr>
+<tr>
+<td>unmounted</td>
+<td>onUnmounted</td>
+</tr>
+<tr>
+<td>errorCaptured</td>
+<td>onErrorCaptured</td>
+</tr>
+<tr>
+<td>renderTracked</td>
+<td>onRenderTracked</td>
+</tr>
+<tr>
+<td>renderTriggered</td>
+<td>onRenderTriggered</td>
+</tr>
+<tr>
+<td>activated</td>
+<td>onActivated</td>
+</tr>
+<tr>
+<td>deactivated</td>
+<td>onDeactivated</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; onMounted, onUpdated, onUnmounted &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> MyComponent = &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    onMounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'mounted!'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    onUpdated(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'updated!'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    onUnmounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'unmounted!'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="响应式书写"><a href="#响应式书写" class="headerlink" title="响应式书写"></a>响应式书写</h1><p><a href="./2-frontend-vue3-reactivity.html">vue3响应式系统</a></p>
+<h2 id="toRef"><a href="#toRef" class="headerlink" title="toRef"></a>toRef</h2><p>toRef 可以用来为一个 reactive 对象的属性创建一个 ref</p>
+<p>被用来获取 props 内属性时，若不存在该属性就新定义一个，toRefs 则不能处理可选的 prop</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup(props) &#123;</span><br><span class="line">    useSomeFeature(toRef(props, <span class="string">'foo'</span>))</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="toRefs"><a href="#toRefs" class="headerlink" title="toRefs"></a>toRefs</h2><p>把一个响应式对象转换成普通对象，该普通对象的每个 property 都是一个 ref ，和响应式对象 property 一一对应。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> state = reactive(&#123;</span><br><span class="line">  foo: <span class="number">1</span>,</span><br><span class="line">  bar: <span class="number">2</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stateAsRefs = toRefs(state)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以进行解构赋值</span></span><br><span class="line"><span class="keyword">const</span> &#123; foo, bar &#125; = toRefs(state)</span><br></pre></td></tr></table></figure>
+<h1 id="defineComponent"><a href="#defineComponent" class="headerlink" title="defineComponent"></a>defineComponent</h1><p>defineComponent 只返回传递给它的对象。但是，就类型而言，返回的值有一个合成类型的构造函数，用于手动渲染函数、TSX 和 IDE 工具支持</p>
+<p>此外为使 TypeScript 正确推断 Vue 组件选项中的类型，需要使用 defineComponent 全局方法定义组件：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang=<span class="string">"ts"</span>&gt;</span><br><span class="line">  <span class="keyword">import</span> &#123; defineComponent &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span><br><span class="line">    <span class="comment">// 已启用类型推断</span></span><br><span class="line">  &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="typescript"><a href="#typescript" class="headerlink" title="typescript"></a>typescript</h1><ol>
+<li>在 setup() 函数中，不需要将类型传递给 props 参数，会从 props 组件选项推断类型</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Component = defineComponent(&#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    message: &#123;</span><br><span class="line">      <span class="keyword">type</span>: <span class="built_in">String</span>,</span><br><span class="line">      required: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  setup(props) &#123;</span><br><span class="line">    <span class="keyword">const</span> result = props.message.split(<span class="string">''</span>) <span class="comment">// 正确, 'message' 被声明为字符串</span></span><br><span class="line">    <span class="keyword">const</span> filtered = props.message.filter(<span class="function"><span class="params">p</span> =&gt;</span> p.value) <span class="comment">// 将引发错误: Property 'filter' does not exist on type 'string'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>定义 ref 值会根据初始值推断类型</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Component = defineComponent(&#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> year = ref(<span class="number">2020</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> result = year.value.split(<span class="string">''</span>) <span class="comment">// =&gt; Property 'split' does not exist on type 'number'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 有时也会为 ref 值定义复杂类型</span></span><br><span class="line"><span class="keyword">const</span> year = ref&lt;<span class="built_in">string</span> | <span class="built_in">number</span>&gt;(<span class="string">'2020'</span>)</span><br><span class="line">year.value = <span class="number">2020</span> <span class="comment">// ok!</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>声明 reactive 类型, 有三种表现接口的形式均可</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Book &#123;</span><br><span class="line">  title: <span class="built_in">string</span></span><br><span class="line">  year?: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span><br><span class="line">  name: <span class="string">'HelloWorld'</span>,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> book = reactive&lt;Book&gt;(&#123; title: <span class="string">'Vue 3 Guide'</span> &#125;)</span><br><span class="line">    <span class="comment">// or</span></span><br><span class="line">    <span class="keyword">const</span> book: Book = reactive(&#123; title: <span class="string">'Vue 3 Guide'</span> &#125;)</span><br><span class="line">    <span class="comment">// or</span></span><br><span class="line">    <span class="keyword">const</span> book = reactive(&#123; title: <span class="string">'Vue 3 Guide'</span> &#125;) <span class="keyword">as</span> Book</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>computed 计算值会根据返回值自动推断类型，若返回值用法不对则报错</li>
+</ol>
+<h1 id="片段"><a href="#片段" class="headerlink" title="片段"></a>片段</h1><p>vue3 支持多根节点的组件，在 template 下一级可以直接书写多个标签，不像 vue2 必须用 div 包裹它们</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span>...<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">main</span> <span class="attr">v-bind</span>=<span class="string">"$attrs"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span>...<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="teleport"><a href="#teleport" class="headerlink" title="teleport"></a>teleport</h1><p>teleport 允许我们控制在 dom 中哪个父节点下渲染 html，而不必使用全局状态或将其拆分成两个组件.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// teleport 标签将被渲染到 body 节点下</span></span><br><span class="line">app.component(<span class="string">'modal-button'</span>, &#123;</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;button @click="modalOpen = true"&gt;</span></span><br><span class="line"><span class="string">        Open full screen modal! (With teleport!)</span></span><br><span class="line"><span class="string">    &lt;/button&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &lt;teleport to="body"&gt;</span></span><br><span class="line"><span class="string">      &lt;div v-if="modalOpen" class="modal"&gt;</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">          I'm a teleported modal! </span></span><br><span class="line"><span class="string">          (My parent is "body")</span></span><br><span class="line"><span class="string">          &lt;button @click="modalOpen = false"&gt;</span></span><br><span class="line"><span class="string">            Close</span></span><br><span class="line"><span class="string">          &lt;/button&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;/teleport&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; </span><br><span class="line">      modalOpen: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>此外，teleport 内如果包裹 vue 的组件，那其将依旧是 teleport 父组件的逻辑子组件</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 即使在不同的地方渲染 child-component，</span></span><br><span class="line"><span class="comment">// 它仍将是 parent-component 的子级，</span></span><br><span class="line"><span class="comment">// 并将从中接收 name prop</span></span><br><span class="line"><span class="keyword">const</span> app = Vue.createApp(&#123;</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;h1&gt;Root instance&lt;/h1&gt;</span></span><br><span class="line"><span class="string">    &lt;parent-component /&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.component(<span class="string">'parent-component'</span>, &#123;</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;h2&gt;This is a parent component&lt;/h2&gt;</span></span><br><span class="line"><span class="string">    &lt;teleport to="body"&gt;</span></span><br><span class="line"><span class="string">      &lt;child-component name="John" /&gt;</span></span><br><span class="line"><span class="string">    &lt;/teleport&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.component(<span class="string">'child-component'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'name'</span>],</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;Hello, &#123;&#123; name &#125;&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="provide-inject"><a href="#provide-inject" class="headerlink" title="provide/inject"></a>provide/inject</h1><p>用于父子组件传值，无论组件层次结构有多深，父组件都可以作为其所有子组件的依赖提供者。父组件使用 provide 提供数据，子组件使用 inject 来提取使用这些数据</p>
+<p>provide 和 inject 启用依赖注入。只能在当前活动实例的 setup 中调用。</p>
+<p>类型声明：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> InjectionKey&lt;T&gt; <span class="keyword">extends</span> Symbol &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">provide</span>&lt;<span class="title">T</span>&gt;(<span class="params">key: InjectionKey&lt;T&gt; | <span class="built_in">string</span>, value: T</span>): <span class="title">void</span></span></span><br></pre></td></tr></table></figure>
+<p>Vue 提供了一个 InjectionKey 接口，该接口是扩展了 Symbol 的泛型类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; InjectionKey, provide, inject &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> key: InjectionKey&lt;<span class="built_in">string</span>&gt; = Symbol()</span><br><span class="line"></span><br><span class="line">provide(key, <span class="string">'foo'</span>) <span class="comment">// 若提供非字符串值将出错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> foo = inject(key) <span class="comment">// foo 的类型: string | undefined</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Vue/">Vue</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2021/10/2-frontend-vue3-basic/" class="article-date">
+	  <time datetime="2021-10-03T10:45:00.000Z" itemprop="datePublished">十月 3, 2021</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">2.7k字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <div id="vcomments"></div>
+    <script>
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/',
+					visitor: 'true',
+                    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                    // 表情title和图片映射
+                    emojiMaps: {
+                        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                        // ... 更多表情
+                    }
+				});
+			}
+		}, 1000);
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2021/10/2-frontend-vite/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          🔥 前端 | Vite 使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2021/10/2-frontend-vue3-practice/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">🔥 前端 | vue3 项目的创建</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#createApp"><span class="nav-number">1.</span> <span class="nav-text">createApp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#setup"><span class="nav-number">2.</span> <span class="nav-text">setup</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lt-script-setup-gt"><span class="nav-number">3.</span> <span class="nav-text">&lt;script setup&gt;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一般语法"><span class="nav-number">3.1.</span> <span class="nav-text">一般语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态组件"><span class="nav-number">3.2.</span> <span class="nav-text">动态组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归组件"><span class="nav-number">3.3.</span> <span class="nav-text">递归组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名空间组件"><span class="nav-number">3.4.</span> <span class="nav-text">命名空间组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#defineprops-和-defineEmits"><span class="nav-number">3.5.</span> <span class="nav-text">defineprops 和 defineEmits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#defineExpose"><span class="nav-number">3.6.</span> <span class="nav-text">defineExpose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与普通的-lt-script-gt-一起使用"><span class="nav-number">3.7.</span> <span class="nav-text">与普通的 &lt;script&gt; 一起使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顶层-await"><span class="nav-number">3.8.</span> <span class="nav-text">顶层 await</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合式生命周期钩子"><span class="nav-number">4.</span> <span class="nav-text">组合式生命周期钩子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应式书写"><span class="nav-number">5.</span> <span class="nav-text">响应式书写</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#toRef"><span class="nav-number">5.1.</span> <span class="nav-text">toRef</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#toRefs"><span class="nav-number">5.2.</span> <span class="nav-text">toRefs</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#defineComponent"><span class="nav-number">6.</span> <span class="nav-text">defineComponent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#typescript"><span class="nav-number">7.</span> <span class="nav-text">typescript</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#片段"><span class="nav-number">8.</span> <span class="nav-text">片段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#teleport"><span class="nav-number">9.</span> <span class="nav-text">teleport</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#provide-inject"><span class="nav-number">10.</span> <span class="nav-text">provide/inject</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 353k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>🔥 Linux | Linux学习笔记Ⅲ：目录与文件 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Linux">
+  
+  
+  
+  
+  <meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🔥 Linux | Linux学习笔记Ⅲ：目录与文件">
+<meta property="og:url" content="https://lixupeng.cn/blog/2019/08/3-linux-3/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lixupeng.cn/blog/img/linux1.jpeg">
+<meta property="og:updated_time" content="2025-07-31T18:04:08.547Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🔥 Linux | Linux学习笔记Ⅲ：目录与文件">
+<meta name="twitter:image" content="https://lixupeng.cn/blog/img/linux1.jpeg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-3-linux-3" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/linux1.jpeg" rel="gallery_cme70ib3m00mo0hpua8yl9rpy">
+        <img src="/blog/img/linux1.jpeg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      🔥 Linux | Linux学习笔记Ⅲ：目录与文件
+    </h1>
+  
+
+      </header>
+      <footer class="entry-meta entry-tips">
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+        
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Linux/">Linux</a></li></ul>
+
+        
+	<span class="ico-date"></span>
+	<a href="/blog/2019/08/3-linux-3/" class="article-date">
+	  <time datetime="2019-08-20T06:41:00.000Z" itemprop="datePublished">八月 20, 2019</time>
+	</a>
+
+        <!-- 添加字数统计 -->
+        
+          <span class="ico-fontcount"></span><span class="post-count">1.3k字</span>
+        
+      </footer>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="Linux目录"><a href="#Linux目录" class="headerlink" title="Linux目录"></a>Linux目录</h1><p>Linux的目录结构为树状结构，最顶级的目录为根目录 /<br>其他目录通过挂载可以将它们添加到树中，通过解除挂载可以移除它们</p>
+<p>绝对路径由根目录写起<br>相对路径用..代替相同的路径</p>
+<p>补： 从/usr/share/doc 要到 /usr/share/man 底下时，可以写成: <code>cd ../man</code> </p>
+<h2 id="处理目录的常用命令"><a href="#处理目录的常用命令" class="headerlink" title="处理目录的常用命令"></a>处理目录的常用命令</h2><ul>
+<li>ls: 列出目录</li>
+<li>cd：切换目录</li>
+<li>pwd：显示目前的目录</li>
+<li>mkdir：创建一个新的目录</li>
+<li>rmdir：删除一个空的目录</li>
+<li>cp: 复制文件或目录</li>
+<li>rm: 移除文件或目录</li>
+<li>mv: 移动文件与目录，或修改文件与目录的名称</li>
+</ul>
+<p>#可使用man [命令] 来查看各个命令的使用文档</p>
+<h3 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir [-mp] 目录名称</span><br><span class="line">mkdir -m 711 test              # -m：创建权限为 rwx--x--x 的目录</span><br><span class="line">mkdir -p test1/test2/test3     # -p ：直接将所需要的目录(包含上一级目录)递归创建起来</span><br></pre></td></tr></table></figure>
+<h3 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h3><p>删除空的目录,非空可以用<code>rm</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [-p] 目录名称       # -p ：连同上一级(空的)目录也一起删除</span><br></pre></td></tr></table></figure></p>
+<h3 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp [-adfilprsu] 来源档 目标档</span><br><span class="line">cp [options] source1 source2 source3 .... directory</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-a：相当於 -pdr 的意思，至於 pdr 请参考下列说明；(常用)</li>
+<li>-d：若来源档为连结档的属性(link file)，则复制连结档属性而非文件本身；</li>
+<li>-f：为强制(force)的意思，若目标文件已经存在且无法开启，则移除后再尝试一次；</li>
+<li>-i：若目标档(destination)已经存在时，在覆盖时会先询问动作的进行(常用)</li>
+<li>-l：进行硬式连结(hard link)的连结档创建，而非复制文件本身；</li>
+<li>-p：连同文件的属性一起复制过去，而非使用默认属性(备份常用)；</li>
+<li>-r：递归持续复制，用於目录的复制行为；(常用)</li>
+<li>-s：复制成为符号连结档 (symbolic link)，亦即『捷径』文件；</li>
+<li>-u：若 destination 比 source 旧才升级 destination！</li>
+</ul>
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [-fir] 文件或目录</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-f ：就是 force 的意思，忽略不存在的文件，不会出现警告信息；</li>
+<li>-i ：互动模式，在删除前会询问使用者是否动作</li>
+<li>-r ：递归删除</li>
+</ul>
+<h3 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv [-fiu] source destination</span><br><span class="line">mv [options] source1 source2 source3 .... directory       #多个来源复制至一个目录</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-f ：force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖；</li>
+<li>-i ：若目标文件 (destination) 已经存在时，就会询问是否覆盖！</li>
+<li>-u ：若目标文件已经存在，且 source 比较新，才会升级 (update)</li>
+</ul>
+<h1 id="Linux文件"><a href="#Linux文件" class="headerlink" title="Linux文件"></a>Linux文件</h1><h2 id="Linux常见文件查看命令"><a href="#Linux常见文件查看命令" class="headerlink" title="Linux常见文件查看命令"></a>Linux常见文件查看命令</h2><ul>
+<li>cat  由第一行开始显示文件内容</li>
+<li>tac  从最后一行开始显示，可以看出 tac 是 cat 的倒著写！</li>
+<li>nl   显示的时候，顺道输出行号！</li>
+<li>more 一页一页的显示文件内容</li>
+<li>less 与 more 类似，但是比 more 更好的是，他可以往前翻页！</li>
+<li>head 只看头几行</li>
+<li>tail 只看尾巴几行</li>
+</ul>
+<h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat [-AbEnTv]</span><br></pre></td></tr></table></figure>
+<p>-A ：相当於 -vET 的整合选项，可列出一些特殊字符而不是空白而已；<br>-b ：列出行号，仅针对非空白行做行号显示，空白行不标行号！<br>-E ：将结尾的断行字节 $ 显示出来；<br>-n ：列印出行号，连同空白行也会有行号，与 -b 的选项不同；<br>-T ：将 [tab] 按键以 ^I 显示出来；<br>-v ：列出一些看不出来的特殊字符</p>
+<h3 id="nl"><a href="#nl" class="headerlink" title="nl"></a>nl</h3><p>显示行号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nl [-bnw] 文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-b ：指定行号指定的方式，主要有两种：<br>  -b a ：表示不论是否为空行，也同样列出行号(类似 cat -n)；<br>  -b t ：如果有空行，空的那一行不要列出行号(默认值)；</li>
+<li>-n ：列出行号表示的方法，主要有三种：<br>  -n ln ：行号在荧幕的最左方显示；<br>  -n rn ：行号在自己栏位的最右方显示，且不加 0 ；<br>  -n rz ：行号在自己栏位的最右方显示，且加 0 ；</li>
+<li>-w ：行号栏位的占用的位数。</li>
+</ul>
+<h3 id="more"><a href="#more" class="headerlink" title="more"></a>more</h3><p>一页一页的翻动</p>
+<p>进入查阅后：</p>
+<ul>
+<li>空白键 (space) ：代表向下翻一页；</li>
+<li>Enter         ：代表向下翻『一行』；</li>
+<li>/字串          ：代表在这个显示的内容当中，向下搜寻『字串』这个关键字；</li>
+<li>:f            ：立刻显示出档名以及目前显示的行数；</li>
+<li>q             ：代表立刻离开 more ，不再显示该文件内容。</li>
+<li>b 或 [ctrl]-b ：代表往回翻页，不过这动作只对文件有用，对管线无用。</li>
+</ul>
+<h3 id="less"><a href="#less" class="headerlink" title="less"></a>less</h3><p>一页一页翻动</p>
+<p>进入查阅后：</p>
+<ul>
+<li>空白键    ：向下翻动一页；</li>
+<li>[pagedown]：向下翻动一页；</li>
+<li>[pageup]  ：向上翻动一页；</li>
+<li>/字串     ：向下搜寻『字串』的功能；</li>
+<li>?字串     ：向上搜寻『字串』的功能；</li>
+<li>n         ：重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>N         ：反向的重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>q         ：离开 less 这个程序；</li>
+</ul>
+<h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><p>取出文件前面几行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head [-n number] 文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-n ：后面接数字，代表显示几行的意思</li>
+</ul>
+<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>取出文件后面几行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail [-n number] 文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-n ：后面接数字，代表显示几行的意思</li>
+<li>-f ：表示持续侦测后面所接的档名，要等到按下[ctrl]-c才会结束tail的侦测</li>
+</ul>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Linux/">Linux</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2019/08/3-linux-3/" class="article-date">
+	  <time datetime="2019-08-20T06:41:00.000Z" itemprop="datePublished">八月 20, 2019</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.3k字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <div id="vcomments"></div>
+    <script>
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/',
+					visitor: 'true',
+                    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                    // 表情title和图片映射
+                    emojiMaps: {
+                        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                        // ... 更多表情
+                    }
+				});
+			}
+		}, 1000);
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/10/3-linux-set-downloadfromserver/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux | 将app放在服务器供人下载
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/08/3-linux-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Linux | Linux学习笔记Ⅱ：文件基本属性</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux目录"><span class="nav-number">1.</span> <span class="nav-text">Linux目录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#处理目录的常用命令"><span class="nav-number">1.1.</span> <span class="nav-text">处理目录的常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mkdir"><span class="nav-number">1.1.1.</span> <span class="nav-text">mkdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rmdir"><span class="nav-number">1.1.2.</span> <span class="nav-text">rmdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cp"><span class="nav-number">1.1.3.</span> <span class="nav-text">cp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm"><span class="nav-number">1.1.4.</span> <span class="nav-text">rm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mv"><span class="nav-number">1.1.5.</span> <span class="nav-text">mv</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux文件"><span class="nav-number">2.</span> <span class="nav-text">Linux文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux常见文件查看命令"><span class="nav-number">2.1.</span> <span class="nav-text">Linux常见文件查看命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cat"><span class="nav-number">2.1.1.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nl"><span class="nav-number">2.1.2.</span> <span class="nav-text">nl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#more"><span class="nav-number">2.1.3.</span> <span class="nav-text">more</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less"><span class="nav-number">2.1.4.</span> <span class="nav-text">less</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head"><span class="nav-number">2.1.5.</span> <span class="nav-text">head</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tail"><span class="nav-number">2.1.6.</span> <span class="nav-text">tail</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 353k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>🔥 前端 | Cors | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendBrowserHTTPCors">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,Browser,HTTP,Cors">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🔥 前端 | Cors">
+<meta property="og:url" content="https://lixupeng.cn/blog/2021/07/2-frontend-cors/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lixupeng.cn/blog/img/cors.jpg">
+<meta property="og:updated_time" content="2025-07-31T17:58:11.432Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🔥 前端 | Cors">
+<meta name="twitter:image" content="https://lixupeng.cn/blog/img/cors.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-cors" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/cors.jpg" rel="gallery_cme70iaxi008t0hpuqkmn65fr">
+        <img src="/blog/img/cors.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      🔥 前端 | Cors
+    </h1>
+  
+
+      </header>
+      <footer class="entry-meta entry-tips">
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+        
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Browser/">Browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Cors/">Cors</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/HTTP/">HTTP</a></li></ul>
+
+        
+	<span class="ico-date"></span>
+	<a href="/blog/2021/07/2-frontend-cors/" class="article-date">
+	  <time datetime="2021-07-04T16:00:00.000Z" itemprop="datePublished">七月 5, 2021</time>
+	</a>
+
+        <!-- 添加字数统计 -->
+        
+          <span class="ico-fontcount"></span><span class="post-count">1.7k字</span>
+        
+      </footer>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<p>Cors 是一个 W3C 标准，全称是跨域资源共享（Cross-origin resource sharing）</p>
+<p>Cors 允许浏览器向跨源服务器，发出 <code>XMLHttpRequest</code> 请求。</p>
+<h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><p>Cors 需要浏览器和服务器同时支持。</p>
+<p>整个 Cors 通信是浏览器自动完成，不需要用户参与。对于开发者来说，Cors 通信与同源的 Ajax 通信没有差别，代码完全一样。浏览器识别出 Ajax 请求跨源，就会自动添加一些附加的头信息。</p>
+<h1 id="Cors-请求"><a href="#Cors-请求" class="headerlink" title="Cors 请求"></a>Cors 请求</h1><p>Cors 请求可分为两类：简单请求和非简单请求</p>
+<p>只要同时满足以下两大条件，就属于简单请求：</p>
+<p>（1) 请求方法是以下三种方法之一：</p>
+<ul>
+<li>HEAD</li>
+<li>GET</li>
+<li>POST</li>
+</ul>
+<p>（2）HTTP的头信息不超出以下几种字段：</p>
+<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Last-Event-ID</li>
+<li>Content-Type：只限于三个值<code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>、<code>text/plain</code></li>
+</ul>
+<h2 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h2><p>对于简单请求，浏览器直接发出 Cors 请求。浏览器会在<strong>请求头</strong>信息之中，增加一个 <code>Origin</code> 字段，用来说明，本次请求的源（协议+域名+端口）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /cors HTTP/1.1</span><br><span class="line">Origin: http://api.bob.com</span><br><span class="line">Host: api.alice.com</span><br><span class="line">Accept-Language: en-US</span><br><span class="line">Connection: keep-alive</span><br><span class="line">User-Agent: Mozilla/5.0...</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>如果 <code>Origin</code> 指定的源不在许可范围内，服务器会返回一个正常的 HTTP 响应，但响应的头信息没有包含 <code>Access-Control-Allow-Origin</code> 字段，浏览器就会抛出一个错误，被 <code>XMLHttpRequest</code> 的 <code>onerror</code> 回调函数捕获（这种错误无法通过状态码识别，有可能是200） </p>
+</li>
+<li><p>如果 Origin 指定的域名在许可范围内，服务器返回的<strong>响应头</strong>信息里，就会多出几个字段：</p>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http://api.bob.com</span><br><span class="line">Access-Control-Allow-Credentials: true</span><br><span class="line">Access-Control-Expose-Headers: FooBar</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Access-Control-Allow-Origin<br>该字段是必须的。其值为请求时 Origin 字段的值，要么是一个 * （表示接受任意域名的请求）</p>
+</li>
+<li><p>Access-Control-Allow-Credentials<br>该字段可选。为一个布尔值，表示是否允许发送 Cookie。默认 Cookie 不在 Cors 请求中，设为 <code>true</code> 时表示服务器允许 Cookie 置于请求中发给服务器</p>
+</li>
+<li><p>Access-Control-Expose-Headers<br>该字段可选。CORS 请求时，<code>XMLHttpRequest</code> 对象的 <code>getResponseHeader()</code> 方法只能拿到6个基本字段：<code>Cache-Control</code>、<code>Content-Language</code>、<code>Content-Type</code>、<code>Expires</code>、<code>Last-Modified</code>、<code>Pragma</code>。如果想拿到其他字段，就必须在 Access-Control-Expose-Headers 里面指定。如上，通过 <code>getResponseHeader(&#39;FooBar&#39;)</code>，就可返回 <code>Foobar</code> 字段</p>
+</li>
+</ul>
+<h3 id="withCredentials"><a href="#withCredentials" class="headerlink" title="withCredentials"></a>withCredentials</h3><p>Cors 请求默认不发送 Cookie 和 HTTP 认证信息。如果要把 Cookie 发到服务器，一方面要服务器同意；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Credentials: true</span><br></pre></td></tr></table></figure>
+<p>另一方面，必须在 Ajax 请求中打开 withCredentials 属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.withCredentials = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，如果要发送 <code>Cookie</code>，<code>Access-Control-Allow-Origin</code> 就<strong>不能</strong>设为星号，必须指定明确的、与请求网页一致的域名。同时，Cookie 依然遵循同源政策，只有用服务器域名设置的 Cookie 才会上传，其他域名的 Cookie 并不会上传，且（跨源）原网页代码中的 <code>document.cookie</code> 也无法读取服务器域名下的 Cookie。</p>
+<h2 id="非简单请求"><a href="#非简单请求" class="headerlink" title="非简单请求"></a>非简单请求</h2><p>非简单请求是对服务器有特殊要求的请求，比如请求方法是 <code>PUT</code> 或 <code>DELETE</code>，或者 <code>Content-Type</code> 字段的类型是 <code>application/json</code>。</p>
+<h3 id="预检请求"><a href="#预检请求" class="headerlink" title="预检请求"></a>预检请求</h3><p>非简单请求的 Cors 请求，会在正式通信之前，增加一次 HTTP 查询请求，称预检请求。<br>浏览器会先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些 HTTP 动词和头信息字段。在得到肯定答复后，浏览器才发出正式的 <code>XMLHttpRequest</code> 请求，否则就报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">'http://api.alice.com/cors'</span>;</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">'PUT'</span>, url, <span class="literal">true</span>);</span><br><span class="line">xhr.setRequestHeader(<span class="string">'X-Custom-Header'</span>, <span class="string">'value'</span>);</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
+<p>上面代码中，HTTP 请求的方法是 PUT，并且发送一个自定义头信息 <code>X-Custom-Header</code>。</p>
+<p>浏览器发现，这是一个非简单请求，就自动发出一个”预检”请求，要求服务器确认可以这样请求。下面是这个”预检”请求的 HTTP 头信息：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS /cors HTTP/1.1</span><br><span class="line">Origin: http://api.bob.com</span><br><span class="line">Access-Control-Request-Method: PUT</span><br><span class="line">Access-Control-Request-Headers: X-Custom-Header</span><br><span class="line">Host: api.alice.com</span><br><span class="line">Accept-Language: en-US</span><br><span class="line">Connection: keep-alive</span><br><span class="line">User-Agent: Mozilla/5.0...</span><br></pre></td></tr></table></figure>
+<p>“预检”请求用的请求方法是 <code>OPTIONS</code>，表示这个请求是用来询问的。头信息里面，关键字段是Origin，表示请求来自哪个源。</p>
+<p>除了 Origin 字段，”预检”<strong>请求</strong>的头信息包括两个特殊字段。</p>
+<ul>
+<li><p>Access-Control-Request-Method<br>该字段是必须的，用来列出浏览器的 CORS 请求会用到哪些 HTTP 方法，上例是PUT。</p>
+</li>
+<li><p>Access-Control-Request-Headers<br>该字段是一个逗号分隔的字符串，指定浏览器 CORS 请求会额外发送的头信息字段，上例是<code>X-Custom-Header</code>。</p>
+</li>
+</ul>
+<h3 id="预检请求的响应"><a href="#预检请求的响应" class="headerlink" title="预检请求的响应"></a>预检请求的响应</h3><p>服务器收到”预检”请求以后，检查了 <code>Origin</code>、<code>Access-Control-Request-Method</code> 和 <code>Access-Control-Request-Headers</code> 字段以后，确认允许跨源请求，就可以做出回应。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Date: Mon, 01 Dec 2008 01:15:39 GMT</span><br><span class="line">Server: Apache/2.0.61 (Unix)</span><br><span class="line">Access-Control-Allow-Origin: http://api.bob.com</span><br><span class="line">Access-Control-Allow-Methods: GET, POST, PUT</span><br><span class="line">Access-Control-Allow-Headers: X-Custom-Header</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Encoding: gzip</span><br><span class="line">Content-Length: 0</span><br><span class="line">Keep-Alive: timeout=2, max=100</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Type: text/plain</span><br></pre></td></tr></table></figure>
+<p>上面的 HTTP 回应中，关键的是 <code>Access-Control-Allow-Origin</code> 字段，表示 <code>http://api.bob.com</code> 可以请求数据。该字段也可以设为 <code>*</code>，表示同意任意跨源请求。</p>
+<p>如果服务器否定了”预检”请求，会返回一个正常的 HTTP 回应，但是没有任何 CORS 相关的头信息字段。这时，浏览器就会认定，服务器不同意预检请求，因此触发一个错误，被 <code>XMLHttpRequest</code> 对象的 <code>onerror</code> 回调函数捕获。控制台会打印出如下的报错信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">XMLHttpRequest cannot load http://api.alice.com.</span><br><span class="line">Origin http://api.bob.com is not allowed by Access-Control-Allow-Origin.</span><br></pre></td></tr></table></figure>
+<p>同时服务器响应的其他字段：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Methods: GET, POST, PUT</span><br><span class="line">Access-Control-Allow-Headers: X-Custom-Header</span><br><span class="line">Access-Control-Allow-Credentials: true</span><br><span class="line">Access-Control-Max-Age: 1728000</span><br></pre></td></tr></table></figure>
+<h3 id="浏览器正常请求和响应"><a href="#浏览器正常请求和响应" class="headerlink" title="浏览器正常请求和响应"></a>浏览器正常请求和响应</h3><p>服务器通过预检请求，<strong>之后</strong>每次浏览器正常的 Cors 请求，都跟简单请求一样，会有一个 Origin 请求头信息字段。服务器的回应，也都会有一个 <code>Access-Control-Allow-Origin</code> 响应头信息字段。</p>
+<p>Cors 请求：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PUT /cors HTTP/1.1</span><br><span class="line">Origin: http://api.bob.com</span><br><span class="line">Host: api.alice.com</span><br><span class="line">X-Custom-Header: value</span><br><span class="line">Accept-Language: en-US</span><br><span class="line">Connection: keep-alive</span><br><span class="line">User-Agent: Mozilla/5.0...</span><br></pre></td></tr></table></figure>
+<p>服务器响应：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http://api.bob.com</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h1 id="与JSONP的比较"><a href="#与JSONP的比较" class="headerlink" title="与JSONP的比较"></a>与JSONP的比较</h1><p>CORS与JSONP的使用目的相同，但是比JSONP更强大。</p>
+<p>JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>跨域资源共享 CORS 详解：<a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/04/cors.html</a></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Browser/">Browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Cors/">Cors</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/HTTP/">HTTP</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2021/07/2-frontend-cors/" class="article-date">
+	  <time datetime="2021-07-04T16:00:00.000Z" itemprop="datePublished">七月 5, 2021</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.7k字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <div id="vcomments"></div>
+    <script>
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/',
+					visitor: 'true',
+                    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                    // 表情title和图片映射
+                    emojiMaps: {
+                        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                        // ... 更多表情
+                    }
+				});
+			}
+		}, 1000);
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2021/07/2-frontend-fetch/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          前端 | Fetch API
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2021/07/2-frontend-ajax/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">🔥 前端 | Ajax</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前提"><span class="nav-number">1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cors-请求"><span class="nav-number">2.</span> <span class="nav-text">Cors 请求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单请求"><span class="nav-number">2.1.</span> <span class="nav-text">简单请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#withCredentials"><span class="nav-number">2.1.1.</span> <span class="nav-text">withCredentials</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非简单请求"><span class="nav-number">2.2.</span> <span class="nav-text">非简单请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预检请求"><span class="nav-number">2.2.1.</span> <span class="nav-text">预检请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预检请求的响应"><span class="nav-number">2.2.2.</span> <span class="nav-text">预检请求的响应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器正常请求和响应"><span class="nav-number">2.2.3.</span> <span class="nav-text">浏览器正常请求和响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#与JSONP的比较"><span class="nav-number">3.</span> <span class="nav-text">与JSONP的比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 353k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

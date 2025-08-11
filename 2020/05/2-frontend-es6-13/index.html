@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>前端 | ES6笔记 | 十三、模块 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendES6">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 | ES6笔记 | 十三、模块">
+<meta property="og:url" content="https://lixupeng.cn/blog/2020/05/2-frontend-es6-13/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lixupeng.cn/blog/img/es6.jpg">
+<meta property="og:updated_time" content="2025-07-17T09:32:52.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 | ES6笔记 | 十三、模块">
+<meta name="twitter:image" content="https://lixupeng.cn/blog/img/es6.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-es6-13" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/es6.jpg" rel="gallery_cme70iay200a20hpub6c516il">
+        <img src="/blog/img/es6.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      前端 | ES6笔记 | 十三、模块
+    </h1>
+  
+
+      </header>
+      <footer class="entry-meta entry-tips">
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+        
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li></ul>
+
+        
+	<span class="ico-date"></span>
+	<a href="/blog/2020/05/2-frontend-es6-13/" class="article-date">
+	  <time datetime="2020-05-30T12:45:21.000Z" itemprop="datePublished">五月 30, 2020</time>
+	</a>
+
+        <!-- 添加字数统计 -->
+        
+          <span class="ico-fontcount"></span><span class="post-count">1.9k字</span>
+        
+      </footer>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
+<ul>
+<li>在 ES6 之前，社区制定了一些模块加载方案，最主要的有 CommonJS 和 AMD 两种。前者用于服务器，后者用于浏览器。</li>
+<li>ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案。</li>
+<li>ES6 模块的设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。CommonJS 和 AMD 模块，都只能在运行时确定这些东西</li>
+<li>ES6 模块通过export命令显式指定输出的代码，再通过import命令输入。</li>
+</ul>
+</blockquote>
+<h1 id="ES6-的严格模式"><a href="#ES6-的严格模式" class="headerlink" title="ES6 的严格模式"></a>ES6 的严格模式</h1><p>ES6 的模块自动采用严格模式，具有以下限制：</p>
+<ul>
+<li>变量必须声明后再使用</li>
+<li>函数的参数不能有同名属性，否则报错</li>
+<li>不能使用 with 语句</li>
+<li>不能对只读属性赋值，否则报错</li>
+<li>不能使用前缀 0 表示八进制数，否则报错</li>
+<li>不能删除不可删除的属性，否则报错</li>
+<li>不能删除变量 <code>delete prop</code>，会报错，只能删除属性 <code>delete global[prop]</code></li>
+<li>eval 不会在它的外层作用域引入变量</li>
+<li>eval 和 arguments 不能被重新赋值</li>
+<li>arguments 不会自动反映函数参数的变化</li>
+<li>不能使用 arguments.callee</li>
+<li>不能使用 arguments.caller</li>
+<li>禁止 this 指向全局对象，ES6 模块之中，顶层的 this 指向 undefined</li>
+<li>不能使用 fn.caller 和 fn.arguments 获取函数调用的堆栈</li>
+<li>增加了保留字（比如 protected、static 和 interface）</li>
+</ul>
+<h1 id="export"><a href="#export" class="headerlink" title="export"></a>export</h1><blockquote>
+<p>模块功能主要由两个命令构成：export 和 import。export 命令用于规定模块的对外接口，import 命令用于输入其他模块提供的功能。</p>
+</blockquote>
+<blockquote>
+<p>一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。外部能够读取模块内部的某个变量，就必须使用 export 关键字输出该变量</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从 profile.js 输出变量</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> firstName = <span class="string">'Michael'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> lastName = <span class="string">'Jackson'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> year = <span class="number">1958</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者写为</span></span><br><span class="line"><span class="keyword">var</span> firstName = <span class="string">'Michael'</span>;</span><br><span class="line"><span class="keyword">var</span> lastName = <span class="string">'Jackson'</span>;</span><br><span class="line"><span class="keyword">var</span> year = <span class="number">1958</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; firstName, lastName, year &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出函数</span></span><br><span class="line"><span class="comment">// 直接输出,也可用大括号写函数名输出</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">multiply</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x * y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出多个函数并用 as 重命名</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">v1</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">v2</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">  v1 <span class="keyword">as</span> streamV1,   <span class="comment">// 将 v1 重命名为 streamV1</span></span><br><span class="line">  v2 <span class="keyword">as</span> streamV2,</span><br><span class="line">  v2 <span class="keyword">as</span> streamLatestVersion</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// export命令规定的是对外的接口，必须与模块内部的变量建立一一对应关系</span></span><br><span class="line"><span class="comment">// 要想输出声明的变量名、函数名、类名，都得加括号</span></span><br><span class="line"><span class="comment">// 错误示例</span></span><br><span class="line"><span class="keyword">var</span> m = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">export</span> m;  <span class="comment">// 没加括号</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确示例</span></span><br><span class="line"><span class="comment">// 写法一</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> m = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法二</span></span><br><span class="line"><span class="keyword">var</span> m = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">export</span> &#123;m&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法三</span></span><br><span class="line"><span class="keyword">var</span> n = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">export</span> &#123;n <span class="keyword">as</span> m&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="import"><a href="#import" class="headerlink" title="import"></a>import</h1><blockquote>
+<ul>
+<li>使用 import 导入模块， form 后接模块的相对位置，用单引号表示，若只写模块名，则应配置。</li>
+<li>import命令具有提升效果，会提升到整个模块的头部，首先执行</li>
+<li>import 命令输入的变量都是只读的，因为它的本质是输入接口，如果该输入变量指向一个对象，那么可以改写其属性。但最后仅仅用于使用</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在其他 js 文件里 profile.js 输入变量</span></span><br><span class="line"><span class="keyword">import</span> &#123; firstName, lastName, year &#125; <span class="keyword">from</span> <span class="string">'./profile.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">  element.textContent = firstName + <span class="string">' '</span> + lastName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行所加载的模块，但不输入任何值</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'lodash'</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="模块的整体加载"><a href="#模块的整体加载" class="headerlink" title="模块的整体加载"></a>模块的整体加载</h1><blockquote>
+<p>除了指定加载某个输出值，还可以使用整体加载，即用星号（*）指定一个对象，所有输出值都加载在这个对象上面。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出 circle 模块</span></span><br><span class="line"><span class="comment">// circle.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">area</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.PI * radius * radius;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">circumference</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">2</span> * <span class="built_in">Math</span>.PI * radius;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在 main.js 加载 circle 模块</span></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> circle <span class="keyword">from</span> <span class="string">'./circle'</span>;  <span class="comment">// 将所有输出的变量标记为 circle 对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过新标记的对象 circle 调用该模块的方法</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'圆面积：'</span> + circle.area(<span class="number">4</span>));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'圆周长：'</span> + circle.circumference(<span class="number">14</span>));</span><br></pre></td></tr></table></figure>
+<h1 id="export-default"><a href="#export-default" class="headerlink" title="export default"></a>export default</h1><blockquote>
+<p>为了方便用户调用模块，使用该命令为模块指定默认输出。<br>export default 命令用于指定模块的默认输出。因此一个模块只能有一个默认输出，所以，import 命令后面不用加大括号，因为它对应唯一的 export default 命令。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 该模块默认输出一个函数</span></span><br><span class="line"><span class="comment">// export-default.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'foo'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载上边模块时可以为该匿名函数指定任意名字</span></span><br><span class="line"><span class="comment">// import-default.js</span></span><br><span class="line"><span class="keyword">import</span> customName <span class="keyword">from</span> <span class="string">'./export-default'</span>;</span><br><span class="line">customName(); <span class="comment">// 'foo'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认输出  不用 &#123;&#125; 直接写函数名 crc32</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">crc32</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 输出</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> crc32 <span class="keyword">from</span> <span class="string">'crc32'</span>; <span class="comment">// 输入</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正常输出</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">crc32</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 输出</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;crc32&#125; <span class="keyword">from</span> <span class="string">'crc32'</span>; <span class="comment">// 输入</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// export default 的本质，就是预加了一个中转的变量 default，使得一对一成立</span></span><br><span class="line"><span class="comment">// 默认输出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> add;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">import</span> foo <span class="keyword">from</span> <span class="string">'modules'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于正常的：</span></span><br><span class="line"><span class="keyword">export</span> &#123;add <span class="keyword">as</span> <span class="keyword">default</span>&#125;;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> foo &#125; <span class="keyword">from</span> <span class="string">'modules'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 相应的，一些表述</span></span><br><span class="line"><span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> a;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同时输入默认方法和其他接口</span></span><br><span class="line"><span class="keyword">import</span> a, &#123; each, forEach &#125; <span class="keyword">from</span> <span class="string">'lodash'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// export default也可以用来输出类</span></span><br><span class="line"><span class="comment">// MyClass.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> MyClass <span class="keyword">from</span> <span class="string">'MyClass'</span>;</span><br><span class="line"><span class="keyword">let</span> o = <span class="keyword">new</span> MyClass();</span><br></pre></td></tr></table></figure>
+<h1 id="export-与-import-的复合写法"><a href="#export-与-import-的复合写法" class="headerlink" title="export 与 import 的复合写法"></a>export 与 import 的复合写法</h1><blockquote>
+<p>如果在一个模块之中，先输入后输出同一个模块，import 语句可以与 export 语句写在一起</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 同一模块中</span></span><br><span class="line"><span class="keyword">import</span> &#123; foo, bar &#125; <span class="keyword">from</span> <span class="string">'my_module'</span>;</span><br><span class="line"><span class="keyword">export</span> &#123; foo, bar &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以写为</span></span><br><span class="line"><span class="keyword">export</span> &#123; foo, bar &#125; <span class="keyword">from</span> <span class="string">'my_module'</span>;</span><br><span class="line"><span class="comment">// 相当于对外转发了这两个接口，导致当前模块不能直接使用 foo 和 bar</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认接口写为</span></span><br><span class="line"><span class="keyword">export</span> &#123; <span class="keyword">default</span> &#125; <span class="keyword">from</span> <span class="string">'foo'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 具名接口改为默认接口</span></span><br><span class="line"><span class="keyword">export</span> &#123; es6 <span class="keyword">as</span> <span class="keyword">default</span> &#125; <span class="keyword">from</span> <span class="string">'./someModule'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于输入 es6，又默认输出 es6</span></span><br><span class="line"><span class="keyword">import</span> &#123; es6 &#125; <span class="keyword">from</span> <span class="string">'./someModule'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> es6;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认接口改为具名接口</span></span><br><span class="line"><span class="keyword">export</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> es6 &#125; <span class="keyword">from</span> <span class="string">'./someModule'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> _ <span class="keyword">as</span> es6 <span class="keyword">from</span> <span class="string">'./someModule'</span>;</span><br><span class="line"><span class="keyword">export</span> &#123; es6 &#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="模块的继承"><a href="#模块的继承" class="headerlink" title="模块的继承"></a>模块的继承</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// circleplus.js 继承 circle.js 模块</span></span><br><span class="line"><span class="comment">// circleplus.js</span></span><br><span class="line"><span class="comment">// -------------</span></span><br><span class="line"><span class="comment">// export * 命令会忽略 circle 模块的 default 方法</span></span><br><span class="line"><span class="keyword">export</span> * <span class="keyword">from</span> <span class="string">'circle'</span>;  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义输出变量</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> e = <span class="number">2.71828182846</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义输出默认方法</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;   </span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.exp(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将 circle 的属性或方法改名后再输出</span></span><br><span class="line"><span class="comment">// 只输出 circle 模块的 area 方法并改名为 circleArea</span></span><br><span class="line"><span class="keyword">export</span> &#123; area <span class="keyword">as</span> circleArea &#125; <span class="keyword">from</span> <span class="string">'circle'</span>;</span><br><span class="line"><span class="comment">// -------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="comment">// -------------</span></span><br><span class="line"><span class="comment">// 输入 circleplus 模块所有变量，放进对象 math 里</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> math <span class="keyword">from</span> <span class="string">'circleplus'</span>;   <span class="comment">// import * 不会输入默认</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 输入 circleplus 模块默认输出，取名为 exp</span></span><br><span class="line"><span class="keyword">import</span> exp <span class="keyword">from</span> <span class="string">'circleplus'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 得到该模块后，就可以调用其方法</span></span><br><span class="line"><span class="built_in">console</span>.log(exp(math.e));</span><br><span class="line"><span class="comment">// -------------</span></span><br></pre></td></tr></table></figure>
+<h1 id="跨模块常量"><a href="#跨模块常量" class="headerlink" title="跨模块常量"></a>跨模块常量</h1><blockquote>
+<p>const 声明的常量只在当前代码块有效，但有时一些常量需要跨模块使用</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// constants.js 模块</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> A = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> B = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> C = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// test1.js 模块</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> constants <span class="keyword">from</span> <span class="string">'./constants'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(constants.A); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(constants.B); <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// test2.js 模块</span></span><br><span class="line"><span class="keyword">import</span> &#123;A, B&#125; <span class="keyword">from</span> <span class="string">'./constants'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(A); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(B); <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果要使用的常量非常多，可以建一个专门的 constants 目录，</span></span><br><span class="line"><span class="comment">// 将各种常量写在不同的文件里面，保存在该目录下。</span></span><br><span class="line"><span class="comment">// 然后，将这些文件输出的常量，合并在常量索引文件 index.js 里面。</span></span><br><span class="line"><span class="comment">// 使用的时候，直接加载 index.js 就可以了。</span></span><br></pre></td></tr></table></figure>
+<h1 id="import-1"><a href="#import-1" class="headerlink" title="import()"></a>import()</h1><p>待补充…</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://wangdoc.com/es6/module.html" target="_blank" rel="noopener">网道- ES6教程 - Module 的语法</a></p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2020/05/2-frontend-es6-13/" class="article-date">
+	  <time datetime="2020-05-30T12:45:21.000Z" itemprop="datePublished">五月 30, 2020</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">1.9k字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <div id="vcomments"></div>
+    <script>
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/',
+					visitor: 'true',
+                    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                    // 表情title和图片映射
+                    emojiMaps: {
+                        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                        // ... 更多表情
+                    }
+				});
+			}
+		}, 1000);
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/06/2-frontend-vue-basic/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          前端 | Vue 学习笔记Ⅰ：Vue 核心
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/05/2-frontend-es6-12/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">前端 | ES6笔记 | 十二、类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ES6-的严格模式"><span class="nav-number">2.</span> <span class="nav-text">ES6 的严格模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#export"><span class="nav-number">3.</span> <span class="nav-text">export</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#import"><span class="nav-number">4.</span> <span class="nav-text">import</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块的整体加载"><span class="nav-number">5.</span> <span class="nav-text">模块的整体加载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#export-default"><span class="nav-number">6.</span> <span class="nav-text">export default</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#export-与-import-的复合写法"><span class="nav-number">7.</span> <span class="nav-text">export 与 import 的复合写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块的继承"><span class="nav-number">8.</span> <span class="nav-text">模块的继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跨模块常量"><span class="nav-number">9.</span> <span class="nav-text">跨模块常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#import-1"><span class="nav-number">10.</span> <span class="nav-text">import()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">11.</span> <span class="nav-text">参考资料</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 353k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

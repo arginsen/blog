@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>🔥 前端 | Vite 使用 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="FrontendVite">
+  
+  
+  
+  
+  <meta name="keywords" content="Frontend,Vite">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🔥 前端 | Vite 使用">
+<meta property="og:url" content="https://lixupeng.cn/blog/2021/10/2-frontend-vite/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lixupeng.cn/blog/img/vite.jpg">
+<meta property="og:updated_time" content="2025-07-31T17:49:35.623Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🔥 前端 | Vite 使用">
+<meta name="twitter:image" content="https://lixupeng.cn/blog/img/vite.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-frontend-vite" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/vite.jpg" rel="gallery_cme70ib2100ki0hpu9t4u31tf">
+        <img src="/blog/img/vite.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      🔥 前端 | Vite 使用
+    </h1>
+  
+
+      </header>
+      <footer class="entry-meta entry-tips">
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+        
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Vite/">Vite</a></li></ul>
+
+        
+	<span class="ico-date"></span>
+	<a href="/blog/2021/10/2-frontend-vite/" class="article-date">
+	  <time datetime="2021-10-03T10:45:00.000Z" itemprop="datePublished">十月 3, 2021</time>
+	</a>
+
+        <!-- 添加字数统计 -->
+        
+          <span class="ico-fontcount"></span><span class="post-count">810字</span>
+        
+      </footer>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<a id="more"></a>
+<h1 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h1><p>通过 npm 直接调用 vite 初始化一个 vue 模板的项目<br>模板可选: vue, vue-ts, react, react-ts 等</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm 6.x</span></span><br><span class="line">npm init vite@latest my-vue-app --template vue-ts</span><br><span class="line"></span><br><span class="line"><span class="comment"># npm 7+, 需要额外的双横线：</span></span><br><span class="line">npm init vite@latest my-vue-app -- --template vue</span><br><span class="line"></span><br><span class="line"><span class="comment"># yarn</span></span><br><span class="line">yarn create vite my-vue-app --template vue</span><br></pre></td></tr></table></figure>
+<p>初始化后可以发现 index.html 在项目最外层而不是在 public , 在开发期间 Vite 是一个服务器，index.html 是该 Vite 项目的入口文件</p>
+<p>vite 将 index.html 视为源码和模块图的一部分。vite 解析 <code>&lt;script type=&quot;module&quot; src=&quot;&quot;&gt;</code>, script 标签的 module 模式可以直接加载 js 模块源码</p>
+<p>vite 的根目录用 <code>&lt;root&gt;</code> 来代称，一般以当前工作目录作为根目录启动开发服务器，也可以通过 <code>vite serve som/sub/dir</code> 来指定一个替代的根目录</p>
+<h1 id="vite-的特点"><a href="#vite-的特点" class="headerlink" title="vite 的特点"></a>vite 的特点</h1><p>vite 通过原生 ESM 导入提供了许多主要用于打包场景的增强功能</p>
+<h2 id="npm-依赖解析和预构建"><a href="#npm-依赖解析和预构建" class="headerlink" title="npm 依赖解析和预构建"></a>npm 依赖解析和预构建</h2><p>预构建 vite 会将 CMD/UMD 转换为 ESM 格式，预构建由 esbuild 执行，使得 vite 冷启动时间比任何 js 打包器都快</p>
+<p>依赖是强缓存</p>
+<h2 id="模块热重载"><a href="#模块热重载" class="headerlink" title="模块热重载"></a>模块热重载</h2><p>vite 有一套原生 ESM 的 HMR API，具有 HMR 功能的框架可以利用该 API 提供即时、准确的更新，无需重新加载页面或清除应用程序状态</p>
+<h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><p>vite 天然支持 ts 文件</p>
+<p>vite 仅执行 ts 文件的转译工作，并不执行任何类型检查。<br>可以安装 <code>vue-tsc</code> 运行 <code>vue-tsc --noEmit</code> 来对 vue 文件做类型检查</p>
+<p>vite 使用 esbuild 将 typescript 转译到 javascript，约是 tsc 速度的 20-30 倍，HMR 更新反应到浏览器小于 50ms</p>
+<h2 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h2><p>jsx 和 tsx 文件同样开箱即用<br>jsx 的转译同样是通过 esbuild，默认为 react16 的风格</p>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>JSON 可以直接导入，也支持具名导入</p>
+<h2 id="Glob-导入"><a href="#Glob-导入" class="headerlink" title="Glob 导入"></a>Glob 导入</h2><p>vite 支持使用 import.meta.glob 函数从文件系统导入多个模块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> modules = importmeta.glob(<span class="string">'./dir/*.js'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 被转译为：</span></span><br><span class="line"><span class="keyword">const</span> modules = &#123;</span><br><span class="line">  <span class="string">'./dir/foo.js'</span>: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./dir/foo.js'</span>),</span><br><span class="line">  <span class="string">'./dir/bar.js'</span>: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./dir/bar.js'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="WebAssembly"><a href="#WebAssembly" class="headerlink" title="WebAssembly"></a>WebAssembly</h2><p>预编译的 .wasm 文件可以直接被导入 —— 默认导出一个函数，返回值为所导出 wasm 实例对象的 Promise：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> init <span class="keyword">from</span> <span class="string">'./example.wasm'</span></span><br><span class="line"></span><br><span class="line">init().then(<span class="function">(<span class="params">exports</span>) =&gt;</span> &#123;</span><br><span class="line">  exports.test()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="构建优化"><a href="#构建优化" class="headerlink" title="构建优化"></a>构建优化</h2><p>css 代码分割</p>
+<p>vite 会自动将一个异步 chunk 模块中使用到的 css 代码抽取出来并为其生成一个单独的文件。这个css 文件将在该异步 chunk 加载完成时自动通过一个 <code>&lt;link&gt;</code> 标签载入，该异步 chunk 会保证只在 css 加载完毕后再执行</p>
+<p>预加载指令生成 <code>&lt;link rel=&quot;modulepreload&quot;&gt;</code></p>
+<p>异步 chunk 加载优化</p>
+<h1 id="配置项一览"><a href="#配置项一览" class="headerlink" title="配置项一览"></a>配置项一览</h1><blockquote>
+<p>介绍: <a href="https://cn.vitejs.dev/config/" target="_blank" rel="noopener">https://cn.vitejs.dev/config/</a></p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">'vite'</span></span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">'@vitejs/plugin-vue'</span></span><br><span class="line"><span class="keyword">import</span> ElementPlus <span class="keyword">from</span> <span class="string">"unplugin-element-plus/vite"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">  base: <span class="string">'/'</span>,</span><br><span class="line">  root: process.cwd(),</span><br><span class="line">  mode: <span class="string">'development'</span>,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">'@/'</span>: <span class="keyword">new</span> URL(<span class="string">'./src/'</span>, <span class="keyword">import</span>.meta.url).pathname,</span><br><span class="line">      <span class="string">'#/'</span>: <span class="keyword">new</span> URL(<span class="string">'./types/'</span>, <span class="keyword">import</span>.meta.url).pathname</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  server: &#123;</span><br><span class="line">    https: <span class="literal">false</span>,</span><br><span class="line">    port: <span class="number">3000</span>,</span><br><span class="line">    host: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    vue(),</span><br><span class="line">    ElementPlus(&#123;&#125;),</span><br><span class="line">  ],</span><br><span class="line">  build: &#123;</span><br><span class="line">    <span class="comment">// @ts-ignore</span></span><br><span class="line">    sourcemap: <span class="literal">false</span>,</span><br><span class="line">    brotliSize: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// 消除打包大小超过500kb警告</span></span><br><span class="line">    chunkSizeWarningLimit: <span class="number">2000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  define: &#123;</span><br><span class="line">    __INTLIFY_PROD_DEVTOOLS__: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Frontend/">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Vite/">Vite</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2021/10/2-frontend-vite/" class="article-date">
+	  <time datetime="2021-10-03T10:45:00.000Z" itemprop="datePublished">十月 3, 2021</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">810字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <div id="vcomments"></div>
+    <script>
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/',
+					visitor: 'true',
+                    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                    // 表情title和图片映射
+                    emojiMaps: {
+                        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                        // ... 更多表情
+                    }
+				});
+			}
+		}, 1000);
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2021/10/2-frontend-vue3-reactivity/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          🔥 前端 | vue3 响应式学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2021/10/2-frontend-vue3-basic/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">🔥 前端 | vue3 语法 - 相比 vue2 的升级</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化项目"><span class="nav-number">1.</span> <span class="nav-text">初始化项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vite-的特点"><span class="nav-number">2.</span> <span class="nav-text">vite 的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-依赖解析和预构建"><span class="nav-number">2.1.</span> <span class="nav-text">npm 依赖解析和预构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块热重载"><span class="nav-number">2.2.</span> <span class="nav-text">模块热重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TypeScript"><span class="nav-number">2.3.</span> <span class="nav-text">TypeScript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX"><span class="nav-number">2.4.</span> <span class="nav-text">JSX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON"><span class="nav-number">2.5.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glob-导入"><span class="nav-number">2.6.</span> <span class="nav-text">Glob 导入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebAssembly"><span class="nav-number">2.7.</span> <span class="nav-text">WebAssembly</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建优化"><span class="nav-number">2.8.</span> <span class="nav-text">构建优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置项一览"><span class="nav-number">3.</span> <span class="nav-text">配置项一览</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 353k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>

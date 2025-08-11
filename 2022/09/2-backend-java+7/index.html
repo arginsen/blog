@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>🌟 语言 | Java 并发：线程与进程 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="JavaBackend">
+  
+  
+  
+  
+  <meta name="keywords" content="Java,Backend">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🌟 语言 | Java 并发：线程与进程">
+<meta property="og:url" content="https://lixupeng.cn/blog/2022/09/2-backend-java+7/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lixupeng.cn/blog/img/java+.jpg">
+<meta property="og:updated_time" content="2025-08-04T16:47:22.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🌟 语言 | Java 并发：线程与进程">
+<meta name="twitter:image" content="https://lixupeng.cn/blog/img/java+.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2-backend-java+7" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/java+.jpg" rel="gallery_cme70iaw1003z0hpukc1u8o3o">
+        <img src="/blog/img/java+.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      🌟 语言 | Java 并发：线程与进程
+    </h1>
+  
+
+      </header>
+      <footer class="entry-meta entry-tips">
+        
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+        
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Java/">Java</a></li></ul>
+
+        
+	<span class="ico-date"></span>
+	<a href="/blog/2022/09/2-backend-java+7/" class="article-date">
+	  <time datetime="2022-09-04T16:00:00.000Z" itemprop="datePublished">九月 5, 2022</time>
+	</a>
+
+        <!-- 添加字数统计 -->
+        
+          <span class="ico-fontcount"></span><span class="post-count">2.1k字</span>
+        
+      </footer>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><p>进程是程序的一次执行过程，是系统运行程序的基本单位，因此进程是动态的。系统运行一个程序即是一个进程从创建，运行到消亡的过程。</p>
+<p>在 Java 中，当我们启动 main 函数时其实就是启动了一个 JVM 的进程，而 main 函数所在的线程就是这个进程中的一个线程，也称主线程。</p>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>线程与进程相似，但线程是一个比进程更小的执行单位。一个进程在其执行的过程中可以产生多个线程。与进程不同的是同类的多个线程<strong>共享</strong>进程的<strong>堆和方法区</strong>资源，但每个线程有自己的<strong>程序计数器、虚拟机栈和本地方法栈</strong>，所以系统在产生一个线程，或是在各个线程之间做切换工作时，负担要比进程小得多，也正因为如此，线程也被称为轻量级进程。</p>
+<p>Java 程序天生就是多线程程序，我们可以通过 JMX 来看看一个普通的 Java 程序有哪些线程：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiThread</span> </span>&#123;</span><br><span class="line">true<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">truetrue<span class="comment">// 获取 Java 线程管理 MXBean</span></span><br><span class="line">trueThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();</span><br><span class="line">truetrue<span class="comment">// 不需要获取同步的 monitor 和 synchronizer 信息，仅获取线程和线程堆栈信息</span></span><br><span class="line">truetrueThreadInfo[] threadInfos = threadMXBean.dumpAllThreads(<span class="keyword">false</span>, <span class="keyword">false</span>);</span><br><span class="line">truetrue<span class="comment">// 遍历线程信息，仅打印线程 ID 和线程名称信息</span></span><br><span class="line">truetrue<span class="keyword">for</span> (ThreadInfo threadInfo : threadInfos) &#123;</span><br><span class="line">truetruetrueSystem.out.println(<span class="string">"["</span> + threadInfo.getThreadId() + <span class="string">"] "</span> + threadInfo.getThreadName());</span><br><span class="line">truetrue&#125;</span><br><span class="line">true&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[5] Attach Listener //添加事件</span><br><span class="line">[4] Signal Dispatcher // 分发处理给 JVM 信号的线程</span><br><span class="line">[3] Finalizer //调用对象 finalize 方法的线程</span><br><span class="line">[2] Reference Handler //清除 reference 线程</span><br><span class="line">[1] main //main 线程,程序入口</span><br></pre></td></tr></table></figure>
+<h1 id="Java-线程"><a href="#Java-线程" class="headerlink" title="Java 线程"></a>Java 线程</h1><p>JDK 1.2 及以后，Java 线程改为基于<strong>原生线程</strong>（Native Threads）实现，也就是说 JVM 直接使用操作系统原生的<strong>内核级线程</strong>（内核线程）来实现 Java 线程，由操作系统<strong>内核进行线程的调度和管理</strong>。</p>
+<p>Java 线程采用的是一对一的线程模型，也就是一个 Java 线程对应一个系统内核线程。<br>一个进程中可以有多个线程，多个线程共享进程的<strong>堆和方法区</strong> (JDK1.8 之后的元空间)资源，但是每个线程有自己的<strong>程序计数器、虚拟机栈 和 本地方法栈</strong>。</p>
+<p>线程是进程划分成的更小的运行单位。线程和进程最大的不同在于基本上各进程是独立的，而各线程则不一定，因为同一进程中的线程极有可能会相互影响。线程执行开销小，但不利于资源的管理和保护；而进程正相反。</p>
+<h2 id="堆和方法区-共享"><a href="#堆和方法区-共享" class="headerlink" title="堆和方法区 - 共享"></a>堆和方法区 - 共享</h2><p>所有线程共享的资源，其中堆是进程中最大的一块内存，主要用于存放<strong>新创建的对象</strong> (几乎所有对象都在这里分配内存)，方法区主要用于存放<strong>已被加载的类信息、常量、静态变量、即时编译器编译后的代码</strong>等数据。</p>
+<h2 id="序计数器、虚拟机栈-和-本地方法栈-私有"><a href="#序计数器、虚拟机栈-和-本地方法栈-私有" class="headerlink" title="序计数器、虚拟机栈 和 本地方法栈 - 私有"></a>序计数器、虚拟机栈 和 本地方法栈 - 私有</h2><h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>主要有两个作用：</p>
+<ul>
+<li>字节码解释器通过改变程序计数器来<strong>依次读取指令</strong>，从而实现代码的流程控制，如：顺序执行、选择、循环、异常处理。</li>
+<li>在多线程的情况下，程序计数器用于记录<strong>当前线程执行的位置</strong>，从而当线程被切换回来的时候能够知道该线程上次运行到哪儿了。</li>
+</ul>
+<p>私有主要是为了线程切换后能恢复到正确的执行位置。</p>
+<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3><p>每个 Java 方法在执行之前会创建一个栈帧用于<strong>存储局部变量表、操作数栈、常量池引用</strong>等信息。从方法调用直至执行完成的过程，就对应着一个栈帧在 Java 虚拟机栈中入栈和出栈的过程。</p>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>和虚拟机栈所发挥的作用非常相似，区别是：虚拟机栈为虚拟机执行 <strong>Java 方法</strong> （也就是字节码）服务，而本地方法栈则为虚拟机使用到的 <strong>Native 方法</strong>服务。 在 HotSpot 虚拟机中和 Java 虚拟机栈合二为一。</p>
+<p>为了保证线程中的局部变量不被别的线程访问到，虚拟机栈和本地方法栈是线程私有的。</p>
+<h2 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h2><p>创建线程有很多种方式，例如<strong>继承 Thread 类、实现 Runnable 接口、实现 Callable 接口、使用线程池、使用 CompletableFuture 类</strong>等等。不过，这些方式其实并没有真正创建出线程。准确点来说，这些都属于是在 Java 代码中<strong>使用多线程</strong>的方法。</p>
+<p>严格来说，Java 就只有一种方式可以创建线程，那就是通过 <code>new Thread().start()</code> 创建。不管是哪种方式，最终还是依赖于 <code>new Thread().start()</code>。</p>
+<h2 id="暂停线程"><a href="#暂停线程" class="headerlink" title="暂停线程"></a>暂停线程</h2><p>Thread#sleep() 方法和 Object#wait() 方法都可以实现线程暂停，但也有所区别：</p>
+<ul>
+<li>sleep() 方法没有释放锁，而 wait() 方法释放了锁 。</li>
+<li>wait() 通常被用于线程间交互/通信，sleep() 通常被用于暂停执行。</li>
+<li>wait() 方法被调用后，线程不会自动苏醒，需要别的线程调用同一个对象上的 notify()或者 notifyAll() 方法。sleep()方法执行完成后，线程会自动苏醒，或者也可以使用 wait(long timeout) 超时后线程会自动苏醒。</li>
+<li>sleep() 是 Thread 类的静态本地方法，wait() 则是 Object 类的本地方法。</li>
+</ul>
+<h3 id="wait-方法不定义在-Thread-中"><a href="#wait-方法不定义在-Thread-中" class="headerlink" title="wait() 方法不定义在 Thread 中"></a>wait() 方法不定义在 Thread 中</h3><p>wait() 是让<strong>获得对象锁的线程</strong>实现等待，会<strong>自动释放当前线程占有的对象锁</strong>。每个对象（Object）都拥有对象锁，既然要释放<strong>当前线程占有的对象锁</strong>并让其进入 WAITING 状态，自然是要操作<strong>对应的对象</strong>（Object）而非当前的线程（Thread）。</p>
+<h3 id="sleep-方法定义在-Thread-中"><a href="#sleep-方法定义在-Thread-中" class="headerlink" title="sleep() 方法定义在 Thread 中"></a>sleep() 方法定义在 Thread 中</h3><p>sleep() 是让<strong>当前线程暂停执行</strong>，不涉及到对象类，也不需要获得对象锁。</p>
+<h2 id="线程上下文切换"><a href="#线程上下文切换" class="headerlink" title="线程上下文切换"></a>线程上下文切换</h2><p>线程在执行过程中会有自己的<strong>运行条件和状态</strong>（也称上下文），比如上文所说到过的程序计数器，栈信息等。</p>
+<p>当出现如下情况的时候，线程会从占用 CPU 状态中退出：</p>
+<ul>
+<li>主动让出 CPU，比如调用了 sleep(), wait() 等。</li>
+<li>时间片用完，因为操作系统要防止一个线程或者进程长时间占用 CPU 导致其他线程或者进程饿死。</li>
+<li>调用了阻塞类型的系统中断，比如请求 IO，线程被阻塞。- 被终止或结束运行</li>
+</ul>
+<p>这其中前三种都会发生线程切换，线程切换意味着需要保存当前线程的上下文，留待线程下次占用 CPU 的时候恢复现场。并加载下一个将要占用 CPU 的线程上下文。这就是所谓的 <strong>上下文切换</strong>。</p>
+<p>上下文切换是现代操作系统的基本功能，因其每次需要保存信息恢复信息，这将会占用 CPU，内存等系统资源进行处理，也就意味着效率会有一定损耗，如果频繁切换就会造成整体效率低下。</p>
+<h2 id="直接调用-Thread-类的-run-方法"><a href="#直接调用-Thread-类的-run-方法" class="headerlink" title="直接调用 Thread 类的 run 方法"></a>直接调用 Thread 类的 run 方法</h2><p>new 一个 Thread，线程进入了新建状态。调用 start()方法，会启动一个线程并使线程进入了就绪状态，当分配到时间片后就可以开始运行了。</p>
+<p>start() 会执行线程的相应准备工作，然后<strong>自动执行</strong> run() 方法的内容，这是真正的多线程工作。</p>
+<p>但是，直接执行 run() 方法，会把 run() 方法当成一个 main 线程下的普通方法去执行，并不会在某个线程中执行它，所以这<strong>并不是多线程工作</strong>。</p>
+<p>综上，调用 start() 方法方可启动线程并使线程进入就绪状态后自动进行 run() 方法，而直接执行 run() 方法的话不会以<strong>多线程</strong>的方式执行。</p>
+
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Java/">Java</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2022/09/2-backend-java+7/" class="article-date">
+	  <time datetime="2022-09-04T16:00:00.000Z" itemprop="datePublished">九月 5, 2022</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">2.1k字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <script defer src="//unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='//unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <div id="vcomments"></div>
+    <script>
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/',
+					visitor: 'true',
+                    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                    // 表情title和图片映射
+                    emojiMaps: {
+                        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                        // ... 更多表情
+                    }
+				});
+			}
+		}, 1000);
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2022/09/2-backend-java+8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          🌟 语言 | Java 并发：多线程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2022/08/2-backend-java+6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">🌟 语言 | Java ThreadLocal</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进程"><span class="nav-number">1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程"><span class="nav-number">2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-线程"><span class="nav-number">3.</span> <span class="nav-text">Java 线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#堆和方法区-共享"><span class="nav-number">3.1.</span> <span class="nav-text">堆和方法区 - 共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序计数器、虚拟机栈-和-本地方法栈-私有"><span class="nav-number">3.2.</span> <span class="nav-text">序计数器、虚拟机栈 和 本地方法栈 - 私有</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">3.2.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">3.2.2.</span> <span class="nav-text">虚拟机栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">3.2.3.</span> <span class="nav-text">本地方法栈</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建线程"><span class="nav-number">3.3.</span> <span class="nav-text">创建线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暂停线程"><span class="nav-number">3.4.</span> <span class="nav-text">暂停线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#wait-方法不定义在-Thread-中"><span class="nav-number">3.4.1.</span> <span class="nav-text">wait() 方法不定义在 Thread 中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sleep-方法定义在-Thread-中"><span class="nav-number">3.4.2.</span> <span class="nav-text">sleep() 方法定义在 Thread 中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程上下文切换"><span class="nav-number">3.5.</span> <span class="nav-text">线程上下文切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接调用-Thread-类的-run-方法"><span class="nav-number">3.6.</span> <span class="nav-text">直接调用 Thread 类的 run 方法</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://lixupeng.cn" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 353k 字</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div> 
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>
