@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
   
-  <title>字节编程题 | Arginsen&#39;s Blog</title><meta name="robots" content="noindex">
+  <title>字节编程题 | Arginsen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="interviewFrontend">
@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/interview.jpg">
-<meta property="og:updated_time" content="2025-07-17T09:32:52.155Z">
+<meta property="og:updated_time" content="2025-08-12T09:58:26.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字节编程题">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/interview.jpg">
@@ -149,7 +149,7 @@
 <p>输出例子1:<br>2</p>
 <p>例子说明1:<br>第一种颜色出现在第1颗串珠，与规则无冲突。<br>第二种颜色分别出现在第 1，3，4颗串珠，第3颗与第4颗串珠相邻，所以不合要求。<br>第三种颜色分别出现在第1，3，5颗串珠，第5颗串珠的下一个是第1颗，所以不合要求。<br>总计有2种颜色的分布是有问题的。<br>这里第2颗串珠是透明的。</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> f = readline().split(<span class="string">' '</span>);</span><br><span class="line"><span class="keyword">const</span> n = f[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">const</span> m = f[<span class="number">1</span>];</span><br><span class="line"><span class="comment">// const c = f[2];</span></span><br><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line"><span class="keyword">let</span> err = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> tmp = readline().substring(<span class="number">1</span>).split(<span class="string">' '</span>).join(<span class="string">''</span>);</span><br><span class="line">    arr[i] = tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// console.log(arr);</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> [curr, back, cc] = [arr[i], <span class="string">''</span>, m - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">const</span> cir = <span class="function">(<span class="params">x, i</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> next = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(x--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[next] === <span class="literal">undefined</span>) next = <span class="number">0</span>;</span><br><span class="line">            back += arr[next];</span><br><span class="line">            next += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    cir(cc, i);</span><br><span class="line">    <span class="comment">// console.log(back);</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; arr[i].length; j += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (back.indexOf(curr[j]) !== <span class="number">-1</span>) &#123;</span><br><span class="line">            err += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(err)</span><br></pre></td></tr></table></figure><!-- flag of hidden posts -->
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> f = readline().split(<span class="string">' '</span>);</span><br><span class="line"><span class="keyword">const</span> n = f[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">const</span> m = f[<span class="number">1</span>];</span><br><span class="line"><span class="comment">// const c = f[2];</span></span><br><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line"><span class="keyword">let</span> err = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> tmp = readline().substring(<span class="number">1</span>).split(<span class="string">' '</span>).join(<span class="string">''</span>);</span><br><span class="line">    arr[i] = tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// console.log(arr);</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> [curr, back, cc] = [arr[i], <span class="string">''</span>, m - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">const</span> cir = <span class="function">(<span class="params">x, i</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> next = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(x--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[next] === <span class="literal">undefined</span>) next = <span class="number">0</span>;</span><br><span class="line">            back += arr[next];</span><br><span class="line">            next += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    cir(cc, i);</span><br><span class="line">    <span class="comment">// console.log(back);</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; arr[i].length; j += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (back.indexOf(curr[j]) !== <span class="number">-1</span>) &#123;</span><br><span class="line">            err += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(err)</span><br></pre></td></tr></table></figure>
       
     </div>
     <br>
@@ -235,6 +235,25 @@
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/blog/2020/09/24/2-datastructure-c1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          📖 数据结构 | C 与 C++ 描述 | 一、基本概念与算法评价
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/09/12/1-interview-huaweitest/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">华为机试题</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
@@ -284,7 +303,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 353k 字</span>
+        <span class="post-count">全站共 358.4k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

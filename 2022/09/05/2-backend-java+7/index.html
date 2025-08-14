@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/java+.jpg">
-<meta property="og:updated_time" content="2025-08-04T16:47:22.372Z">
+<meta property="og:updated_time" content="2025-08-13T22:24:42.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 语言 | Java 并发：线程与进程">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/java+.jpg">
@@ -141,7 +141,7 @@
 <p>输出：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[5] Attach Listener //添加事件</span><br><span class="line">[4] Signal Dispatcher // 分发处理给 JVM 信号的线程</span><br><span class="line">[3] Finalizer //调用对象 finalize 方法的线程</span><br><span class="line">[2] Reference Handler //清除 reference 线程</span><br><span class="line">[1] main //main 线程,程序入口</span><br></pre></td></tr></table></figure>
 <h1 id="Java-线程"><a href="#Java-线程" class="headerlink" title="Java 线程"></a>Java 线程</h1><p>JDK 1.2 及以后，Java 线程改为基于<strong>原生线程</strong>（Native Threads）实现，也就是说 JVM 直接使用操作系统原生的<strong>内核级线程</strong>（内核线程）来实现 Java 线程，由操作系统<strong>内核进行线程的调度和管理</strong>。</p>
-<p>Java 线程采用的是一对一的线程模型，也就是一个 Java 线程对应一个系统内核线程。<br>一个进程中可以有多个线程，多个线程共享进程的<strong>堆和方法区</strong> (JDK1.8 之后的元空间)资源，但是每个线程有自己的<strong>程序计数器、虚拟机栈 和 本地方法栈</strong>。</p>
+<p>Java 线程采用的是一对一的线程模型，也就是一个 Java 线程对应一个<strong>系统内核线程</strong>。<br>一个进程中可以有多个线程，多个线程共享进程的<strong>堆和方法区</strong> (JDK1.8 之后的元空间)资源，但是每个线程有自己的<strong>程序计数器、虚拟机栈 和 本地方法栈</strong>。</p>
 <p>线程是进程划分成的更小的运行单位。线程和进程最大的不同在于基本上各进程是独立的，而各线程则不一定，因为同一进程中的线程极有可能会相互影响。线程执行开销小，但不利于资源的管理和保护；而进程正相反。</p>
 <h2 id="堆和方法区-共享"><a href="#堆和方法区-共享" class="headerlink" title="堆和方法区 - 共享"></a>堆和方法区 - 共享</h2><p>所有线程共享的资源，其中堆是进程中最大的一块内存，主要用于存放<strong>新创建的对象</strong> (几乎所有对象都在这里分配内存)，方法区主要用于存放<strong>已被加载的类信息、常量、静态变量、即时编译器编译后的代码</strong>等数据。</p>
 <h2 id="序计数器、虚拟机栈-和-本地方法栈-私有"><a href="#序计数器、虚拟机栈-和-本地方法栈-私有" class="headerlink" title="序计数器、虚拟机栈 和 本地方法栈 - 私有"></a>序计数器、虚拟机栈 和 本地方法栈 - 私有</h2><h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>主要有两个作用：</p>
@@ -331,7 +331,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 353k 字</span>
+        <span class="post-count">全站共 358.4k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
