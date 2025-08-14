@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/redis.jpg">
-<meta property="og:updated_time" content="2025-08-01T18:03:34.301Z">
+<meta property="og:updated_time" content="2025-08-14T15:04:05.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 后端 | Redis 集群">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/redis.jpg">
@@ -133,6 +133,69 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
+<p>单节点的 Redis 并发能力是有上限的，要进一步提高 Redis 的并发能力，就需要搭建主从集群，实现读写分离。</p>
+<p>集群中有一个 master 节点、两个 slave 节点（现在叫 replica）。当我们通过 Redis 的 Java 客户端访问主从集群时，应该做好路由：</p>
+<ul>
+<li>如果是写操作，应该访问master节点，master会自动将数据同步给两个slave节点</li>
+<li>如果是读操作，建议访问各个slave节点，从而分担并发压力</li>
+</ul>
+<h1 id="搭建主从集群"><a href="#搭建主从集群" class="headerlink" title="搭建主从集群"></a>搭建主从集群</h1><p>使用 docker-compose.yaml 构建著丛集群，直接放在 /root/redis 目录下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.2"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">r1:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">r1</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">"host"</span></span><br><span class="line">    <span class="attr">entrypoint:</span> <span class="string">["redis-server",</span> <span class="string">"--port"</span><span class="string">,</span> <span class="string">"7001"</span><span class="string">]</span></span><br><span class="line">  <span class="attr">r2:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">r2</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">"host"</span></span><br><span class="line">    <span class="attr">entrypoint:</span> <span class="string">["redis-server",</span> <span class="string">"--port"</span><span class="string">,</span> <span class="string">"7002"</span><span class="string">]</span></span><br><span class="line">  <span class="attr">r3:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">r3</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">"host"</span></span><br><span class="line">    <span class="attr">entrypoint:</span> <span class="string">["redis-server",</span> <span class="string">"--port"</span><span class="string">,</span> <span class="string">"7003"</span><span class="string">]</span></span><br></pre></td></tr></table></figure>
+<p>执行启动集群：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+<p>如上启动 3 个redis 实例，需要手动配置主从关系：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Redis5.0以前</span></span><br><span class="line">slaveof &lt;masterip&gt; &lt;masterport&gt;</span><br><span class="line"><span class="comment"># Redis5.0以后</span></span><br><span class="line">replicaof &lt;masterip&gt; &lt;masterport&gt;</span><br></pre></td></tr></table></figure>
+<p>有临时和永久两种模式：</p>
+<ul>
+<li>永久生效：在 redis.conf 文件中利用 slaveof 命令指定 master 节点</li>
+<li>临时生效：直接利用 redis-cli 控制台输入 slaveof 命令，指定master 节点</li>
+</ul>
+<p>将 r1 作为 master，r2 和 r3 为 slave：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 连接r2</span></span><br><span class="line">docker <span class="built_in">exec</span> -it r2 redis-cli -p 7002</span><br><span class="line"><span class="comment"># 认r1主，也就是7001</span></span><br><span class="line">slaveof 192.168.150.101 7001</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接r3</span></span><br><span class="line">docker <span class="built_in">exec</span> -it r3 redis-cli -p 7003</span><br><span class="line"><span class="comment"># 认r1主，也就是7001</span></span><br><span class="line">slaveof 192.168.150.101 7001</span><br></pre></td></tr></table></figure>
+<p>连接 r1 后查看集群状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 连接r1</span></span><br><span class="line">docker <span class="built_in">exec</span> -it r1 redis-cli -p 7001</span><br><span class="line"><span class="comment"># 查看集群状态</span></span><br><span class="line">info replication</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回如下：</span></span><br><span class="line">127.0.0.1:7001&gt; info replication</span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:master</span><br><span class="line">connected_slaves:2</span><br><span class="line">slave0:ip=192.168.150.101,port=7002,state=online,offset=140,lag=1</span><br><span class="line">slave1:ip=192.168.150.101,port=7003,state=online,offset=140,lag=1</span><br><span class="line">master_failover_state:no-failover</span><br><span class="line">master_replid:16d90568498908b322178ca12078114e6c518b86</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:140</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br><span class="line">repl_backlog_histlen:140</span><br></pre></td></tr></table></figure>
+<p>可以看到，当前节点 r1:7001 的角色是 master，有两个 slave 与其连接：</p>
+<ul>
+<li>slave0：port是7002，也就是r2节点</li>
+<li>slave1：port是7003，也就是r3节点</li>
+</ul>
+<p>测试可以发现，r1 这个节点上可以执行 set 命令（写操作），其它两个节点只能执行 get 命令（读操作）。也就是说<strong>读写操作已经分离</strong>了。</p>
+<h1 id="主从同步原理"><a href="#主从同步原理" class="headerlink" title="主从同步原理"></a>主从同步原理</h1><h2 id="全量同步"><a href="#全量同步" class="headerlink" title="全量同步"></a>全量同步</h2><p>主从第一次建立连接时，会执行全量同步，将 master 节点的所有数据都拷贝给 slave 节点。</p>
+<p>Phase 1，<br>slave can execute the replicaof command to build a connection, and then request data synchronization.The master will judge if it is the first synchronization.If it is , the master will return the its own data version infomation, and the slave will save it.</p>
+<p>Phase 2，<br>Master execute bgsave to generate RDB , record the all commands during RDB period , and then master send RDB to slave . slave clean up the local data and load RDB file.</p>
+<p>Phase 3,<br>Master send the command in repl_baklog to slave. Slave execute this command.</p>
+<p>slave 做数据同步，必须向 master 声明自己的 <strong>replication id 和offset</strong>(用来判断第一次同步)，master 才可以判断到底需要同步哪些数据。</p>
+<p>在执行 slaveof 命令之前，所有 redis 节点都是 master，有自己的replid 和 offset。<br>当我们第一次执行 slaveof 命令，与 master 建立主从关系时，发送的replid 和 offset 是自己的，与 master 肯定不一致。<br>master 判断发现 slave 发送来的 replid 与自己的不一致，说明这是一个全新的 slave，就知道要做全量同步了。<br>master 会将自己的 replid 和 offset 都发送给这个 slave，slave 保存这些信息到本地。自此以后 slave 的 replid 就与 master 一致了。</p>
+<p>因此，master 判断一个节点是否是第一次同步的依据，就是看 replid 是否一致。</p>
+<h2 id="增量同步"><a href="#增量同步" class="headerlink" title="增量同步"></a>增量同步</h2><p>全量同步需要先做 RDB，将 RDB 文件通过网络传输给每个 Slave，成本太高了。因此除了第一次做全量同步，其它大多数时候 slave 与 master 都是做增量同步。</p>
+<p>所谓增量同步就是只更新 slave 与 master <strong>存在差异</strong>的部分数据。</p>
+<p>通过 repl_baklog 可以获取 slave 和 master 数据差异信息。</p>
+<p>repl_baklog 文件是一个固定大小的数组，只不过数组是<strong>环形</strong>，也就是说角标到达数组末尾后，会再次从 0 开始读写，这样数组头部的数据就会被覆盖。</p>
+<p>repl_baklog 中会记录 <strong>Redis 处理过的命令及 offset</strong>，包括master 当前的 offset，和 slave 已经拷贝到的 offset。</p>
+<p>slave 与 master 的 offset 之间的差异，就是 salve 需要增量拷贝的数据了。</p>
+<p>随着不断有数据写入，master 的 offset 逐渐变大，slave 也不断的拷贝，追赶 master 的offset，直到数组被填满。</p>
+<p>此时，如果有新的数据写入，就会覆盖数组中的旧数据。不过，旧的数据只要是绿色的，说明是已经被同步到 slave 的数据，即便被覆盖了也没什么影响。因为未同步的仅仅是红色部分。</p>
+<p>repl_baklog 大小有上限，写满后会覆盖最早的数据。如果 slave 断开时间过久，导致尚未备份的数据被覆盖，则无法基于 repl_baklog 做增量同步，只能再次全量同步。</p>
+<h1 id="主从同步优化"><a href="#主从同步优化" class="headerlink" title="主从同步优化"></a>主从同步优化</h1><ul>
+<li>在 master 中配置 repl-diskless-sync:yes 启用无磁盘复制，避免全量同步时的磁盘 IO。</li>
+<li>Redis 单节点上的内存占用不要太大，减少 RDB 导致的过多磁盘 IO</li>
+<li>适当提高 repl_baklog 的大小，发现 slave 宕机时尽快实现故障恢复，尽可能<strong>避免全量同步</strong></li>
+<li>限制一个 master 上的 slave 节点数量，如果实在是太多 slave，则可以采用主-从-从链式结构，减少 master 压力</li>
+</ul>
+<p>全量同步和增量同步区别：</p>
+<ul>
+<li>全量同步：master将完整内存数据生成RDB，发送RDB到slave。后续命令则记录在repl_baklog，逐个发送给slave。</li>
+<li>增量同步：slave 提交自己的 offset 到 master，master获取repl_baklog中从offset之后的命令给slave</li>
+</ul>
+<p>什么时候执行全量同步：</p>
+<ul>
+<li>slave节点第一次连接master节点时</li>
+<li>slave节点断开时间太久，repl_baklog中的offset已经被覆盖时</li>
+</ul>
+<p>什么时候执行增量同步：</p>
+<ul>
+<li>slave节点断开又恢复，并且在repl_baklog中能找到offset时</li>
+</ul>
 
       
     </div>
@@ -154,7 +217,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">0字</span>
+        <span class="ico-fontcount"></span><span class="post-count">1.5k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -247,7 +310,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav">无</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建主从集群"><span class="nav-number">1.</span> <span class="nav-text">搭建主从集群</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主从同步原理"><span class="nav-number">2.</span> <span class="nav-text">主从同步原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#全量同步"><span class="nav-number">2.1.</span> <span class="nav-text">全量同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增量同步"><span class="nav-number">2.2.</span> <span class="nav-text">增量同步</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主从同步优化"><span class="nav-number">3.</span> <span class="nav-text">主从同步优化</span></a></li></ol>
     
     </div>
   </aside>
@@ -287,7 +350,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 358.4k 字</span>
+        <span class="post-count">全站共 359.9k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
