@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/java+.jpg">
-<meta property="og:updated_time" content="2025-08-01T17:45:16.298Z">
+<meta property="og:updated_time" content="2025-08-15T08:42:52.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 语言 | Java JVM：垃圾回收">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/java+.jpg">
@@ -32,7 +32,7 @@
   
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="//unpkg.com/font-awesome@4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
   <style type="text/css">
     @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
     @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
@@ -133,7 +133,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
-
+<p>常见面试题：</p>
+<ul>
+<li>如何判断对象是否死亡（两种方法）。</li>
+<li>简单的介绍一下强引用、软引用、弱引用、虚引用（虚引用与软引用和弱引用的区别、使用软引用能带来的好处）。</li>
+<li>如何判断一个常量是废弃常量</li>
+<li>如何判断一个类是无用的类</li>
+<li>垃圾收集有哪些算法，各自的特点？</li>
+<li>HotSpot 为什么要分为新生代和老年代？</li>
+<li>常见的垃圾回收器有哪些？</li>
+<li>介绍一下 CMS,G1 收集器。</li>
+<li>Minor Gc 和 Full GC 有什么不同呢？</li>
+</ul>
+<h1 id="堆空间的基本结构"><a href="#堆空间的基本结构" class="headerlink" title="堆空间的基本结构"></a>堆空间的基本结构</h1>
       
     </div>
     <br>
@@ -154,7 +166,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">0字</span>
+        <span class="ico-fontcount"></span><span class="post-count">155字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -247,7 +259,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav">无</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#堆空间的基本结构"><span class="nav-number">1.</span> <span class="nav-text">堆空间的基本结构</span></a></li></ol>
     
     </div>
   </aside>
@@ -287,7 +299,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 359.9k 字</span>
+        <span class="post-count">全站共 360.1k 字</span>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
