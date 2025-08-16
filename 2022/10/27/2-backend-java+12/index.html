@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/java+.jpg">
-<meta property="og:updated_time" content="2025-08-14T08:06:58.945Z">
+<meta property="og:updated_time" content="2025-08-16T14:32:43.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 语言 | Java JVM：内存区域">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/java+.jpg">
@@ -168,7 +168,7 @@
 <p>本地方法被执行的时候，在本地方法栈也会创建一个栈帧，用于存放该本地方法的局部变量表、操作数栈、动态链接、出口信息。</p>
 <p>方法执行完毕后相应的栈帧也会出栈并释放内存空间，也会出现 StackOverFlowError 和 OutOfMemoryError 两种错误。</p>
 <h2 id="线程共享"><a href="#线程共享" class="headerlink" title="线程共享"></a>线程共享</h2><h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共享的一块内存区域，在虚拟机启动时创建。此内存区域的<strong>唯一目的</strong>就是存放对象实例，几乎所有的<strong>对象实例以及数组</strong>都在这里分配内存。</p>
-<p>从 JDK 1.7 开始已经默认开启逃逸分析，如果某些方法中的<strong>对象引用</strong>没有被返回或者未被外面使用（也就是未逃逸出去），那么对象可以直接在<strong>栈上分配内存</strong>。</p>
+<p>从 JDK 1.7 开始已经默认开启<strong>逃逸分析</strong>，如果某些方法中的<strong>对象引用</strong>没有被返回或者未被外面使用（也就是未逃逸出去），那么对象可以直接在<strong>栈上分配内存</strong>。</p>
 <p>Java 堆是垃圾收集器管理的主要区域，因此也被称作 <strong>GC 堆（Garbage Collected Heap）</strong>。从垃圾回收的角度，由于现在收集器基本都采用分代垃圾收集算法，所以 Java 堆还可以细分为：新生代和老年代；再细致一点有：Eden、Survivor、Old 等空间。进一步划分的目的是更好地回收内存，或者更快地分配内存。</p>
 <p>JDK 8 版本之后堆结构分为：<strong>Eden、S0、S1， Tenured， MetaSpace</strong></p>
 <p>Eden 区、两个 Survivor 区 S0 和 S1 都属于<strong>新生代</strong>，Tenured 一层属于<strong>老年代</strong>，MetaSpace 一层属于<strong>永久代</strong>。</p>

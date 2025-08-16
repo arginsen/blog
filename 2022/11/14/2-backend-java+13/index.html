@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/java+.jpg">
-<meta property="og:updated_time" content="2025-08-16T06:22:27.760Z">
+<meta property="og:updated_time" content="2025-08-16T14:56:08.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 语言 | Java JVM：垃圾回收">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/java+.jpg">
@@ -186,8 +186,8 @@
 <li>JNI（Java Native Interface）引用的对象</li>
 </ul>
 <p>即使在可达性分析法中不可达的对象，也并非是“非死不可”的，这时候它们暂时处于“缓刑阶段”，要真正宣告一个对象死亡，至少要<strong>经历两次标记过程</strong>；可达性分析法中不可达的对象被第一次标记并且进行一次筛选，筛选的条件是此对象是否有必要执行 <strong>finalize</strong> 方法。当对象没有覆盖 finalize 方法，或 finalize 方法已经被虚拟机调用过时，虚拟机将这两种情况视为没有必要执行。</p>
-<p>被判定为需要执行的对象将会被放在一个队列中进行第二次标记，除非这个对象与引用链上的任何一个对象建立关联，否则就会被真的回收。</p>
-<h2 id="引用类型总结"><a href="#引用类型总结" class="headerlink" title="引用类型总结"></a>引用类型总结</h2><p>无论是通过引用计数法判断对象引用数量，还是通过可达性分析法判断对象的引用链是否可达，判定对象的存活都与“引用”有关。</p>
+<p>被判定为需要执行的对象将会被放在一个队列中进行第二次标记，除非这个对象与<strong>引用链上</strong>的任何一个对象建立关联，否则就会被真的回收。</p>
+<h2 id="引用类型总结"><a href="#引用类型总结" class="headerlink" title="引用类型总结"></a>引用类型总结</h2><p>无论是通过引用计数法判断<strong>对象引用数量</strong>，还是通过可达性分析法判断<strong>对象的引用链</strong>是否可达，判定对象的存活都与“引用”有关。</p>
 <p>JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引用、软引用、弱引用、虚引用四种（引用强度逐渐减弱），强引用就是 Java 中<strong>普通的对象</strong>，而软引用、弱引用、虚引用在 JDK 中定义的类分别是 SoftReference、WeakReference、PhantomReference。</p>
 <h3 id="强引用（StrongReference）"><a href="#强引用（StrongReference）" class="headerlink" title="强引用（StrongReference）"></a>强引用（StrongReference）</h3><p>强引用实际上就是程序代码中普遍存在的引用赋值，这是使用最普遍的引用.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String strongReference = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br></pre></td></tr></table></figure>

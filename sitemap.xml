@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://lixupeng.cn/blog/2024/11/18/1-business-bank-messageflow.md/</loc>
+    <loc>https://lixupeng.cn/blog/2022/11/14/2-backend-java+13/</loc>
     
-    <lastmod>2025-08-16T07:56:41.771Z</lastmod>
+    <lastmod>2025-08-16T14:56:08.757Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2022/11/14/2-backend-java+13/</loc>
+    <loc>https://lixupeng.cn/blog/2022/10/27/2-backend-java+12/</loc>
     
-    <lastmod>2025-08-16T06:22:27.760Z</lastmod>
+    <lastmod>2025-08-16T14:32:43.709Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2024/11/18/1-business-bank-messageflow.md/</loc>
+    
+    <lastmod>2025-08-16T07:56:41.771Z</lastmod>
     
   </url>
   
@@ -40,13 +47,6 @@
     <loc>https://lixupeng.cn/blog/2024/07/17/2-backend-redis7/</loc>
     
     <lastmod>2025-08-14T15:04:05.695Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2022/10/27/2-backend-java+12/</loc>
-    
-    <lastmod>2025-08-14T08:06:58.945Z</lastmod>
     
   </url>
   
