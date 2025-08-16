@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/java+.jpg">
-<meta property="og:updated_time" content="2025-08-16T06:18:10.384Z">
+<meta property="og:updated_time" content="2025-08-16T06:22:27.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 语言 | Java JVM：垃圾回收">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/java+.jpg">
@@ -229,7 +229,7 @@
 <h2 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h2><p>当前虚拟机的垃圾收集<strong>都采用分代收集算法</strong>，这种算法没有什么新的思想，只是根据<strong>对象存活周期</strong>的不同将内存分为几块。一般将 Java 堆分为新生代和老年代，这样我们就可以根据各个年代的特点选<strong>择合适的垃圾收集算法</strong>。</p>
 <p>比如在新生代中，每次收集都会有大量对象死去，所以可以选择“复制”算法，只需要付出少量对象的复制成本就可以完成每次垃圾收集。而老年代的对象存活几率是比较高的，而且没有额外的空间对它进行分配担保，所以我们必须选择“标记-清除”或“标记-整理”算法进行垃圾收集。</p>
 <h1 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h1><p>如果说收集算法是内存回收的方法论，那么垃圾收集器就是内存回收的具体实现。</p>
-<p>直到现在为止还没有最好的垃圾收集器出现，更加没有万能的垃圾收集器，所以需要根据具体应用场景选择适合自己的垃圾收集器。试想一下：如果有一种四海之内、任何场景下都适用的完美收集器存在，那么我们的 HotSpot 虚拟机就不会实现那么多不同的垃圾收集器了。JDK 默认垃圾收集器（使用 java -XX:+PrintCommandLineFlags -version 命令查看）：</p>
+<p>直到现在为止还没有最好的垃圾收集器出现，更加没有万能的垃圾收集器，所以需要根据具体应用场景选择适合自己的垃圾收集器。试想一下：如果有一种任何场景下都适用的完美收集器存在，那么我们的 HotSpot 虚拟机就不会实现那么多不同的垃圾收集器了。JDK 默认垃圾收集器（使用 java -XX:+PrintCommandLineFlags -version 命令查看）：</p>
 <ul>
 <li>JDK 8: <strong>Parallel Scavenge（新生代）+ Parallel Old（老年代）</strong></li>
 <li>JDK 9 ~ JDK22: G1</li>
@@ -264,15 +264,15 @@
 <ul>
 <li>并行与并发：G1 能充分利用 CPU、多核环境下的硬件优势，使用多个 CPU（CPU 或者 CPU 核心）来缩短 Stop-The-World 停顿时间。部分其他收集器原本需要停顿 Java 线程执行的 GC 动作，G1 收集器仍然可以通过<strong>并发的方式</strong>让 java 程序继续执行。</li>
 <li>分代收集：虽然 G1 可以不需要其他收集器配合就能独立管理整个 GC 堆，但是还是保留了分代的概念。</li>
-<li>空间整合：与 CMS 的“标记-清除”算法不同，G1 从<strong>整体</strong>来看是基于“标记-整理”算法实现的收集器；从<strong>局部</strong>上来看是基于“标记-复制”算法实现的。</li>
+<li>空间整合：与 CMS 的“标记-清除”算法不同，G1 从<strong>整体</strong>来看是基于“标记-整理”算法实现的收集器；从<strong>局部</strong>上来看是基于“<strong>标记-复制</strong>”算法实现的。</li>
 <li>可预测的停顿：这是 G1 相对于 CMS 的另一个大优势，降低停顿时间是 G1 和 CMS 共同的关注点，但 G1 除了追求低停顿外，还能建立<strong>可预测的停顿时间模型</strong>，能让使用者明确指定在一个长度为 M 毫秒的时间片段内，消耗在垃圾收集上的时间不得超过 N 毫秒。</li>
 </ul>
 <p>G1 收集器的运作大致分为以下几个步骤：</p>
 <ul>
 <li>初始标记： 短暂停顿（Stop-The-World，STW），标记从 GC Roots 可直接引用的对象，即标记<strong>所有直接可达</strong>的活跃对象</li>
 <li>并发标记：与<strong>应用并发</strong>运行，标记所有可达对象。 这一阶段可能持续较长时间，取决于堆的大小和对象的数量。</li>
-<li>最终标记： 短暂停顿（STW），处理并发标记阶段结束后残留的少量未处理的引用变更。</li>
-<li>筛选回收：根据标记结果，选择回收价值高的区域，复制存活对象到新区域，回收旧区域内存。这一阶段包含一个或多个停顿（STW），具体取决于回收的复杂度。</li>
+<li>最终标记： 短暂停顿（STW），处理并发标记阶段结束后残留的<strong>少量未处理的引用变更</strong>。</li>
+<li>筛选回收：根据标记结果，选择<strong>回收价值高</strong>的区域，<strong>复制</strong>存活对象到新区域，<strong>回收</strong>旧区域内存。这一阶段包含一个或多个停顿（STW），具体取决于回收的复杂度。</li>
 </ul>
 <p>G1 收集器在后台维护了一个<strong>优先列表</strong>，每次根据允许的收集时间，<strong>优先选择回收价值最大</strong>的 Region(这也就是它的名字 Garbage-First 的由来) 。这种使用 Region <strong>划分内存空间</strong>以及有<strong>优先级的区域回收</strong>方式，保证了 G1 收集器在有限时间内可以尽可能高的收集效率（把内存化整为零）。</p>
 <p>从 JDK9 开始，G1 垃圾收集器成为了默认的垃圾收集器。</p>
