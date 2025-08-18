@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
-<meta property="og:updated_time" content="2025-08-17T04:59:04.514Z">
+<meta property="og:updated_time" content="2025-08-18T16:22:20.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🔥 面试 | Java">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
@@ -161,8 +161,9 @@
 <p>-XX:+PrintGCDetails： Print GC logs</p>
 <h3 id="如何排查-JVM-内存泄漏问题？常用工具有哪些？（jmap、jstack、jconsole、VisualVM、Arthas）"><a href="#如何排查-JVM-内存泄漏问题？常用工具有哪些？（jmap、jstack、jconsole、VisualVM、Arthas）" class="headerlink" title="如何排查 JVM 内存泄漏问题？常用工具有哪些？（jmap、jstack、jconsole、VisualVM、Arthas）"></a>如何排查 JVM 内存泄漏问题？常用工具有哪些？（jmap、jstack、jconsole、VisualVM、Arthas）</h3><p>Tools like jmap, jstack, visualVM and Arthas can help analyze memory and threads. GC logs are also crucial for identifying issues.</p>
 <h3 id="发生-OOM（OutOfMemoryError）时如何定位和解决？"><a href="#发生-OOM（OutOfMemoryError）时如何定位和解决？" class="headerlink" title="发生 OOM（OutOfMemoryError）时如何定位和解决？"></a>发生 OOM（OutOfMemoryError）时如何定位和解决？</h3><p>Java heap space<br>GC overhead limit exceeded<br>Metaspace<br>Direct buffer memory<br>Unable to create new native thread </p>
-<h3 id="JVM-调优时常见的监控指标有哪些？（GC-次数、延迟、堆内存使用率、线程数）"><a href="#JVM-调优时常见的监控指标有哪些？（GC-次数、延迟、堆内存使用率、线程数）" class="headerlink" title="JVM 调优时常见的监控指标有哪些？（GC 次数、延迟、堆内存使用率、线程数）"></a>JVM 调优时常见的监控指标有哪些？（GC 次数、延迟、堆内存使用率、线程数）</h3><p>During JVM tuning, I mainly monitor GC count and pause time, heap and old generation usage, thread numbers and states, and CPU utilization. In addtion, I also check appl;ication-level latency indicators, such as P99 response time, to see if GC affects performance. </p>
-<h3 id="生产环境中遇到-GC-频繁、响应变慢，你会如何排查？"><a href="#生产环境中遇到-GC-频繁、响应变慢，你会如何排查？" class="headerlink" title="生产环境中遇到 GC 频繁、响应变慢，你会如何排查？"></a>生产环境中遇到 GC 频繁、响应变慢，你会如何排查？</h3><p>First,I will check GC logs to see whether frequent GCs are Minor ro Full. </p>
+<h3 id="JVM-调优时常见的监控指标有哪些？（GC-次数、延迟、堆内存使用率、线程数）"><a href="#JVM-调优时常见的监控指标有哪些？（GC-次数、延迟、堆内存使用率、线程数）" class="headerlink" title="JVM 调优时常见的监控指标有哪些？（GC 次数、延迟、堆内存使用率、线程数）"></a>JVM 调优时常见的监控指标有哪些？（GC 次数、延迟、堆内存使用率、线程数）</h3><p>During JVM tuning, I mainly monitor GC count and pause time, heap and old generation usage, thread numbers and states, and CPU utilization. </p>
+<p>In addtion, I also check application-level latency indicators, such as P99 response time, to see if GC affects performance. </p>
+<h3 id="生产环境中遇到-GC-频繁、响应变慢，你会如何排查？"><a href="#生产环境中遇到-GC-频繁、响应变慢，你会如何排查？" class="headerlink" title="生产环境中遇到 GC 频繁、响应变慢，你会如何排查？"></a>生产环境中遇到 GC 频繁、响应变慢，你会如何排查？</h3><p>First,I will check GC logs to see whether frequent GCs are Minor or Full. </p>
 <p>Then I use tools like jstat, jmap and jstack to analyze heap memory usage and thread states. </p>
 <p>If it’s caused by insufficient memory, I adjust heap size or GC parameters;</p>
 <p>If it’s a code issue, such as cache not being cleard or memory leak, I analyze heap dumps and fix the code.</p>

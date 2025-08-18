@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/springcloud.jpg">
-<meta property="og:updated_time" content="2025-08-04T15:14:53.342Z">
+<meta property="og:updated_time" content="2025-08-18T16:08:13.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 后端 | SpringCloud -&gt; 分布式事务">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/springcloud.jpg">
@@ -285,7 +285,7 @@
 <li>confirm：完成资源操作业务；要求 try 成功 confirm 一定要能成功。 </li>
 <li>cancel：预留资源释放（回滚），可以理解为try的反向操作。 </li>
 </ul>
-<h3 id="事务悬挂和空回滚"><a href="#事务悬挂和空回滚" class="headerlink" title="事务悬挂和空回滚"></a>事务悬挂和空回滚</h3><p>如一个分布式事务中包含两个分支事务，try 阶段（锁定资源）时一个分支执行成功，另一个分支事务阻塞，如果阻塞时间太长，可能导致全局事务超时而出发<strong>二阶段</strong>的 cancel 操作，两个分支事务都会执行 cancel 操作</p>
+<h3 id="事务悬挂和空回滚"><a href="#事务悬挂和空回滚" class="headerlink" title="事务悬挂和空回滚"></a>事务悬挂和空回滚</h3><p>如一个分布式事务中包含两个分支事务，try 阶段（锁定资源）时一个分支执行成功，另一个分支事务阻塞，如果阻塞时间太长，可能导致全局事务超时而触发<strong>二阶段</strong>的 cancel 操作，两个分支事务都会执行 cancel 操作</p>
 <p>但是一个分支是未执行 try 操作的，直接执行 cancel 操作反而导致数据错误。所以这种情况下尽管 cancel 方法需要执行，但却<strong>不能做</strong>任何回滚操作，因此称为空回滚。</p>
 <p>对于整个空回滚的分支事务，将来 try 方法阻塞结束依然会执行，但是整个全局事务其实已经结束了，因此永远不会再有 confirm 和 cancel ，也就是说这个事务执行了一半，处于悬挂状态。</p>
 <h3 id="TCC-的优缺点"><a href="#TCC-的优缺点" class="headerlink" title="TCC 的优缺点"></a>TCC 的优缺点</h3><p>优点：</p>

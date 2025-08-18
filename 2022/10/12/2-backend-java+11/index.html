@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/java+.jpg">
-<meta property="og:updated_time" content="2025-08-10T18:26:23.357Z">
+<meta property="og:updated_time" content="2025-08-18T16:19:15.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 语言 | Java 并发：线程池">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/java+.jpg">
@@ -182,7 +182,7 @@
 <li>通过 ThreadPoolExecutor 构造函数直接创建</li>
 <li>通过 Executors 工具类创建</li>
 </ul>
-<p>通过 ThreadPoolExecutor 构造函数的方式，可以让开发人员更加明确线程池的运行规则，允许开发者明确指定线程池的核心参数，对线程池的运行行为有更精细的控制，从而避免资源耗尽的风险。避免使用 Executors 类创建线程池，会有 OOM 风险。</p>
+<p>通过 ThreadPoolExecutor 构造函数的方式，可以让开发人员更加明确线程池的运行规则，允许开发者明确指定线程池的核心参数，对线程池的运行行为有更精细的控制，从而避免资源耗尽的风险。避免使用 Executors 类创建线程池，会有 OOM(OutOfMemory) 风险。</p>
 <h2 id="线程池常用的阻塞队列总结"><a href="#线程池常用的阻塞队列总结" class="headerlink" title="线程池常用的阻塞队列总结"></a>线程池常用的阻塞队列总结</h2><p>新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。</p>
 <p>不同的线程池会选用不同的阻塞队列，我们可以结合内置线程池来分析。</p>
 <ul>
