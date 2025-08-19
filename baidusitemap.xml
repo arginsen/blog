@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://lixupeng.cn/blog/2025/02/19/1-interview-java/</loc>
+    <lastmod>2025-08-19</lastmod>
+  </url>
+  <url>
+    <loc>https://lixupeng.cn/blog/2025/02/21/1-interview-mysql/</loc>
+    <lastmod>2025-08-19</lastmod>
+  </url>
+  <url>
+    <loc>https://lixupeng.cn/blog/2025/02/12/1-interview-spring/</loc>
+    <lastmod>2025-08-19</lastmod>
+  </url>
+  <url>
     <loc>https://lixupeng.cn/blog/2022/10/12/2-backend-java+11/</loc>
     <lastmod>2025-08-18</lastmod>
   </url>

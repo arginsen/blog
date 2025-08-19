@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
   
-  <title>🔥 面试 | Java | Arginsen&#39;s Blog</title><meta name="robots" content="noindex">
+  <title>🔥 面试 | Java | Arginsen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="Javainterview">
@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
-<meta property="og:updated_time" content="2025-08-18T16:22:20.037Z">
+<meta property="og:updated_time" content="2025-08-19T07:49:54.042Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🔥 面试 | Java">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
@@ -175,7 +175,7 @@
 <p>Thus, the Metaspace will be exhaused. This process shows the increasing memory usage until hitting the limit and then the pod restart.</p>
 <p>We dumped the heap with jmap and analyzed it using MAT, and found a large number of relection-related objects being strongly referenced in static collectinos. This prevented GC from reclaiming them.</p>
 <p>THe root cause was that our code created reflectino objects but never released them. We fixed it by using weak references for caching or explicitly clearing references after use.</p>
-<!-- flag of hidden posts -->
+
       
     </div>
     <br>
@@ -261,6 +261,25 @@
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/blog/2025/02/21/1-interview-mysql/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          🔥 面试 | Spring Cloud
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2025/02/12/1-interview-spring/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">🔥 面试 | Spring Cloud</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
@@ -310,7 +329,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 366.2k 字</span>
+        <span class="post-count">全站共 368.6k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
