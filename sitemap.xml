@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://lixupeng.cn/blog/2025/02/12/1-interview-spring/</loc>
+    <loc>https://lixupeng.cn/blog/2025/02/12/1-interview-redis/</loc>
     
-    <lastmod>2025-08-20T16:34:09.106Z</lastmod>
+    <lastmod>2025-08-20T16:36:14.665Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2025/02/27/1-interview-spring/</loc>
+    
+    <lastmod>2025-08-20T16:36:10.513Z</lastmod>
     
   </url>
   
@@ -19,13 +26,6 @@
     <loc>https://lixupeng.cn/blog/2024/11/18/1-business-bank-messageflow.md/</loc>
     
     <lastmod>2025-08-19T08:37:00.271Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2025/02/27/1-interview-redis/</loc>
-    
-    <lastmod>2025-08-19T08:35:01.726Z</lastmod>
     
   </url>
   

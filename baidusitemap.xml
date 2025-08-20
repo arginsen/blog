@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://lixupeng.cn/blog/2025/02/12/1-interview-spring/</loc>
+    <loc>https://lixupeng.cn/blog/2025/02/12/1-interview-redis/</loc>
+    <lastmod>2025-08-20</lastmod>
+  </url>
+  <url>
+    <loc>https://lixupeng.cn/blog/2025/02/27/1-interview-spring/</loc>
     <lastmod>2025-08-20</lastmod>
   </url>
   <url>
@@ -10,10 +14,6 @@
   </url>
   <url>
     <loc>https://lixupeng.cn/blog/2024/11/18/1-business-bank-messageflow.md/</loc>
-    <lastmod>2025-08-19</lastmod>
-  </url>
-  <url>
-    <loc>https://lixupeng.cn/blog/2025/02/27/1-interview-redis/</loc>
     <lastmod>2025-08-19</lastmod>
   </url>
   <url>
