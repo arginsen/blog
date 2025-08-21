@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
-<meta property="og:updated_time" content="2025-08-21T11:31:44.615Z">
+<meta property="og:updated_time" content="2025-08-21T16:36:15.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🔥 面试 | Spring Cloud 相关">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
@@ -225,7 +225,20 @@
 <p>Deployment can manage pods, which supports replica number control, rolling updates and rollbacks.</p>
 <p>Service provides the stable access entry. Pods’ ip is dynamic, so Service can proxy the dynamic ip to the actual pod and accomplish load balance. </p>
 <p>Ingress is the upper-layer entrance of Service. It is responsible for routing external traffic.</p>
-<h2 id="Pod-为什么会被-OOMKilled？"><a href="#Pod-为什么会被-OOMKilled？" class="headerlink" title="Pod 为什么会被 OOMKilled？"></a>Pod 为什么会被 OOMKilled？</h2><h2 id="Liveness-Probe-和-Readiness-Probe-有什么区别？"><a href="#Liveness-Probe-和-Readiness-Probe-有什么区别？" class="headerlink" title="Liveness Probe 和 Readiness Probe 有什么区别？"></a>Liveness Probe 和 Readiness Probe 有什么区别？</h2><h2 id="K8s-滚动更新和回滚是怎么实现的？"><a href="#K8s-滚动更新和回滚是怎么实现的？" class="headerlink" title="K8s 滚动更新和回滚是怎么实现的？"></a>K8s 滚动更新和回滚是怎么实现的？</h2><h2 id="ConfigMap-和-Secret-的区别？"><a href="#ConfigMap-和-Secret-的区别？" class="headerlink" title="ConfigMap 和 Secret 的区别？"></a>ConfigMap 和 Secret 的区别？</h2><h2 id="如何排查-Pod-CrashLoopBackOff？"><a href="#如何排查-Pod-CrashLoopBackOff？" class="headerlink" title="如何排查 Pod CrashLoopBackOff？"></a>如何排查 Pod CrashLoopBackOff？</h2><h2 id="HPA（Horizontal-Pod-Autoscaler）工作原理？"><a href="#HPA（Horizontal-Pod-Autoscaler）工作原理？" class="headerlink" title="HPA（Horizontal Pod Autoscaler）工作原理？"></a>HPA（Horizontal Pod Autoscaler）工作原理？</h2><h1 id="CI-CD"><a href="#CI-CD" class="headerlink" title="CI/CD"></a>CI/CD</h1><h2 id="CI-CD-的流程是怎样的？"><a href="#CI-CD-的流程是怎样的？" class="headerlink" title="CI/CD 的流程是怎样的？"></a>CI/CD 的流程是怎样的？</h2><h2 id="常见的-CI-CD-工具（Jenkins、GitLab-CI、ArgoCD）区别？"><a href="#常见的-CI-CD-工具（Jenkins、GitLab-CI、ArgoCD）区别？" class="headerlink" title="常见的 CI/CD 工具（Jenkins、GitLab CI、ArgoCD）区别？"></a>常见的 CI/CD 工具（Jenkins、GitLab CI、ArgoCD）区别？</h2><h2 id="在-CI-CD-中如何做自动化测试？"><a href="#在-CI-CD-中如何做自动化测试？" class="headerlink" title="在 CI/CD 中如何做自动化测试？"></a>在 CI/CD 中如何做自动化测试？</h2><h2 id="如何在-CI-CD-中实现蓝绿发布-灰度发布？"><a href="#如何在-CI-CD-中实现蓝绿发布-灰度发布？" class="headerlink" title="如何在 CI/CD 中实现蓝绿发布 / 灰度发布？"></a>如何在 CI/CD 中实现蓝绿发布 / 灰度发布？</h2><h2 id="CI-CD-如何与-Docker、K8s-结合？"><a href="#CI-CD-如何与-Docker、K8s-结合？" class="headerlink" title="CI/CD 如何与 Docker、K8s 结合？"></a>CI/CD 如何与 Docker、K8s 结合？</h2><h2 id="如何保障生产环境的回滚机制？"><a href="#如何保障生产环境的回滚机制？" class="headerlink" title="如何保障生产环境的回滚机制？"></a>如何保障生产环境的回滚机制？</h2>
+<h2 id="Pod-为什么会被-OOMKilled？"><a href="#Pod-为什么会被-OOMKilled？" class="headerlink" title="Pod 为什么会被 OOMKilled？"></a>Pod 为什么会被 OOMKilled？</h2><p>Usually Container memory is out of memory.</p>
+<p>It may be configured too small resource limit, or the app occurs memory leak resulting in the surging memory usage in a short term.</p>
+<p>In kubernetes, If the memory usage is over the limits, the POD will be killed by kernel OOM killer.</p>
+<p>I usually check the pod event, and then check the container resource configuration, analyze the monitoring data and app logs.</p>
+<p>finally, The solution is usually Optimizing memory usage or tuning the memory limits.</p>
+<h2 id="Liveness-Probe-和-Readiness-Probe-有什么区别？"><a href="#Liveness-Probe-和-Readiness-Probe-有什么区别？" class="headerlink" title="Liveness Probe 和 Readiness Probe 有什么区别？"></a>Liveness Probe 和 Readiness Probe 有什么区别？</h2><p>Liveness probe and Readiness probe are all used to be probe to check the container health.</p>
+<p>Liveness Probe check if the container lives, if not, kubelet will restart the container.</p>
+<p>Readiness Probe check if the pod is ready for providing service. If not, Pod will be temporarily removed from the load balance of Service. But container can’t be restarted.</p>
+<h2 id="K8s-滚动更新和回滚是怎么实现的？"><a href="#K8s-滚动更新和回滚是怎么实现的？" class="headerlink" title="K8s 滚动更新和回滚是怎么实现的？"></a>K8s 滚动更新和回滚是怎么实现的？</h2><p>In kubernetes, Deployment uses RollingUpdate stratgy to update pods. It will create a new pod and delete the old pod according to maxUnavilable and maxSurge configuration.</p>
+<p>Deployment can generate a new replicaSet when updating, and preserve the old replicaSet version for rollback.</p>
+<h2 id="ConfigMap-和-Secret-的区别？"><a href="#ConfigMap-和-Secret-的区别？" class="headerlink" title="ConfigMap 和 Secret 的区别？"></a>ConfigMap 和 Secret 的区别？</h2><p>In kubernetes, ConfigMap is used to store the non-sensitive configuration infomation such as database address, app params.</p>
+<p>Secret is used to store the sensitive infomation such as keys, certificate and token.</p>
+<p>And Secret can be encoded by base64 and Kubernetes mechanism, but ConfigMap is plaintext storage.</p>
+<h2 id="如何排查-Pod-CrashLoopBackOff？"><a href="#如何排查-Pod-CrashLoopBackOff？" class="headerlink" title="如何排查 Pod CrashLoopBackOff？"></a>如何排查 Pod CrashLoopBackOff？</h2><h2 id="HPA（Horizontal-Pod-Autoscaler）工作原理？"><a href="#HPA（Horizontal-Pod-Autoscaler）工作原理？" class="headerlink" title="HPA（Horizontal Pod Autoscaler）工作原理？"></a>HPA（Horizontal Pod Autoscaler）工作原理？</h2><h1 id="CI-CD"><a href="#CI-CD" class="headerlink" title="CI/CD"></a>CI/CD</h1><h2 id="CI-CD-的流程是怎样的？"><a href="#CI-CD-的流程是怎样的？" class="headerlink" title="CI/CD 的流程是怎样的？"></a>CI/CD 的流程是怎样的？</h2><h2 id="常见的-CI-CD-工具（Jenkins、GitLab-CI、ArgoCD）区别？"><a href="#常见的-CI-CD-工具（Jenkins、GitLab-CI、ArgoCD）区别？" class="headerlink" title="常见的 CI/CD 工具（Jenkins、GitLab CI、ArgoCD）区别？"></a>常见的 CI/CD 工具（Jenkins、GitLab CI、ArgoCD）区别？</h2><h2 id="在-CI-CD-中如何做自动化测试？"><a href="#在-CI-CD-中如何做自动化测试？" class="headerlink" title="在 CI/CD 中如何做自动化测试？"></a>在 CI/CD 中如何做自动化测试？</h2><h2 id="如何在-CI-CD-中实现蓝绿发布-灰度发布？"><a href="#如何在-CI-CD-中实现蓝绿发布-灰度发布？" class="headerlink" title="如何在 CI/CD 中实现蓝绿发布 / 灰度发布？"></a>如何在 CI/CD 中实现蓝绿发布 / 灰度发布？</h2><h2 id="CI-CD-如何与-Docker、K8s-结合？"><a href="#CI-CD-如何与-Docker、K8s-结合？" class="headerlink" title="CI/CD 如何与 Docker、K8s 结合？"></a>CI/CD 如何与 Docker、K8s 结合？</h2><h2 id="如何保障生产环境的回滚机制？"><a href="#如何保障生产环境的回滚机制？" class="headerlink" title="如何保障生产环境的回滚机制？"></a>如何保障生产环境的回滚机制？</h2>
       
     </div>
     <br>
@@ -246,7 +259,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">2.5k字</span>
+        <span class="ico-fontcount"></span><span class="post-count">2.8k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -370,7 +383,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 370.2k 字</span>
+        <span class="post-count">全站共 370.5k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
