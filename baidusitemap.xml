@@ -2,7 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lixupeng.cn/blog/2025/03/17/1-interview-spring/</loc>
-    <lastmod>2025-08-20</lastmod>
+    <lastmod>2025-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://lixupeng.cn/blog/2025/02/21/1-interview-mysql/</loc>
+    <lastmod>2025-08-21</lastmod>
   </url>
   <url>
     <loc>https://lixupeng.cn/blog/2025/02/12/1-interview-redis/</loc>
@@ -18,10 +22,6 @@
   </url>
   <url>
     <loc>https://lixupeng.cn/blog/2025/02/19/1-interview-java/</loc>
-    <lastmod>2025-08-19</lastmod>
-  </url>
-  <url>
-    <loc>https://lixupeng.cn/blog/2025/02/21/1-interview-mysql/</loc>
     <lastmod>2025-08-19</lastmod>
   </url>
   <url>

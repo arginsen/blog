@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
-<meta property="og:updated_time" content="2025-08-19T07:50:58.890Z">
+<meta property="og:updated_time" content="2025-08-21T09:47:58.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🔥 面试 | Mysql 相关">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
@@ -133,6 +133,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
+<h1 id="如何给热点数据加索引"><a href="#如何给热点数据加索引" class="headerlink" title="如何给热点数据加索引"></a>如何给热点数据加索引</h1><p>first, we need to comfirm what is hot data. Find those accessed, updated or deleted frequently through slow query log or other tools.</p>
+<p>Analyze which colomn is the hot query, such as message_id is the best choice for message_table.</p>
+<p>Use the SQL:</p>
+<blockquote>
+<p>ALTER TABLE table_name ADD INDEX index_name ();</p>
+</blockquote>
+<p>If the query use multiple columns, We can use the composite index. But we need to avoid using too many indexes.</p>
+<h1 id="如何使用-EXPLAIN-分析-慢sql"><a href="#如何使用-EXPLAIN-分析-慢sql" class="headerlink" title="如何使用 EXPLAIN 分析 慢sql"></a>如何使用 EXPLAIN 分析 慢sql</h1><blockquote>
+<p>EXPLAIN SELECT * FROM orders WHERE user_id = 10001 AND status = ‘PAID’;</p>
+</blockquote>
+<p>If type = ref, it means the both indexes, that is reasonable.<br>If type = all, it means the query scan the all table and we need to add the index.</p>
+<h1 id="项目里数据库连接池是怎么优化的"><a href="#项目里数据库连接池是怎么优化的" class="headerlink" title="项目里数据库连接池是怎么优化的?"></a>项目里数据库连接池是怎么优化的?</h1><p>Spring Boot projects use HikariCP as the default connection pool.</p>
+<p>According to the Stress testing result, we tune the connection pool size, such as our system sets the maximumPoolSieze 50 and minimumIdel 10. It will avoid waiting because of less connections and excessive stress because of more connections.</p>
 
       
     </div>
@@ -154,7 +167,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">0字</span>
+        <span class="ico-fontcount"></span><span class="post-count">190字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -247,7 +260,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav">无</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何给热点数据加索引"><span class="nav-number">1.</span> <span class="nav-text">如何给热点数据加索引</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何使用-EXPLAIN-分析-慢sql"><span class="nav-number">2.</span> <span class="nav-text">如何使用 EXPLAIN 分析 慢sql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目里数据库连接池是怎么优化的"><span class="nav-number">3.</span> <span class="nav-text">项目里数据库连接池是怎么优化的?</span></a></li></ol>
     
     </div>
   </aside>
@@ -287,7 +300,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 369.6k 字</span>
+        <span class="post-count">全站共 370.2k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
