@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
-<meta property="og:updated_time" content="2025-08-21T16:36:15.074Z">
+<meta property="og:updated_time" content="2025-08-23T08:33:13.557Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🔥 面试 | Spring Cloud 相关">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
@@ -238,7 +238,15 @@
 <h2 id="ConfigMap-和-Secret-的区别？"><a href="#ConfigMap-和-Secret-的区别？" class="headerlink" title="ConfigMap 和 Secret 的区别？"></a>ConfigMap 和 Secret 的区别？</h2><p>In kubernetes, ConfigMap is used to store the non-sensitive configuration infomation such as database address, app params.</p>
 <p>Secret is used to store the sensitive infomation such as keys, certificate and token.</p>
 <p>And Secret can be encoded by base64 and Kubernetes mechanism, but ConfigMap is plaintext storage.</p>
-<h2 id="如何排查-Pod-CrashLoopBackOff？"><a href="#如何排查-Pod-CrashLoopBackOff？" class="headerlink" title="如何排查 Pod CrashLoopBackOff？"></a>如何排查 Pod CrashLoopBackOff？</h2><h2 id="HPA（Horizontal-Pod-Autoscaler）工作原理？"><a href="#HPA（Horizontal-Pod-Autoscaler）工作原理？" class="headerlink" title="HPA（Horizontal Pod Autoscaler）工作原理？"></a>HPA（Horizontal Pod Autoscaler）工作原理？</h2><h1 id="CI-CD"><a href="#CI-CD" class="headerlink" title="CI/CD"></a>CI/CD</h1><h2 id="CI-CD-的流程是怎样的？"><a href="#CI-CD-的流程是怎样的？" class="headerlink" title="CI/CD 的流程是怎样的？"></a>CI/CD 的流程是怎样的？</h2><h2 id="常见的-CI-CD-工具（Jenkins、GitLab-CI、ArgoCD）区别？"><a href="#常见的-CI-CD-工具（Jenkins、GitLab-CI、ArgoCD）区别？" class="headerlink" title="常见的 CI/CD 工具（Jenkins、GitLab CI、ArgoCD）区别？"></a>常见的 CI/CD 工具（Jenkins、GitLab CI、ArgoCD）区别？</h2><h2 id="在-CI-CD-中如何做自动化测试？"><a href="#在-CI-CD-中如何做自动化测试？" class="headerlink" title="在 CI/CD 中如何做自动化测试？"></a>在 CI/CD 中如何做自动化测试？</h2><h2 id="如何在-CI-CD-中实现蓝绿发布-灰度发布？"><a href="#如何在-CI-CD-中实现蓝绿发布-灰度发布？" class="headerlink" title="如何在 CI/CD 中实现蓝绿发布 / 灰度发布？"></a>如何在 CI/CD 中实现蓝绿发布 / 灰度发布？</h2><h2 id="CI-CD-如何与-Docker、K8s-结合？"><a href="#CI-CD-如何与-Docker、K8s-结合？" class="headerlink" title="CI/CD 如何与 Docker、K8s 结合？"></a>CI/CD 如何与 Docker、K8s 结合？</h2><h2 id="如何保障生产环境的回滚机制？"><a href="#如何保障生产环境的回滚机制？" class="headerlink" title="如何保障生产环境的回滚机制？"></a>如何保障生产环境的回滚机制？</h2>
+<h2 id="如何排查-Pod-CrashLoopBackOff？"><a href="#如何排查-Pod-CrashLoopBackOff？" class="headerlink" title="如何排查 Pod CrashLoopBackOff？"></a>如何排查 Pod CrashLoopBackOff？</h2><h2 id="HPA（Horizontal-Pod-Autoscaler）工作原理？"><a href="#HPA（Horizontal-Pod-Autoscaler）工作原理？" class="headerlink" title="HPA（Horizontal Pod Autoscaler）工作原理？"></a>HPA（Horizontal Pod Autoscaler）工作原理？</h2><h1 id="CI-CD"><a href="#CI-CD" class="headerlink" title="CI/CD"></a>CI/CD</h1><h2 id="CI-CD-的流程是怎样的？"><a href="#CI-CD-的流程是怎样的？" class="headerlink" title="CI/CD 的流程是怎样的？"></a>CI/CD 的流程是怎样的？</h2><p>CI - Continuous Integration<br>CD - Continuous Delivery/Deployment</p>
+<p>First, developers commit their codes to gitlab.</p>
+<p>We configture a pipeline to clone the project codes, install the dependencies, build the Application using maven or npm. also we can do the code scaning and unit test.</p>
+<p>when CD stage, we build the image Using docker, it will package the application zip file to the image file by dockerfile, of course, we can write the build logic in dockerfile, like we can use domestic basic image jre or nginx for different end, copy that zip file and unzip it.<br>Then we push the image to our private repository. Finally, we deploy the project by the kubernetes manifest, It will contain the infomation of pod, deployment, service, route and that docker image address, etc. </p>
+<p>When the pipeline execution ends, we can see our application in our cloud platform.</p>
+<p>Also we have different pipelines for different environments such as dev, sit, uat. After going online, there is the production environment, which developers have no right to access.</p>
+<h2 id="常见的-CI-CD-工具（Jenkins、GitLab-CI、ArgoCD）区别？"><a href="#常见的-CI-CD-工具（Jenkins、GitLab-CI、ArgoCD）区别？" class="headerlink" title="常见的 CI/CD 工具（Jenkins、GitLab CI、ArgoCD）区别？"></a>常见的 CI/CD 工具（Jenkins、GitLab CI、ArgoCD）区别？</h2><p>My last company got the DevOps team, So they develop and maintain the CI/CD tools base on Jenkins. </p>
+<p>Jenkins is more flexible for large company, the devops team can configure according to the needs of Company teams.</p>
+<h2 id="在-CI-CD-中如何做自动化测试？"><a href="#在-CI-CD-中如何做自动化测试？" class="headerlink" title="在 CI/CD 中如何做自动化测试？"></a>在 CI/CD 中如何做自动化测试？</h2><h2 id="如何在-CI-CD-中实现蓝绿发布-灰度发布？"><a href="#如何在-CI-CD-中实现蓝绿发布-灰度发布？" class="headerlink" title="如何在 CI/CD 中实现蓝绿发布 / 灰度发布？"></a>如何在 CI/CD 中实现蓝绿发布 / 灰度发布？</h2><h2 id="CI-CD-如何与-Docker、K8s-结合？"><a href="#CI-CD-如何与-Docker、K8s-结合？" class="headerlink" title="CI/CD 如何与 Docker、K8s 结合？"></a>CI/CD 如何与 Docker、K8s 结合？</h2><h2 id="如何保障生产环境的回滚机制？"><a href="#如何保障生产环境的回滚机制？" class="headerlink" title="如何保障生产环境的回滚机制？"></a>如何保障生产环境的回滚机制？</h2>
       
     </div>
     <br>
@@ -259,7 +267,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">2.8k字</span>
+        <span class="ico-fontcount"></span><span class="post-count">3k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -383,7 +391,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 370.5k 字</span>
+        <span class="post-count">全站共 370.7k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
