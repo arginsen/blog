@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/redis.jpg">
-<meta property="og:updated_time" content="2025-08-14T15:18:00.755Z">
+<meta property="og:updated_time" content="2025-08-24T11:16:52.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 后端 | Redis 应用">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/redis.jpg">
@@ -133,7 +133,39 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
-<h1 id="Redis-数据结构"><a href="#Redis-数据结构" class="headerlink" title="Redis 数据结构"></a>Redis 数据结构</h1>
+<h1 id="distributed-lock"><a href="#distributed-lock" class="headerlink" title="distributed lock"></a>distributed lock</h1><p>在 Redis 中， SETNX 命令是可以帮助我们实现互斥。SETNX 即 SET if Not eXists (对应 Java 中的 setIfAbsent 方法)，如果 key 不存在的话，才会设置 key 的值。如果 key 已经存在， SETNX 啥也不做。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; SETNX lockKey uniqueValue</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">&gt; SETNX lockKey uniqueValue</span><br></pre></td></tr></table></figure>
+<p>(integer) 0释放锁的话，直接通过 DEL 命令删除对应的 key 即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; DEL lockKey</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+<h2 id="设置过期时间"><a href="#设置过期时间" class="headerlink" title="设置过期时间"></a>设置过期时间</h2><p>为了避免锁无法被释放，我们可以想到的一个解决办法就是：给这个 key（也就是锁） 设置一个过期时间 。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; SET lockKey uniqueValue EX 3 NX</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+<p>lockKey：加锁的锁名；<br>uniqueValue：能够唯一标识锁的随机字符串；<br>NX：只有当 lockKey 对应的 key 值不存在的时候才能 SET 成功；<br>EX：过期时间设置（秒为单位）EX 3 标示这个锁有一个 3 秒的自动过期时间。与 EX 对应的是 PX（毫秒为单位），这两个都是过期时间设置。</p>
+<h2 id="Redisson"><a href="#Redisson" class="headerlink" title="Redisson"></a>Redisson</h2><p>Redisson 是一个开源的 Java 语言 Redis 客户端，提供了很多开箱即用的功能，不仅仅包括多种分布式锁的实现。</p>
+<p>并且，Redisson 还支持 Redis 单机、Redis Sentinel、Redis Cluster 等多种部署架构。</p>
+<p>Redisson 中的分布式锁自带自动续期机制，使用起来非常简单，原理也比较简单，其提供了一个专门用来监控和续期锁的 Watch Dog（ 看门狗），如果操作共享资源的线程还未执行完成的话，Watch Dog 会不断地延长锁的过期时间，进而保证锁不会因为超时而被释放。</p>
+<p>看门狗名字的由来于 getLockWatchdogTimeout() 方法，这个方法返回的是看门狗给锁续期的过期时间，默认为 30 秒（redisson-3.17.6）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//默认 30秒，支持修改</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> lockWatchdogTimeout = <span class="number">30</span> * <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Config <span class="title">setLockWatchdogTimeout</span><span class="params">(<span class="keyword">long</span> lockWatchdogTimeout)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.lockWatchdogTimeout = lockWatchdogTimeout;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getLockWatchdogTimeout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> lockWatchdogTimeout;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Redisson 实现分布式可重入锁 RLock：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.获取指定的分布式锁对象</span></span><br><span class="line">RLock lock = redisson.getLock(<span class="string">"lock"</span>);</span><br><span class="line"><span class="comment">// 2.拿锁且不设置锁超时时间，具备 Watch Dog 自动续期机制</span></span><br><span class="line">lock.lock();</span><br><span class="line"><span class="comment">// 3.执行业务</span></span><br><span class="line">...</span><br><span class="line"><span class="comment">// 4.释放锁</span></span><br><span class="line">lock.unlock();</span><br></pre></td></tr></table></figure>
+<p>只有未指定锁超时时间，才会使用到 Watch Dog 自动续期机制。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 手动给锁设置过期时间，不具备 Watch Dog 自动续期机制</span></span><br><span class="line">lock.lock(<span class="number">10</span>, TimeUnit.SECONDS);</span><br></pre></td></tr></table></figure>
+<p>如果使用 Redis 来实现分布式锁的话，基于 Redisson 是不错的选择.</p>
+<p>所谓可重入锁指的是在一个线程中可以多次获取同一把锁，比如一个线程在执行一个带锁的方法，该方法中又调用了另一个需要相同锁的方法，则该线程可以直接执行调用的方法即可重入 ，而无需重新获得锁。像 Java 中的 synchronized 和 ReentrantLock 都属于可重入锁。</p>
+<p>不可重入的分布式锁基本可以满足绝大部分业务场景了，一些特殊的场景可能会需要使用可重入的分布式锁。</p>
+<p>可重入分布式锁的实现核心思路是线程在获取锁的时候判断是否为自己的锁，如果是的话，就不用再重新获取了。为此，我们可以为每个锁关联一个可重入计数器和一个占有它的线程。当可重入计数器大于 0 时，则锁被占有，需要判断占有该锁的线程和请求获取锁的线程是否为同一个。</p>
+<p>为了避免单点故障，生产环境下的 Redis 服务通常是集群化部署的。</p>
+<p>Redis 集群下，上面介绍到的分布式锁的实现会存在一些问题。由于 Redis 集群数据同步到各个节点时是异步的，如果在 Redis 主节点获取到锁后，在没有同步到其他节点时，Redis 主节点宕机了，此时新的 Redis 主节点依然可以获取锁，所以多个应用服务就可以同时获取到锁。</p>
+<p>可以考虑基于 <strong>Redis 主从复制+哨兵模式</strong>实现分布式锁。</p>
+<p>当然 zookeeper 也可以实现分布式锁，但是因为强一致性zookeeper性能相对差。</p>
+<h1 id="delay-queues"><a href="#delay-queues" class="headerlink" title="delay queues"></a>delay queues</h1><p>Redis 中有很多默认的 channel，这些 channel 是由 Redis 本身向它们发送消息的，而不是我们自己编写的代码。其中，<strong>keyevent@0</strong>:expired 就是一个默认的 channel，负责监听 key 的过期事件。也就是说，当一个 key 过期之后，Redis 会发布一个 key 过期的事件到<strong>keyevent@<db></db></strong>:expired这个 channel 中。</p>
+<p>我们只需要监听这个 channel，就可以拿到过期的 key 的消息，进而实现了延时任务功能。</p>
+<p>但是 Redis 过期事件监听实现延时任务功能存在时效性差、消息丢失、多服务实例下消息重复消费，</p>
+<p>通常我们可以使用 Redisson 的延迟队列实现延迟消息。</p>
+<p>Redisson 的延迟队列 RDelayedQueue 是基于 Redis 的 SortedSet 来实现的。SortedSet 是一个有序集合，其中的每个元素都可以设置一个分数，代表该元素的权重。Redisson 利用这一特性，将需要延迟执行的任务插入到 SortedSet 中，并给它们设置相应的过期时间作为分数。</p>
+<p>Redisson 定期使用 zrangebyscore 命令扫描 SortedSet 中过期的元素，然后将这些过期元素从 SortedSet 中移除，并将它们加入到就绪消息列表中。就绪消息列表是一个阻塞队列，有消息进入就会被消费者监听到。这样做可以避免消费者对整个 SortedSet 进行轮询，提高了执行效率。</p>
+<p>通常项目中，跟 Redisson 内置的延时队列相比，<strong>消息队列</strong>可以通过保障消息消费的可靠性、控制消息生产者和消费者的数量等手段来实现<strong>更高的吞吐量和更强的可靠性</strong>，<strong>实际项目</strong>中首选使用消息队列的延时消息这种方案。</p>
+<h1 id="current-linmitiing"><a href="#current-linmitiing" class="headerlink" title="current linmitiing"></a>current linmitiing</h1><p># </p>
+
       
     </div>
     <br>
@@ -154,7 +186,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">5字</span>
+        <span class="ico-fontcount"></span><span class="post-count">1.5k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -247,7 +279,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-数据结构"><span class="nav-number">1.</span> <span class="nav-text">Redis 数据结构</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#distributed-lock"><span class="nav-number">1.</span> <span class="nav-text">distributed lock</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置过期时间"><span class="nav-number">1.1.</span> <span class="nav-text">设置过期时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redisson"><span class="nav-number">1.2.</span> <span class="nav-text">Redisson</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#delay-queues"><span class="nav-number">2.</span> <span class="nav-text">delay queues</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#current-linmitiing"><span class="nav-number">3.</span> <span class="nav-text">current linmitiing</span></a></li></ol>
     
     </div>
   </aside>
@@ -287,7 +319,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 370.7k 字</span>
+        <span class="post-count">全站共 373.2k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

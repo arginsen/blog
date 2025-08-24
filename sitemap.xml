@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lixupeng.cn/blog/2024/07/08/2-backend-redis6/</loc>
+    
+    <lastmod>2025-08-24T11:18:05.188Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2024/06/29/2-backend-redis5/</loc>
+    
+    <lastmod>2025-08-24T11:17:56.308Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2024/04/25/2-backend-redis1/</loc>
+    
+    <lastmod>2025-08-24T11:16:52.179Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2024/05/15/2-backend-redis2/</loc>
+    
+    <lastmod>2025-08-24T04:55:31.301Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lixupeng.cn/blog/2025/03/17/1-interview-spring/</loc>
     
-    <lastmod>2025-08-23T08:33:13.557Z</lastmod>
+    <lastmod>2025-08-23T16:38:05.947Z</lastmod>
     
   </url>
   
@@ -68,27 +96,6 @@
     <loc>https://lixupeng.cn/blog/2022/10/27/2-backend-java+12/</loc>
     
     <lastmod>2025-08-16T14:32:43.709Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/04/25/2-backend-redis1/</loc>
-    
-    <lastmod>2025-08-14T15:18:00.755Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/05/15/2-backend-redis2/</loc>
-    
-    <lastmod>2025-08-14T15:17:59.338Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/07/08/2-backend-redis6/</loc>
-    
-    <lastmod>2025-08-14T15:04:35.634Z</lastmod>
     
   </url>
   
@@ -194,13 +201,6 @@
     <loc>https://lixupeng.cn/blog/2024/07/30/2-backend-redis8/</loc>
     
     <lastmod>2025-08-01T18:04:07.606Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/06/29/2-backend-redis5/</loc>
-    
-    <lastmod>2025-08-01T18:01:25.597Z</lastmod>
     
   </url>
   

@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/redis.jpg">
-<meta property="og:updated_time" content="2025-08-14T15:17:59.338Z">
+<meta property="og:updated_time" content="2025-08-24T04:55:31.301Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 后端 | Redis 数据类型">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/redis.jpg">
@@ -133,6 +133,20 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
+<h1 id="Redis-数据结构"><a href="#Redis-数据结构" class="headerlink" title="Redis 数据结构"></a>Redis 数据结构</h1><p>String List Set SortedSet Hash</p>
+<h2 id="RedisObject"><a href="#RedisObject" class="headerlink" title="RedisObject"></a>RedisObject</h2><p>不管是任何一种数据结构，最终都会被封装为RedisObject 格式，它是一种结构体，可以理解为Java中的类</p>
+<p>在 RedisObject 结构体中存有 type、encoding、lru、refcount、*ptr， 并没有包含真实的数据，仅仅是对象头信息，内存占用的大小是 128bit，也就是16字节，其中指针 ptr 指向的才是真实数据存储的内存地址。 因此 RedisObject 的内存开销很大。</p>
+<h2 id="SkipList"><a href="#SkipList" class="headerlink" title="SkipList"></a>SkipList</h2><p>SkipList 是链表，但相比传统链表有几点差异：</p>
+<ul>
+<li>元素按照升序排列存储</li>
+<li>节点可能包含多个指针，指针跨度不同。</li>
+</ul>
+<p>传统链表只有指向前后元素的指针，因此只能顺序依次访问。如果查找的元素在链表中间，查询的效率会比较低。而 SkipList 则不同，它内部包含跨度不同的多级指针，可以让我们<strong>跳跃查找</strong>链表中间的元素，效率非常高。</p>
+<p>这种多级指针的查询方式就避免了传统链表的<strong>逐个遍历</strong>导致的查询效率下降问题。在对有序数据做随机查询和排序时效率非常高。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string"> SkipList 跳表的结构体</span></span><br><span class="line"><span class="string">'</span><span class="string">''</span></span><br><span class="line">typedef struct zskiplist &#123;</span><br><span class="line">    <span class="comment">// 头尾节点指针</span></span><br><span class="line">    struct zskiplistNode *header, *tail;</span><br><span class="line">    <span class="comment">// 节点数量</span></span><br><span class="line">    unsigned <span class="keyword">long</span> length;</span><br><span class="line">    <span class="comment">// 最大的索引层级</span></span><br><span class="line">    <span class="keyword">int</span> level;</span><br><span class="line">&#125; zskiplist;</span><br><span class="line"></span><br><span class="line"><span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string"> 跳表中节点的结构体</span></span><br><span class="line"><span class="string">'</span><span class="string">''</span></span><br><span class="line">typedef struct zskiplistNode &#123;</span><br><span class="line">    sds ele; <span class="comment">// 节点存储的字符串</span></span><br><span class="line">    <span class="keyword">double</span> score;<span class="comment">// 节点分数，排序、查找用</span></span><br><span class="line">    struct zskiplistNode *backward; <span class="comment">// 前一个节点指针</span></span><br><span class="line">    struct zskiplistLevel &#123;</span><br><span class="line">        struct zskiplistNode *forward; <span class="comment">// 下一个节点指针</span></span><br><span class="line">        unsigned <span class="keyword">long</span> span; <span class="comment">// 索引跨度</span></span><br><span class="line">    &#125; level[]; <span class="comment">// 多级索引数组</span></span><br><span class="line">&#125; zskiplistNode;</span><br></pre></td></tr></table></figure>
+<p>SkipList 主要属性是 header 和 tail，也就是头尾指针，因此它是支持双向遍历的。<br>每个节点中都包含 ele 和 score 两个属性，其中 score 是得分，也就是节点排序的依据。ele 则是节点存储的字符串数据指针。</p>
+<h2 id="SortedSet"><a href="#SortedSet" class="headerlink" title="SortedSet"></a>SortedSet</h2><p>SortedSet 是有序集合，底层的存储的每个数据都包含 element 和 score 两个值。score 是得分，element 则是字符串值。SortedSet 会根据每个 element 的 score 值排序，形成有序集合。</p>
+<p>SortedSet 底层是基于 HashTable 、跳表实现的。SortedSet底层需要用到两种数据结构，对内存占用比较高。因此Redis底层会对 SortedSet 中的元素大小做判断决定去使用 ListPack 还是 HashTable + SkipList。</p>
 
       
     </div>
@@ -154,7 +168,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">0字</span>
+        <span class="ico-fontcount"></span><span class="post-count">610字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -247,7 +261,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav">无</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-数据结构"><span class="nav-number">1.</span> <span class="nav-text">Redis 数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RedisObject"><span class="nav-number">1.1.</span> <span class="nav-text">RedisObject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SkipList"><span class="nav-number">1.2.</span> <span class="nav-text">SkipList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SortedSet"><span class="nav-number">1.3.</span> <span class="nav-text">SortedSet</span></a></li></ol></li></ol>
     
     </div>
   </aside>
@@ -287,7 +301,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 370.7k 字</span>
+        <span class="post-count">全站共 373.2k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
