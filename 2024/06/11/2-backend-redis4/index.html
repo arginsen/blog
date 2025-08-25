@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/redis.jpg">
-<meta property="og:updated_time" content="2025-08-01T17:59:57.732Z">
+<meta property="og:updated_time" content="2025-08-25T15:44:01.363Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 后端 | Redis 事务">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/redis.jpg">
@@ -133,6 +133,31 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
+<p>Redis 事务提供了一种将多个命令请求打包的功能。然后，再按顺序执行打包的所有命令，并且不会被中途打断。</p>
+<p>除了不满足原子性和持久性之外，事务中的每条命令都会与 Redis 服务器进行网络交互，这是比较浪费资源的行为。</p>
+<p>因此，Redis 事务不建议在日常开发中使用。</p>
+<h1 id="使用-Redis-事务"><a href="#使用-Redis-事务" class="headerlink" title="使用 Redis 事务"></a>使用 Redis 事务</h1><p>Redis 可以通过 MULTI、EXEC、DISCARD 和 WATCH 等命令来实现事务（Transaction）功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">MULTI</span><br><span class="line">OK</span><br><span class="line">SET PROJECT <span class="string">"JavaGuide"</span></span><br><span class="line">QUEUED</span><br><span class="line">GET PROJECT</span><br><span class="line">QUEUED</span><br><span class="line">EXEC</span><br><span class="line">1) OK</span><br><span class="line">2) <span class="string">"JavaGuide"</span></span><br></pre></td></tr></table></figure>
+<p>MULTI 命令后可以输入多个命令，Redis 不会立即执行这些命令，而是将它们放到队列，当调用了 EXEC 命令后，再执行所有的命令。</p>
+<p>这个过程是这样的：</p>
+<ul>
+<li>开始事务（MULTI）；</li>
+<li>命令入队（批量操作 Redis 的命令，先进先出（FIFO）的顺序执行）；</li>
+<li>执行事务（EXEC）。</li>
+</ul>
+<p>你也可以通过 DISCARD 命令取消一个事务，它会清空事务队列中保存的所有命令。</p>
+<h1 id="Redis-不支持原子性"><a href="#Redis-不支持原子性" class="headerlink" title="Redis 不支持原子性"></a>Redis 不支持原子性</h1><p>Redis 事务在运行错误的情况下，除了执行过程中出现错误的命令外，其他命令都能正常执行。并且，Redis 事务是不支持回滚（roll back）操作的。因此，Redis 事务其实是不满足原子性的。Redis 官网也解释了自己为啥不支持回滚。简单来说就是 Redis 开发者们觉得没必要支持回滚，这样更简单便捷并且性能更好。</p>
+<h1 id="Redis-不支持持久性"><a href="#Redis-不支持持久性" class="headerlink" title="Redis 不支持持久性"></a>Redis 不支持持久性</h1><p>Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而且支持 3 种持久化方式：</p>
+<ul>
+<li>快照（snapshotting，RDB）；</li>
+<li>只追加文件（append-only file，AOF）；</li>
+<li>RDB 和 AOF 的混合持久化（Redis 4.0 新增）。</li>
+</ul>
+<p>与 RDB 持久化相比，AOF 持久化的实时性更好。</p>
+<p>在 Redis 的配置文件中存在三种不同的 AOF 持久化方式（fsync 策略），它们分别是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">appendfsync always    <span class="comment">#每次有数据修改发生时，都会调用fsync函数同步AOF文件，fsync完成后线程返回，这样会严重降低Redis的速度</span></span><br><span class="line">appendfsync everysec  <span class="comment">#每秒钟调用fsync函数同步一次AOF文件</span></span><br><span class="line">appendfsync no        <span class="comment">#让操作系统决定何时进行同步，一般为30秒一次</span></span><br></pre></td></tr></table></figure>
+<p>AOF 持久化的 fsync 策略为 no、everysec 时都会存在数据丢失的情况。always 下可以基本是可以满足持久性要求的，但性能太差，实际开发过程中不会使用。</p>
+<p>因此，Redis 事务的持久性也是没办法保证的。</p>
 
       
     </div>
@@ -154,7 +179,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">0字</span>
+        <span class="ico-fontcount"></span><span class="post-count">643字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -247,7 +272,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav">无</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-Redis-事务"><span class="nav-number">1.</span> <span class="nav-text">使用 Redis 事务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-不支持原子性"><span class="nav-number">2.</span> <span class="nav-text">Redis 不支持原子性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-不支持持久性"><span class="nav-number">3.</span> <span class="nav-text">Redis 不支持持久性</span></a></li></ol>
     
     </div>
   </aside>
@@ -287,7 +312,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 375k 字</span>
+        <span class="post-count">全站共 375.7k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
