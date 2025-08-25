@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
   
-  <title>💼 银行系统 | 支付报文-流程 | Arginsen&#39;s Blog</title>
+  <title>💼 银行系统 | 支付报文 - RTGS ISO 20022 | Arginsen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="Bank">
@@ -14,14 +14,14 @@
   
   <meta name="keywords" content="Bank">
 <meta property="og:type" content="article">
-<meta property="og:title" content="💼 银行系统 | 支付报文-流程">
-<meta property="og:url" content="https://lixupeng.cn/blog/2024/11/18/1-business-bank-messageflow.md/index.html">
+<meta property="og:title" content="💼 银行系统 | 支付报文 - RTGS ISO 20022">
+<meta property="og:url" content="https://lixupeng.cn/blog/2024/11/18/1-business-bank-message2-standard/index.html">
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/bank.jpg">
-<meta property="og:updated_time" content="2025-08-19T08:37:00.271Z">
+<meta property="og:updated_time" content="2025-08-25T09:29:38.299Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="💼 银行系统 | 支付报文-流程">
+<meta name="twitter:title" content="💼 银行系统 | 支付报文 - RTGS ISO 20022">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/bank.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
@@ -105,13 +105,13 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-1-business-bank-messageflow.md" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-1-business-bank-message2-standard" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/blog/img/bank.jpg" rel="gallery_cmeclz8bd0007mtpufao9hmro">
+      <a class="article-gallery-img fancybox" href="/blog/img/bank.jpg" rel="gallery_cmer9wbx7000092pu1rmq0de1">
         <img src="/blog/img/bank.jpg" itemprop="image">
       </a>
     
@@ -123,7 +123,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      💼 银行系统 | 支付报文-流程
+      💼 银行系统 | 支付报文 - RTGS ISO 20022
     </h1>
   
 
@@ -133,6 +133,143 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
+<h1 id="ISO-20022"><a href="#ISO-20022" class="headerlink" title="ISO 20022"></a>ISO 20022</h1><p>With the emergence of ISO 20022 message standard, there is an increasing number of overseas payment systems adopting this messages standards, in particular the China National Advanced Payments System(CNAPS) and the China International Payment System(CIPS), not only because it supports end-to-end flow of payment information from the originator to the beneficiary but also its rich data content with unique fields to carry structured remittance information, including Chinese characters. </p>
+<h1 id="MT-vs-MX"><a href="#MT-vs-MX" class="headerlink" title="MT vs MX"></a>MT vs MX</h1><p>SWIFT MT is a legacy non-XML proprietary message standard. MX messages are the XML-based replacement for MT messages. Both message standards can be exchanged using SWIFTNet Messaging Services. While MT messages are exchanged via SWIFT FIN, MX messages will be exchanged via SWIFT InterAct.</p>
+<h1 id="InterAct"><a href="#InterAct" class="headerlink" title="InterAct"></a>InterAct</h1><p>InterAct supports both store-and-forward and real-time messaging mode. For Hong Kong’s RTGS, store-and-forward message mode will be used in order to achieve operational flexibility.</p>
+<h1 id="List-of-MX-message"><a href="#List-of-MX-message" class="headerlink" title="List of MX message"></a>List of MX message</h1><table>
+<thead>
+<tr>
+<th>MX Message</th>
+<th>Message Name</th>
+<th>Equivalent MT Message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>admi.002.001.01</td>
+<td>Message Reject V01  N/A</td>
+</tr>
+<tr>
+<td>head.001.001.02</td>
+<td>Application Header BusinessApplicationHeaderV02  N/A</td>
+</tr>
+<tr>
+<td>pacs.002.001.10</td>
+<td>FI To FI Payment Status Report V10</td>
+<td>MT012, MT019, MT298</td>
+</tr>
+<tr>
+<td>pacs.004.001.09</td>
+<td>Payment Return V09</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>pacs.008.001.08</td>
+<td>FI To FI Credit Transfer V08</td>
+<td>MT103</td>
+</tr>
+<tr>
+<td>pacs.009.001.08</td>
+<td>Financial Institution Credit Transfer V08</td>
+<td>MT202, MT202 COV</td>
+</tr>
+<tr>
+<td>pacs.010.001.03</td>
+<td>Financial Institution Direct Debit V03</td>
+<td>MT204</td>
+</tr>
+<tr>
+<td>pain.001.001.09</td>
+<td>Customer Credit Transfer Initiation V09</td>
+<td>MT298</td>
+</tr>
+<tr>
+<td>camt.019.001.07</td>
+<td>Return Business Day Information V07</td>
+<td>MT298</td>
+</tr>
+<tr>
+<td>camt.021.001.06</td>
+<td>Return General Business Information V06</td>
+<td>MT298</td>
+</tr>
+<tr>
+<td>camt.029.001.09</td>
+<td>Resolution Of Investigation V09</td>
+<td>MT296, MT298</td>
+</tr>
+<tr>
+<td>camt.025.001.05</td>
+<td>Receipt V05</td>
+<td>MT298</td>
+</tr>
+<tr>
+<td>camt.052.001.08</td>
+<td>Bank To Customer Account Report V08</td>
+<td>MT950</td>
+</tr>
+<tr>
+<td>camt.053.001.08</td>
+<td>Bank To Customer Statement V08</td>
+<td>MT950</td>
+</tr>
+<tr>
+<td>camt.054.001.08</td>
+<td>Bank To Customer Debit Credit Notification V08</td>
+<td>MT900, MT910</td>
+</tr>
+<tr>
+<td>camt.056.001.08</td>
+<td>FI To FI Payment Cancellation Request V08</td>
+<td>MT292</td>
+</tr>
+<tr>
+<td>camt.060.001.05</td>
+<td>Account Reporting Request V05</td>
+<td>MT920</td>
+</tr>
+</tbody>
+</table>
+<h2 id="MX-Message-from-HK-RTGS-to-Members"><a href="#MX-Message-from-HK-RTGS-to-Members" class="headerlink" title="MX Message from HK RTGS to Members"></a>MX Message from HK RTGS to Members</h2><p>pacs.008 and pacs.009 – Payment Response<br>pacs.002 – Payment Status response<br>camt.019 – Revision of Business Day Schedule<br>camt.021 – Operational Notification<br>camt.025 – Reject of Request for Intraday Bank Statement<br>camt.029 – Cancellation Response<br>camt.052 – Intraday Bank Statement<br>camt.053 – End-of-day Bank Statement<br>admi.002 – Message Rejection<br>camt.054 – Debit/Credit Advice<br>pacs.009 – Credit Notification<br>pain.001 – CMU payment notification<br>pacs.004 – Payment Return Response</p>
+<h1 id="Common-fields"><a href="#Common-fields" class="headerlink" title="Common fields"></a>Common fields</h1><h2 id="Unique-Transaction-Reference"><a href="#Unique-Transaction-Reference" class="headerlink" title="Unique Transaction Reference"></a>Unique Transaction Reference</h2><p>Every MX message sent from Member/SI/CB to CHATS must have a unique transaction reference. Unlike MT messages where the unique transaction reference is generally put in field 20, different MX message types have different elements for Transaction Reference.</p>
+<ul>
+<li>IFT Payment Request | pacs.008/pacs.009 :</li>
+</ul>
+<p>Credit Transfer Transaction Information /<br>Payment Identification /<br>Instruction Identification</p>
+<ul>
+<li><p>Cancellation Request | camt.056 :<br>FI To FI Payment Cancellation Request /<br>Assignment /<br>Identification</p>
+</li>
+<li><p>Intra-day Statement Request | camt.060 :<br>Account Reporting Request /<br>Group Header /<br>Message Identification</p>
+</li>
+<li><p>SI Direct Credit Request | pacs.009 :<br>Credit Transfer Transaction Information /<br>Payment Identification /<br>Instruction Identification</p>
+</li>
+<li><p>SI Direct Debit Request | pacs.010 :<br>Credit Instruction /<br>Credit Identification</p>
+</li>
+<li><p>Payment return | pacs.004<br>Return Identification</p>
+</li>
+</ul>
+<h2 id="IFT-Payment-Code-for-Payment-Request"><a href="#IFT-Payment-Code-for-Payment-Request" class="headerlink" title="IFT Payment Code for Payment Request"></a>IFT Payment Code for Payment Request</h2><p>Each payment instruction must carry a 2-digit IFT payment code which identifies the payment processing in CHATS. For example, payment instruction with payment code 08 will be identified by CHATS as PvP payment, which requires matching of a counterparty leg prior to settlement.</p>
+<ul>
+<li>Payment code 07 (Foreign Exchange Transactions);</li>
+<li>Payment code 03 (Loans to banks);</li>
+<li>Payment code 04 (Repayments to banks); and</li>
+<li><p>Payment codes 90, 91 and 92 (RMB Cross Border Customer, Inter-bank Fund Transfer and Return)</p>
+</li>
+<li><p>Payment code 30 - Return Payments</p>
+</li>
+<li>Payment code 35 - Mainland Return Payments</li>
+<li>Payment code 52 - Return of Regional CHATS Payments</li>
+<li>Payment code 65 - Mainland related Return Payments</li>
+</ul>
+<h2 id="Cover-Payment"><a href="#Cover-Payment" class="headerlink" title="Cover Payment"></a>Cover Payment</h2><p>Cover payment is financial institution funds transfer between financial institutions, in which an underlying customer credit transfer is covered. The MT message for cover payment is MT202 COV which carries the underlying customer credit transfer in the format of MT103.</p>
+<p>The coresponding MX message for cover payment is pacs.009 where the “Underlying Customer Credit Tranfer” must be provided to indicate that the pacs.009 is a cover payment. As usual, CHATS doesn’t validate and process the contents in “Underlying Customer Credit Tranfer”. If the pacs.009 is an USD cover payment, the whole message including the “Underlying Customer Credit Transfer” will be sent to HSSS for payment scanning.</p>
+<p>The usage guideline for cover payment is pacs.009.001.08_COV - Payment request, which is available at the HKICL MyStandards web portal. By refering to this usage guideline, Members are reminded to input the Settlement Method as CLRG(Clearing System), not COVE(Cover Method) for cover payment.</p>
+<h1 id="Special-Posting"><a href="#Special-Posting" class="headerlink" title="Special Posting"></a>Special Posting</h1><p>Currently, Special Posting is the contingency measure for Members to submit payment instruction to CHATS via alternate channels in case of SWIFTNet connection failure on either ends. To trigger Special Posting, Members are required to make a request to HKICL, prepare a Special Posting File (in flat file format or Excel file format) containing the payment instruction, and then submit the file to HKICL via one of the following channels:</p>
+<ul>
+<li>File Transfer Service (FTS);</li>
+<li>HKICL web portal in case of FTS failure; or</li>
+<li>USB Flash Drive in case of both FTS and HKICL web portal failure</li>
+</ul>
 
       
     </div>
@@ -148,13 +285,13 @@
 
       
 	<span class="ico-date"></span>
-	<a href="/blog/2024/11/18/1-business-bank-messageflow.md/" class="article-date">
+	<a href="/blog/2024/11/18/1-business-bank-message2-standard/" class="article-date">
 	  <time datetime="2024-11-17T16:00:00.000Z" itemprop="datePublished">十一月 18, 2024</time>
 	</a>
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">0字</span>
+        <span class="ico-fontcount"></span><span class="post-count">880字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -221,11 +358,11 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2025/02/12/1-interview-redis/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/2024/12/09/1-business-bank-message3-flow/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          🔥 面试 | Redis 相关
+          💼 银行系统 | 支付报文 - MX 报文流程
         
       </div>
     </a>
@@ -247,7 +384,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav">无</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ISO-20022"><span class="nav-number">1.</span> <span class="nav-text">ISO 20022</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MT-vs-MX"><span class="nav-number">2.</span> <span class="nav-text">MT vs MX</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#InterAct"><span class="nav-number">3.</span> <span class="nav-text">InterAct</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#List-of-MX-message"><span class="nav-number">4.</span> <span class="nav-text">List of MX message</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MX-Message-from-HK-RTGS-to-Members"><span class="nav-number">4.1.</span> <span class="nav-text">MX Message from HK RTGS to Members</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Common-fields"><span class="nav-number">5.</span> <span class="nav-text">Common fields</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unique-Transaction-Reference"><span class="nav-number">5.1.</span> <span class="nav-text">Unique Transaction Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IFT-Payment-Code-for-Payment-Request"><span class="nav-number">5.2.</span> <span class="nav-text">IFT Payment Code for Payment Request</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cover-Payment"><span class="nav-number">5.3.</span> <span class="nav-text">Cover Payment</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Special-Posting"><span class="nav-number">6.</span> <span class="nav-text">Special Posting</span></a></li></ol>
     
     </div>
   </aside>
@@ -287,7 +424,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 373.2k 字</span>
+        <span class="post-count">全站共 375k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

@@ -2,9 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lixupeng.cn/blog/2024/05/28/2-backend-redis3/</loc>
+    
+    <lastmod>2025-08-25T15:29:09.686Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2025/03/17/1-interview-spring/</loc>
+    
+    <lastmod>2025-08-25T15:26:54.033Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2024/12/09/1-business-bank-message3-flow/</loc>
+    
+    <lastmod>2025-08-25T15:26:04.817Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2024/10/12/1-business-bank-message1-recieve/</loc>
+    
+    <lastmod>2025-08-25T10:35:21.654Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2024/11/18/1-business-bank-message2-standard/</loc>
+    
+    <lastmod>2025-08-25T09:29:38.299Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2024/11/06/1-business-bank-ibmmq1/</loc>
+    
+    <lastmod>2025-08-24T16:34:11.036Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2025/02/12/1-interview-redis/</loc>
+    
+    <lastmod>2025-08-24T14:53:36.150Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lixupeng.cn/blog/2024/07/08/2-backend-redis6/</loc>
     
-    <lastmod>2025-08-24T11:18:05.188Z</lastmod>
+    <lastmod>2025-08-24T14:49:04.841Z</lastmod>
     
   </url>
   
@@ -30,13 +79,6 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2025/03/17/1-interview-spring/</loc>
-    
-    <lastmod>2025-08-23T16:38:05.947Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://lixupeng.cn/blog/2025/02/21/1-interview-mysql/</loc>
     
     <lastmod>2025-08-21T09:47:58.535Z</lastmod>
@@ -44,23 +86,9 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2025/02/12/1-interview-redis/</loc>
-    
-    <lastmod>2025-08-20T16:36:14.665Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://lixupeng.cn/blog/2025/03/08/1-interview-vue-en/</loc>
     
     <lastmod>2025-08-19T08:37:57.036Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/11/18/1-business-bank-messageflow.md/</loc>
-    
-    <lastmod>2025-08-19T08:37:00.271Z</lastmod>
     
   </url>
   
@@ -117,20 +145,6 @@
     <loc>https://lixupeng.cn/blog/2020/09/16/1-interview-bytedancetest/</loc>
     
     <lastmod>2025-08-12T09:58:26.598Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/11/06/1-business-bank-ibmmq1/</loc>
-    
-    <lastmod>2025-08-12T09:45:10.072Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/10/12/1-business-bank-message1/</loc>
-    
-    <lastmod>2025-08-12T09:44:24.950Z</lastmod>
     
   </url>
   
@@ -208,13 +222,6 @@
     <loc>https://lixupeng.cn/blog/2024/06/11/2-backend-redis4/</loc>
     
     <lastmod>2025-08-01T17:59:57.732Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/05/28/2-backend-redis3/</loc>
-    
-    <lastmod>2025-08-01T17:59:02.449Z</lastmod>
     
   </url>
   

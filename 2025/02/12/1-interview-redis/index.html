@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
-<meta property="og:updated_time" content="2025-08-20T16:36:14.665Z">
+<meta property="og:updated_time" content="2025-08-24T14:53:36.150Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🔥 面试 | Redis 相关">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
@@ -133,6 +133,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
+<h1 id="Redis-为什么这么快？"><a href="#Redis-为什么这么快？" class="headerlink" title="Redis 为什么这么快？"></a>Redis 为什么这么快？</h1><ol>
+<li>Redis uses RAM not disk,</li>
+<li>I/O mutiplexing and single-threaded event loop</li>
+<li>Efficient Data Structure</li>
+</ol>
+<p>But Redis memory cost is too high, and data persistence provided by Redis still has the risk of data loss.</p>
+<h1 id="为什么要用-Redis？"><a href="#为什么要用-Redis？" class="headerlink" title="为什么要用 Redis？"></a>为什么要用 Redis？</h1><ol>
+<li>Faster access speed</li>
+<li>high concurrency - its QPS reaches easily 50-100k</li>
+<li>conprehesive features - besides as a cache, also used for distributed locks, current limiting, message queues, delay queues.</li>
+</ol>
+<h1 id="为什么用-redis-而不用本地缓存？"><a href="#为什么用-redis-而不用本地缓存？" class="headerlink" title="为什么用 redis 而不用本地缓存？"></a>为什么用 redis 而不用本地缓存？</h1><p>Local Cache can not share , rely on JVM memory. It just suitable for standalone system.</p>
+<p>Redis can share memory with multiple instances, preserve consisitency, implement hight-performance access and persistent storage. Redis is suitable for distribued system.</p>
 
       
     </div>
@@ -154,7 +167,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">0字</span>
+        <span class="ico-fontcount"></span><span class="post-count">126字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -231,9 +244,9 @@
     </a>
   
   
-    <a href="/blog/2024/11/18/1-business-bank-messageflow.md/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/blog/2024/12/09/1-business-bank-message3-flow/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">💼 银行系统 | 支付报文-流程</div>
+      <div class="article-nav-title">💼 银行系统 | 支付报文 - MX 报文流程</div>
     </a>
   
 </nav>
@@ -247,7 +260,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav">无</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-为什么这么快？"><span class="nav-number">1.</span> <span class="nav-text">Redis 为什么这么快？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要用-Redis？"><span class="nav-number">2.</span> <span class="nav-text">为什么要用 Redis？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么用-redis-而不用本地缓存？"><span class="nav-number">3.</span> <span class="nav-text">为什么用 redis 而不用本地缓存？</span></a></li></ol>
     
     </div>
   </aside>
@@ -287,7 +300,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 373.2k 字</span>
+        <span class="post-count">全站共 375k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
