@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/redis.jpg">
-<meta property="og:updated_time" content="2025-08-25T15:44:01.363Z">
+<meta property="og:updated_time" content="2025-08-25T15:45:51.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 后端 | Redis 事务">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/redis.jpg">
@@ -147,7 +147,7 @@
 </ul>
 <p>你也可以通过 DISCARD 命令取消一个事务，它会清空事务队列中保存的所有命令。</p>
 <h1 id="Redis-不支持原子性"><a href="#Redis-不支持原子性" class="headerlink" title="Redis 不支持原子性"></a>Redis 不支持原子性</h1><p>Redis 事务在运行错误的情况下，除了执行过程中出现错误的命令外，其他命令都能正常执行。并且，Redis 事务是不支持回滚（roll back）操作的。因此，Redis 事务其实是不满足原子性的。Redis 官网也解释了自己为啥不支持回滚。简单来说就是 Redis 开发者们觉得没必要支持回滚，这样更简单便捷并且性能更好。</p>
-<h1 id="Redis-不支持持久性"><a href="#Redis-不支持持久性" class="headerlink" title="Redis 不支持持久性"></a>Redis 不支持持久性</h1><p>Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而且支持 3 种持久化方式：</p>
+<h1 id="Redis-支持持久性"><a href="#Redis-支持持久性" class="headerlink" title="Redis 支持持久性"></a>Redis 支持持久性</h1><p>Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而且支持 3 种持久化方式：</p>
 <ul>
 <li>快照（snapshotting，RDB）；</li>
 <li>只追加文件（append-only file，AOF）；</li>
@@ -179,7 +179,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">643字</span>
+        <span class="ico-fontcount"></span><span class="post-count">642字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -250,7 +250,7 @@
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          🌟 后端 | Redis 内存回收、缓存穿透、雪崩、击穿
+          🌟 后端 | Redis 持久化机制
         
       </div>
     </a>
@@ -272,7 +272,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-Redis-事务"><span class="nav-number">1.</span> <span class="nav-text">使用 Redis 事务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-不支持原子性"><span class="nav-number">2.</span> <span class="nav-text">Redis 不支持原子性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-不支持持久性"><span class="nav-number">3.</span> <span class="nav-text">Redis 不支持持久性</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-Redis-事务"><span class="nav-number">1.</span> <span class="nav-text">使用 Redis 事务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-不支持原子性"><span class="nav-number">2.</span> <span class="nav-text">Redis 不支持原子性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-支持持久性"><span class="nav-number">3.</span> <span class="nav-text">Redis 支持持久性</span></a></li></ol>
     
     </div>
   </aside>
@@ -312,7 +312,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 375.7k 字</span>
+        <span class="post-count">全站共 377.4k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

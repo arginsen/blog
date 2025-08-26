@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/bank.jpg">
-<meta property="og:updated_time" content="2025-08-25T15:26:04.817Z">
+<meta property="og:updated_time" content="2025-08-26T13:55:47.781Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="💼 银行系统 | 支付报文 - MX 报文流程">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/bank.jpg">
@@ -133,6 +133,210 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
+<h1 id="SWIFTNet-Interface"><a href="#SWIFTNet-Interface" class="headerlink" title="SWIFTNet Interface"></a>SWIFTNet Interface</h1><p>The definition of SWIFT environment is bank-specific and is dependent on many factors. It is the responsibility of each participant to determine the modifications to its own SWIFT environment and any changes to internal systems necessary to support connectivity to the CHATS.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-------------</span><br><span class="line">    CHATS   |</span><br><span class="line"> participant|                                                 -----</span><br><span class="line">            |                ------------------              |     |</span><br><span class="line">    (CBT)   |   &lt;-----------&gt;|                |&lt;----------&gt;  |     |</span><br><span class="line">  (InterAct)|                |                | MX message   |     |</span><br><span class="line">-------------                |                |              |     |</span><br><span class="line">                             |    SWIFTNet    |              |     |</span><br><span class="line">                             | (as interface) |              |     |</span><br><span class="line">                             |                |              |CAHTS|</span><br><span class="line">-------------                |                |              |     |</span><br><span class="line">    SI/CB   |                |                |              |     |</span><br><span class="line">            |                |                |              |     |</span><br><span class="line">            |                |                | MX message   |     |</span><br><span class="line">    (CBT)   |   &lt;-----------&gt;|                |&lt;----------&gt;  |     |       </span><br><span class="line">  (InterAct)|                ------------------               -----</span><br><span class="line">-------------</span><br></pre></td></tr></table></figure>
+<h1 id="MX-message-flow"><a href="#MX-message-flow" class="headerlink" title="MX message flow"></a>MX message flow</h1><h2 id="1-Participant-Interface"><a href="#1-Participant-Interface" class="headerlink" title="1. Participant Interface"></a>1. Participant Interface</h2><h3 id="1-1-List-of-Supported-MX-Messages"><a href="#1-1-List-of-Supported-MX-Messages" class="headerlink" title="1.1 List of Supported MX Messages"></a>1.1 List of Supported MX Messages</h3><h4 id="The-following-MX-messages-are-sent-by-a-participant"><a href="#The-following-MX-messages-are-sent-by-a-participant" class="headerlink" title="The following MX messages are sent by a participant."></a>The following MX messages are sent by a participant.</h4><ul>
+<li>IFT Payment Transfers<ul>
+<li>Single Customer Credit Transfer - pacs.008.001.08</li>
+<li>Financial Institution Transfer - pacs.009.001.08</li>
+<li>Payment Return - pacs.004.001.09</li>
+</ul>
+</li>
+<li>Cancellation<ul>
+<li>Cancellation Request- camt.056.001.08</li>
+</ul>
+</li>
+<li>Bank Statement<ul>
+<li>Request Message- camt.060.001.05</li>
+</ul>
+</li>
+</ul>
+<h4 id="The-following-MX-messages-are-received-by-a-participant"><a href="#The-following-MX-messages-are-received-by-a-participant" class="headerlink" title="The following MX messages are received by a participant"></a>The following MX messages are received by a participant</h4><ul>
+<li><p>IFT Payment Transfers and related messages</p>
+<ul>
+<li>Single Customer Credit Transfer - pacs.008.001.08</li>
+<li>Financial Institution Transfer - pacs.009.001.08</li>
+<li>Payment response - pacs.002.001.10</li>
+<li>Payment Return - pacs.004.001.09</li>
+</ul>
+</li>
+<li><p>Other payments</p>
+<ul>
+<li>Credit Advice for Third Party Payment - pacs.009.001.08</li>
+<li>Debit/Credit Advice - camt.054.001.08</li>
+</ul>
+</li>
+<li><p>Special Posting</p>
+<ul>
+<li>Debit Advice - camt.054.001.08</li>
+<li>Credit Advice<ul>
+<li>pacs.008.001.08</li>
+<li>pacs.009.001.08</li>
+<li>pacs.004.001.09</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>OTCC Direct Debit and related messages</p>
+<ul>
+<li>Debit Advice to debit participant - camt.054.001.08</li>
+<li>Credit Advice to credit participant - pacs.009.001.08</li>
+</ul>
+</li>
+<li><p>Cancellation</p>
+<ul>
+<li>Cancellation Answer - camt.029.001.09</li>
+</ul>
+</li>
+<li><p>Miscellaneous Messages</p>
+<ul>
+<li>CLS Handshake (Applicable to CLS Bank only) - camt.021.001.06</li>
+<li>Revision of Business Day Schedule - camt.019.001.07</li>
+<li>Administrative Message - camt.021.001.06</li>
+<li>CMU Payment Notification——IFT payment auto generated by CHATS - pain.001.001.09</li>
+<li>CMU Payment Notification——IFT Payment to be constructed by participant - pain.001.001.09</li>
+<li>Advice of Debit to DP (for GU payment sent from a GU) - camt.021.001.06</li>
+<li>Advice of Credit to DP (for GU payment sent to a GU) - camt.021.001.06</li>
+</ul>
+</li>
+<li><p>Bank Statement </p>
+<ul>
+<li>Intra-day Statement - camt.052.001.08</li>
+<li>End-of-day Statement - camt.053.001.08</li>
+<li>Rejection Advice for Statement Request - camt.025.001.05</li>
+</ul>
+</li>
+<li><p>Message Rejection Message Rejection - admi.002.001.01</p>
+</li>
+</ul>
+<h3 id="1-2-Participant-Initiated-Payment"><a href="#1-2-Participant-Initiated-Payment" class="headerlink" title="1.2 Participant Initiated Payment"></a>1.2 Participant Initiated Payment</h3><h4 id="Settled-Successfully"><a href="#Settled-Successfully" class="headerlink" title="Settled Successfully"></a>Settled Successfully</h4><p>Instructing Agent sends the payment transfer message such as pacs.008/pacs.009 to Instructed Agent via Swift network. that will happen:</p>
+<ol>
+<li>the message sent by Instructing Agent will reach CHATS firstly via SWIFT network.</li>
+<li>CHATS can validate the message. If it is valid, then settle it. </li>
+<li>CHATS returns the accpected acknowledgement to Instructing Agent and forwords the message to Instructed Agent via SWIFT network.</li>
+</ol>
+<h4 id="Rejected-Payment"><a href="#Rejected-Payment" class="headerlink" title="Rejected Payment"></a>Rejected Payment</h4><p>Instructing Agent sends the payment transfer message via SWIFT, but the message doesn’t pass the validation by CHATS, maybe the rejection reason could be a value date not supported in CHATS. So CHATS returns the rejected message pacs.002 to Instructing Agent.</p>
+<h3 id="1-3-SI-CB-Initiated-Direct-Debit-Credit"><a href="#1-3-SI-CB-Initiated-Direct-Debit-Credit" class="headerlink" title="1.3 SI/CB Initiated Direct Debit/Credit"></a>1.3 SI/CB Initiated Direct Debit/Credit</h3><h4 id="Settled-Direct-Debit-via-SWIFT-Successfully"><a href="#Settled-Direct-Debit-via-SWIFT-Successfully" class="headerlink" title="Settled Direct Debit via SWIFT Successfully"></a>Settled Direct Debit via SWIFT Successfully</h4><ol>
+<li>Sender sends message pacs.010 via SWIFT network.</li>
+<li>CHATS validates the message and settles it.</li>
+<li>CHATS returns the accepted message(ack) pacs.002 to Sender(SI/CB) and sends the message camt.054 to Debtor.</li>
+</ol>
+<h4 id="Settled-Direct-Credit-via-SWIFT-Successfully"><a href="#Settled-Direct-Credit-via-SWIFT-Successfully" class="headerlink" title="Settled Direct Credit via SWIFT Successfully"></a>Settled Direct Credit via SWIFT Successfully</h4><ol>
+<li>Sender sends message pacs.009 via SWIFT network.</li>
+<li>CHATS validates the message and settles it.</li>
+<li>CHATS returns the accepted message(ack) pacs.002 to Sender(SI/CB) and sends the message pacs.009 to Creditor via SWIFT network.</li>
+</ol>
+<h4 id="Settled-Direct-Debit-Credit-via-SAP-Terminal-Successfully"><a href="#Settled-Direct-Debit-Credit-via-SAP-Terminal-Successfully" class="headerlink" title="Settled Direct Debit/Credit via SAP Terminal Successfully"></a>Settled Direct Debit/Credit via SAP Terminal Successfully</h4><ol>
+<li>CHATS settles the message first.</li>
+<li>CHATS sends the credit advice message camt.054/pacs.009 to Creditor and sends the debit advice message camt.054 to Debtor via SWIFT network.</li>
+</ol>
+<h3 id="1-4-Participant-Initiated-Return-Payment"><a href="#1-4-Participant-Initiated-Return-Payment" class="headerlink" title="1.4 Participant Initiated Return Payment"></a>1.4 Participant Initiated Return Payment</h3><h4 id="Settled-Successfully-1"><a href="#Settled-Successfully-1" class="headerlink" title="Settled Successfully"></a>Settled Successfully</h4><ol>
+<li>Instruting Agent(Instructed Agent of Original Transaction) sends the return payment message pacs.004 to CHATS via SWIFT network.</li>
+<li>CHATS validates and settles the message.</li>
+<li>CHATS return the accepted ack message pacs.002 to Instructing Agent and sends the return message to Instructed Agent(Instructing Agent of Original Transaction) via SWIFT network.</li>
+</ol>
+<h4 id="Rejected-Payment-1"><a href="#Rejected-Payment-1" class="headerlink" title="Rejected Payment"></a>Rejected Payment</h4><ol>
+<li>Instruting Agent(Instructed Agent of Original Transaction) sends the return payment message pacs.004 to CHATS via SWIFT network.</li>
+<li>After Validating, maybe the message doesn’t meet the rules. CHATS sends the rejected message pacs.002 back to Instructing Agent via SWIFT network.</li>
+</ol>
+<h3 id="1-5-Global-User-Payment-Request"><a href="#1-5-Global-User-Payment-Request" class="headerlink" title="1.5 Global User Payment Request"></a>1.5 Global User Payment Request</h3><h4 id="Between-2-Global-User"><a href="#Between-2-Global-User" class="headerlink" title="Between 2 Global User"></a>Between 2 Global User</h4><ol>
+<li>Global User A sends the message pacs.008/pacs.009 to CHATS via SWIFT network.</li>
+<li>CHATS validates and settles the message.</li>
+<li>CHATS returns the accepted ack message pacs.002 to GU A , and forwards the message to <strong>Global User B</strong> via SWIFT network.</li>
+<li>At the same time, CHATS sends the Debit Advice message camt.021 to Direct Participant C, and sends the Credit Advice message camt.021 to Direct Participant D via SWIFT network.</li>
+</ol>
+<h4 id="From-Global-User-to-Direct-Participant"><a href="#From-Global-User-to-Direct-Participant" class="headerlink" title="From Global User to Direct Participant"></a>From Global User to Direct Participant</h4><ol>
+<li>Global User A sends the message pacs.008/pacs.009 to CHATS via SWIFT network.</li>
+<li>CHATS validates and settles the message.</li>
+<li>CHATS sends the accepted ack message pacs.002 to GU A, sends the Debit Advice message camt.021 to Direct Participant C, and sends the transfer payment message and the Credit Advice message camt.054 to <strong>Direct Participant D</strong> via SWIFT network.</li>
+</ol>
+<h4 id="From-Direct-Participant-to-Global-User"><a href="#From-Direct-Participant-to-Global-User" class="headerlink" title="From Direct Participant to Global User"></a>From Direct Participant to Global User</h4><ol>
+<li>Direct Participant C sends the message pacs.008/pacs.009 to CHATS via SWIFT network.</li>
+<li>CHATS validates and settles the message.</li>
+<li>CHATS sends the accepted ack message pacs.002 and the Debit Advice message camt.054 to Direct Participant C, forwards the transfer payment message to <strong>Global User B</strong>, and sends the Credit Advice message camt.021 to Direct Participant D via SWIFT network.</li>
+</ol>
+<h3 id="1-6-Other-Debit-and-Credit-from-CHATS"><a href="#1-6-Other-Debit-and-Credit-from-CHATS" class="headerlink" title="1.6 Other Debit and Credit from CHATS"></a>1.6 Other Debit and Credit from CHATS</h3><p>the receipt of a payment initiated directly in CHATS.</p>
+<p>After settlement, CHATS sends the message receipt (camt.054/pacs.009 for credit advice) to Creditor and sends the message receipt (camt.054 for debit advice) to Debtor via SWIFT network.</p>
+<h3 id="1-7-OTCC-Direct-Debit"><a href="#1-7-OTCC-Direct-Debit" class="headerlink" title="1.7 OTCC Direct Debit"></a>1.7 OTCC Direct Debit</h3><ol>
+<li>OTCC sends the debit payment message pacs.010 to CHATS via SWIFT network.</li>
+<li>CHATS validates the message.</li>
+<li>CHATS sends the payment notification message camt.021 to Debit Participant via SWIFT network when OTCC direct debit accepted.</li>
+<li>CHATS settles the message.</li>
+<li>CHATS returns the credit advice message pacs.002 to OTCC, sends the debit advice message camt.054 to Debit Participant, and sends the credit advice message pacs.009 to Credit Participant via SWIFT network.</li>
+</ol>
+<h3 id="1-8-Cancellation-of-Payment-by-Participant"><a href="#1-8-Cancellation-of-Payment-by-Participant" class="headerlink" title="1.8 Cancellation of Payment by Participant"></a>1.8 Cancellation of Payment by Participant</h3><h4 id="Cancellation-of-Payment-Initiated-via-SWIFT"><a href="#Cancellation-of-Payment-Initiated-via-SWIFT" class="headerlink" title="Cancellation of Payment Initiated via SWIFT"></a>Cancellation of Payment Initiated via SWIFT</h4><ol>
+<li>Instructing Agent sends the payment message pacs.008/pacs.009/pacs.009_COV/pacs.004 to CHATS via SWIFT network.</li>
+<li>After validation in CHATS, the message is pending status due to bank insufficient of fund. And the same time, Instructing Agent sends the Cancellation Request message camt.056 to CHATS.</li>
+<li>CHATS validates the cancellation request message.</li>
+<li>CHATS cancel the message, and returns the Cancelled notification message camt.029 and the rejected notification message pacs.002 to Instructing Agent via SWIFT network.</li>
+</ol>
+<h4 id="Cancellation-of-CHATS-Initiated-Payment"><a href="#Cancellation-of-CHATS-Initiated-Payment" class="headerlink" title="Cancellation of CHATS Initiated Payment"></a>Cancellation of CHATS Initiated Payment</h4><h4 id="Rejection-of-Cancellation-Request"><a href="#Rejection-of-Cancellation-Request" class="headerlink" title="Rejection of Cancellation Request"></a>Rejection of Cancellation Request</h4><ol>
+<li>Sender(SI/CB, Participant) sends the calcellation request message camt.056 to CHATS via SWIFT network.</li>
+<li>After Validation, CHATS returns the rejected notification message camt.029 to Sender.</li>
+</ol>
+<h4 id="Cancellation-of-OTCC-Direct-Debit"><a href="#Cancellation-of-OTCC-Direct-Debit" class="headerlink" title="Cancellation of OTCC Direct Debit"></a>Cancellation of OTCC Direct Debit</h4><h3 id="1-9-Cancellation-of-Payment-by-CHATS"><a href="#1-9-Cancellation-of-Payment-by-CHATS" class="headerlink" title="1.9 Cancellation of Payment by CHATS"></a>1.9 Cancellation of Payment by CHATS</h3><h4 id="Cancellation-of-Payment-initiated-by-Participant"><a href="#Cancellation-of-Payment-initiated-by-Participant" class="headerlink" title="Cancellation of Payment initiated by Participant"></a>Cancellation of Payment initiated by Participant</h4><p>CHATS may cancel unsettled payments at respective cutoff times. Also, participant may request to cancel payment (pacs.008/pacs.009/pacs.009_COV/pacs.004) via eMBT. The following diagram illustrates the ISO 20022 message flow associated with the successful cancellation of a Payment Request via SWIFT.</p>
+<p>However, this only applies to the payments initiated by participants via SWIFT.<br>For the CHATS initiated IFT payments, they may be cancelled by CHATS if they<br>are still unsettled at respective cutoff times. As the payments are not initiated by<br>participants, there will be no cancellation advices to be sent to the participants.</p>
+<h4 id="Cancellation-of-OTCC-Direct-Debit-1"><a href="#Cancellation-of-OTCC-Direct-Debit-1" class="headerlink" title="Cancellation of OTCC Direct Debit"></a>Cancellation of OTCC Direct Debit</h4><ol>
+<li>OTCC sends the message pacs.010 to CHATS via SWIFT network.</li>
+<li>CHATS validate the message.</li>
+<li>If the queue is pending status due to bank insufficient of fund, CHATS will send the payment notification message camt.021 to Debit Participant via SWIFT network.</li>
+<li>CHATS cancels the transaction, then sends the cancellation advice message camt.021 to Debit Participant and sends the cancellation advice message pacs.002 to OTCC  SWIFT network.</li>
+</ol>
+<h3 id="1-10-Payment-Initiation-Notification"><a href="#1-10-Payment-Initiation-Notification" class="headerlink" title="1.10 Payment Initiation Notification"></a>1.10 Payment Initiation Notification</h3><h3 id="1-11-Bank-Statement"><a href="#1-11-Bank-Statement" class="headerlink" title="1.11 Bank Statement"></a>1.11 Bank Statement</h3><h3 id="1-12-Special-Posting-Transaction"><a href="#1-12-Special-Posting-Transaction" class="headerlink" title="1.12 Special Posting Transaction"></a>1.12 Special Posting Transaction</h3><h3 id="1-13-Notification-Message"><a href="#1-13-Notification-Message" class="headerlink" title="1.13 Notification Message"></a>1.13 Notification Message</h3><h3 id="1-14-Message-Rejection"><a href="#1-14-Message-Rejection" class="headerlink" title="1.14 Message Rejection"></a>1.14 Message Rejection</h3><h2 id="2-SI-CB-Interface"><a href="#2-SI-CB-Interface" class="headerlink" title="2. SI/CB Interface"></a>2. SI/CB Interface</h2><h3 id="2-1-List-of-Supported-MX-Messages"><a href="#2-1-List-of-Supported-MX-Messages" class="headerlink" title="2.1 List of Supported MX Messages"></a>2.1 List of Supported MX Messages</h3><h4 id="The-following-messages-are-sent-by-an-SI-CB"><a href="#The-following-messages-are-sent-by-an-SI-CB" class="headerlink" title="The following messages are sent by an SI/CB:"></a>The following messages are sent by an SI/CB:</h4><ul>
+<li>SI Direct Debit/Credit<ul>
+<li>Direct Credit - pacs.009.001.08</li>
+<li>Direct Debit - pacs.010.001.03</li>
+</ul>
+</li>
+</ul>
+<h4 id="The-following-messages-are-received-by-an-SI-CB"><a href="#The-following-messages-are-received-by-an-SI-CB" class="headerlink" title="The following messages are received by an SI/CB:"></a>The following messages are received by an SI/CB:</h4><ul>
+<li><p>Proprietary Messages</p>
+<ul>
+<li>Settlement Advice - pacs.002.001.10</li>
+<li>Insufficient Funds Notification - pacs.002.001.10</li>
+<li>Cancellation Advice - pacs.002.001.10</li>
+<li>Rejection Advice - pacs.002.001.10</li>
+</ul>
+</li>
+<li><p>Message Rejection</p>
+<ul>
+<li>Message Rejection - admi.002.001.01</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-SI-Direct-Debit-Credit-Initiated-over-SWIFT"><a href="#2-2-SI-Direct-Debit-Credit-Initiated-over-SWIFT" class="headerlink" title="2.2 SI Direct Debit/Credit Initiated over SWIFT"></a>2.2 SI Direct Debit/Credit Initiated over SWIFT</h3><h3 id="2-3-Cancellation-of-Direct-Debit-Credit"><a href="#2-3-Cancellation-of-Direct-Debit-Credit" class="headerlink" title="2.3 Cancellation of Direct Debit/Credit"></a>2.3 Cancellation of Direct Debit/Credit</h3><h3 id="2-4-Message-Rejection"><a href="#2-4-Message-Rejection" class="headerlink" title="2.4 Message Rejection"></a>2.4 Message Rejection</h3><h2 id="3-OTCC-Interface"><a href="#3-OTCC-Interface" class="headerlink" title="3. OTCC Interface"></a>3. OTCC Interface</h2><h3 id="3-1-List-of-Supported-MX-Messages"><a href="#3-1-List-of-Supported-MX-Messages" class="headerlink" title="3.1 List of Supported MX Messages"></a>3.1 List of Supported MX Messages</h3><h4 id="The-following-messages-are-sent-by-an-OTCC"><a href="#The-following-messages-are-sent-by-an-OTCC" class="headerlink" title="The following messages are sent by an OTCC:"></a>The following messages are sent by an OTCC:</h4><ul>
+<li>OTCC Direct Debit<ul>
+<li>Direct Debit - pacs.010.001.03</li>
+</ul>
+</li>
+</ul>
+<h4 id="The-following-messages-are-received-by-OTCC"><a href="#The-following-messages-are-received-by-OTCC" class="headerlink" title="The following messages are received by OTCC:"></a>The following messages are received by OTCC:</h4><ul>
+<li>OTCC Direct Debit and related messages<ul>
+<li>Credit Advice - pacs.002.001.10</li>
+<li>Cancellation Advice - pacs.002.001.10</li>
+<li>Rejection Advice - pacs.002.001.10</li>
+</ul>
+</li>
+</ul>
+<h4 id="The-following-messages-are-received-by-participant"><a href="#The-following-messages-are-received-by-participant" class="headerlink" title="The following messages are received by participant:"></a>The following messages are received by participant:</h4><ul>
+<li>Payment Nofication<ul>
+<li>Payment Nofication - camt.021.001.06</li>
+</ul>
+</li>
+<li>Cancellation Advice<ul>
+<li>Cancellation Advice - camt.021.001.06</li>
+</ul>
+</li>
+<li>Debit Advice<ul>
+<li>Debit Advice - camt.054.001.08</li>
+</ul>
+</li>
+<li>Credit Advice<ul>
+<li>Credit Advice - pacs.009.001.08</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2-OTCC-Direct-Debit"><a href="#3-2-OTCC-Direct-Debit" class="headerlink" title="3.2 OTCC Direct Debit"></a>3.2 OTCC Direct Debit</h3><h1 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h1><p>eCMT - Central MoneyMarkets Unit Member Terminal via SWIFTNet<br>eMBT - Member Bank Terminal via SWIFTNet<br>iCMT - Central MoneyMarkets Unit Member Terminal via Internet<br>iMBT - Member Bank Terminal via Internet<br>BIC - Bank Identifier Code<br><strong>CB - Clearing Bank</strong><br>CCASS - Central Clearing and Settlement System<br>CCPMP - Cross Currency Payment Matching Processor<br><strong>CHATS - Clearing House Automated Transfer System</strong><br>CLS - Continuous Linked Settlement<br>CMU - Central MoneyMarkets Unit<br>CMUP - Central MoneyMarkets Unit Processor<br>CMUS - CMU Service<br>DMV - Discounted Market Value<br><strong>DP - Direct Participant</strong><br>EFCS - Exchange Fund Clearing and Settlement<br><strong>FPS - Faster Payment System</strong><br>FTS - File Transfer Service<br>GTRS - Global Tripartite Repo System<br>GU - Global User<br><strong>HKICL - Hong Kong Interbank Clearing Limited</strong><br>HKMA - Hong Kong Monetary Authority<br>HRN - HKICL Reference Number<br>ICU - Indirect CHATS User<br>IFT - Interbank Funds Transfer<br><strong>IP - Indirect Participant</strong><br>JETCO - Joint Electronic Teller Services Limited<br>MPF - Mandatory Provident Fund<br><strong>OTCC - OTC Clearing Hong Kong Limited</strong><br><strong>RTGS - Real Time Gross Settlement</strong><br>SAB - SWIFTAlliance WebStation<br>SAP - Settlement Account Processor<br><strong>SI - Settlement Institution</strong><br>STP - Straight Through Processing<br>T&amp;T - Test and Training<br>TRN - Transaction Reference Number<br><strong>UAT - User Acceptance Testing</strong></p>
 
       
     </div>
@@ -154,7 +358,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">0字</span>
+        <span class="ico-fontcount"></span><span class="post-count">1.7k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -247,7 +451,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav">无</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SWIFTNet-Interface"><span class="nav-number">1.</span> <span class="nav-text">SWIFTNet Interface</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MX-message-flow"><span class="nav-number">2.</span> <span class="nav-text">MX message flow</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Participant-Interface"><span class="nav-number">2.1.</span> <span class="nav-text">1. Participant Interface</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-List-of-Supported-MX-Messages"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1 List of Supported MX Messages</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-following-MX-messages-are-sent-by-a-participant"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">The following MX messages are sent by a participant.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-following-MX-messages-are-received-by-a-participant"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">The following MX messages are received by a participant</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Participant-Initiated-Payment"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.2 Participant Initiated Payment</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Settled-Successfully"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">Settled Successfully</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rejected-Payment"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">Rejected Payment</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-SI-CB-Initiated-Direct-Debit-Credit"><span class="nav-number">2.1.3.</span> <span class="nav-text">1.3 SI/CB Initiated Direct Debit/Credit</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Settled-Direct-Debit-via-SWIFT-Successfully"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">Settled Direct Debit via SWIFT Successfully</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Settled-Direct-Credit-via-SWIFT-Successfully"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">Settled Direct Credit via SWIFT Successfully</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Settled-Direct-Debit-Credit-via-SAP-Terminal-Successfully"><span class="nav-number">2.1.3.3.</span> <span class="nav-text">Settled Direct Debit/Credit via SAP Terminal Successfully</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Participant-Initiated-Return-Payment"><span class="nav-number">2.1.4.</span> <span class="nav-text">1.4 Participant Initiated Return Payment</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Settled-Successfully-1"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">Settled Successfully</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rejected-Payment-1"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">Rejected Payment</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-Global-User-Payment-Request"><span class="nav-number">2.1.5.</span> <span class="nav-text">1.5 Global User Payment Request</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Between-2-Global-User"><span class="nav-number">2.1.5.1.</span> <span class="nav-text">Between 2 Global User</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#From-Global-User-to-Direct-Participant"><span class="nav-number">2.1.5.2.</span> <span class="nav-text">From Global User to Direct Participant</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#From-Direct-Participant-to-Global-User"><span class="nav-number">2.1.5.3.</span> <span class="nav-text">From Direct Participant to Global User</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-Other-Debit-and-Credit-from-CHATS"><span class="nav-number">2.1.6.</span> <span class="nav-text">1.6 Other Debit and Credit from CHATS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-OTCC-Direct-Debit"><span class="nav-number">2.1.7.</span> <span class="nav-text">1.7 OTCC Direct Debit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-Cancellation-of-Payment-by-Participant"><span class="nav-number">2.1.8.</span> <span class="nav-text">1.8 Cancellation of Payment by Participant</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cancellation-of-Payment-Initiated-via-SWIFT"><span class="nav-number">2.1.8.1.</span> <span class="nav-text">Cancellation of Payment Initiated via SWIFT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cancellation-of-CHATS-Initiated-Payment"><span class="nav-number">2.1.8.2.</span> <span class="nav-text">Cancellation of CHATS Initiated Payment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rejection-of-Cancellation-Request"><span class="nav-number">2.1.8.3.</span> <span class="nav-text">Rejection of Cancellation Request</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cancellation-of-OTCC-Direct-Debit"><span class="nav-number">2.1.8.4.</span> <span class="nav-text">Cancellation of OTCC Direct Debit</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9-Cancellation-of-Payment-by-CHATS"><span class="nav-number">2.1.9.</span> <span class="nav-text">1.9 Cancellation of Payment by CHATS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cancellation-of-Payment-initiated-by-Participant"><span class="nav-number">2.1.9.1.</span> <span class="nav-text">Cancellation of Payment initiated by Participant</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cancellation-of-OTCC-Direct-Debit-1"><span class="nav-number">2.1.9.2.</span> <span class="nav-text">Cancellation of OTCC Direct Debit</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-10-Payment-Initiation-Notification"><span class="nav-number">2.1.10.</span> <span class="nav-text">1.10 Payment Initiation Notification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-11-Bank-Statement"><span class="nav-number">2.1.11.</span> <span class="nav-text">1.11 Bank Statement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-12-Special-Posting-Transaction"><span class="nav-number">2.1.12.</span> <span class="nav-text">1.12 Special Posting Transaction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-13-Notification-Message"><span class="nav-number">2.1.13.</span> <span class="nav-text">1.13 Notification Message</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-14-Message-Rejection"><span class="nav-number">2.1.14.</span> <span class="nav-text">1.14 Message Rejection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SI-CB-Interface"><span class="nav-number">2.2.</span> <span class="nav-text">2. SI/CB Interface</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-List-of-Supported-MX-Messages"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1 List of Supported MX Messages</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-following-messages-are-sent-by-an-SI-CB"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">The following messages are sent by an SI/CB:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-following-messages-are-received-by-an-SI-CB"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">The following messages are received by an SI/CB:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-SI-Direct-Debit-Credit-Initiated-over-SWIFT"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2 SI Direct Debit/Credit Initiated over SWIFT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Cancellation-of-Direct-Debit-Credit"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.3 Cancellation of Direct Debit/Credit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Message-Rejection"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.4 Message Rejection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-OTCC-Interface"><span class="nav-number">2.3.</span> <span class="nav-text">3. OTCC Interface</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-List-of-Supported-MX-Messages"><span class="nav-number">2.3.1.</span> <span class="nav-text">3.1 List of Supported MX Messages</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-following-messages-are-sent-by-an-OTCC"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">The following messages are sent by an OTCC:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-following-messages-are-received-by-OTCC"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">The following messages are received by OTCC:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-following-messages-are-received-by-participant"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">The following messages are received by participant:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-OTCC-Direct-Debit"><span class="nav-number">2.3.2.</span> <span class="nav-text">3.2 OTCC Direct Debit</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Appendix"><span class="nav-number">3.</span> <span class="nav-text">Appendix</span></a></li></ol>
     
     </div>
   </aside>
@@ -287,7 +491,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 375.7k 字</span>
+        <span class="post-count">全站共 377.4k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

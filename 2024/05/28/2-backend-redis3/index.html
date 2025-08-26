@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/redis.jpg">
-<meta property="og:updated_time" content="2025-08-25T15:29:09.686Z">
+<meta property="og:updated_time" content="2025-08-25T15:44:45.613Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 后端 | Redis 线程模型">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/redis.jpg">
@@ -155,7 +155,7 @@
 <li>Redis’s performance bottleneck isn’t the CPU, but mainly the moemory and network.</li>
 <li>multiple-thread causes problems such as dead-lock, thread text switching and may even affect performance.</li>
 </ul>
-<h1 id="Redis6-0-之后引入了多线程的原因"><a href="#Redis6-0-之后引入了多线程的原因" class="headerlink" title="Redis6.0 之后引入了多线程的原因"></a>Redis6.0 之后引入了多线程的原因</h1><p>Redis6.0 引入多线程主要是为了提高网络 IO 读写性能</p>
+<h1 id="Redis6-0-之后引入了多线程的原因"><a href="#Redis6-0-之后引入了多线程的原因" class="headerlink" title="Redis6.0 之后引入了多线程的原因"></a>Redis6.0 之后引入了多线程的原因</h1><p>Redis6.0 引入多线程主要是为了<strong>提高网络 IO 读写性能</strong></p>
 <p>Redis 的多线程只是在网络数据的读写这类耗时操作上使用了，执行命令仍然是单线程顺序执行</p>
 <p>Redis6.0 的多线程默认是禁用的，只使用主线程。如需开启需要设置 IO 线程数 &gt; 1，需要修改 redis 配置文件 redis.conf：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">io-threads 4 #设置1的话只会开启主线程，官网建议4核的机器建议设置为2或3个线程，8核的建议设置为6个线程</span><br></pre></td></tr></table></figure>
@@ -317,7 +317,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 375.7k 字</span>
+        <span class="post-count">全站共 377.4k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

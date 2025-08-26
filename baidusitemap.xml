@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://lixupeng.cn/blog/2024/12/09/1-business-bank-message3-flow/</loc>
+    <lastmod>2025-08-26</lastmod>
+  </url>
+  <url>
+    <loc>https://lixupeng.cn/blog/2024/08/06/2-backend-redis9/</loc>
+    <lastmod>2025-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://lixupeng.cn/blog/2024/06/29/2-backend-redis5/</loc>
+    <lastmod>2025-08-25</lastmod>
+  </url>
+  <url>
     <loc>https://lixupeng.cn/blog/2024/06/11/2-backend-redis4/</loc>
     <lastmod>2025-08-25</lastmod>
   </url>
@@ -10,10 +22,6 @@
   </url>
   <url>
     <loc>https://lixupeng.cn/blog/2025/03/17/1-interview-spring/</loc>
-    <lastmod>2025-08-25</lastmod>
-  </url>
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/12/09/1-business-bank-message3-flow/</loc>
     <lastmod>2025-08-25</lastmod>
   </url>
   <url>
@@ -34,10 +42,6 @@
   </url>
   <url>
     <loc>https://lixupeng.cn/blog/2024/07/08/2-backend-redis6/</loc>
-    <lastmod>2025-08-24</lastmod>
-  </url>
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/06/29/2-backend-redis5/</loc>
     <lastmod>2025-08-24</lastmod>
   </url>
   <url>
@@ -118,10 +122,6 @@
   </url>
   <url>
     <loc>https://lixupeng.cn/blog/2020/07/16/2-backend-mongodb/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/08/06/2-backend-redis9/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
