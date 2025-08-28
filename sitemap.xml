@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lixupeng.cn/blog/2025/02/12/1-interview-redis/</loc>
+    
+    <lastmod>2025-08-28T16:24:47.433Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2024/07/08/2-backend-redis6/</loc>
+    
+    <lastmod>2025-08-28T16:22:19.119Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2024/05/15/2-backend-redis2/</loc>
+    
+    <lastmod>2025-08-28T09:50:06.862Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lixupeng.cn/blog/2024/12/09/1-business-bank-message3-flow/</loc>
     
     <lastmod>2025-08-26T17:15:26.405Z</lastmod>
@@ -65,30 +86,9 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2025/02/12/1-interview-redis/</loc>
-    
-    <lastmod>2025-08-24T14:53:36.150Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/07/08/2-backend-redis6/</loc>
-    
-    <lastmod>2025-08-24T14:49:04.841Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://lixupeng.cn/blog/2024/04/25/2-backend-redis1/</loc>
     
     <lastmod>2025-08-24T11:16:52.179Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/05/15/2-backend-redis2/</loc>
-    
-    <lastmod>2025-08-24T04:55:31.301Z</lastmod>
     
   </url>
   

@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
-<meta property="og:updated_time" content="2025-08-24T14:53:36.150Z">
+<meta property="og:updated_time" content="2025-08-28T16:24:47.433Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🔥 面试 | Redis 相关">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
@@ -146,6 +146,22 @@
 </ol>
 <h1 id="为什么用-redis-而不用本地缓存？"><a href="#为什么用-redis-而不用本地缓存？" class="headerlink" title="为什么用 redis 而不用本地缓存？"></a>为什么用 redis 而不用本地缓存？</h1><p>Local Cache can not share , rely on JVM memory. It just suitable for standalone system.</p>
 <p>Redis can share memory with multiple instances, preserve consisitency, implement hight-performance access and persistent storage. Redis is suitable for distribued system.</p>
+<h1 id="Redis-单线程为什么还能这么快"><a href="#Redis-单线程为什么还能这么快" class="headerlink" title="Redis 单线程为什么还能这么快?"></a>Redis 单线程为什么还能这么快?</h1><p>Because memory operations are fast, single-threaded operations avoid lock contention, and combined with efficient I/O multiplexing mechanisms, performance is very high.</p>
+<h1 id="Redis如何判断KEY是否过期呢？"><a href="#Redis如何判断KEY是否过期呢？" class="headerlink" title="Redis如何判断KEY是否过期呢？"></a>Redis如何判断KEY是否过期呢？</h1><p>There are two Dicts in Redis, also named Hashtable. the one records key-value pairs, the other one records the key and the expiry time. we check whether a key is expired, we just need to query in the second Dict by the key.<br>在Redis中会有两个Dict，也就是HashTable，其中一个记录KEY-VALUE键值对，另一个记录KEY和过期时间。要判断一个KEY是否过期，只需要到记录过期时间的Dict中根据KEY查询即可。</p>
+<h1 id="Redis何时删除过期KEY？如何删除？"><a href="#Redis何时删除过期KEY？如何删除？" class="headerlink" title="Redis何时删除过期KEY？如何删除？"></a>Redis何时删除过期KEY？如何删除？</h1><p>Redis的过期KEY处理有两种策略，分别是惰性删除和周期删除。<br>惰性删除是指在每次用户访问某个KEY时，判断KEY的过期时间：如果过期则删除；如果未过期则忽略。<br>周期删除有两种模式：</p>
+<ul>
+<li>SLOW模式：通过一个定时任务，定期的抽样部分带有TTL的KEY，判断其是否过期。默认情况下定时任务的执行频率是每秒10次，但每次执行不能超过25毫秒。如果执行抽样后发现时间还有剩余，并且过期KEY的比例较高，则会多次抽样。</li>
+<li>FAST模式：在Redis每次处理NIO事件之前，都会抽样部分带有TTL的KEY，判断是否过期，因此执行频率较高。但是每次执行时长不能超过1ms，如果时间充足并且过期KEY比例过高，也会多次抽样</li>
+</ul>
+<h1 id="当Redis内存不足时会怎么做？"><a href="#当Redis内存不足时会怎么做？" class="headerlink" title="当Redis内存不足时会怎么做？"></a>当Redis内存不足时会怎么做？</h1><p>这取决于配置的内存淘汰策略，Redis支持很多种内存淘汰策略，例如LRU、LFU、Random. 但默认的策略是直接拒绝新的写入请求。而如果设置了其它策略，则会在每次执行命令后判断占用内存是否达到阈值。如果达到阈值则会基于配置的淘汰策略尝试进行内存淘汰，直到占用内存小于阈值为止。</p>
+<h1 id="那你能聊聊LRU和LFU吗？"><a href="#那你能聊聊LRU和LFU吗？" class="headerlink" title="那你能聊聊LRU和LFU吗？"></a>那你能聊聊LRU和LFU吗？</h1><p>LRU是最近最久未使用。Redis的Key都是RedisObject，当启用LRU算法后，Redis会在Key的头信息中使用24个bit记录每个key的最近一次使用的时间lru。每次需要内存淘汰时，就会抽样一部分KEY，找出其中空闲时间最长的，也就是now - lru结果最大的，然后将其删除。如果内存依然不足，就重复这个过程。</p>
+<p>由于采用了抽样来计算，这种算法只能说是一种近似LRU算法。因此在Redis4.0以后又引入了LFU算法，这种算法是统计最近最少使用，也就是按key的访问频率来统计。当启用LFU算法后，Redis会在key的头信息中使用24bit记录最近一次使用时间和逻辑访问频率。其中高16位是以分钟为单位的最近访问时间，后8位是逻辑访问次数。与LFU类似，每次需要内存淘汰时，就会抽样一部分KEY，找出其中逻辑访问次数最小的，将其淘汰。</p>
+<h1 id="如何保证缓存的双写一致性？"><a href="#如何保证缓存的双写一致性？" class="headerlink" title="如何保证缓存的双写一致性？"></a>如何保证缓存的双写一致性？</h1><p>答：缓存的双写一致性很难保证强一致，只能尽可能降低不一致的概率，确保最终一致。我们项目中采用的是Cache Aside模式。简单来说，就是在更新数据库之后删除缓存；在查询时先查询缓存，如果未命中则查询数据库并写入缓存。同时我们会给缓存设置过期时间作为兜底方案，如果真的出现了不一致的情况，也可以通过缓存过期来保证最终一致。</p>
+<h1 id="为什么不采用延迟双删机制？"><a href="#为什么不采用延迟双删机制？" class="headerlink" title="为什么不采用延迟双删机制？"></a>为什么不采用延迟双删机制？</h1><p>答：延迟双删的第一次删除并没有实际意义，第二次采用延迟删除主要是解决数据库主从同步的延迟问题，我认为这是数据库主从的一致性问题，与缓存同步无关。既然主节点数据已经更新，Redis的缓存理应更新。而且延迟双删会增加缓存业务复杂度，也没能完全避免缓存一致性问题，投入回报比太低。</p>
+<h1 id="如何解决缓存穿透问题？"><a href="#如何解决缓存穿透问题？" class="headerlink" title="如何解决缓存穿透问题？"></a>如何解决缓存穿透问题？</h1><p>缓存穿透也可以说是穿透攻击，具体来说是因为请求访问到了数据库不存在的值，这样缓存无法命中，必然访问数据库。如果高并发的访问这样的接口，会给数据库带来巨大压力。<br>我们项目中都是基于布隆过滤器来解决缓存穿透问题的，当缓存未命中时基于布隆过滤器判断数据是否存在。如果不存在则不去访问数据库。<br>当然，也可以使用缓存空值的方式解决，不过这种方案比较浪费内存。</p>
+<h1 id="如何解决缓存雪崩问题？"><a href="#如何解决缓存雪崩问题？" class="headerlink" title="如何解决缓存雪崩问题？"></a>如何解决缓存雪崩问题？</h1><p>缓存雪崩的常见原因有两个，第一是因为大量key同时过期。针对问这个题我们可以可以给缓存key设置不同的TTL值，避免key同时过期。<br>第二个原因是Redis宕机导致缓存不可用。针对这个问题我们可以利用集群提高Redis的可用性。也可以添加多级缓存，当Redis宕机时还有本地缓存可用。</p>
+<h1 id="如何解决缓存击穿问题？"><a href="#如何解决缓存击穿问题？" class="headerlink" title="如何解决缓存击穿问题？"></a>如何解决缓存击穿问题？</h1><p>答：缓存击穿往往是由热点Key引起的，当热点Key过期时，大量请求涌入同时查询，发现缓存未命中都会去访问数据库，导致数据库压力激增。解决这个问题的主要思路就是避免多线程并发去重建缓存，因此方案有两种。<br>第一种是基于互斥锁，当发现缓存未命中时需要先获取互斥锁，再重建缓存，缓存重建完成释放锁。这样就可以保证缓存重建同一时刻只会有一个线程执行。不过这种做法会导致缓存重建时性能下降严重。<br>第二种是基于逻辑过期，也就是不给热点Key设置过期时间，而是给数据添加一个过期时间的字段。这样热点Key就不会过期，缓存中永远有数据。<br>查询到数据时基于其中的过期时间判断key是否过期，如果过期开启独立新线程异步的重建缓存，而查询请求先返回旧数据即可。当然，这个过程也要加互斥锁，但由于重建缓存是异步的，而且获取锁失败也无需等待，而是返回旧数据，这样性能几乎不受影响。</p>
+<p>需要注意的是，无论是采用哪种方式，在获取互斥锁后一定要再次判断缓存是否命中，做dubbo check. 因为当你获取锁成功时，可能是在你之前有其它线程已经重建缓存了。</p>
 
       
     </div>
@@ -167,7 +183,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">126字</span>
+        <span class="ico-fontcount"></span><span class="post-count">1.9k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -260,7 +276,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-为什么这么快？"><span class="nav-number">1.</span> <span class="nav-text">Redis 为什么这么快？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要用-Redis？"><span class="nav-number">2.</span> <span class="nav-text">为什么要用 Redis？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么用-redis-而不用本地缓存？"><span class="nav-number">3.</span> <span class="nav-text">为什么用 redis 而不用本地缓存？</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-为什么这么快？"><span class="nav-number">1.</span> <span class="nav-text">Redis 为什么这么快？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要用-Redis？"><span class="nav-number">2.</span> <span class="nav-text">为什么要用 Redis？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么用-redis-而不用本地缓存？"><span class="nav-number">3.</span> <span class="nav-text">为什么用 redis 而不用本地缓存？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-单线程为什么还能这么快"><span class="nav-number">4.</span> <span class="nav-text">Redis 单线程为什么还能这么快?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis如何判断KEY是否过期呢？"><span class="nav-number">5.</span> <span class="nav-text">Redis如何判断KEY是否过期呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis何时删除过期KEY？如何删除？"><span class="nav-number">6.</span> <span class="nav-text">Redis何时删除过期KEY？如何删除？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#当Redis内存不足时会怎么做？"><span class="nav-number">7.</span> <span class="nav-text">当Redis内存不足时会怎么做？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#那你能聊聊LRU和LFU吗？"><span class="nav-number">8.</span> <span class="nav-text">那你能聊聊LRU和LFU吗？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何保证缓存的双写一致性？"><span class="nav-number">9.</span> <span class="nav-text">如何保证缓存的双写一致性？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么不采用延迟双删机制？"><span class="nav-number">10.</span> <span class="nav-text">为什么不采用延迟双删机制？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存穿透问题？"><span class="nav-number">11.</span> <span class="nav-text">如何解决缓存穿透问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存雪崩问题？"><span class="nav-number">12.</span> <span class="nav-text">如何解决缓存雪崩问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存击穿问题？"><span class="nav-number">13.</span> <span class="nav-text">如何解决缓存击穿问题？</span></a></li></ol>
     
     </div>
   </aside>
@@ -300,7 +316,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 377.6k 字</span>
+        <span class="post-count">全站共 382.5k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
