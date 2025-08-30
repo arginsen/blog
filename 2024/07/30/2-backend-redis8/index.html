@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/redis.jpg">
-<meta property="og:updated_time" content="2025-08-01T18:04:07.606Z">
+<meta property="og:updated_time" content="2025-08-30T12:43:22.182Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 后端 | Redis 哨兵">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/redis.jpg">
@@ -133,6 +133,74 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
+<p>Redis 提供了哨兵（Sentinel）机制来监控主从集群监控状态，确保集群的高可用性。</p>
+<p>哨兵的作用如下：</p>
+<ul>
+<li>状态监控：Sentinel 会不断检查您的 master 和 slave 是否按预期工作</li>
+<li>故障恢复（failover）：如果 master 故障，Sentinel 会将一个 slave 提升为 master。当故障实例恢复后会成为 slave</li>
+<li>状态通知：Sentinel 充当 Redis 客户端的服务发现来源，当集群发生failover 时，会将最新集群信息推送给 Redis 的客户端</li>
+</ul>
+<h1 id="状态监控"><a href="#状态监控" class="headerlink" title="状态监控"></a>状态监控</h1><p>Sentinel基于心跳机制监测服务状态，每隔1秒向集群的每个节点发送 ping 命令，并通过实例的响应结果来做出判断：</p>
+<ul>
+<li>主观下线（sdown）：如果某 sentinel 节点发现某Redis节点未在规定时间响应，则认为该节点主观下线。</li>
+<li>客观下线(odown)：若超过指定数量（通过quorum设置）的 sentinel 都认为该节点主观下线，则该节点客观下线。quorum 值最好超过 Sentinel 节点数量的一半，Sentinel 节点数量至少3台。</li>
+</ul>
+<p>一旦发现 master 故障，sentinel 需要在 salve 中选择一个作为新的master，选择依据是这样的：</p>
+<ul>
+<li>首先会判断slave节点与master节点断开时间长短，如果超过down-after-milliseconds * 10则会排除该slave节点</li>
+<li>然后判断slave节点的slave-priority值，越小优先级越高，如果是0则永不参与选举（默认都是1）。</li>
+<li>如果slave-prority一样，则判断slave节点的offset值，越大说明数据越新，优先级越高</li>
+<li>最后是判断slave节点的run_id大小，越小优先级越高（通过info server可以查看run_id）。</li>
+</ul>
+<h1 id="选举-leader"><a href="#选举-leader" class="headerlink" title="选举 leader"></a>选举 leader</h1><p>当选出一个新的 master 后，需要进行身份切换。</p>
+<p>Sentinel 集群要选出一个执行 failover 的 Sentinel 节点，可以成为leader。要成为 leader 要满足两个条件：</p>
+<ul>
+<li>最先获得超过半数的投票</li>
+<li>获得的投票数不小于quorum值</li>
+</ul>
+<p>而 sentinel 投票的原则有两条：</p>
+<ul>
+<li>优先投票给目前得票最多的</li>
+<li>如果目前没有任何节点的票，就投给自己</li>
+</ul>
+<h1 id="failover"><a href="#failover" class="headerlink" title="failover"></a>failover</h1><p>For example, there are master, slave1 and slave2 in a group.</p>
+<p>when master doesn’t work, sentinel will send the command ‘slaveof no one’ to slave1, and make it become master.</p>
+<p>Then sentinel sends the command ‘slaveof ip port’ to other slaves, and make these nodes update their master before synchronizing data from master.</p>
+<p>Finally, sentinel executes the command ‘slaveof ip port’ until the bad node recovers.</p>
+<h1 id="搭建哨兵集群"><a href="#搭建哨兵集群" class="headerlink" title="搭建哨兵集群"></a>搭建哨兵集群</h1><p>配置 sentinel.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sentinel announce-ip &quot;192.168.150.101&quot;</span><br><span class="line">sentinel monitor hmaster 192.168.150.101 7001 2</span><br><span class="line">sentinel down-after-milliseconds hmaster 5000</span><br><span class="line">sentinel failover-timeout hmaster 60000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>sentinel announce-ip “192.168.150.101”：声明当前sentinel的ip</li>
+<li>sentinel monitor hmaster 192.168.150.101 7001 2：指定集群的主节点信息 <ul>
+<li>hmaster：主节点名称，自定义，任意写</li>
+<li>192.168.150.101 7001：主节点的ip和端口</li>
+<li>2：认定master下线时的quorum值</li>
+</ul>
+</li>
+<li>sentinel down-after-milliseconds hmaster 5000：声明master节点超时多久后被标记下线</li>
+<li>sentinel failover-timeout hmaster 60000：在第一次故障转移失败后多久再次重试</li>
+</ul>
+<p>需要在 /root/redis 下创建 3 个文件夹：s1, s2, s3， 将sentinel.conf 分别拷贝一份至3个文件夹</p>
+<p>修改 docker-compose.yaml 文件，内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.2"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">r1:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">r1</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">"host"</span></span><br><span class="line">    <span class="attr">entrypoint:</span> <span class="string">["redis-server",</span> <span class="string">"--port"</span><span class="string">,</span> <span class="string">"7001"</span><span class="string">]</span></span><br><span class="line">  <span class="attr">r2:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">r2</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">"host"</span></span><br><span class="line">    <span class="attr">entrypoint:</span> <span class="string">["redis-server",</span> <span class="string">"--port"</span><span class="string">,</span> <span class="string">"7002"</span><span class="string">,</span> <span class="string">"--slaveof"</span><span class="string">,</span> <span class="string">"192.168.150.101"</span><span class="string">,</span> <span class="string">"7001"</span><span class="string">]</span></span><br><span class="line">  <span class="attr">r3:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">r3</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">"host"</span></span><br><span class="line">    <span class="attr">entrypoint:</span> <span class="string">["redis-server",</span> <span class="string">"--port"</span><span class="string">,</span> <span class="string">"7003"</span><span class="string">,</span> <span class="string">"--slaveof"</span><span class="string">,</span> <span class="string">"192.168.150.101"</span><span class="string">,</span> <span class="string">"7001"</span><span class="string">]</span></span><br><span class="line">  <span class="attr">s1:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">s1</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/root/redis/s1:/etc/redis</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">"host"</span></span><br><span class="line">    <span class="attr">entrypoint:</span> <span class="string">["redis-sentinel",</span> <span class="string">"/etc/redis/sentinel.conf"</span><span class="string">,</span> <span class="string">"--port"</span><span class="string">,</span> <span class="string">"27001"</span><span class="string">]</span></span><br><span class="line">  <span class="attr">s2:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">s2</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/root/redis/s2:/etc/redis</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">"host"</span></span><br><span class="line">    <span class="attr">entrypoint:</span> <span class="string">["redis-sentinel",</span> <span class="string">"/etc/redis/sentinel.conf"</span><span class="string">,</span> <span class="string">"--port"</span><span class="string">,</span> <span class="string">"27002"</span><span class="string">]</span></span><br><span class="line">  <span class="attr">s3:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">s3</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/root/redis/s3:/etc/redis</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">"host"</span></span><br><span class="line">    <span class="attr">entrypoint:</span> <span class="string">["redis-sentinel",</span> <span class="string">"/etc/redis/sentinel.conf"</span><span class="string">,</span> <span class="string">"--port"</span><span class="string">,</span> <span class="string">"27003"</span><span class="string">]</span></span><br></pre></td></tr></table></figure>
+<p>启动集群：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<p>启动后可以看到哨兵 sentinel 联系到 master 节点，与其它几个哨兵也建立了链接。</p>
+<p>连接7001这个master节点，然后通过命令让其休眠60秒，模拟宕机：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 连接7001这个master节点，通过sleep模拟服务宕机，60秒后自动恢复</span></span><br><span class="line">docker <span class="built_in">exec</span> -it r1 redis-cli -p 7001 DEBUG sleep 60</span><br></pre></td></tr></table></figure>
+<p>可以发现 s1 节点率先发现 7001 主观下线，时间落后 s2， s2 投票最多，从 s2 更新</p>
+<h1 id="RedisTemplate-连接哨兵集群"><a href="#RedisTemplate-连接哨兵集群" class="headerlink" title="RedisTemplate 连接哨兵集群"></a>RedisTemplate 连接哨兵集群</h1><h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="配置哨兵地址"><a href="#配置哨兵地址" class="headerlink" title="配置哨兵地址"></a>配置哨兵地址</h2><p>连接哨兵集群与传统单点模式不同，不再需要设置每一个redis的地址，而是直接指定哨兵地址</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">sentinel:</span></span><br><span class="line">      <span class="attr">master:</span> <span class="string">hmaster</span> <span class="comment"># 集群名</span></span><br><span class="line">      <span class="attr">nodes:</span> <span class="comment"># 哨兵地址列表</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:27001</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:27002</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:27003</span></span><br></pre></td></tr></table></figure>
+<h2 id="配置读写分离"><a href="#配置读写分离" class="headerlink" title="配置读写分离"></a>配置读写分离</h2><p>还要配置读写分离，让 java 客户端将写请求发送到 master 节点，读请求发送到 slave 节点。定义一个 bean 即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> LettuceClientConfigurationBuilderCustomizer <span class="title">clientConfigurationBuilderCustomizer</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> clientConfigurationBuilder -&gt; clientConfigurationBuilder.readFrom(ReadFrom.REPLICA_PREFERRED);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个bean中配置的就是读写策略，包括四种：</p>
+<ul>
+<li>MASTER：从主节点读取</li>
+<li>MASTER_PREFERRED：优先从master节点读取，master不可用才读取slave</li>
+<li>REPLICA：从slave节点读取</li>
+<li>REPLICA_PREFERRED：优先从slave节点读取，所有的slave都不可用才读取master</li>
+</ul>
 
       
     </div>
@@ -154,7 +222,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">0字</span>
+        <span class="ico-fontcount"></span><span class="post-count">1.3k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -247,7 +315,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav">无</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#状态监控"><span class="nav-number">1.</span> <span class="nav-text">状态监控</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#选举-leader"><span class="nav-number">2.</span> <span class="nav-text">选举 leader</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#failover"><span class="nav-number">3.</span> <span class="nav-text">failover</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建哨兵集群"><span class="nav-number">4.</span> <span class="nav-text">搭建哨兵集群</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RedisTemplate-连接哨兵集群"><span class="nav-number">5.</span> <span class="nav-text">RedisTemplate 连接哨兵集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入依赖"><span class="nav-number">5.1.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置哨兵地址"><span class="nav-number">5.2.</span> <span class="nav-text">配置哨兵地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置读写分离"><span class="nav-number">5.3.</span> <span class="nav-text">配置读写分离</span></a></li></ol></li></ol>
     
     </div>
   </aside>
@@ -287,7 +355,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 382.5k 字</span>
+        <span class="post-count">全站共 384.1k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

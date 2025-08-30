@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
-<meta property="og:updated_time" content="2025-08-28T16:24:47.433Z">
+<meta property="og:updated_time" content="2025-08-30T12:39:44.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🔥 面试 | Redis 相关">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
@@ -162,6 +162,32 @@
 <h1 id="如何解决缓存雪崩问题？"><a href="#如何解决缓存雪崩问题？" class="headerlink" title="如何解决缓存雪崩问题？"></a>如何解决缓存雪崩问题？</h1><p>缓存雪崩的常见原因有两个，第一是因为大量key同时过期。针对问这个题我们可以可以给缓存key设置不同的TTL值，避免key同时过期。<br>第二个原因是Redis宕机导致缓存不可用。针对这个问题我们可以利用集群提高Redis的可用性。也可以添加多级缓存，当Redis宕机时还有本地缓存可用。</p>
 <h1 id="如何解决缓存击穿问题？"><a href="#如何解决缓存击穿问题？" class="headerlink" title="如何解决缓存击穿问题？"></a>如何解决缓存击穿问题？</h1><p>答：缓存击穿往往是由热点Key引起的，当热点Key过期时，大量请求涌入同时查询，发现缓存未命中都会去访问数据库，导致数据库压力激增。解决这个问题的主要思路就是避免多线程并发去重建缓存，因此方案有两种。<br>第一种是基于互斥锁，当发现缓存未命中时需要先获取互斥锁，再重建缓存，缓存重建完成释放锁。这样就可以保证缓存重建同一时刻只会有一个线程执行。不过这种做法会导致缓存重建时性能下降严重。<br>第二种是基于逻辑过期，也就是不给热点Key设置过期时间，而是给数据添加一个过期时间的字段。这样热点Key就不会过期，缓存中永远有数据。<br>查询到数据时基于其中的过期时间判断key是否过期，如果过期开启独立新线程异步的重建缓存，而查询请求先返回旧数据即可。当然，这个过程也要加互斥锁，但由于重建缓存是异步的，而且获取锁失败也无需等待，而是返回旧数据，这样性能几乎不受影响。</p>
 <p>需要注意的是，无论是采用哪种方式，在获取互斥锁后一定要再次判断缓存是否命中，做dubbo check. 因为当你获取锁成功时，可能是在你之前有其它线程已经重建缓存了。</p>
+<h1 id="Sentinel的三个作用是什么？"><a href="#Sentinel的三个作用是什么？" class="headerlink" title="Sentinel的三个作用是什么？"></a>Sentinel的三个作用是什么？</h1><ul>
+<li>集群监控</li>
+<li>故障恢复</li>
+<li>状态通知</li>
+</ul>
+<h1 id="Sentinel如何判断一个redis实例是否健康？"><a href="#Sentinel如何判断一个redis实例是否健康？" class="headerlink" title="Sentinel如何判断一个redis实例是否健康？"></a>Sentinel如何判断一个redis实例是否健康？</h1><ul>
+<li>每隔1秒发送一次ping命令，如果超过一定时间没有相向则认为是主观下线（sdown）</li>
+<li>如果大多数sentinel都认为实例主观下线，则判定服务客观下线（odown）</li>
+</ul>
+<h1 id="故障转移步骤有哪些？"><a href="#故障转移步骤有哪些？" class="headerlink" title="故障转移步骤有哪些？"></a>故障转移步骤有哪些？</h1><ul>
+<li>首先要在sentinel中选出一个leader，由 leader 执行 failover</li>
+<li>选定一个 slave 作为新的 master，执行 slaveof no one，切换到 master 模式</li>
+<li>然后让所有节点都执行 slaveof 新 master</li>
+<li>修改故障节点配置，添加 slaveof 新 master</li>
+</ul>
+<h1 id="sentinel-选举-leader-的依据是什么？"><a href="#sentinel-选举-leader-的依据是什么？" class="headerlink" title="sentinel 选举 leader 的依据是什么？"></a>sentinel 选举 leader 的依据是什么？</h1><ul>
+<li>票数超过 sentinel 节点数量 1 半</li>
+<li>票数超过 quorum 数量</li>
+<li>一般情况下最先发起 failover 的节点会当选</li>
+</ul>
+<h1 id="sentinel-从-slave-中选取-master-的依据是什么？"><a href="#sentinel-从-slave-中选取-master-的依据是什么？" class="headerlink" title="sentinel 从 slave 中选取 master 的依据是什么？"></a>sentinel 从 slave 中选取 master 的依据是什么？</h1><ul>
+<li>首先会判断 slave 节点与 master 节点断开时间长短，如果超过down-after-milliseconds * 10则会排除该 slave 节点</li>
+<li>然后判断 slave 节点的 slave-priority 值，越小优先级越高，如果是0则永不参与选举（默认都是1）。</li>
+<li>如果 slave-prority 一样，则判断 slave 节点的 offset 值，越大说明数据越新，优先级越高</li>
+<li>最后是判断 slave 节点的 run_id 大小，越小优先级越高（通过info server 可以查看 run_id）。</li>
+</ul>
 
       
     </div>
@@ -183,7 +209,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">1.9k字</span>
+        <span class="ico-fontcount"></span><span class="post-count">2.3k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -276,7 +302,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-为什么这么快？"><span class="nav-number">1.</span> <span class="nav-text">Redis 为什么这么快？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要用-Redis？"><span class="nav-number">2.</span> <span class="nav-text">为什么要用 Redis？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么用-redis-而不用本地缓存？"><span class="nav-number">3.</span> <span class="nav-text">为什么用 redis 而不用本地缓存？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-单线程为什么还能这么快"><span class="nav-number">4.</span> <span class="nav-text">Redis 单线程为什么还能这么快?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis如何判断KEY是否过期呢？"><span class="nav-number">5.</span> <span class="nav-text">Redis如何判断KEY是否过期呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis何时删除过期KEY？如何删除？"><span class="nav-number">6.</span> <span class="nav-text">Redis何时删除过期KEY？如何删除？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#当Redis内存不足时会怎么做？"><span class="nav-number">7.</span> <span class="nav-text">当Redis内存不足时会怎么做？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#那你能聊聊LRU和LFU吗？"><span class="nav-number">8.</span> <span class="nav-text">那你能聊聊LRU和LFU吗？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何保证缓存的双写一致性？"><span class="nav-number">9.</span> <span class="nav-text">如何保证缓存的双写一致性？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么不采用延迟双删机制？"><span class="nav-number">10.</span> <span class="nav-text">为什么不采用延迟双删机制？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存穿透问题？"><span class="nav-number">11.</span> <span class="nav-text">如何解决缓存穿透问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存雪崩问题？"><span class="nav-number">12.</span> <span class="nav-text">如何解决缓存雪崩问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存击穿问题？"><span class="nav-number">13.</span> <span class="nav-text">如何解决缓存击穿问题？</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-为什么这么快？"><span class="nav-number">1.</span> <span class="nav-text">Redis 为什么这么快？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要用-Redis？"><span class="nav-number">2.</span> <span class="nav-text">为什么要用 Redis？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么用-redis-而不用本地缓存？"><span class="nav-number">3.</span> <span class="nav-text">为什么用 redis 而不用本地缓存？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-单线程为什么还能这么快"><span class="nav-number">4.</span> <span class="nav-text">Redis 单线程为什么还能这么快?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis如何判断KEY是否过期呢？"><span class="nav-number">5.</span> <span class="nav-text">Redis如何判断KEY是否过期呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis何时删除过期KEY？如何删除？"><span class="nav-number">6.</span> <span class="nav-text">Redis何时删除过期KEY？如何删除？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#当Redis内存不足时会怎么做？"><span class="nav-number">7.</span> <span class="nav-text">当Redis内存不足时会怎么做？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#那你能聊聊LRU和LFU吗？"><span class="nav-number">8.</span> <span class="nav-text">那你能聊聊LRU和LFU吗？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何保证缓存的双写一致性？"><span class="nav-number">9.</span> <span class="nav-text">如何保证缓存的双写一致性？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么不采用延迟双删机制？"><span class="nav-number">10.</span> <span class="nav-text">为什么不采用延迟双删机制？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存穿透问题？"><span class="nav-number">11.</span> <span class="nav-text">如何解决缓存穿透问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存雪崩问题？"><span class="nav-number">12.</span> <span class="nav-text">如何解决缓存雪崩问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存击穿问题？"><span class="nav-number">13.</span> <span class="nav-text">如何解决缓存击穿问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sentinel的三个作用是什么？"><span class="nav-number">14.</span> <span class="nav-text">Sentinel的三个作用是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sentinel如何判断一个redis实例是否健康？"><span class="nav-number">15.</span> <span class="nav-text">Sentinel如何判断一个redis实例是否健康？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#故障转移步骤有哪些？"><span class="nav-number">16.</span> <span class="nav-text">故障转移步骤有哪些？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sentinel-选举-leader-的依据是什么？"><span class="nav-number">17.</span> <span class="nav-text">sentinel 选举 leader 的依据是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sentinel-从-slave-中选取-master-的依据是什么？"><span class="nav-number">18.</span> <span class="nav-text">sentinel 从 slave 中选取 master 的依据是什么？</span></a></li></ol>
     
     </div>
   </aside>
@@ -316,7 +342,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 382.5k 字</span>
+        <span class="post-count">全站共 384.1k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
