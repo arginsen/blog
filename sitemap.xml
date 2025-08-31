@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lixupeng.cn/blog/2024/06/29/2-backend-redis5/</loc>
+    
+    <lastmod>2025-08-31T09:19:05.465Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lixupeng.cn/blog/2024/07/30/2-backend-redis8/</loc>
     
-    <lastmod>2025-08-30T12:43:22.182Z</lastmod>
+    <lastmod>2025-08-31T07:13:45.771Z</lastmod>
     
   </url>
   
@@ -40,13 +47,6 @@
     <loc>https://lixupeng.cn/blog/2024/08/06/2-backend-redis9/</loc>
     
     <lastmod>2025-08-25T16:22:09.313Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2024/06/29/2-backend-redis5/</loc>
-    
-    <lastmod>2025-08-25T15:47:28.102Z</lastmod>
     
   </url>
   
