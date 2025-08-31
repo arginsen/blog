@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lixupeng.cn/blog/2023/04/16/2-backend-mysql6/</loc>
+    
+    <lastmod>2025-08-31T09:54:56.620Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2023/03/10/2-backend-mysql5/</loc>
+    
+    <lastmod>2025-08-31T09:50:16.078Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2023/02/18/2-backend-mysql4/</loc>
+    
+    <lastmod>2025-08-31T09:49:56.260Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2025/02/21/1-interview-mysql/</loc>
+    
+    <lastmod>2025-08-31T09:44:34.909Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2023/01/27/2-backend-mysql3/</loc>
+    
+    <lastmod>2025-08-31T09:43:50.684Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2023/01/12/2-backend-mysql2/</loc>
+    
+    <lastmod>2025-08-31T09:43:06.711Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lixupeng.cn/blog/2024/06/29/2-backend-redis5/</loc>
     
     <lastmod>2025-08-31T09:19:05.465Z</lastmod>
@@ -96,13 +138,6 @@
     <loc>https://lixupeng.cn/blog/2024/04/25/2-backend-redis1/</loc>
     
     <lastmod>2025-08-24T11:16:52.179Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2025/02/21/1-interview-mysql/</loc>
-    
-    <lastmod>2025-08-21T09:47:58.535Z</lastmod>
     
   </url>
   
@@ -212,44 +247,9 @@
   </url>
   
   <url>
-    <loc>https://lixupeng.cn/blog/2023/01/12/2-backend-mysql2/</loc>
-    
-    <lastmod>2025-08-01T18:13:36.733Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://lixupeng.cn/blog/2020/07/16/2-backend-mongodb/</loc>
     
     <lastmod>2025-08-01T18:11:07.869Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2023/04/16/2-backend-mysql6/</loc>
-    
-    <lastmod>2025-08-01T17:54:35.364Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2023/03/10/2-backend-mysql5/</loc>
-    
-    <lastmod>2025-08-01T17:54:00.542Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2023/02/18/2-backend-mysql4/</loc>
-    
-    <lastmod>2025-08-01T17:53:50.293Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2023/01/27/2-backend-mysql3/</loc>
-    
-    <lastmod>2025-08-01T17:52:54.147Z</lastmod>
     
   </url>
   

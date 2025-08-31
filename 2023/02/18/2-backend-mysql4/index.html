@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/mysql.jpg">
-<meta property="og:updated_time" content="2025-08-01T17:53:50.293Z">
+<meta property="og:updated_time" content="2025-08-31T09:49:56.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 MySQL｜事务">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/mysql.jpg">
@@ -133,6 +133,24 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
+<p>我们在谈论事务的时候，如果没有特指分布式事务，往往指的就是<strong>数据库事务</strong>。</p>
+<p>在分布式系统中，要保证 数据一致性，会遇到：</p>
+<ul>
+<li>网络延迟和失败（消息可能丢失或延迟）</li>
+<li>节点宕机（某个服务或数据库挂掉）</li>
+<li>时钟不同步（顺序难以保证）</li>
+<li>CAP 定理：分布式系统不能同时完全满足一致性（C）、可用性（A）、分区容错性（P）。</li>
+</ul>
+<p>所以，分布式事务 不能简单依赖传统数据库的 ACID，需要新的协议和机制。</p>
+<p>数据库事务可以保证多个对数据库的操作（也就是 SQL 语句）构成一个逻辑上的整体。构成这个逻辑上的整体的这些数据库操作遵循：要么全部执行成功,要么全部不执行 。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启一个事务</span></span><br><span class="line"><span class="keyword">START</span> <span class="keyword">TRANSACTION</span>;</span><br><span class="line"><span class="comment"># 多条 SQL 语句</span></span><br><span class="line">SQL1,SQL2...</span><br><span class="line"><span class="comment">## 提交事务</span></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></table></figure>
+<p>关系型数据库（例如：MySQL、SQL Server、Oracle 等）事务都有 ACID 特性：</p>
+<ul>
+<li>原子性（Atomicity）：事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；</li>
+<li>一致性（Consistency）：执行事务前后，数据保持一致，例如转账业务中，无论事务是否成功，转账者和收款人的总额应该是不变的；</li>
+<li>隔离性（Isolation）：并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；</li>
+<li>持久性（Durability）：一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。</li>
+</ul>
 
       
     </div>
@@ -154,7 +172,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">0字</span>
+        <span class="ico-fontcount"></span><span class="post-count">440字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -287,7 +305,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 386k 字</span>
+        <span class="post-count">全站共 388.2k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
