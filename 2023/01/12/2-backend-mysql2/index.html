@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/mysql.jpg">
-<meta property="og:updated_time" content="2025-08-31T09:43:06.711Z">
+<meta property="og:updated_time" content="2025-09-05T10:59:07.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 MySQL｜索引">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/mysql.jpg">
@@ -153,6 +153,32 @@
 <li>查询结果集占比过大：如果要查询的数据占了整张表的大部分（比如超过20%-30%），优化器可能会认为全表扫描更划算，因为通过索引多次回表（随机I/O）的成本可能高于一次顺序的全表扫描。</li>
 <li>索引维护不当或统计信息过时：导致优化器做出错误判断。</li>
 </ul>
+<h1 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h1><p>BTree 索引：MySQL 里<strong>默认和最常用</strong>的索引类型。只有叶子节点存储 value，非叶子节点只有指针和 key。存储引擎 MyISAM 和 InnoDB 实现 BTree 索引都是使用 B+Tree，但二者实现方式不一样。</p>
+<p>MyISAM 引擎中，B+Tree 叶节点的 data 域存放的是数据记录的地址。在索引检索的时候，首先按照 B+Tree 搜索算法搜索索引，如果指定的 Key 存在，则取出其 data 域的值，然后以 data 域的值为地址读取相应的数据记录。这被称为“非聚簇索引（非聚集索引）”。</p>
+<p>InnoDB 引擎中，其数据文件本身就是索引文件。相比 MyISAM，索引文件和数据文件是分离的，其表数据文件本身就是按 B+Tree 组织的一个索引结构，树的叶节点 data 域保存了完整的数据记录。这个索引的 key 是数据表的主键，因此 InnoDB 表数据文件本身就是主索引。这被称为“聚簇索引（聚集索引）”，而其余的索引都作为 辅助索引，辅助索引的 data 域存储相应记录主键的值而不是地址，这也是和 MyISAM 不同的地方。在根据主索引搜索时，直接找到 key 所在的节点即可取出数据；在根据辅助索引查找时，则需要先取出主键的值，再走一遍主索引。 因此，在设计表的时候，不建议使用过长的字段作为主键，也不建议使用非单调的字段作为主键，这样会造成主索引频繁分裂。</p>
+<p>B 树&amp; B+ 树两者异同：</p>
+<ul>
+<li>B 树的所有节点既存放键(key)也存放数据(data)，而 B+ 树只有叶子节点存放 key 和 data，其他内节点只存放 key。</li>
+<li>B 树的叶子节点都是独立的；B+ 树的叶子节点有一条引用链指向与它相邻的叶子节点。</li>
+<li>B 树的检索的过程相当于对范围内的每个节点的关键字做二分查找，可能还没有到达叶子节点，检索就结束了。而 B+ 树的检索效率就很稳定了，任何查找都是从根节点到叶子节点的过程，叶子节点的顺序检索很明显。</li>
+<li>在 B 树中进行范围查询时，首先找到要查找的下限，然后对 B 树进行中序遍历，直到找到查找的上限；而 B+ 树的范围查询，只需要对链表进行遍历即可。</li>
+</ul>
+<h1 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h1><p>数据表的主键列使用的就是主键索引。</p>
+<p>一张数据表有只能有一个主键，并且主键不能为 null，不能重复。</p>
+<p>在 MySQL 的 InnoDB 的表中，当没有显示的指定表的主键时，InnoDB 会自动先检查表中是否有唯一索引且不允许存在 null 值的字段，如果有，则选择该字段为默认的主键，否则 InnoDB 将会自动创建一个 6Byte 的自增主键。</p>
+<h1 id="正确使用索引"><a href="#正确使用索引" class="headerlink" title="正确使用索引"></a>正确使用索引</h1><h2 id="选择合适的字段创建索引"><a href="#选择合适的字段创建索引" class="headerlink" title="选择合适的字段创建索引"></a>选择合适的字段创建索引</h2><ul>
+<li>不为 NULL 的字段：索引字段的数据应该尽量不为 NULL，因为对于数据为 NULL 的字段，数据库较难优化。如果字段频繁被查询，但又避免不了为 NULL，建议使用 0、1、true、false 这样语义较为清晰的短值或短字符作为替代。</li>
+<li>被频繁查询的字段：我们创建索引的字段应该是查询操作非常频繁的字段。</li>
+<li>被作为条件查询的字段：被作为 WHERE 条件查询的字段，应该被考虑建立索引。</li>
+<li>频繁需要排序的字段：索引已经排序，这样查询可以利用索引的排序，加快排序查询时间。</li>
+<li>被经常频繁用于连接的字段：经常用于连接的字段可能是一些外键列，对于外键列并不一定要建立外键，只是说该列涉及到表与表的关系。对于频繁被连接查询的字段，可以考虑建立索引，提高多表连接查询的效率。</li>
+</ul>
+<h2 id="被频繁更新的字段应该慎重建立索引"><a href="#被频繁更新的字段应该慎重建立索引" class="headerlink" title="被频繁更新的字段应该慎重建立索引"></a>被频繁更新的字段应该慎重建立索引</h2><p>虽然索引能带来查询上的效率，但是维护索引的成本也是不小的。 如果一个字段不被经常查询，反而被经常修改，那么就更不应该在这种字段上建立索引了。</p>
+<h2 id="限制每张表上的索引数量索引"><a href="#限制每张表上的索引数量索引" class="headerlink" title="限制每张表上的索引数量索引"></a>限制每张表上的索引数量索引</h2><p>并不是越多越好，建议单张表索引不超过 5 个！索引可以提高效率，同样可以降低效率。</p>
+<p>索引可以增加查询效率，但同样也会降低插入和更新的效率，甚至有些情况下会降低查询效率。</p>
+<p>因为 MySQL 优化器在选择如何优化查询时，会根据统一信息，对每一个可以用到的索引来进行评估，以生成出一个最好的执行计划，如果同时有很多个索引都可以用于查询，就会增加 MySQL 优化器生成执行计划的时间，同样会降低查询性能。</p>
+<h2 id="尽可能的考虑建立联合索引而不是单列索引"><a href="#尽可能的考虑建立联合索引而不是单列索引" class="headerlink" title="尽可能的考虑建立联合索引而不是单列索引"></a>尽可能的考虑建立联合索引而不是单列索引</h2><p>因为索引是需要占用磁盘空间的，可以简单理解为每个索引都对应着一颗 B+ 树。如果一个表的字段过多，索引过多，那么当这个表的数据达到一个体量后，索引占用的空间也是很多的，且修改索引时，耗费的时间也是较多的。如果是联合索引，多个字段在一个索引上，那么将会节约很大磁盘空间，且修改数据的操作效率也会提升</p>
+<h2 id="注意避免冗余索引"><a href="#注意避免冗余索引" class="headerlink" title="注意避免冗余索引"></a>注意避免冗余索引</h2><p>冗余索引指的是索引的功能相同，能够命中索引(a, b)就肯定能命中索引(a) ，那么索引(a)就是冗余索引。如(name,city)和(name)这两个索引就是冗余索引，能够命中前者的查询肯定是能够命中后者的。在大多数情况下，都应该尽量扩展已有的索引而不是创建新索引。</p>
 
       
     </div>
@@ -174,7 +200,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">649字</span>
+        <span class="ico-fontcount"></span><span class="post-count">2.2k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -267,7 +293,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#索引的优缺点"><span class="nav-number">1.</span> <span class="nav-text">索引的优缺点</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#索引的优缺点"><span class="nav-number">1.</span> <span class="nav-text">索引的优缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引类型"><span class="nav-number">2.</span> <span class="nav-text">索引类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主键索引"><span class="nav-number">3.</span> <span class="nav-text">主键索引</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正确使用索引"><span class="nav-number">4.</span> <span class="nav-text">正确使用索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择合适的字段创建索引"><span class="nav-number">4.1.</span> <span class="nav-text">选择合适的字段创建索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#被频繁更新的字段应该慎重建立索引"><span class="nav-number">4.2.</span> <span class="nav-text">被频繁更新的字段应该慎重建立索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#限制每张表上的索引数量索引"><span class="nav-number">4.3.</span> <span class="nav-text">限制每张表上的索引数量索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尽可能的考虑建立联合索引而不是单列索引"><span class="nav-number">4.4.</span> <span class="nav-text">尽可能的考虑建立联合索引而不是单列索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意避免冗余索引"><span class="nav-number">4.5.</span> <span class="nav-text">注意避免冗余索引</span></a></li></ol></li></ol>
     
     </div>
   </aside>
@@ -307,7 +333,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 388.2k 字</span>
+        <span class="post-count">全站共 391.5k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lixupeng.cn/blog/2023/01/12/2-backend-mysql2/</loc>
+    
+    <lastmod>2025-09-05T10:59:07.167Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lixupeng.cn/blog/2023/01/27/2-backend-mysql3/</loc>
+    
+    <lastmod>2025-09-05T10:59:04.910Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lixupeng.cn/blog/2023/04/16/2-backend-mysql6/</loc>
     
     <lastmod>2025-08-31T09:54:56.620Z</lastmod>
@@ -26,20 +40,6 @@
     <loc>https://lixupeng.cn/blog/2025/02/21/1-interview-mysql/</loc>
     
     <lastmod>2025-08-31T09:44:34.909Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2023/01/27/2-backend-mysql3/</loc>
-    
-    <lastmod>2025-08-31T09:43:50.684Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lixupeng.cn/blog/2023/01/12/2-backend-mysql2/</loc>
-    
-    <lastmod>2025-08-31T09:43:06.711Z</lastmod>
     
   </url>
   

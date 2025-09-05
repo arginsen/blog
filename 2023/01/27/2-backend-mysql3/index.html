@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/mysql.jpg">
-<meta property="og:updated_time" content="2025-08-31T09:43:50.684Z">
+<meta property="og:updated_time" content="2025-09-05T10:59:04.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 MySQL｜日志">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/mysql.jpg">
@@ -134,6 +134,45 @@
       
         <p><br><br><a id="more"></a></p>
 <p>MySQL 日志 主要包括错误日志、查询日志、慢查询日志、事务日志、二进制日志几大类。其中，比较重要的还要属二进制日志 binlog（归档日志）和事务日志 redo log（重做日志）和 undo log（回滚日志）。</p>
+<h1 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h1><p>redo log（重做日志）是 InnoDB 存储引擎独有的，它让 MySQL 拥有了崩溃恢复能力。</p>
+<p>比如 MySQL 实例挂了或宕机了，重启时，InnoDB 存储引擎会使用 redo log 恢复数据，保证数据的持久性与完整性。</p>
+<p>MySQL 中数据是以页为单位，你查询一条记录，会从硬盘把一页的数据加载出来，加载出来的数据叫数据页，会放入到 Buffer Pool 中。</p>
+<p>后续的查询都是先从 Buffer Pool 中找，没有命中再去硬盘加载，减少硬盘 IO 开销，提升性能。</p>
+<p>更新表数据的时候，也是如此，发现 Buffer Pool 里存在要更新的数据，就直接在 Buffer Pool 里更新。</p>
+<p>然后会把“在某个数据页上做了什么修改”记录到重做日志缓存（redo log buffer）里，接着刷盘到 redo log 文件里。</p>
+<h2 id="刷盘"><a href="#刷盘" class="headerlink" title="刷盘"></a>刷盘</h2><p>InnoDB 将 redo log 刷到磁盘上有几种情况：</p>
+<ol>
+<li>事务提交：当事务提交时，log buffer 里的 redo log 会被刷新到磁盘（可以通过innodb_flush_log_at_trx_commit参数控制，后文会提到）。</li>
+<li>log buffer 空间不足时：log buffer 中缓存的 redo log 已经占满了 log buffer 总容量的大约一半左右，就需要把这些日志刷新到磁盘上。</li>
+<li>事务日志缓冲区满：InnoDB 使用一个事务日志缓冲区（transaction log buffer）来暂时存储事务的重做日志条目。当缓冲区满时，会触发日志的刷新，将日志写入磁盘。</li>
+<li>Checkpoint（检查点）：InnoDB 定期会执行检查点操作，将内存中的脏数据（已修改但尚未写入磁盘的数据）刷新到磁盘，并且会将相应的重做日志一同刷新，以确保数据的一致性。</li>
+<li>后台刷新线程：InnoDB 启动了一个后台线程，负责周期性（每隔 1 秒）地将脏页（已修改但尚未写入磁盘的数据页）刷新到磁盘，并将相关的重做日志一同刷新。</li>
+<li>正常关闭服务器：MySQL 关闭的时候，redo log 都会刷入到磁盘里去。</li>
+</ol>
+<h1 id="binlog"><a href="#binlog" class="headerlink" title="binlog"></a>binlog</h1><p>redo log 是物理日志，记录内容是“在某个数据页上做了什么修改”，属于 InnoDB 存储引擎。</p>
+<p>而 binlog 是逻辑日志，记录内容是语句的原始逻辑，类似于“给 ID=2 这一行的 c 字段加 1”，属于MySQL Server 层。</p>
+<p>不管用什么存储引擎，只要发生了表数据更新，都会产生 binlog 日志。</p>
+<p>可以说 MySQL 数据库的数据备份、主备、主主、主从都离不开 binlog，需要依靠 binlog 来同步数据，保证数据一致性。</p>
+<h2 id="记录格式"><a href="#记录格式" class="headerlink" title="记录格式"></a>记录格式</h2><p>binlog 日志有三种格式，可以通过 binlog_format 参数指定。</p>
+<p>statement<br>row<br>mixed</p>
+<p>指定statement，记录的内容是SQL语句原文，比如执行一条 <code>update T set update_time=now() where id=1</code>，记录的内容如下。</p>
+<p>同步数据时，会执行记录的SQL语句，但是有个问题，<code>update_time=now()</code> 这里会获取当前系统时间，直接执行会导致与原库的数据不一致。为了解决这种问题，我们需要指定为row，记录的内容不再是简单的SQL语句了，还包含操作的具体数据，记录内容如下。</p>
+<p>row格式记录的内容看不到详细信息，要通过mysqlbinlog工具解析出来。</p>
+<p><code>update_time=now()</code> 变成了具体的时间 <code>update_time=1627112756247</code> ，条件后面的@1、@2、@3 都是该行数据第 1 个 ~ 3 个字段的原始值（假设这张表只有 3 个字段）。</p>
+<p>这样就能保证同步数据的一致性，通常情况下都是指定为row，这样可以为数据库的恢复与同步带来更好的可靠性。</p>
+<p>但是这种格式，需要更大的容量来记录，比较占用空间，恢复与同步时会更消耗 IO 资源，影响执行速度。</p>
+<p>所以就有了一种折中的方案，指定为 mixed，记录的内容是前两者的混合。</p>
+<p>MySQL 会判断这条SQL 语句是否可能引起数据不一致，如果是，就用 row 格式，否则就用statement 格式。</p>
+<h2 id="写入机制"><a href="#写入机制" class="headerlink" title="写入机制"></a>写入机制</h2><p>binlog 的写入时机也非常简单，事务执行过程中，先把日志写到 binlog cache，事务提交的时候，再把 binlog cache 写到 binlog 文件中。</p>
+<p>因为一个事务的 binlog 不能被拆开，无论这个事务多大，也要确保一次性写入，所以系统会给每个线程分配一个块内存作为binlog cache。</p>
+<p>我们可以通过binlog_cache_size参数控制单个线程 binlog cache 大小，如果存储内容超过了这个参数，就要暂存到磁盘（Swap）。</p>
+<h2 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h2><p>redo log（重做日志）让 InnoDB 存储引擎拥有了崩溃恢复能力。</p>
+<p>binlog（归档日志）保证了 MySQL 集群架构的数据一致性。</p>
+<p>虽然它们都属于持久化的保证，但是侧重点不同。在执行更新语句过程，会记录 redo log 与 binlog 两块日志，以基本的事务为单位，redo log 在事务执行过程中可以不断写入，而 binlog 只有在提交事务时才写入，所以 redo log 与 binlog 的写入时机不一样</p>
+<h1 id="undo-log"><a href="#undo-log" class="headerlink" title="undo log"></a>undo log</h1><p>每一个事务对数据的修改都会被记录到 undo log ，当执行事务过程中出现错误或者需要执行回滚操作的话，MySQL 可以利用 undo log 将数据恢复到事务开始之前的状态。</p>
+<p>undo log 属于逻辑日志，记录的是 SQL 语句，比如说事务执行一条 DELETE 语句，那 undo log 就会记录一条相对应的 INSERT 语句。同时，undo log 的信息也会被记录到 redo log 中，因为 undo log 也要实现持久性保护。并且，undo-log 本身是会被删除清理的，例如 INSERT 操作，在事务提交之后就可以清除掉了；UPDATE/DELETE 操作在事务提交不会立即删除，会加入 history list，由后台线程 purge 进行清理.</p>
+<p>undo log 是采用 segment（段）的方式来记录的，每个 undo 操作在记录的时候占用一个 undo log segment（undo 日志段），undo log segment 包含在 rollback segment（回滚段）中。事务开始时，需要为其分配一个 rollback segment。每个 rollback segment 有 1024 个 undo log segment，这有助于管理多个并发事务的回滚需求。</p>
+<p>通常情况下， rollback segment header（通常在回滚段的第一个页）负责管理 rollback segment。rollback segment header 是 rollback segment 的一部分，通常在回滚段的第一个页。history list 是 rollback segment header 的一部分，它的主要作用是记录所有已经提交但还没有被清理（purge）的事务的 undo log。这个列表使得 purge 线程能够找到并清理那些不再需要的 undo log 记录。</p>
 
       
     </div>
@@ -155,7 +194,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">70字</span>
+        <span class="ico-fontcount"></span><span class="post-count">1.8k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -248,7 +287,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav">无</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redo-log"><span class="nav-number">1.</span> <span class="nav-text">redo log</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#刷盘"><span class="nav-number">1.1.</span> <span class="nav-text">刷盘</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#binlog"><span class="nav-number">2.</span> <span class="nav-text">binlog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#记录格式"><span class="nav-number">2.1.</span> <span class="nav-text">记录格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写入机制"><span class="nav-number">2.2.</span> <span class="nav-text">写入机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两阶段提交"><span class="nav-number">2.3.</span> <span class="nav-text">两阶段提交</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undo-log"><span class="nav-number">3.</span> <span class="nav-text">undo log</span></a></li></ol>
     
     </div>
   </aside>
@@ -288,7 +327,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 388.2k 字</span>
+        <span class="post-count">全站共 391.5k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
