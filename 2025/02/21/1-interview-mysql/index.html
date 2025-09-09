@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
-<meta property="og:updated_time" content="2025-08-31T09:44:34.909Z">
+<meta property="og:updated_time" content="2025-09-09T06:04:44.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🔥 面试 | Mysql 相关">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
@@ -133,6 +133,29 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br><br><a id="more"></a></p>
+<h1 id="MySQL-有什么优点？"><a href="#MySQL-有什么优点？" class="headerlink" title="MySQL 有什么优点？"></a>MySQL 有什么优点？</h1><p>这个问题本质上是在问 MySQL 如此流行的原因。</p>
+<p>MySQL 主要具有下面这些优点：</p>
+<ul>
+<li>成熟稳定，功能完善。开源免费。</li>
+<li>文档丰富，既有详细的官方文档，又有非常多优质文章可供参考学习。</li>
+<li>开箱即用，操作简单，维护成本低。</li>
+<li>兼容性好，支持常见的操作系统，支持多种开发语言。</li>
+<li>社区活跃，生态完善。</li>
+<li>事务支持优秀， InnoDB 存储引擎默认使用 REPEATABLE-READ 并不会有任何性能损失，并且，InnoDB 实现的 REPEATABLE-READ 隔离级别其实是可以解决幻读问题发生的。支持分库分表、读写分离、高可用。</li>
+</ul>
+<h1 id="mysql-存储引擎有哪些？区别是什么？"><a href="#mysql-存储引擎有哪些？区别是什么？" class="headerlink" title="mysql 存储引擎有哪些？区别是什么？"></a>mysql 存储引擎有哪些？区别是什么？</h1><p>InnoDB、MyISAM、Memory</p>
+<p>InnoDB supports transaction, row lock, foreign key.<br>MyISAM don’t support transaction, but support full-text index.<br>Memory is stored in RAM, is suitable for temporary data.</p>
+<h1 id="mysql-事务的四大特性-four-major-features"><a href="#mysql-事务的四大特性-four-major-features" class="headerlink" title="mysql 事务的四大特性 four major features?"></a>mysql 事务的四大特性 four major features?</h1><p>原子性 Atomicity<br>一致性 Consistency<br>隔离性 Isolation<br>持久型 Durability</p>
+<h1 id="索引的类型有哪些？"><a href="#索引的类型有哪些？" class="headerlink" title="索引的类型有哪些？"></a>索引的类型有哪些？</h1><p>普通索引（INDEX）<br>唯一索引（UNIQUE）<br>主键索引（PRIMARY KEY）<br>复合索引（联合索引 - Composite Index）<br>全文索引（FULLTEXT）<br>前缀索引 prefix index</p>
+<h1 id="索引的优点和缺点？"><a href="#索引的优点和缺点？" class="headerlink" title="索引的优点和缺点？"></a>索引的优点和缺点？</h1><p>advantage: enhance query speed. reduce I/O<br>disadvantage: occupies storage, reduces insert/update performance </p>
+<p>优点：加快查询速度、减少 I/O<br>缺点：占用空间、插入/更新性能下降</p>
+<h1 id="哪些情况下索引会失效？"><a href="#哪些情况下索引会失效？" class="headerlink" title="哪些情况下索引会失效？"></a>哪些情况下索引会失效？</h1><ul>
+<li>使用 like ‘%xxx’（前模糊匹配）using pre-fuzzy matching</li>
+<li>对索引列使用函数或计算 using functions or calculations on indexed columns</li>
+<li>隐式类型转换 implicit type conversions</li>
+<li>复合索引未遵守最左前缀法则 Composite indexes that do not follow the leftmost prefix rule</li>
+<li>where 条件使用 or，部分字段没有索引 Using or in a where condition, and some field are not indexed</li>
+</ul>
 <h1 id="如何给热点数据加索引"><a href="#如何给热点数据加索引" class="headerlink" title="如何给热点数据加索引"></a>如何给热点数据加索引</h1><p>first, we need to comfirm what is hot data. Find those accessed, updated or deleted frequently through slow query log or other tools.</p>
 <p>Analyze which colomn is the hot query, such as message_id is the best choice for message_table.</p>
 <p>Use the SQL:</p>
@@ -144,9 +167,56 @@
 <p>EXPLAIN SELECT * FROM orders WHERE user_id = 10001 AND status = ‘PAID’;</p>
 </blockquote>
 <p>If type = ref, it means the both indexes, that is reasonable.<br>If type = all, it means the query scan the all table and we need to add the index.</p>
+<h1 id="慢查询优化的思路？"><a href="#慢查询优化的思路？" class="headerlink" title="慢查询优化的思路？"></a>慢查询优化的思路？</h1><ul>
+<li>查看慢查询日志  check the slow sql logs</li>
+<li>优化 SQL（减少子查询、避免 select <em>） optimize SQL statements such as avoid select </em></li>
+<li>建索引或优化索引  Add index or optimize index</li>
+<li>表分区、分库分表  table partitioning, database sharding, table sharding</li>
+<li>缓存（如 Redis） Using cache such as Redis</li>
+</ul>
 <h1 id="项目里数据库连接池是怎么优化的"><a href="#项目里数据库连接池是怎么优化的" class="headerlink" title="项目里数据库连接池是怎么优化的?"></a>项目里数据库连接池是怎么优化的?</h1><p>Spring Boot projects use HikariCP as the default connection pool.</p>
 <p>According to the Stress testing result, we tune the connection pool size, such as our system sets the maximumPoolSieze 50 and minimumIdel 10. It will avoid waiting because of less connections and excessive stress because of more connections.</p>
-<h1 id="MySQL-有什么优点？"><a href="#MySQL-有什么优点？" class="headerlink" title="MySQL 有什么优点？"></a>MySQL 有什么优点？</h1><p>这个问题本质上是在问 MySQL 如此流行的原因。MySQL 主要具有下面这些优点：成熟稳定，功能完善。开源免费。文档丰富，既有详细的官方文档，又有非常多优质文章可供参考学习。开箱即用，操作简单，维护成本低。兼容性好，支持常见的操作系统，支持多种开发语言。社区活跃，生态完善。事务支持优秀， InnoDB 存储引擎默认使用 REPEATABLE-READ 并不会有任何性能损失，并且，InnoDB 实现的 REPEATABLE-READ 隔离级别其实是可以解决幻读问题发生的。支持分库分表、读写分离、高可用。</p>
+<h1 id="行锁-vs-表锁区别？"><a href="#行锁-vs-表锁区别？" class="headerlink" title="行锁 vs 表锁区别？"></a>行锁 vs 表锁区别？</h1><ul>
+<li>表锁：锁整张表，开销小，冲突大</li>
+<li>行锁：锁某行记录，开销大，粒度小，支持并发</li>
+</ul>
+<p>table locks: lock the entire table, with low overhead and high conflict.<br>row locks: lock a specific row, with high overhead, low granularity and support for concurreny.</p>
+<h1 id="死锁产生的原因？如何解决？what-causes-deadlocks-how-resolve"><a href="#死锁产生的原因？如何解决？what-causes-deadlocks-how-resolve" class="headerlink" title="死锁产生的原因？如何解决？what causes deadlocks? how resolve?"></a>死锁产生的原因？如何解决？what causes deadlocks? how resolve?</h1><ul>
+<li>不同事务锁定资源顺序不一致 different transactions lock resources in inconsistent order</li>
+<li>长事务、锁范围过大 long transactions, excessive lock range</li>
+</ul>
+<p>解决：超时回滚、合理索引、拆分事务<br>solution: rollback on timeout, proper indexing, splitting transactions.</p>
+<h1 id="MySQL-主从复制原理？"><a href="#MySQL-主从复制原理？" class="headerlink" title="MySQL 主从复制原理？"></a>MySQL 主从复制原理？</h1><ol>
+<li>主库写 binlog</li>
+<li>从库 I/O 线程拉取 binlog，写入 relay log</li>
+<li><p>从库 SQL 线程执行 relay log，保持数据一致</p>
+</li>
+<li><p>the master database writes binlog</p>
+</li>
+<li>the slave database I/O thread pulls the binlog and writes it to the relay log.</li>
+<li>the slave database SQL thread executes the relay log , thus keep data consistency.</li>
+</ol>
+<h1 id="读写分离怎么做？"><a href="#读写分离怎么做？" class="headerlink" title="读写分离怎么做？"></a>读写分离怎么做？</h1><p>主库写、从库读<br>应用层中间件：MyCat、ShardingSphere<br>数据库代理：ProxySQL</p>
+<ul>
+<li>master database writes, slave database reads</li>
+<li>using application-layer middleware: MyCat, ShardingSphere</li>
+<li>using database proxy: ProxySQL</li>
+</ul>
+<h1 id="分库分表如何处理？"><a href="#分库分表如何处理？" class="headerlink" title="分库分表如何处理？"></a>分库分表如何处理？</h1><p>垂直分库（按业务拆库）<br>水平分表（按 user_id 或时间分片）<br>需要解决的问题：跨库 join、分布式事务、全局 ID</p>
+<ol>
+<li>Vertical sharding (sharding by business)</li>
+<li>Horizontal sharding (sharding by user_id or time)</li>
+</ol>
+<p>But still some issues have to handle: cross-database joins, distributed transactions, global IDs</p>
+<h1 id="常见的-MySQL-优化手段？"><a href="#常见的-MySQL-优化手段？" class="headerlink" title="常见的 MySQL 优化手段？"></a>常见的 MySQL 优化手段？</h1><p>索引优化<br>SQL 优化<br>分表分库<br>缓存（Redis）<br>读写分离<br>参数调优（buffer pool, query cache）</p>
+<ul>
+<li>Index optimization</li>
+<li>SQL optimization</li>
+<li>Table and database sharding</li>
+<li>Cache (Redis)</li>
+<li>Read-write splitting</li>
+<li>Parameter tuning (buffer pool, query cache)</li>
+</ul>
 
       
     </div>
@@ -168,7 +238,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">373字</span>
+        <span class="ico-fontcount"></span><span class="post-count">1.1k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -261,7 +331,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何给热点数据加索引"><span class="nav-number">1.</span> <span class="nav-text">如何给热点数据加索引</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何使用-EXPLAIN-分析-慢sql"><span class="nav-number">2.</span> <span class="nav-text">如何使用 EXPLAIN 分析 慢sql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目里数据库连接池是怎么优化的"><span class="nav-number">3.</span> <span class="nav-text">项目里数据库连接池是怎么优化的?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-有什么优点？"><span class="nav-number">4.</span> <span class="nav-text">MySQL 有什么优点？</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-有什么优点？"><span class="nav-number">1.</span> <span class="nav-text">MySQL 有什么优点？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql-存储引擎有哪些？区别是什么？"><span class="nav-number">2.</span> <span class="nav-text">mysql 存储引擎有哪些？区别是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql-事务的四大特性-four-major-features"><span class="nav-number">3.</span> <span class="nav-text">mysql 事务的四大特性 four major features?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引的类型有哪些？"><span class="nav-number">4.</span> <span class="nav-text">索引的类型有哪些？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引的优点和缺点？"><span class="nav-number">5.</span> <span class="nav-text">索引的优点和缺点？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#哪些情况下索引会失效？"><span class="nav-number">6.</span> <span class="nav-text">哪些情况下索引会失效？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何给热点数据加索引"><span class="nav-number">7.</span> <span class="nav-text">如何给热点数据加索引</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何使用-EXPLAIN-分析-慢sql"><span class="nav-number">8.</span> <span class="nav-text">如何使用 EXPLAIN 分析 慢sql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#慢查询优化的思路？"><span class="nav-number">9.</span> <span class="nav-text">慢查询优化的思路？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目里数据库连接池是怎么优化的"><span class="nav-number">10.</span> <span class="nav-text">项目里数据库连接池是怎么优化的?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#行锁-vs-表锁区别？"><span class="nav-number">11.</span> <span class="nav-text">行锁 vs 表锁区别？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#死锁产生的原因？如何解决？what-causes-deadlocks-how-resolve"><span class="nav-number">12.</span> <span class="nav-text">死锁产生的原因？如何解决？what causes deadlocks? how resolve?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-主从复制原理？"><span class="nav-number">13.</span> <span class="nav-text">MySQL 主从复制原理？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#读写分离怎么做？"><span class="nav-number">14.</span> <span class="nav-text">读写分离怎么做？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分库分表如何处理？"><span class="nav-number">15.</span> <span class="nav-text">分库分表如何处理？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的-MySQL-优化手段？"><span class="nav-number">16.</span> <span class="nav-text">常见的 MySQL 优化手段？</span></a></li></ol>
     
     </div>
   </aside>
@@ -301,7 +371,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 392.4k 字</span>
+        <span class="post-count">全站共 393.2k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
