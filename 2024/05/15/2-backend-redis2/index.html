@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/redis.jpg">
-<meta property="og:updated_time" content="2025-08-28T09:50:06.862Z">
+<meta property="og:updated_time" content="2025-09-23T07:33:13.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🌟 后端 | Redis 数据类型">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/redis.jpg">
@@ -137,7 +137,38 @@
 <h2 id="RedisObject"><a href="#RedisObject" class="headerlink" title="RedisObject"></a>RedisObject</h2><p>不管是任何一种数据结构，最终都会被封装为RedisObject 格式，它是一种结构体，可以理解为Java中的类</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typeof <span class="class"><span class="keyword">struct</span> <span class="title">redisObject</span> &#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> type: <span class="number">4</span>; <span class="comment">// 对象类型</span></span><br><span class="line">    <span class="keyword">unsigned</span> encoding: <span class="number">4</span>; <span class="comment">// 底层编码方式</span></span><br><span class="line">    <span class="keyword">unsigned</span> lru: LRU_BITS; <span class="comment">// 表示最后被访问的时间</span></span><br><span class="line">    <span class="keyword">int</span> refcount; <span class="comment">// 对象引用计数器，为0说明对象无人引用，可以被回收</span></span><br><span class="line">    <span class="keyword">void</span> *ptr; <span class="comment">// 指针， 指向存放实际数据的空间</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在 RedisObject 结构体中存有 type、encoding、lru、refcount、*ptr， 并没有包含真实的数据，仅仅是对象头信息，内存占用的大小是 128bit，也就是16字节，其中指针 ptr 指向的才是真实数据存储的内存地址。 因此  RedisObject 的内存开销很大。</p>
-<h2 id="SkipList"><a href="#SkipList" class="headerlink" title="SkipList"></a>SkipList</h2><p>SkipList 是链表，但相比传统链表有几点差异：</p>
+<h1 id="基础数据类型"><a href="#基础数据类型" class="headerlink" title="基础数据类型"></a>基础数据类型</h1><h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>最基本的数据结构，二进制安全。</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>存储常规数据/缓存对象：比如用户信息、商品详情，序列化后存储。</li>
+<li>计数器：点赞数、浏览数、库存数量等，可以配合 INCR/DECR 实现高并发下的原子递增递减。</li>
+<li>分布式锁：利用 SET key value NX EX 实现。</li>
+</ul>
+<h2 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h2><p>redis 中的 hash 是一个 string 类型的 field-value （键值对） 的映射表，特别适合用于存储对象，结构类似于 Map。后续操作的时候，你可以直接修改这个对象中的某些字段的值。</p>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>存储用户信息：user:1001 -&gt; {name:Tom, age:20, balance:100}。</li>
+<li>这样可以只更新某个字段，而不是整个对象。</li>
+<li>配置管理：存储系统配置参数，字段更新灵活。</li>
+</ul>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>Redis 的 List 的实现为一个 双向链表，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。</p>
+<h3 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>消息队列（简单场景）：LPUSH + RPOP，实现异步任务队列（但更推荐 Kafka/RabbitMQ）。</li>
+<li>信息流、排行榜最新动态：保存最新的评论、操作日志，取最新 N 条。</li>
+<li>分页：存储有序的内容列表，支持 LRANGE。</li>
+</ul>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>无序去重集合，支持交并差集运算。</p>
+<h3 id="应用场景-3"><a href="#应用场景-3" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>用户标签：存储用户的兴趣标签，方便做交集推荐，文章点赞、动态点赞。共同好友(交集)、共同粉丝(交集)、共同关注(交集)、好友推荐（差集）、音乐推荐（差集）、订阅号推荐（差集+交集） 等场景。</li>
+<li>好友关系：SADD friend:1001 1002 1003，然后用 SINTER 求共同好友。</li>
+<li>去重统计：统计当天访问的唯一 IP。</li>
+</ul>
+<h2 id="SortedSet-ZSet"><a href="#SortedSet-ZSet" class="headerlink" title="SortedSet(ZSet)"></a>SortedSet(ZSet)</h2><p>SortedSet 是有序集合，底层的存储的每个数据都包含 element 和 score 两个值。score 是得分，element 则是字符串值。SortedSet 会根据每个 element 的 score 值排序，形成有序集合。</p>
+<p>SortedSet 底层是基于 <strong>HashTable 、跳表</strong>实现的。SortedSet 底层需要用到两种数据结构，对内存占用比较高。因此 Redis 底层会对 SortedSet 中的元素大小做判断决定去使用 ListPack 还是 HashTable + SkipList。</p>
+<h3 id="应用场景-4"><a href="#应用场景-4" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>排行榜：用户分数、积分、游戏排名，利用 ZADD + ZREVRANGE。</li>
+<li>延迟队列：score 存放执行时间，使用 ZRANGEBYSCORE 获取到期任务。</li>
+<li>热门榜单：根据点击量、热度排序。</li>
+</ul>
+<h3 id="底层采用-SkipList"><a href="#底层采用-SkipList" class="headerlink" title="底层采用 SkipList"></a>底层采用 SkipList</h3><p>SkipList 是链表，但相比传统链表有几点差异：</p>
 <ul>
 <li>元素按照升序排列存储</li>
 <li>节点可能包含多个指针，指针跨度不同。</li>
@@ -146,8 +177,6 @@
 <p>这种多级指针的查询方式就避免了传统链表的<strong>逐个遍历</strong>导致的查询效率下降问题。在对有序数据做随机查询和排序时效率非常高。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string"> SkipList 跳表的结构体</span></span><br><span class="line"><span class="string">'</span><span class="string">''</span></span><br><span class="line">typedef struct zskiplist &#123;</span><br><span class="line">    <span class="comment">// 头尾节点指针</span></span><br><span class="line">    struct zskiplistNode *header, *tail;</span><br><span class="line">    <span class="comment">// 节点数量</span></span><br><span class="line">    unsigned <span class="keyword">long</span> length;</span><br><span class="line">    <span class="comment">// 最大的索引层级</span></span><br><span class="line">    <span class="keyword">int</span> level;</span><br><span class="line">&#125; zskiplist;</span><br><span class="line"></span><br><span class="line"><span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string"> 跳表中节点的结构体</span></span><br><span class="line"><span class="string">'</span><span class="string">''</span></span><br><span class="line">typedef struct zskiplistNode &#123;</span><br><span class="line">    sds ele; <span class="comment">// 节点存储的字符串</span></span><br><span class="line">    <span class="keyword">double</span> score;<span class="comment">// 节点分数，排序、查找用</span></span><br><span class="line">    struct zskiplistNode *backward; <span class="comment">// 前一个节点指针</span></span><br><span class="line">    struct zskiplistLevel &#123;</span><br><span class="line">        struct zskiplistNode *forward; <span class="comment">// 下一个节点指针</span></span><br><span class="line">        unsigned <span class="keyword">long</span> span; <span class="comment">// 索引跨度</span></span><br><span class="line">    &#125; level[]; <span class="comment">// 多级索引数组</span></span><br><span class="line">&#125; zskiplistNode;</span><br></pre></td></tr></table></figure>
 <p>SkipList 主要属性是 header 和 tail，也就是头尾指针，因此它是支持双向遍历的。<br>每个节点中都包含 ele 和 score 两个属性，其中 score 是得分，也就是节点排序的依据。ele 则是节点存储的字符串数据指针。</p>
-<h2 id="SortedSet"><a href="#SortedSet" class="headerlink" title="SortedSet"></a>SortedSet</h2><p>SortedSet 是有序集合，底层的存储的每个数据都包含 element 和 score 两个值。score 是得分，element 则是字符串值。SortedSet 会根据每个 element 的 score 值排序，形成有序集合。</p>
-<p>SortedSet 底层是基于 HashTable 、跳表实现的。SortedSet底层需要用到两种数据结构，对内存占用比较高。因此Redis底层会对 SortedSet 中的元素大小做判断决定去使用 ListPack 还是 HashTable + SkipList。</p>
 
       
     </div>
@@ -169,7 +198,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">683字</span>
+        <span class="ico-fontcount"></span><span class="post-count">1.2k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -262,7 +291,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-数据结构"><span class="nav-number">1.</span> <span class="nav-text">Redis 数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RedisObject"><span class="nav-number">1.1.</span> <span class="nav-text">RedisObject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SkipList"><span class="nav-number">1.2.</span> <span class="nav-text">SkipList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SortedSet"><span class="nav-number">1.3.</span> <span class="nav-text">SortedSet</span></a></li></ol></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-数据结构"><span class="nav-number">1.</span> <span class="nav-text">Redis 数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RedisObject"><span class="nav-number">1.1.</span> <span class="nav-text">RedisObject</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础数据类型"><span class="nav-number">2.</span> <span class="nav-text">基础数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">2.1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-number">2.1.1.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash"><span class="nav-number">2.2.</span> <span class="nav-text">Hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-number">2.3.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set"><span class="nav-number">2.4.</span> <span class="nav-text">Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-3"><span class="nav-number">2.4.1.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SortedSet-ZSet"><span class="nav-number">2.5.</span> <span class="nav-text">SortedSet(ZSet)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-4"><span class="nav-number">2.5.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#底层采用-SkipList"><span class="nav-number">2.5.2.</span> <span class="nav-text">底层采用 SkipList</span></a></li></ol></li></ol></li></ol>
     
     </div>
   </aside>
@@ -302,7 +331,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 393.2k 字</span>
+        <span class="post-count">全站共 395.7k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>

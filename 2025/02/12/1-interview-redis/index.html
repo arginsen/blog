@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Arginsen&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
-<meta property="og:updated_time" content="2025-09-07T08:00:21.462Z">
+<meta property="og:updated_time" content="2025-09-24T07:32:40.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🔥 面试 | Redis 相关">
 <meta name="twitter:image" content="https://lixupeng.cn/blog/img/interview-new.jpg">
@@ -148,6 +148,45 @@
 <p>Redis can share memory with multiple instances, preserve consisitency, implement hight-performance access and persistent storage. Redis is suitable for distribued system.</p>
 <h1 id="Redis-单线程为什么还能这么快"><a href="#Redis-单线程为什么还能这么快" class="headerlink" title="Redis 单线程为什么还能这么快?"></a>Redis 单线程为什么还能这么快?</h1><p>Because memory operations are fast, single-threaded operations avoid lock contention, and combined with efficient I/O multiplexing mechanisms, performance is very high.</p>
 <p>内存操作本来就快，单线程操作也避免了锁竞争，同时结合了高效的 I/O多路复用机制。</p>
+<h1 id="Redis-里适合添加哪些数据？"><a href="#Redis-里适合添加哪些数据？" class="headerlink" title="Redis 里适合添加哪些数据？"></a>Redis 里适合添加哪些数据？</h1><ol>
+<li><p>高频查询、但不常更新的数据</p>
+<ul>
+<li>商品详情、用户基本信息、系统配置参数</li>
+<li>优点：减少 DB 压力，响应快</li>
+</ul>
+</li>
+<li><p>计算开销大、但结果可复用的数据</p>
+<ul>
+<li>统计结果（PV/UV、排行榜）</li>
+<li>推荐结果（个性化推荐列表）</li>
+<li>复杂 SQL 聚合结果</li>
+</ul>
+</li>
+<li><p>需要快速读写的数据</p>
+<ul>
+<li>Session（分布式会话管理）</li>
+<li>Token / 验证码</li>
+<li>临时状态数据（购物车、点赞数）</li>
+</ul>
+</li>
+<li><p>热点计数/排行榜</p>
+<ul>
+<li>浏览量、点赞量 → String / Hash 计数</li>
+<li>排行榜 → ZSet 排序</li>
+</ul>
+</li>
+<li><p>限流、防刷相关数据</p>
+<ul>
+<li>IP 访问频率 → String + INCR</li>
+<li>用户操作频次 → Token Bucket / Leaky Bucket</li>
+</ul>
+</li>
+</ol>
+<h1 id="不适合放进-Redis-的数据"><a href="#不适合放进-Redis-的数据" class="headerlink" title="不适合放进 Redis 的数据"></a>不适合放进 Redis 的数据</h1><ul>
+<li>冷数据（很少访问） → 放缓存没意义，还占内存。</li>
+<li>频繁更新且强一致性要求的数据 → 比如金融交易流水，应直接落库。</li>
+<li>超大对象 / 大文件 → Redis 不适合存大文件，应该放 OSS、磁盘。</li>
+</ul>
 <h1 id="Redis-如何判断-KEY-是否过期呢？"><a href="#Redis-如何判断-KEY-是否过期呢？" class="headerlink" title="Redis 如何判断 KEY 是否过期呢？"></a>Redis 如何判断 KEY 是否过期呢？</h1><p>There are two Dicts in Redis, also named Hashtable. the one records key-value pairs, the other one records the key and the expiry time. we check whether a key is expired, we just need to query in the second Dict by the key.</p>
 <p>在Redis中会有两个Dict，也就是HashTable，其中一个记录KEY-VALUE键值对，另一个记录KEY和过期时间。要判断一个KEY是否过期，只需要到记录过期时间的Dict中根据KEY查询即可。</p>
 <h1 id="Redis何时删除过期KEY？如何删除？"><a href="#Redis何时删除过期KEY？如何删除？" class="headerlink" title="Redis何时删除过期KEY？如何删除？"></a>Redis何时删除过期KEY？如何删除？</h1><p>Redis has two strategies for handling expired keys: lazy deletion and periodic deletion.</p>
@@ -170,7 +209,11 @@
 <h1 id="如何保证缓存的双写一致性？"><a href="#如何保证缓存的双写一致性？" class="headerlink" title="如何保证缓存的双写一致性？"></a>如何保证缓存的双写一致性？</h1><p>Double-write consistency in caches is difficult to guarantee strong consistency. we can only minimize the probability of inconsistencies and ensure eventual consistency. Our project uses Cache Aside model.</p>
 <p>Simply put, the cache is deleted after the database is updated. During queries, the cache is consulted first. If a miss occurs, the database is consulted and the cache is written. </p>
 <p>We also set an expiration time for the cache as a fallback. If inconsistencies do occur, we can ensure eventual consistency by expiring the cache.</p>
-<p>答：缓存的双写一致性很难保证强一致，只能尽可能降低不一致的概率，确保最终一致。我们项目中采用的是Cache Aside模式。简单来说，就是在更新数据库之后删除缓存；在查询时先查询缓存，如果未命中则查询数据库并写入缓存。同时我们会给缓存设置过期时间作为兜底方案，如果真的出现了不一致的情况，也可以通过缓存过期来保证最终一致。</p>
+<p>缓存的双写一致性很难保证强一致，只能尽可能降低不一致的概率，确保最终一致。</p>
+<p>我们项目中采用的是 Cache Aside 模式。Cache Aside Pattern 中服务端需要同时维系 db 和 cache，并且是以 db 的结果为准。</p>
+<p>简单来说，就是在更新数据库之后删除缓存；在查询时先查询缓存，如果未命中则查询数据库返回并写入缓存。同时我们会给缓存设置过期时间作为兜底方案，如果真的出现了不一致的情况，也可以通过缓存过期来保证最终一致。</p>
+<h1 id="在写数据的过程中，可以先删除-cache-，后更新-db-么？在写数据的过程中，先更新-db，后删除-cache-就没有问题了么？"><a href="#在写数据的过程中，可以先删除-cache-，后更新-db-么？在写数据的过程中，先更新-db，后删除-cache-就没有问题了么？" class="headerlink" title="在写数据的过程中，可以先删除 cache ，后更新 db 么？在写数据的过程中，先更新 db，后删除 cache 就没有问题了么？"></a>在写数据的过程中，可以先删除 cache ，后更新 db 么？在写数据的过程中，先更新 db，后删除 cache 就没有问题了么？</h1><p>不行，先删除 cache ，后更新 db 会造成数据库和缓存数据不一致。</p>
+<p>先更新 db，后删除 cache 理论上还是会出现数据不一致性的问题，不过概率很小，因为缓存的写入速度是比数据库的写入速度快很多。</p>
 <h1 id="为什么不采用延迟双删机制？"><a href="#为什么不采用延迟双删机制？" class="headerlink" title="为什么不采用延迟双删机制？"></a>为什么不采用延迟双删机制？</h1><p>The first deletion in a delayed double delete operation is meaningless. The second delayed deletion is primarily used to address latency issues in database master-slave consistency issue and has nothing to do with cache synchronization.</p>
 <p>Since the master node data has been updated, the Redis cache should also be updated. Furthermore, delayed double delete increases cache complexity and fails to completely eliminate cache consistency issues, resulting in a low return on investment.</p>
 <p>答：延迟双删的第一次删除并没有实际意义，第二次采用延迟删除主要是解决数据库主从同步的延迟问题，我认为这是数据库主从的一致性问题，与缓存同步无关。既然主节点数据已经更新，Redis的缓存理应更新。而且延迟双删会增加缓存业务复杂度，也没能完全避免缓存一致性问题，投入回报比太低。</p>
@@ -221,6 +264,46 @@
 <p>AOF can append logs to record logs for each write operation.</p>
 <h1 id="redis-持久化-RDB-和-AOF-有哪些优缺点？"><a href="#redis-持久化-RDB-和-AOF-有哪些优缺点？" class="headerlink" title="redis 持久化 RDB 和 AOF 有哪些优缺点？"></a>redis 持久化 RDB 和 AOF 有哪些优缺点？</h1><p>RDB : small file, fast recovery, but the data of last few seconds may be lost.</p>
 <p>AOF: more safe, almost no data is lost, but the files are large, recovery is slow.</p>
+<h1 id="Redis-分布式锁的应用场景"><a href="#Redis-分布式锁的应用场景" class="headerlink" title="Redis 分布式锁的应用场景"></a>Redis 分布式锁的应用场景</h1><ol>
+<li>秒杀 / 抢购</li>
+</ol>
+<ul>
+<li>多人同时购买库存有限的商品，需要防止超卖。</li>
+<li>解决思路：在减库存前获取分布式锁，保证同一时间只有一个线程能修改库存。</li>
+</ul>
+<ol start="2">
+<li>防止重复下单</li>
+</ol>
+<ul>
+<li>用户点击多次支付，可能生成多笔订单。</li>
+<li>解决思路：针对 userId:productId 设置锁，保证同一用户同一商品只会生成一笔订单。</li>
+</ul>
+<ol start="3">
+<li>定时任务并发控制</li>
+</ol>
+<ul>
+<li>分布式系统中，同一任务可能被多个节点同时执行。</li>
+<li>解决思路：利用分布式锁，确保只有一个节点执行任务，其它节点等待或放弃。</li>
+</ul>
+<ol start="4">
+<li>资源抢占</li>
+</ol>
+<ul>
+<li>比如多个服务节点竞争写某个配置文件，或者执行一次初始化操作。</li>
+<li>解决思路：先抢到锁的节点才能执行，其他节点等锁释放。</li>
+</ul>
+<ol start="5">
+<li>接口限流 / 幂等控制</li>
+</ol>
+<ul>
+<li>避免接口在同一时间被并发调用多次，造成数据不一致。</li>
+</ul>
+<h1 id="分布式锁的注意事项"><a href="#分布式锁的注意事项" class="headerlink" title="分布式锁的注意事项"></a>分布式锁的注意事项</h1><ul>
+<li>锁要有过期时间：避免宕机后永远不释放。</li>
+<li>释放时要校验 value：保证只释放自己的锁。</li>
+<li>原子性操作：获取和设置过期时间必须是原子操作（用 SET key value NX PX）。</li>
+<li>高可用：单节点 Redis 可能挂掉，业务常用 Redisson 或 Redlock 来保证可靠性。</li>
+</ul>
 
       
     </div>
@@ -242,7 +325,7 @@
 
       <!-- 添加字数统计 -->
       
-        <span class="ico-fontcount"></span><span class="post-count">3.1k字</span>
+        <span class="ico-fontcount"></span><span class="post-count">3.9k字</span>
       
     </footer>
     <!-- 文章添加评论 -->
@@ -335,7 +418,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-为什么这么快？"><span class="nav-number">1.</span> <span class="nav-text">Redis 为什么这么快？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要用-Redis？"><span class="nav-number">2.</span> <span class="nav-text">为什么要用 Redis？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么用-redis-而不用本地缓存？"><span class="nav-number">3.</span> <span class="nav-text">为什么用 redis 而不用本地缓存？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-单线程为什么还能这么快"><span class="nav-number">4.</span> <span class="nav-text">Redis 单线程为什么还能这么快?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-如何判断-KEY-是否过期呢？"><span class="nav-number">5.</span> <span class="nav-text">Redis 如何判断 KEY 是否过期呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis何时删除过期KEY？如何删除？"><span class="nav-number">6.</span> <span class="nav-text">Redis何时删除过期KEY？如何删除？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#当-Redis-内存不足时会怎么做？"><span class="nav-number">7.</span> <span class="nav-text">当 Redis 内存不足时会怎么做？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#那你能聊聊LRU和LFU吗？"><span class="nav-number">8.</span> <span class="nav-text">那你能聊聊LRU和LFU吗？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何保证缓存的双写一致性？"><span class="nav-number">9.</span> <span class="nav-text">如何保证缓存的双写一致性？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么不采用延迟双删机制？"><span class="nav-number">10.</span> <span class="nav-text">为什么不采用延迟双删机制？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存穿透问题？"><span class="nav-number">11.</span> <span class="nav-text">如何解决缓存穿透问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存雪崩问题？"><span class="nav-number">12.</span> <span class="nav-text">如何解决缓存雪崩问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存击穿问题？"><span class="nav-number">13.</span> <span class="nav-text">如何解决缓存击穿问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sentinel的三个作用是什么？"><span class="nav-number">14.</span> <span class="nav-text">Sentinel的三个作用是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sentinel如何判断一个redis实例是否健康？"><span class="nav-number">15.</span> <span class="nav-text">Sentinel如何判断一个redis实例是否健康？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#故障转移步骤有哪些？"><span class="nav-number">16.</span> <span class="nav-text">故障转移步骤有哪些？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sentinel-选举-leader-的依据是什么？"><span class="nav-number">17.</span> <span class="nav-text">sentinel 选举 leader 的依据是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sentinel-从-slave-中选取-master-的依据是什么？"><span class="nav-number">18.</span> <span class="nav-text">sentinel 从 slave 中选取 master 的依据是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现排行榜"><span class="nav-number">19.</span> <span class="nav-text">如何实现排行榜</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现延时队列？"><span class="nav-number">20.</span> <span class="nav-text">如何实现延时队列？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现分布式session"><span class="nav-number">21.</span> <span class="nav-text">如何实现分布式session</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-的数据持久化有哪些方式？Data-persistence"><span class="nav-number">22.</span> <span class="nav-text">redis 的数据持久化有哪些方式？Data persistence</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-持久化-RDB-和-AOF-有哪些优缺点？"><span class="nav-number">23.</span> <span class="nav-text">redis 持久化 RDB 和 AOF 有哪些优缺点？</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-为什么这么快？"><span class="nav-number">1.</span> <span class="nav-text">Redis 为什么这么快？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要用-Redis？"><span class="nav-number">2.</span> <span class="nav-text">为什么要用 Redis？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么用-redis-而不用本地缓存？"><span class="nav-number">3.</span> <span class="nav-text">为什么用 redis 而不用本地缓存？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-单线程为什么还能这么快"><span class="nav-number">4.</span> <span class="nav-text">Redis 单线程为什么还能这么快?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-里适合添加哪些数据？"><span class="nav-number">5.</span> <span class="nav-text">Redis 里适合添加哪些数据？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不适合放进-Redis-的数据"><span class="nav-number">6.</span> <span class="nav-text">不适合放进 Redis 的数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-如何判断-KEY-是否过期呢？"><span class="nav-number">7.</span> <span class="nav-text">Redis 如何判断 KEY 是否过期呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis何时删除过期KEY？如何删除？"><span class="nav-number">8.</span> <span class="nav-text">Redis何时删除过期KEY？如何删除？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#当-Redis-内存不足时会怎么做？"><span class="nav-number">9.</span> <span class="nav-text">当 Redis 内存不足时会怎么做？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#那你能聊聊LRU和LFU吗？"><span class="nav-number">10.</span> <span class="nav-text">那你能聊聊LRU和LFU吗？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何保证缓存的双写一致性？"><span class="nav-number">11.</span> <span class="nav-text">如何保证缓存的双写一致性？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在写数据的过程中，可以先删除-cache-，后更新-db-么？在写数据的过程中，先更新-db，后删除-cache-就没有问题了么？"><span class="nav-number">12.</span> <span class="nav-text">在写数据的过程中，可以先删除 cache ，后更新 db 么？在写数据的过程中，先更新 db，后删除 cache 就没有问题了么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么不采用延迟双删机制？"><span class="nav-number">13.</span> <span class="nav-text">为什么不采用延迟双删机制？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存穿透问题？"><span class="nav-number">14.</span> <span class="nav-text">如何解决缓存穿透问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存雪崩问题？"><span class="nav-number">15.</span> <span class="nav-text">如何解决缓存雪崩问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决缓存击穿问题？"><span class="nav-number">16.</span> <span class="nav-text">如何解决缓存击穿问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sentinel的三个作用是什么？"><span class="nav-number">17.</span> <span class="nav-text">Sentinel的三个作用是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sentinel如何判断一个redis实例是否健康？"><span class="nav-number">18.</span> <span class="nav-text">Sentinel如何判断一个redis实例是否健康？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#故障转移步骤有哪些？"><span class="nav-number">19.</span> <span class="nav-text">故障转移步骤有哪些？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sentinel-选举-leader-的依据是什么？"><span class="nav-number">20.</span> <span class="nav-text">sentinel 选举 leader 的依据是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sentinel-从-slave-中选取-master-的依据是什么？"><span class="nav-number">21.</span> <span class="nav-text">sentinel 从 slave 中选取 master 的依据是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现排行榜"><span class="nav-number">22.</span> <span class="nav-text">如何实现排行榜</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现延时队列？"><span class="nav-number">23.</span> <span class="nav-text">如何实现延时队列？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现分布式session"><span class="nav-number">24.</span> <span class="nav-text">如何实现分布式session</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-的数据持久化有哪些方式？Data-persistence"><span class="nav-number">25.</span> <span class="nav-text">redis 的数据持久化有哪些方式？Data persistence</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-持久化-RDB-和-AOF-有哪些优缺点？"><span class="nav-number">26.</span> <span class="nav-text">redis 持久化 RDB 和 AOF 有哪些优缺点？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-分布式锁的应用场景"><span class="nav-number">27.</span> <span class="nav-text">Redis 分布式锁的应用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式锁的注意事项"><span class="nav-number">28.</span> <span class="nav-text">分布式锁的注意事项</span></a></li></ol>
     
     </div>
   </aside>
@@ -375,7 +458,7 @@
         <!-- <span id="busuanzi_container_site_uv">
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         </span> -->
-        <span class="post-count">全站共 393.2k 字</span>
+        <span class="post-count">全站共 395.7k 字</span>
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
       </div>
