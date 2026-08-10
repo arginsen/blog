@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="OcsZXBpQqAp8163-20wn3epncmCv_UBtqBLZmspy-NA">
+  
+  <title>🔥 面试 | Spring Cloud 相关 | Arginsen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Backendinterview">
+  
+  
+  
+  
+  <meta name="keywords" content="Backend,interview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🔥 面试 | Spring Cloud 相关">
+<meta property="og:url" content="https://arginsen.mokongstudio.com/blog/2025/03/17/1-interview-spring/index.html">
+<meta property="og:site_name" content="Arginsen&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://arginsen.mokongstudio.com/blog/img/interview-new.jpg">
+<meta property="og:updated_time" content="2025-08-20T16:37:21.249Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🔥 面试 | Spring Cloud 相关">
+<meta name="twitter:image" content="https://arginsen.mokongstudio.com/blog/img/interview-new.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Arginsen&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/blog/css/images/favicon.ico">
+  
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="https://fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/blog/css/style.css">
+
+  <script src="/blog/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/blog/css/bootstrap.css">
+  <link rel="stylesheet" href="/blog/css/fashion.css">
+  <link rel="stylesheet" href="/blog/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/blog/" title="Arginsen&#39;s Blog" rel="home"> Arginsen&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">smells like teen spirit</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/blog/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-1-interview-spring" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/img/interview-new.jpg" rel="gallery_cmeclz8by001amtpu2zc99v2c">
+        <img src="/blog/img/interview-new.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      🔥 面试 | Spring Cloud 相关
+    </h1>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br><br><a id="more"></a></p>
+<h1 id="项目场景"><a href="#项目场景" class="headerlink" title="项目场景"></a>项目场景</h1><h2 id="如果Eureka-Server-挂了，服务还能互相调用吗？"><a href="#如果Eureka-Server-挂了，服务还能互相调用吗？" class="headerlink" title="如果Eureka Server 挂了，服务还能互相调用吗？"></a>如果Eureka Server 挂了，服务还能互相调用吗？</h2><p>If the Eureka Server goes down, services can still call each other in the short term because Eureka clients cache the registry locally. </p>
+<p>However, over time, the cache may become stale, causing failed calls. In production, we usually deploy Eureka Server in a cluster to avoid single point of failure.</p>
+<h2 id="如果-MQ-堆积了几百万消息，怎么解决？"><a href="#如果-MQ-堆积了几百万消息，怎么解决？" class="headerlink" title="如果 MQ 堆积了几百万消息，怎么解决？"></a>如果 MQ 堆积了几百万消息，怎么解决？</h2><p>分析原因(消费端/生产端) -&gt; 消费端增加处理/生产端限流 + 死信/监控</p>
+<p>If millions of messages are piled up in the MQ, the first step is to analyze the cause, usually either insufficient consumer throughput or traffic spike on the producer side.</p>
+<p>In the short term, we can add more consumers(such as pods or threads), enable batch consumption, or throttle producers. </p>
+<p>For long-term solutions, we should optimize consumer logic, increase parallelism by splitting queues and partitioning, and use dead-letter queues plus monitoring to prevent future backlogs.</p>
+<p>Using dead-letter queues means the messages reach the queue but there are no consumers to consume them. And We configure a delay time to control when the message can be delivered to the specified queue with routing key. Thus we accomplish to avoid the excessive concurrency.</p>
+<h2 id="如果-MyBatis-查询很慢，怎么排查？"><a href="#如果-MyBatis-查询很慢，怎么排查？" class="headerlink" title="如果 MyBatis 查询很慢，怎么排查？"></a>如果 MyBatis 查询很慢，怎么排查？</h2><p>应用层sql -&gt; 数据库explain -&gt; 系统连接</p>
+<p>If Mybatis query is slow, I would first check at the application level whether the generated SQL is correct, avoiding issues like N+1 queries or inefficient pagination.</p>
+<p>Then I would run the final SQL directly in the database and use EXPLAIN to see if it’s missing indexes or blocked by locks.</p>
+<p>Finally, I’d check system-level factors like the connection pool or network letency. </p>
+<p>The typical solutions are optimizing SQL and indexes, avoiding N+1 queries, using database-native pagination, and applying caching for hot data.</p>
+<h2 id="如果-Pod-内存不断飙升，直到-OOMKilled，怎么分析？"><a href="#如果-Pod-内存不断飙升，直到-OOMKilled，怎么分析？" class="headerlink" title="如果 Pod 内存不断飙升，直到 OOMKilled，怎么分析？"></a>如果 Pod 内存不断飙升，直到 OOMKilled，怎么分析？</h2><p>底层k8s -&gt; 应用层JVM -&gt; 业务层</p>
+<p>If a Pod’s memory keeps growing until it gets OOMKilled, I would first check in Kubernetes whether the memory limit is too low. </p>
+<p>Then I’d look at monitoring to see if the growth is sudden(possible memory leak) or load-driven(data accumulation). </p>
+<p>For application-level leaks, I’d export a heap dump and analyze it with tools like jmap to check for issues like unbounded caches, unclosed connections, or objects not released.</p>
+<p>If it’s caused by business load, such as MQ messages are not consumed in time, I’d optimize the consumption logic or scale out the service.</p>
+<p>The solutions usually involve setting memory limits, optimizing memory usage in the code, and setting cache expiration or current limiting when necessary.</p>
+<h2 id="如果-CI-CD-部署失败，如何快速回滚？"><a href="#如果-CI-CD-部署失败，如何快速回滚？" class="headerlink" title="如果 CI/CD 部署失败，如何快速回滚？"></a>如果 CI/CD 部署失败，如何快速回滚？</h2><p>first, check the failure occurs in the build stage or the deployment stage.</p>
+<p>A build failure does’t affect production, so I just fix and rebuild.</p>
+<p>If the deployment fails, We usually use kubernetes rollout undo to quickly revert to the previous version, and it will switch to the last stable environment.</p>
+<h2 id="如果-Spring-Boot-服务启动很慢，可能的原因有哪些？"><a href="#如果-Spring-Boot-服务启动很慢，可能的原因有哪些？" class="headerlink" title="如果 Spring Boot 服务启动很慢，可能的原因有哪些？"></a>如果 Spring Boot 服务启动很慢，可能的原因有哪些？</h2><p>Sping Boot applications may start slowly for several reasons:</p>
+<p>too many dependencies and bean initializations,<br>slow database connections or schema auto-generation,<br>delays from external services like Eureka or Redis,<br>heavy logging or reflection overhead,<br>heavy custom initialization logic such as large cache preloading,<br>pod startuping loads too many configmap or secret.</p>
+<p>To troubleshoot, I usually check the logs to see where the application is stuck, use debug mode, or analyze by the startup actuator endpoint.</p>
+<p>Optimizations include reducing dependency scope, removing unnecessary auto-configurations, tuning database connections, and deferring heavy initialization tasks.</p>
+<h1 id="Spring-boot"><a href="#Spring-boot" class="headerlink" title="Spring boot"></a>Spring boot</h1><h2 id="Spring-Boot-自动装配原理是什么？"><a href="#Spring-Boot-自动装配原理是什么？" class="headerlink" title="Spring Boot 自动装配原理是什么？"></a>Spring Boot 自动装配原理是什么？</h2><p>Spring Boot is a rapid development framework based on Spring. It can accomplish automatic configuration, embedded container, fast startup, and easy integration with spring cloud.</p>
+<p>Its automatic configuration is based on @EnableAutoConfiguration and spring.factories. Spring Boot will scan the configuration classes under the dependencies at startup and automatically assembles the beans that meet the requirements.</p>
+<h2 id="SpringBootApplication-包含了哪些注解？"><a href="#SpringBootApplication-包含了哪些注解？" class="headerlink" title="@SpringBootApplication 包含了哪些注解？"></a>@SpringBootApplication 包含了哪些注解？</h2><p>@SpringBootApplication is the core annotation of Spring Boot. It consists of @SpringBootConfiguration, @EnableAutoConfiguration and @ComponentScan.</p>
+<h2 id="Spring-Boot-如何做配置管理（application-yml、Profile、多环境切换）？"><a href="#Spring-Boot-如何做配置管理（application-yml、Profile、多环境切换）？" class="headerlink" title="Spring Boot 如何做配置管理（application.yml、Profile、多环境切换）？"></a>Spring Boot 如何做配置管理（application.yml、Profile、多环境切换）？</h2><p>Spring Boot uses application.yaml or application.rpoperties to manage the configuration. </p>
+<p>It supports multi-environment configuration via Profile and can maps the configuration to an object via @ConfigurationProperties.</p>
+<h2 id="常见-Starter-原理？自定义-Starter-怎么写？"><a href="#常见-Starter-原理？自定义-Starter-怎么写？" class="headerlink" title="常见 Starter 原理？自定义 Starter 怎么写？"></a>常见 Starter 原理？自定义 Starter 怎么写？</h2><p>Starter is based on @EnableAutoConfiguration and SpringFactoriesLoader. It dynamicly load configuration classes through confitional annotation to achieve automatic configuration.</p>
+<p>we can define a starter by 4 steps:</p>
+<ol>
+<li>write a automatic configuration class,</li>
+<li>write a property binding class,</li>
+<li>regiter in spring.factories or AutoConfiguration.imports</li>
+<li>package the codes to a dependency, then we can import it in the project.</li>
+</ol>
+<h2 id="Spring-Boot-如何实现热部署？"><a href="#Spring-Boot-如何实现热部署？" class="headerlink" title="Spring Boot 如何实现热部署？"></a>Spring Boot 如何实现热部署？</h2><h2 id="如何处理配置中心（Spring-Cloud-Config-Nacos）的动态刷新？"><a href="#如何处理配置中心（Spring-Cloud-Config-Nacos）的动态刷新？" class="headerlink" title="如何处理配置中心（Spring Cloud Config / Nacos）的动态刷新？"></a>如何处理配置中心（Spring Cloud Config / Nacos）的动态刷新？</h2><p>In the Spring Cloud Config, we can dynamicly refresh the configurations by @RefreshScpoe annotation and actuator or Spring Cloud Bus.</p>
+<p>In Nacos, the configuration supports automatic refresh by default.</p>
+<h1 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h1><h2 id="什么是服务注册与发现？Eureka-的工作原理？"><a href="#什么是服务注册与发现？Eureka-的工作原理？" class="headerlink" title="什么是服务注册与发现？Eureka 的工作原理？"></a>什么是服务注册与发现？Eureka 的工作原理？</h2><p>The service instance register the infomation to the Eureka Server when start up, and keep alive by heartbeat mechanism. the consumer can get the service address lists by Eureka with load balance. </p>
+<p>Eureka choose AP, which ensures high availability. And it can avoid<br>services being mistakenly rejected on a large scale through self-protection mode.</p>
+<h2 id="Eureka-Client-向-Eureka-Server-注册和心跳机制是怎样的？"><a href="#Eureka-Client-向-Eureka-Server-注册和心跳机制是怎样的？" class="headerlink" title="Eureka Client 向 Eureka Server 注册和心跳机制是怎样的？"></a>Eureka Client 向 Eureka Server 注册和心跳机制是怎样的？</h2><p>The client will send a heartbeat meassage to keep alive status per 30s. Eureka server will mark it expiration if the service doesn’t send heartbeat in 90s.</p>
+<h2 id="什么是-CAP-定理？Eureka-为什么选择-AP？"><a href="#什么是-CAP-定理？Eureka-为什么选择-AP？" class="headerlink" title="什么是 CAP 定理？Eureka 为什么选择 AP？"></a>什么是 CAP 定理？Eureka 为什么选择 AP？</h2><p>CAP means consistency, availability and partition tolerance.</p>
+<p>Eureka chooses AP , which ensures high availability and partition tolerance, but sacrifices strong consistency. When Eureka fails, the service is still available instead of directly rejecting the request. This action will provide a better user experience.</p>
+<p>ZooKeeper chooses CP, which means it ensures the service data has consistency, but when some errors occurs at Zookeeper, the requests will be rejected.</p>
+<h2 id="Eureka-和-Zookeeper、Nacos-的区别？"><a href="#Eureka-和-Zookeeper、Nacos-的区别？" class="headerlink" title="Eureka 和 Zookeeper、Nacos 的区别？"></a>Eureka 和 Zookeeper、Nacos 的区别？</h2><h2 id="Eureka-服务下线-健康检查机制？"><a href="#Eureka-服务下线-健康检查机制？" class="headerlink" title="Eureka 服务下线 / 健康检查机制？"></a>Eureka 服务下线 / 健康检查机制？</h2><p>There are two type of Eureka offline mechanism. Active offline and Passive offline. Active offline means the service sends an cancel request to the Eureka server. Passive offline means Eureka server cleans the services which don’t send a heartbeat over 90s.</p>
+<p>The Eureka default health check mechanism is heartbeat. but it can be combined with Spring Boot Actuator health check. We can configure and enable the healthcheck on the services, and then the service will report Actuator health status to Eureka server.</p>
+<h2 id="Eureka-自我保护机制是怎么实现的？"><a href="#Eureka-自我保护机制是怎么实现的？" class="headerlink" title="Eureka 自我保护机制是怎么实现的？"></a>Eureka 自我保护机制是怎么实现的？</h2><p>Eureka will count the heartbeat ratio in the last 15 minutes, if it is lower than 85% by default, Eureka will enter self-protection mode.</p>
+<p>under this mode, Eureka won’t remove any services in order to protect AP and won’t return its original mode until the network is restored.</p>
+<h1 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h1><h2 id="MQ-的应用场景有哪些？为什么要用-MQ？"><a href="#MQ-的应用场景有哪些？为什么要用-MQ？" class="headerlink" title="MQ 的应用场景有哪些？为什么要用 MQ？"></a>MQ 的应用场景有哪些？为什么要用 MQ？</h2><p>Using MQ can accomplish asynchronous decoupling. for example, our payment system sends a cross-border transfer, then it needs to generate and send a swift message to the clearing system, record<br>this transfer flow and inform account manager. MQ can process these operations asynchronously after core system notifies MQ. </p>
+<p>The clearing system is responsible for message delivery, the risk control system is responsible for verification, and the notification system is responsible for push notification. This decouples core system, reduces peak traffic and protects the clearing channel, ensures message delivery, and meets audit trail requirements.</p>
+<p>Handle peak traffic situations. for example, when a large number of meassges enter the system, they can first be delivered to the MQ queue, and then be smoothly sent to the clearing system for consumption.</p>
+<p>MQ can copy messages to the log system to ensure full link traceablity. and It can meet compliance, auditing and risk control needs.</p>
+<h2 id="RabbitMQ-的交换机类型（Direct-Topic-Fanout-Headers）的区别？"><a href="#RabbitMQ-的交换机类型（Direct-Topic-Fanout-Headers）的区别？" class="headerlink" title="RabbitMQ 的交换机类型（Direct/Topic/Fanout/Headers）的区别？"></a>RabbitMQ 的交换机类型（Direct/Topic/Fanout/Headers）的区别？</h2><p>RabbitMQ provides four common exchange types:<br>Direct(for exact matching by routing key),<br>Topic(for matching with regex),<br>Fanout(for broadcast mode that will inform every consumer),<br>Headers(for matching based on message attributes).</p>
+<p>Direct and Topic are most commonly used in general business scenarios.</p>
+<h2 id="如何保证消息-不丢失？"><a href="#如何保证消息-不丢失？" class="headerlink" title="如何保证消息 不丢失？"></a>如何保证消息 不丢失？</h2><p>retry mechanism, acknowledgement mechanism</p>
+<h2 id="如何避免消息-重复消费？"><a href="#如何避免消息-重复消费？" class="headerlink" title="如何避免消息 重复消费？"></a>如何避免消息 重复消费？</h2><p>MQ cann’t avoid duplicate delivery, so idempotence must be guaranteed on the consumer side. Common practices include using unique business IDs(such as serial numbers), database unique constaints, or Redis deduplication to ensure that messages are only rocessed once.</p>
+<h2 id="如何保证消息的-顺序性？"><a href="#如何保证消息的-顺序性？" class="headerlink" title="如何保证消息的 顺序性？"></a>如何保证消息的 顺序性？</h2><p>partition based on business keys(such as account IDs) ensures that individual keys are ordered and the entire process can be run in parallel.</p>
+<h2 id="什么是消息积压？如何解决？"><a href="#什么是消息积压？如何解决？" class="headerlink" title="什么是消息积压？如何解决？"></a>什么是消息积压？如何解决？</h2><p>The producer send too fast and the consumer has no time to process.</p>
+<p>So we can solve this problem from consumer side and producer side.</p>
+<p>in short term: we can add consumers, patch consumption or throttle producers.</p>
+<p>In long term: we can optimize the consumption logic, increase parallelism by splitting queues and partitioning, and use dead-letter queues and monitoring to prevent future backlogs.</p>
+<h2 id="Spring-AMQP-的重试机制？"><a href="#Spring-AMQP-的重试机制？" class="headerlink" title="Spring AMQP 的重试机制？"></a>Spring AMQP 的重试机制？</h2><h2 id="Kafka-和-RabbitMQ-的区别？"><a href="#Kafka-和-RabbitMQ-的区别？" class="headerlink" title="Kafka 和 RabbitMQ 的区别？"></a>Kafka 和 RabbitMQ 的区别？</h2><p>Kafka is designed for high throughput and big data processing, using a distributed logging architecture. It’s suitable for log collection and real-time analysis.</p>
+<p>RabbitMQ is designed for reliable message delivery. Based on the AMQP protocol, It supports flexible routing and is suitable for scenarios requiring strong consistency, such as financial payments.</p>
+<h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><h2 id="MyBatis-的执行流程是怎样的？"><a href="#MyBatis-的执行流程是怎样的？" class="headerlink" title="MyBatis 的执行流程是怎样的？"></a>MyBatis 的执行流程是怎样的？</h2><p>Mybatis creates SqlSession via SqlSessionFactory, dynamically proxies mapper interface, maps SQL to XML/annotations, and performs database operations.</p>
+<h2 id="和-的区别？"><a href="#和-的区别？" class="headerlink" title="#{} 和 ${} 的区别？"></a><code>#{}</code> 和 <code>${}</code> 的区别？</h2><h2 id="MyBatis-一级缓存和二级缓存的区别？"><a href="#MyBatis-一级缓存和二级缓存的区别？" class="headerlink" title="MyBatis 一级缓存和二级缓存的区别？"></a>MyBatis 一级缓存和二级缓存的区别？</h2><h2 id="Mapper-接口与-XML-是如何绑定的？"><a href="#Mapper-接口与-XML-是如何绑定的？" class="headerlink" title="Mapper 接口与 XML 是如何绑定的？"></a>Mapper 接口与 XML 是如何绑定的？</h2><p>The Mapper interface is bound to XML through namespace(package) and method name(id), and MyBatis maps the interface method call to the coresponding SQL statement execution through dynamic proxy.</p>
+<p>Usually, MyBatis add the class to session.getMapper method to generate a proxy object. the proxy object will intercept the method , and find the SQL in XML through namespace and method. Then run the SQL, get result, return the value object.</p>
+<h2 id="MyBatis-如何实现动态-SQL？"><a href="#MyBatis-如何实现动态-SQL？" class="headerlink" title="MyBatis 如何实现动态 SQL？"></a>MyBatis 如何实现动态 SQL？</h2><h2 id="MyBatis-性能调优手段？"><a href="#MyBatis-性能调优手段？" class="headerlink" title="MyBatis 性能调优手段？"></a>MyBatis 性能调优手段？</h2><h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="Docker-镜像和容器的区别？"><a href="#Docker-镜像和容器的区别？" class="headerlink" title="Docker 镜像和容器的区别？"></a>Docker 镜像和容器的区别？</h2><p>Image is static template. Container is the running instance of Image.</p>
+<h2 id="Dockerfile-常见指令（FROM、RUN、CMD、ENTRYPOINT、COPY、WORKDIR…）？"><a href="#Dockerfile-常见指令（FROM、RUN、CMD、ENTRYPOINT、COPY、WORKDIR…）？" class="headerlink" title="Dockerfile 常见指令（FROM、RUN、CMD、ENTRYPOINT、COPY、WORKDIR…）？"></a>Dockerfile 常见指令（FROM、RUN、CMD、ENTRYPOINT、COPY、WORKDIR…）？</h2><h2 id="Docker-镜像的分层结构？"><a href="#Docker-镜像的分层结构？" class="headerlink" title="Docker 镜像的分层结构？"></a>Docker 镜像的分层结构？</h2><h2 id="如何减少镜像体积？"><a href="#如何减少镜像体积？" class="headerlink" title="如何减少镜像体积？"></a>如何减少镜像体积？</h2><h2 id="容器和虚拟机的区别？"><a href="#容器和虚拟机的区别？" class="headerlink" title="容器和虚拟机的区别？"></a>容器和虚拟机的区别？</h2><p>Docker can run on VM, VM can provide docker a running environment.</p>
+<h2 id="Docker-网络模式有哪些？"><a href="#Docker-网络模式有哪些？" class="headerlink" title="Docker 网络模式有哪些？"></a>Docker 网络模式有哪些？</h2><h1 id="Kubernetes-K8s"><a href="#Kubernetes-K8s" class="headerlink" title="Kubernetes (K8s)"></a>Kubernetes (K8s)</h1><h2 id="K8s-的核心组件有哪些？（etcd、API-Server、Controller、Scheduler、Kubelet…）"><a href="#K8s-的核心组件有哪些？（etcd、API-Server、Controller、Scheduler、Kubelet…）" class="headerlink" title="K8s 的核心组件有哪些？（etcd、API Server、Controller、Scheduler、Kubelet…）"></a>K8s 的核心组件有哪些？（etcd、API Server、Controller、Scheduler、Kubelet…）</h2><h2 id="Pod、Deployment、Service、Ingress-的区别？"><a href="#Pod、Deployment、Service、Ingress-的区别？" class="headerlink" title="Pod、Deployment、Service、Ingress 的区别？"></a>Pod、Deployment、Service、Ingress 的区别？</h2><h2 id="Pod-为什么会被-OOMKilled？"><a href="#Pod-为什么会被-OOMKilled？" class="headerlink" title="Pod 为什么会被 OOMKilled？"></a>Pod 为什么会被 OOMKilled？</h2><h2 id="Liveness-Probe-和-Readiness-Probe-有什么区别？"><a href="#Liveness-Probe-和-Readiness-Probe-有什么区别？" class="headerlink" title="Liveness Probe 和 Readiness Probe 有什么区别？"></a>Liveness Probe 和 Readiness Probe 有什么区别？</h2><h2 id="K8s-滚动更新和回滚是怎么实现的？"><a href="#K8s-滚动更新和回滚是怎么实现的？" class="headerlink" title="K8s 滚动更新和回滚是怎么实现的？"></a>K8s 滚动更新和回滚是怎么实现的？</h2><h2 id="ConfigMap-和-Secret-的区别？"><a href="#ConfigMap-和-Secret-的区别？" class="headerlink" title="ConfigMap 和 Secret 的区别？"></a>ConfigMap 和 Secret 的区别？</h2><h2 id="如何排查-Pod-CrashLoopBackOff？"><a href="#如何排查-Pod-CrashLoopBackOff？" class="headerlink" title="如何排查 Pod CrashLoopBackOff？"></a>如何排查 Pod CrashLoopBackOff？</h2><h2 id="HPA（Horizontal-Pod-Autoscaler）工作原理？"><a href="#HPA（Horizontal-Pod-Autoscaler）工作原理？" class="headerlink" title="HPA（Horizontal Pod Autoscaler）工作原理？"></a>HPA（Horizontal Pod Autoscaler）工作原理？</h2><h1 id="CI-CD"><a href="#CI-CD" class="headerlink" title="CI/CD"></a>CI/CD</h1><h2 id="CI-CD-的流程是怎样的？"><a href="#CI-CD-的流程是怎样的？" class="headerlink" title="CI/CD 的流程是怎样的？"></a>CI/CD 的流程是怎样的？</h2><h2 id="常见的-CI-CD-工具（Jenkins、GitLab-CI、ArgoCD）区别？"><a href="#常见的-CI-CD-工具（Jenkins、GitLab-CI、ArgoCD）区别？" class="headerlink" title="常见的 CI/CD 工具（Jenkins、GitLab CI、ArgoCD）区别？"></a>常见的 CI/CD 工具（Jenkins、GitLab CI、ArgoCD）区别？</h2><h2 id="在-CI-CD-中如何做自动化测试？"><a href="#在-CI-CD-中如何做自动化测试？" class="headerlink" title="在 CI/CD 中如何做自动化测试？"></a>在 CI/CD 中如何做自动化测试？</h2><h2 id="如何在-CI-CD-中实现蓝绿发布-灰度发布？"><a href="#如何在-CI-CD-中实现蓝绿发布-灰度发布？" class="headerlink" title="如何在 CI/CD 中实现蓝绿发布 / 灰度发布？"></a>如何在 CI/CD 中实现蓝绿发布 / 灰度发布？</h2><h2 id="CI-CD-如何与-Docker、K8s-结合？"><a href="#CI-CD-如何与-Docker、K8s-结合？" class="headerlink" title="CI/CD 如何与 Docker、K8s 结合？"></a>CI/CD 如何与 Docker、K8s 结合？</h2><h2 id="如何保障生产环境的回滚机制？"><a href="#如何保障生产环境的回滚机制？" class="headerlink" title="如何保障生产环境的回滚机制？"></a>如何保障生产环境的回滚机制？</h2>
+      
+    </div>
+    <br>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/blog/categories/notes/">notes</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Backend/">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/interview/">interview</a></li></ul>
+
+      
+	<span class="ico-date"></span>
+	<a href="/blog/2025/03/17/1-interview-spring/" class="article-date">
+	  <time datetime="2025-03-16T16:00:00.000Z" itemprop="datePublished">三月 17, 2025</time>
+	</a>
+
+      <!-- 添加字数统计 -->
+      
+        <span class="ico-fontcount"></span><span class="post-count">2.1k字</span>
+      
+    </footer>
+    <!-- 文章添加评论 -->
+    
+      
+    <script defer src="https://unpkg.com/leancloud-storage@4/dist/av-min.js"></script>
+    <script defer src='https://unpkg.com/valine@latest/dist/Valine.min.js'></script>
+    <div id="vcomments"></div>
+    <script>
+
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+		// 设置轮询
+		const timer = setInterval(() => {
+			if (window.Valine && typeof window.Valine === 'function') {
+				clearInterval(timer);
+				new Valine({
+					el: '#vcomments',
+					notify: notify,
+					verify: verify,
+					app_id: 'AJj6aG4cDMBqBIISAr1U53Az-gzGzoHsz',
+					app_key: 'bIYBhlht4PSXI4pCWuH7Gnuo',
+					placeholder: 'say something bro ~',
+					avatar: 'monsterid',
+					avatarCDN:'https://cravatar.cn/avatar/',
+					visitor: 'true',
+                    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                    // 表情title和图片映射
+                    emojiMaps: {
+                        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                        // ... 更多表情
+                    }
+				});
+			}
+		}, 1000);
+    </script>
+
+
+
+    
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2025/03/08/1-interview-vue-en/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">🔥 面试 | Vue - 前端相关</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目场景"><span class="nav-number">1.</span> <span class="nav-text">项目场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如果Eureka-Server-挂了，服务还能互相调用吗？"><span class="nav-number">1.1.</span> <span class="nav-text">如果Eureka Server 挂了，服务还能互相调用吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果-MQ-堆积了几百万消息，怎么解决？"><span class="nav-number">1.2.</span> <span class="nav-text">如果 MQ 堆积了几百万消息，怎么解决？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果-MyBatis-查询很慢，怎么排查？"><span class="nav-number">1.3.</span> <span class="nav-text">如果 MyBatis 查询很慢，怎么排查？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果-Pod-内存不断飙升，直到-OOMKilled，怎么分析？"><span class="nav-number">1.4.</span> <span class="nav-text">如果 Pod 内存不断飙升，直到 OOMKilled，怎么分析？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果-CI-CD-部署失败，如何快速回滚？"><span class="nav-number">1.5.</span> <span class="nav-text">如果 CI/CD 部署失败，如何快速回滚？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果-Spring-Boot-服务启动很慢，可能的原因有哪些？"><span class="nav-number">1.6.</span> <span class="nav-text">如果 Spring Boot 服务启动很慢，可能的原因有哪些？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-boot"><span class="nav-number">2.</span> <span class="nav-text">Spring boot</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-自动装配原理是什么？"><span class="nav-number">2.1.</span> <span class="nav-text">Spring Boot 自动装配原理是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBootApplication-包含了哪些注解？"><span class="nav-number">2.2.</span> <span class="nav-text">@SpringBootApplication 包含了哪些注解？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-如何做配置管理（application-yml、Profile、多环境切换）？"><span class="nav-number">2.3.</span> <span class="nav-text">Spring Boot 如何做配置管理（application.yml、Profile、多环境切换）？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见-Starter-原理？自定义-Starter-怎么写？"><span class="nav-number">2.4.</span> <span class="nav-text">常见 Starter 原理？自定义 Starter 怎么写？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-如何实现热部署？"><span class="nav-number">2.5.</span> <span class="nav-text">Spring Boot 如何实现热部署？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何处理配置中心（Spring-Cloud-Config-Nacos）的动态刷新？"><span class="nav-number">2.6.</span> <span class="nav-text">如何处理配置中心（Spring Cloud Config / Nacos）的动态刷新？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Eureka"><span class="nav-number">3.</span> <span class="nav-text">Eureka</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是服务注册与发现？Eureka-的工作原理？"><span class="nav-number">3.1.</span> <span class="nav-text">什么是服务注册与发现？Eureka 的工作原理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka-Client-向-Eureka-Server-注册和心跳机制是怎样的？"><span class="nav-number">3.2.</span> <span class="nav-text">Eureka Client 向 Eureka Server 注册和心跳机制是怎样的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-CAP-定理？Eureka-为什么选择-AP？"><span class="nav-number">3.3.</span> <span class="nav-text">什么是 CAP 定理？Eureka 为什么选择 AP？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka-和-Zookeeper、Nacos-的区别？"><span class="nav-number">3.4.</span> <span class="nav-text">Eureka 和 Zookeeper、Nacos 的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka-服务下线-健康检查机制？"><span class="nav-number">3.5.</span> <span class="nav-text">Eureka 服务下线 / 健康检查机制？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka-自我保护机制是怎么实现的？"><span class="nav-number">3.6.</span> <span class="nav-text">Eureka 自我保护机制是怎么实现的？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#消息队列"><span class="nav-number">4.</span> <span class="nav-text">消息队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MQ-的应用场景有哪些？为什么要用-MQ？"><span class="nav-number">4.1.</span> <span class="nav-text">MQ 的应用场景有哪些？为什么要用 MQ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RabbitMQ-的交换机类型（Direct-Topic-Fanout-Headers）的区别？"><span class="nav-number">4.2.</span> <span class="nav-text">RabbitMQ 的交换机类型（Direct/Topic/Fanout/Headers）的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何保证消息-不丢失？"><span class="nav-number">4.3.</span> <span class="nav-text">如何保证消息 不丢失？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何避免消息-重复消费？"><span class="nav-number">4.4.</span> <span class="nav-text">如何避免消息 重复消费？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何保证消息的-顺序性？"><span class="nav-number">4.5.</span> <span class="nav-text">如何保证消息的 顺序性？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是消息积压？如何解决？"><span class="nav-number">4.6.</span> <span class="nav-text">什么是消息积压？如何解决？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-AMQP-的重试机制？"><span class="nav-number">4.7.</span> <span class="nav-text">Spring AMQP 的重试机制？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka-和-RabbitMQ-的区别？"><span class="nav-number">4.8.</span> <span class="nav-text">Kafka 和 RabbitMQ 的区别？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mybatis"><span class="nav-number">5.</span> <span class="nav-text">Mybatis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-的执行流程是怎样的？"><span class="nav-number">5.1.</span> <span class="nav-text">MyBatis 的执行流程是怎样的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#和-的区别？"><span class="nav-number">5.2.</span> <span class="nav-text">#{} 和 ${} 的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-一级缓存和二级缓存的区别？"><span class="nav-number">5.3.</span> <span class="nav-text">MyBatis 一级缓存和二级缓存的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mapper-接口与-XML-是如何绑定的？"><span class="nav-number">5.4.</span> <span class="nav-text">Mapper 接口与 XML 是如何绑定的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-如何实现动态-SQL？"><span class="nav-number">5.5.</span> <span class="nav-text">MyBatis 如何实现动态 SQL？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-性能调优手段？"><span class="nav-number">5.6.</span> <span class="nav-text">MyBatis 性能调优手段？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker"><span class="nav-number">6.</span> <span class="nav-text">Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-镜像和容器的区别？"><span class="nav-number">6.1.</span> <span class="nav-text">Docker 镜像和容器的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile-常见指令（FROM、RUN、CMD、ENTRYPOINT、COPY、WORKDIR…）？"><span class="nav-number">6.2.</span> <span class="nav-text">Dockerfile 常见指令（FROM、RUN、CMD、ENTRYPOINT、COPY、WORKDIR…）？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-镜像的分层结构？"><span class="nav-number">6.3.</span> <span class="nav-text">Docker 镜像的分层结构？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何减少镜像体积？"><span class="nav-number">6.4.</span> <span class="nav-text">如何减少镜像体积？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器和虚拟机的区别？"><span class="nav-number">6.5.</span> <span class="nav-text">容器和虚拟机的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-网络模式有哪些？"><span class="nav-number">6.6.</span> <span class="nav-text">Docker 网络模式有哪些？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kubernetes-K8s"><span class="nav-number">7.</span> <span class="nav-text">Kubernetes (K8s)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#K8s-的核心组件有哪些？（etcd、API-Server、Controller、Scheduler、Kubelet…）"><span class="nav-number">7.1.</span> <span class="nav-text">K8s 的核心组件有哪些？（etcd、API Server、Controller、Scheduler、Kubelet…）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pod、Deployment、Service、Ingress-的区别？"><span class="nav-number">7.2.</span> <span class="nav-text">Pod、Deployment、Service、Ingress 的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pod-为什么会被-OOMKilled？"><span class="nav-number">7.3.</span> <span class="nav-text">Pod 为什么会被 OOMKilled？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Liveness-Probe-和-Readiness-Probe-有什么区别？"><span class="nav-number">7.4.</span> <span class="nav-text">Liveness Probe 和 Readiness Probe 有什么区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K8s-滚动更新和回滚是怎么实现的？"><span class="nav-number">7.5.</span> <span class="nav-text">K8s 滚动更新和回滚是怎么实现的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConfigMap-和-Secret-的区别？"><span class="nav-number">7.6.</span> <span class="nav-text">ConfigMap 和 Secret 的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何排查-Pod-CrashLoopBackOff？"><span class="nav-number">7.7.</span> <span class="nav-text">如何排查 Pod CrashLoopBackOff？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HPA（Horizontal-Pod-Autoscaler）工作原理？"><span class="nav-number">7.8.</span> <span class="nav-text">HPA（Horizontal Pod Autoscaler）工作原理？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CI-CD"><span class="nav-number">8.</span> <span class="nav-text">CI/CD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-CD-的流程是怎样的？"><span class="nav-number">8.1.</span> <span class="nav-text">CI/CD 的流程是怎样的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的-CI-CD-工具（Jenkins、GitLab-CI、ArgoCD）区别？"><span class="nav-number">8.2.</span> <span class="nav-text">常见的 CI/CD 工具（Jenkins、GitLab CI、ArgoCD）区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-CI-CD-中如何做自动化测试？"><span class="nav-number">8.3.</span> <span class="nav-text">在 CI/CD 中如何做自动化测试？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在-CI-CD-中实现蓝绿发布-灰度发布？"><span class="nav-number">8.4.</span> <span class="nav-text">如何在 CI/CD 中实现蓝绿发布 / 灰度发布？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-CD-如何与-Docker、K8s-结合？"><span class="nav-number">8.5.</span> <span class="nav-text">CI/CD 如何与 Docker、K8s 结合？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何保障生产环境的回滚机制？"><span class="nav-number">8.6.</span> <span class="nav-text">如何保障生产环境的回滚机制？</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">HOME</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">ARCHIVES</a>
+  
+    <a href="/blog/categories" class="mobile-nav-link">CATEGORIES</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">ABOUT</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2026 Arginsen&#39;s Blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        ID  <a href="https://arginsen.mokongstudio.com" target="_blank">Arginsen</a>
+      </div>
+      <br>
+      <div class="busuanzi-analytics">
+        
+        <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <!-- <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span> -->
+        <span class="post-count">全站共 369.7k 字</span>
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </div>
+  </div>
+</footer>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+<script src="/blog/js/bootstrap.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bb74e3da22205cadfa4f6e0a31a76ac4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/blog/js/totop.js" async=""></script>
+</body>
+</html>
